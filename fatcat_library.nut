@@ -3122,7 +3122,7 @@ function ROOT::SetPopfileName(name)
 function ROOT::RunWithDelay(func, delay = 0.0)
 {
 	local func_name = UniqueString()
-		GetScope(Worldspawn)[func_name] <- function[this]()
+		GetScope(Worldspawn)[func_name] <- function()
 		{
 			delete GetScope(Worldspawn)[func_name]
 			func()
@@ -3136,7 +3136,7 @@ function ROOT::RunWithDelay(func, delay = 0.0)
 function ROOT::CreateTimer(on_timer_func, first_delay = 0.0)
 {
 	local func_name = UniqueString()
-	GetScope(Worldspawn)[func_name] <- function[this]() {	
+	GetScope(Worldspawn)[func_name] <- function() {	
 		try
 		{
 			local delay = on_timer_func()
