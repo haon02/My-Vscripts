@@ -3144,11 +3144,11 @@ function ROOT::dummy_ent() {
 function ROOT::RunWithDelay(func, delay = 0.0)
 {
 	local dummy = dummy_ent()
-	dummy.GetScriptScope()["Run"] <- function[this]()
+	dummy.GetScriptScope()["Run"] <- function()
 	{
 		dummy.Kill()
 		func()
-	}
+	}.bindenv(this)
 
 	EntFireByHandle(dummy, "CallScriptFunction", "Run", delay, null, null)
 	return dummy
@@ -3157,7 +3157,7 @@ function ROOT::RunWithDelay(func, delay = 0.0)
 function ROOT::CreateTimer(on_timer_func, first_delay = 0.0)
 {
 	local dummy = dummy_ent()
-	dummy.GetScriptScope()["Run"] <- function[this]()
+	dummy.GetScriptScope()["Run"] <- function()
 	{
 		try
 		{
@@ -3180,7 +3180,7 @@ function ROOT::CreateTimer(on_timer_func, first_delay = 0.0)
 			dummy.Kill()
 			throw err
 		}
-	}
+	}.bindenv(this)
 
 	EntFireByHandle(dummy, "CallScriptFunction", "Run", first_delay, null, null)
 	return dummy
