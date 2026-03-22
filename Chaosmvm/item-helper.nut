@@ -1,8 +1,8 @@
 IncludeScript("fatcat_library")
 
 // POTATO VERSION
-// IncludeScript("chaosmvm/translations")
-IncludeScript("translations")
+IncludeScript("chaosmvm/translations")
+// IncludeScript("translations")
 
 const item_help_color = "\x08FFFF00DD"
 const text_color = "\x08FFFFFFBB"
