@@ -10,7 +10,7 @@ const item_help_color_header = "\x0826c2ffDD"
 const text_color_header = "\x0826beffBB"
 const error_color = "\x07D43F3F"
 
-SetScriptVersion("item_helper", "3.3.0")
+SetScriptVersion("item_helper", "3.3.1")
 ::helper <- {}
 
 ::ItemTranslateTable <- {
@@ -265,8 +265,12 @@ AddChatTrigger("itemhelp", function(player, ...) {
 		player.TranslateToChat("IH_HELP_MSG")
 		return
 	}
+	local setting = -1
+	try {
+		setting = vargv[0].tointeger()
+	}
+	catch(e) {}
 
-	local setting = vargv[0].tointeger()
 
 	if (setting > 2 || setting < 0)
 	{
