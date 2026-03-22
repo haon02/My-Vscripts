@@ -2090,6 +2090,7 @@ function CTFPlayer::UndoGHeavy()
 	SetCustomModelWithClassAnimations("")
 }
 
+// TODO: Add to Snippets
 function CTFPlayer::IsGHeavy()
 	return "HeavyTransform" in GetScope(this) && GetScope(this).HeavyTransform
 
@@ -2127,9 +2128,23 @@ function CTFPlayer::EquipItem(classname, idx, attrib_overrides = {})
 
 	FixAmmo()
 }
-
+// TODO: Add to Snippets
 function CTFPlayer::IsMedicButtonDown()
 	return GetPropFloat(this, "m_flHelpmeButtonPressTime") != 0
+// TODO: Add to Snippets
+function CTFPlayer::GetActiveHealers()
+{
+	local healers = []
+	foreach (player in GetAllEntitiesByClassname("player")) // worse than iterating through cached player array tbh
+	{
+		if(player.GetTeam() != TF_TEAM_PVE_INVADERS || player.GetPlayerClass() != TF_CLASS_MEDIC)
+			continue
+		if(player.GetHealTarget() == null || player.GetHealTarget() != this)
+			continue
+		healers.append(player)
+	}
+	return healers
+}
 /* 
 function CTFPlayer::CreateParticle(particle, duration = -1)
 {

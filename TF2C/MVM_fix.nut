@@ -121,6 +121,20 @@ if(!("FatCatLibVersion" in getroottable()))
 	}
 }
 
+function CTFBot::GetActiveHealers()
+	{
+		local healers = []
+		foreach (player in GetAllEntitiesByClassname("player"))
+		{
+			if(player.GetTeam() != TF_TEAM_PVE_INVADERS || player.GetPlayerClass() != TF_CLASS_MEDIC)
+				continue
+			if(player.GetHealTarget() == null || player.GetHealTarget() != this)
+				continue
+			healers.append(player)
+		}
+		return healers
+	}
+
 ::Currencys <- []
 function CollectNewDroppedCurrency()
 {
