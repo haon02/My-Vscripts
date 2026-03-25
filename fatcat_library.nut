@@ -2736,6 +2736,13 @@ function CTFBaseBoss::RegisterHurtPercentCallback(perc, callback)
 	ConnectOutput(OutputName, OutputName)
 }
 
+function CTFNavArea::GetArea()
+	return sqrt(GetSizeX()*GetSizeY())
+
+function CTFNavArea::IsTFInSpawnroom()
+	return HasAttributeTF(TF_NAV_SPAWN_ROOM_BLUE) || HasAttributeTF(TF_NAV_SPAWN_ROOM_RED)
+
+
 function ROOT::GetWeaponInSlot(player = null, slot = 0)
 {
 	if( !player ) return null
@@ -3653,6 +3660,13 @@ function Vector::Normalize()
 	new.Norm()
 	return new
 }
+
+function ROOT::DummyB( ... )
+	return true
+function ROOT::DummyN( ... )
+	return 1
+function ROOT::DummyV( ... )
+	return Vector()
 
 function ROOT::min(a, b)
 {
