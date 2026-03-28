@@ -153,10 +153,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.15.11", 0))
+if (!SetLibraryVersion("1.15.11", 1))
 	return
 
-SetLibraryTimeStamp("3-27-2026_01:23")
+SetLibraryTimeStamp("3-28-2026_00:48")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -2024,11 +2024,21 @@ function CTFPlayer::AddThink(delay, func, offset = 0.0, name = null)
 {
 	if(IsNotInScope("ThinkTable", GetScope(this)))
 		SetUpThinkTable()
+	name = name||UniqueString()
 	GetScope(this).ThinkTable[name||UniqueString()] <- {
 		delay = delay
 		func = func
 		LastThinkTime = Time() + offset
 	}
+	return name
+}
+// TODO: Add to Snippets
+function CTFPlayer::RemoveThink(name)
+{
+	if(IsNotInScope("ThinkTable", GetScope(this)))
+		SetUpThinkTable()
+	if(name in GetScope(this).ThinkTable)
+		delete GetScope(this).ThinkTable[name]
 }
 // TODO: Add to Snippets
 function CTFPlayer::DiedWithAbility()
