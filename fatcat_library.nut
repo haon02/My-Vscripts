@@ -2010,6 +2010,20 @@ function CTFPlayer::SetUpThinkTable()
 		return -1
 	}
 	AddThinkToEnt(this, "ThinkTableThink")
+	if(IsNotInScope("PreservedThinks", GetScope(this)))
+		GetScope(this).PreservedThinks <- {}
+}
+// TODO: Add to Snippets
+function CTFPlayer::AddPreservedThink(delay, func, offset = 0.0, name = null)
+{
+	name = name||UniqueString()
+	AddThink(delay, func, offset, name)
+	GetScope(this).PreservedThinks[name] <- {
+		delay = delay
+		func = func
+		offset = offset
+	}
+	return name
 }
 // TODO: Add to Snippets 
 /**
@@ -2017,15 +2031,16 @@ function CTFPlayer::SetUpThinkTable()
  * 
  * @param {float}	 	delay 	The Time Inbetween each think (set to below 0 for every tick thinking).
  * @param {function} 	func 	The Think Function.
- * @param {float} 		offset 	Time offset of the next Think
- * @param {function} 	func 	The Think Function.
+ * @param {float} 		offset 	Time offset of the next Think.
+ * @param {name} 		func 	The Think function name in the ThinkTable (used for removing a think).
  */
 function CTFPlayer::AddThink(delay, func, offset = 0.0, name = null)
 {
 	if(IsNotInScope("ThinkTable", GetScope(this)))
 		SetUpThinkTable()
+		
 	name = name||UniqueString()
-	GetScope(this).ThinkTable[name||UniqueString()] <- {
+	GetScope(this).ThinkTable[name] <- {
 		delay = delay
 		func = func
 		LastThinkTime = Time() + offset
@@ -2037,6 +2052,8 @@ function CTFPlayer::RemoveThink(name)
 {
 	if(IsNotInScope("ThinkTable", GetScope(this)))
 		SetUpThinkTable()
+	if(name in GetScope(this).PreservedThinks)
+		delete GetScope(this).PreservedThinks[name]
 	if(name in GetScope(this).ThinkTable)
 		delete GetScope(this).ThinkTable[name]
 }
@@ -4699,8 +4716,16 @@ function ROOT::ProjectileThink()
 
 		ClearThinks(eventdata.player)
 		if(!eventdata.player.IsBot())
+		{
 			eventdata.player.SetUpThinkTable()
-
+			if("PreservedThinks" in GetScope(eventdata.player))
+			{
+				foreach (name, data in GetScope(eventdata.player).PreservedThinks)
+				{
+					eventdata.player.AddPreservedThink(data.delay, data.func, data.offset, name)
+				}
+			}
+		}
 		// overridden
 		delete eventdata.userid
 

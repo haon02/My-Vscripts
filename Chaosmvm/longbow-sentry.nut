@@ -2,7 +2,7 @@ IncludeScript("fatcat_library")
 PrecacheSound("weapons/teleporter_send.wav")
 PrecacheSound("weapons/teleporter_receive.wav")
 
-SetScriptVersion("longbow_sentry", "1.0.4")
+SetScriptVersion("longbow_sentry", "1.0.5")
 
 ///// Events! /////
 ::longbow_events <- {
@@ -11,7 +11,7 @@ SetScriptVersion("longbow_sentry", "1.0.4")
 		local player = params.player
 		if(player.GetWeaponIDXInSlot(SLOT_MELEE) != TF_WEAPON_EUREKA_EFFECT) return
 
-		player.AddThink(0, LongBowSentry)
+		player.AddThink(0, LongBowSentry, 0.0, "LongbowSentry")
 	}
 }
 __CollectGameEventCallbacks(longbow_events)
