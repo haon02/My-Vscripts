@@ -378,6 +378,7 @@ BONUS_EFFECT_REMAP[kBonusEffect_Stomp] 					= BONUS_EFFECT_STOMP
 ::TF_WEAPON_WANGA_PRICK 				<- 574
 ::TF_WEAPON_POMSON 						<- 588
 ::TF_WEAPON_LOLLICHOP					<- 739
+::TF_WEAPON_BABYFACE					<- 772
 ::TF_WEAPON_NEON_ANNIHILATOR			<- 813
 ::TF_WEAPON_NEON_ANNIHILATOR_GENUINE	<- 834
 ::TF_WEAPON_BREAD_BITE	 				<- 1100
@@ -526,6 +527,7 @@ function ROOT::GetRuneCondition(rune)
 ::NULL_S 				<- "null"
 ::TICKRATE 				<- 66
 ::TICK_DUR 				<- 1.0/TICKRATE
+::MAX_DECAPITATIONS 	<- 4
 
 ::Host <- GetListenServerHost()
 
@@ -2269,7 +2271,129 @@ function CTFPlayer::HookAdditiveAttributes(attribute, weapons = true)
 	}
 	return amount
 }
+// TODO: Add to Snippets
+function CTFPlayer::GetBaseMovespeed( classidx = false )
+{
+	switch (classidx||GetPlayerClass()) 
+	{
+	case TF_CLASS_SCOUT: 		return 400
+	case TF_CLASS_SOLDIER: 		return 240
+	case TF_CLASS_PYRO: 		return 300
+	case TF_CLASS_DEMOMAN: 		return 280
+	case TF_CLASS_HEAVYWEAPONS: return 230
+	case TF_CLASS_ENGINEER: 	return 300
+	case TF_CLASS_MEDIC: 		return 320
+	case TF_CLASS_SNIPER: 		return 300
+	case TF_CLASS_SPY: 			return 320
+	default: 					return 300
+	}
+	return -1
+}
+// TODO: Add to Snippets
+function CTFPlayer::GetMoveSpeed()
+{
+	local BaseSpeed = GetBaseMovespeed()
+	if ( InCond( TF_COND_DISGUISED ) && !IsStealthed() )
+		BaseSpeed = MATH.Min(GetBaseMovespeed( GetPropInt(this, "m_Shared.m_nDisguiseClass") ), BaseSpeed)
+	local speed = BaseSpeed
 
+	if ( InCond( TF_COND_AIMING ) )
+	{
+		local AimMax = 0
+
+		if ( GetPlayerClass() == TF_CLASS_HEAVYWEAPONS )
+			AimMax = 110
+		else if(GetActiveWeapon() && GetActiveWeapon().IsBow())
+			AimMax = 160
+		else
+			AimMax = 80
+
+		AimMax *= active.GetAttribute("aiming movespeed increased", 1)
+		AimMax *= active.GetAttribute("aiming movespeed decreased", 1)
+		AimMax *= active.GetAttribute("sniper aiming movespeed decreased", 1)
+		
+		speed = MATH.Min( speed, AimMax );
+	}
+
+	local WhipBoost = 105.0
+	if ( Convars.IsConVarOnAllowList("tf_whip_speed_increase") )
+		WhipBoost = Convars.GetFloat("tf_whip_speed_increase")
+
+
+	if ( InCond( TF_COND_SPEED_BOOST ) && speed > 0.0)
+		speed += MATH.Min( speed * 0.4, WhipBoost )
+
+	if ( GetActiveWeapon() )
+		speed *= GetActiveWeapon().GetSpeedMod()
+
+	if ( GetPlayerClass() == TF_CLASS_DEMOMAN )
+	{
+		local Sword = GetWeaponClassname("tf_weapon_sword")
+		if ( Sword )
+			speed *= Sword.GetSwordSpeedMod()
+		
+
+		if ( !bIgnoreSpecialAbility && m_Shared.InCond( TF_COND_SHIELD_CHARGE ) )
+		{
+			maxfbspeed = tf_max_charge_speed.GetFloat();
+		}
+	}
+	if ( InCond( TF_COND_SHIELD_CHARGE ) )
+		speed = (Convars.IsConVarOnAllowList("tf_max_charge_speed") && Convars.GetFloat("tf_max_charge_speed")) ? Convars.GetFloat("tf_max_charge_speed") : 750
+
+	if ( !IsMannVsMachineMode() && GetPropBool(this, "m_Shared.m_bCarryingObject") )
+		speed *= 0.9
+
+	speed *= HookMultAttributes("move speed bonus")
+	speed *= HookMultAttributes("move speed penalty")
+
+	if ( GetPropBool(this, "m_Shared.m_bShieldEquipped") )
+		speed *= HookMultAttributes("move speed bonus shield required")
+
+	if ( GetPlayerClass() == TF_CLASS_MEDIC )
+	{
+		// QuickFix stuff
+		local flClassResourceLevelMod = GetActiveWeapon().GetAttribute("move speed bonus resource level", 1.0)
+		if ( flClassResourceLevelMod != 1.0 )
+		{
+			local Medigun = GetWeaponClassname("tf_weapon_medigun")
+			if ( Medigun )
+				speed *= RemapValClamped( Medigun.GetUberChargePercent(), 0.0, 1.0, 1.0, flClassResourceLevelMod );
+		}
+	}
+
+	if ( GetPlayerClass() == TF_CLASS_HEAVYWEAPONS && InCond( TF_COND_ENERGY_BUFF ))
+	{
+		speed *= 1.3;
+		MATH.Clamp(speed, 0, BaseSpeed * 1.35)
+	}
+
+	if ( GetPlayerClass() == TF_CLASS_SCOUT )
+	{	
+		local wep = GetWeapon(TF_WEAPON_BABYFACE)
+		if ( wep )
+			speed *= RemapValClamped( GetScoutHypeMeter(), 0.0, 100.0, 1.0, 1.45 )
+	}
+
+	if ( GetCurrentRune() == RUNE_HASTE )
+		speed *= 1.3
+	if ( GetCurrentRune() == RUNE_AGILITY )
+	{
+		// light classes get more benefit due to movement speed cap of 520 
+		switch ( GetPlayerClass() )
+		{
+		case TF_CLASS_DEMOMAN:
+		case TF_CLASS_SOLDIER:
+		case TF_CLASS_HEAVYWEAPONS:
+			speed *= 1.4
+			break;
+		default:
+			speed *= 1.5
+			break;
+		}
+	}
+	return speed
+}
 /* 
 function CTFPlayer::CreateParticle(particle, duration = -1)
 {
@@ -2802,9 +2926,43 @@ function CTFWeaponBase::ShootPosition()
 			eye_angles.Left() * offset.y +
 			eye_angles.Forward() * offset.x
 }
-
+// TODO: Add to Snippets
 function CTFWeaponBase::IsWearable()
 	return IsInArray(GetIDX(), WearableIDXs.Primarys) || IsInArray(GetIDX(), WearableIDXs.Secondarys)
+// TODO: Add to Snippets
+function CTFWeaponBase::IsSniperRifle()
+	return startswith(GetClassname().slice(10), "sniperrifle")
+// TODO: Add to Snippets
+function CTFWeaponBase::IsBow()
+	return startswith(GetClassname().slice(10), "compound")
+// TODO: Add to Snippets
+function CTFWeaponBase::IsMinigun()
+	return startswith(GetClassname().slice(10), "minigun")
+// TODO: Add to Snippets
+function CTFWeaponBase::GetSpeedMod()
+{
+	if(!GetAttribute("mod shovel speed boost", 0))
+		return 1.0
+	local healthRatio = GetHealth().tofloat() / GetMaxHealth().tofloat()
+	if ( healthRatio > 0.8 )
+		return 1.0
+	else if ( healthRatio > 0.6 )
+		return 1.1
+	else if ( healthRatio > 0.4 )
+		return 1.2
+	else if ( healthRatio > 0.2 )
+		return 1.4
+	else
+		return 1.6
+}
+// TODO: Add to Snippets
+function CTFWeaponBase::GetSwordSpeedMod()
+{
+	if(!GetOwner())
+		return 1.0
+	return 1.0 + (MATH.Min( MAX_DECAPITATIONS, GetPropInt(GetOwner(), "m_Shared.m_iDecapitations") ) * 0.08);
+}
+
 
 ::CopyAttributes <- {
 	"fire rate bonus" : 1
@@ -3818,7 +3976,7 @@ function ROOT::PrecacheObject(thing)
 }
 function Vector::Normalize()
 {
-	local new = this
+	local new = this + ::Vector()
 	new.Norm()
 	return new
 }
@@ -3828,6 +3986,13 @@ function Vector::Random(min, max)
 	this.x = min + (::RandomInt(0, 0x7FFF).tofloat() / 0x7FFF) * (max - min);
 	this.y = min + (::RandomInt(0, 0x7FFF).tofloat() / 0x7FFF) * (max - min);
 	this.z = min + (::RandomInt(0, 0x7FFF).tofloat() / 0x7FFF) * (max - min);
+}
+
+function Vector2D::Normalize()
+{
+	local new = this + ::Vector2D()
+	new.Norm()
+	return new
 }
 
 function ROOT::DummyB( ... )
