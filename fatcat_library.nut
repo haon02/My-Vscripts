@@ -3304,12 +3304,6 @@ if (!("_AddThinkToEnt" in ROOT))
 		}
 	}
 }
-function ROOT::AddThinkToEnt(entity, think_func)
-{
-	_AddThinkToEnt(entity, think_func)
-	PurgeString(think_func)
-	PurgeString(entity)
-}
 
 function ROOT::GetScope(entity)
 {
