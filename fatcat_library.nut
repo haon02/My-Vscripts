@@ -4,6 +4,60 @@
 ::FATCATLIB_PREFIX 		<- "\x07D000D0► FatCatLib ◄\x01 "
 ::FATCATLIB_CON_PREFIX 	<- "► FatCatLib ◄ "
 
+::MOD_TF2 <- "Team Fortress 2"
+::MOD_TF2C <- "Team Fortress 2 Classified"
+
+if("GetModName" in ROOT)
+{
+	local Mod = GetModName()
+	if(Mod == MOD_TF2C)
+	{
+		function ROOT::Assert( b, msg = null )
+		{
+			if ( b )
+				return;
+				
+			if ( msg != null )
+			{
+				throw "Assertion failed: " + msg;
+			}
+			else
+			{
+				throw "Assertion failed";
+			}
+		}
+		class Vector4D {
+			x = 0.0
+			y = 0.0
+			z = 0.0
+			w = 0.0
+		}
+	}
+}
+else
+{
+	function ROOT::GetModName()
+		return MOD_TF2
+}
+
+if(!("Assert" in ROOT))
+{
+	function ROOT::Assert( b, msg = null )
+	{
+		if ( b )
+			return;
+			
+		if ( msg != null )
+		{
+			throw "Assertion failed: " + msg;
+		}
+		else
+		{
+			throw "Assertion failed";
+		}
+	}
+}
+
 
 /**
  * Sets the library version
