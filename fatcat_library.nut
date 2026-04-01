@@ -10,7 +10,6 @@
 if("GetModName" in ROOT)
 {
 	local Mod = GetModName()
-	printl(Mod)
 	if(Mod == MOD_TF2C)
 	{
 		IncludeScript("TF2C Fix")
@@ -3284,7 +3283,27 @@ if (!("SpawnEntityFromTableOriginal" in ROOT))
 function ROOT::SpawnEntityFromTable(name, keyvalues)
 	return EnableStringPurge(SpawnEntityFromTableOriginal(name, keyvalues))
 if (!("_AddThinkToEnt" in ROOT))
+{
 	::_AddThinkToEnt <- AddThinkToEnt
+	if(GetModName() == MOD_TF2C)
+	{
+		function ROOT::AddThinkToEnt(entity, think_func)
+		{
+			_AddThinkToEnt(think_func == null ? "" : think_func, entity)
+			PurgeString(think_func)
+			PurgeString(entity)
+		}
+	}
+	else 
+	{
+		function ROOT::AddThinkToEnt(entity, think_func)
+		{
+			_AddThinkToEnt(entity, think_func)
+			PurgeString(think_func)
+			PurgeString(entity)
+		}
+	}
+}
 function ROOT::AddThinkToEnt(entity, think_func)
 {
 	_AddThinkToEnt(entity, think_func)
