@@ -153,10 +153,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.16.0", 1))
+if (!SetLibraryVersion("1.16.0", 2))
 	return
 
-SetLibraryTimeStamp("3-31-2026_20:57")
+SetLibraryTimeStamp("3-31-2026_21:46")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -4245,7 +4245,7 @@ function ROOT::CreateSlamAoETable(table)
 		damage = table.damage,
 		ignores = table.ignore,
 		DmgType = DMG_RADIUS_MAX|DMG_ALWAYSGIB|DMG_MELEE,
-		// particle = "vsh_mighty_slam" // PARTICLE MAY NOT BE PACKED
+		particle = "chaos_stomp_parent" // PARTICLE MAY NOT BE PACKED
 	})
 	PrecacheSound("ambient/explosions/explode_1.wav")
 	EmitSoundEx({
