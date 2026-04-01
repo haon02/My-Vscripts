@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "3.1.0")
+SetScriptVersion("GameplayApplications", "3.1.1")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -370,8 +370,6 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 			addHits = 3
 		else if (victim.IsMinicritDebuffed() || attacker.IsMinicritBuffed())
 			addHits = 2
-
-		printl("Adding "+addHits+" Hits")
 
 		local scope = GetScope(weapon)
 		if ( IsNotInScope("Hits", scope) )
