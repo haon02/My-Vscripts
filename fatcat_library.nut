@@ -153,10 +153,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.16.0", 2))
+if (!SetLibraryVersion("1.16.0", 3))
 	return
 
-SetLibraryTimeStamp("3-31-2026_21:46")
+SetLibraryTimeStamp("3-31-2026_23:25")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -4061,6 +4061,7 @@ if(!("CORROSION_ICON" in ROOT))
  * @param {float} 		DamageDeadzone	The radius from the center where zero falloff occurs.
  * @param {string}		particle 		The explosion particle.
  * @param {vector}		particle_ang	The angle of the explosion particle.
+ * @param {vector}		particle_offset	How much to offset the explosion particle spawn.
  * @param {long}		DmgType 		The damage types to use (add DMG_RADIUS_MAX to ignore damage falloff).
  * @param {float}		SoundRadius		The radius the sound travels.
  * @param {float}		SoundDelay		Cooldown between explosion sounds.
@@ -4070,25 +4071,26 @@ if(!("CORROSION_ICON" in ROOT))
  */
 function ROOT::CreateBaseExplosion(table)
 {
-	local owner 		= "owner" 			in table ? table.owner 				: null
-	local weapon 		= "weapon" 			in table ? table.weapon 			: null
-	local sound 		= "sound" 			in table ? table.sound 				: ""
-	local origin 		= "origin" 			in table ? table.origin 			: owner && owner.IsPlayer() ? owner.GetCenter() : Vector()
-	local radius 		= "radius" 			in table ? table.radius 			: 147.0
-	local damage 		= "damage" 			in table ? table.damage.tofloat() 	: 90.0
-	local MinDamage 	= "MinDamage" 		in table ? table.MinDamage	 		: damage.tofloat()/2.0
-	local DamageDeadzone = "DamageDeadzone" in table ? table.DamageDeadzone		: 0.0
-	local trace 		= "trace" 			in table ? table.trace	 			: true
-	local particle 		= "particle" 		in table ? table.particle 			: ""
-	local particle_ang 	= "particle_ang"	in table ? table.particle_ang 		: QAngle(-90, 0, 0).Forward()
-	local DmgType 		= "DmgType" 		in table ? table.DmgType 			: DMG_GENERIC|DMG_BLAST
-	local FuncBeforeDmg	= "FuncBeforeDmg"	in table ? table.FuncBeforeDmg 		: false
-	local ExplodeFunc	= "ExplodeFunc"		in table ? table.ExplodeFunc		: function(player) { /* do what you want on explosion */ }
-	local ignores		= "ignores"			in table ? table.ignores			: []
-	local FuncOnIgnore	= "FuncOnIgnore"	in table ? table.FuncOnIgnore 		: false
+	local owner 			= "owner" 			in table ? table.owner 				: null
+	local weapon 			= "weapon" 			in table ? table.weapon 			: null
+	local sound 			= "sound" 			in table ? table.sound 				: ""
+	local origin 			= "origin" 			in table ? table.origin 			: owner && owner.IsPlayer() ? owner.GetCenter() : Vector()
+	local radius 			= "radius" 			in table ? table.radius 			: 147.0
+	local damage 			= "damage" 			in table ? table.damage.tofloat() 	: 90.0
+	local MinDamage 		= "MinDamage" 		in table ? table.MinDamage	 		: damage.tofloat()/2.0
+	local DamageDeadzone 	= "DamageDeadzone" in table ? table.DamageDeadzone		: 0.0
+	local trace 			= "trace" 			in table ? table.trace	 			: true
+	local particle 			= "particle" 		in table ? table.particle 			: ""
+	local particle_ang 		= "particle_ang"	in table ? table.particle_ang 		: QAngle(-90, 0, 0)
+	local particle_offset 	= "particle_offset"	in table ? table.particle_offset 	: Vector()
+	local DmgType 			= "DmgType" 		in table ? table.DmgType 			: DMG_GENERIC|DMG_BLAST
+	local FuncBeforeDmg		= "FuncBeforeDmg"	in table ? table.FuncBeforeDmg 		: false
+	local ExplodeFunc		= "ExplodeFunc"		in table ? table.ExplodeFunc		: function(player) { /* do what you want on explosion */ }
+	local ignores			= "ignores"			in table ? table.ignores			: []
+	local FuncOnIgnore		= "FuncOnIgnore"	in table ? table.FuncOnIgnore 		: false
 
-	local SoundRadius 	= "SoundRadius" 	in table ? table.SoundRadius 		: radius
-	local SoundDelay 	= "SoundDelay" 		in table ? table.SoundDelay 		: 0.5
+	local SoundRadius 		= "SoundRadius" 	in table ? table.SoundRadius 		: radius
+	local SoundDelay 		= "SoundDelay" 		in table ? table.SoundDelay 		: 0.5
 
 	Assert(owner && owner.IsPlayer(), "CreateBaseExplosion currently need a owner")
 
@@ -4102,7 +4104,7 @@ function ROOT::CreateBaseExplosion(table)
 	// always update the list (could be expensive but this func is not run often)
 	ReCalculatePlayers()
 
-	local targets = Players.filter(@(i, p) p.GetTeam() != owner.GetTeam() )
+	local targets = Players.filter(@(i, p) p.GetTeam() != owner.GetTeam() ).extend(GetAllEntitiesByClassname("tank_boss"))
 
 	DebugDrawClear()
 	foreach (player in targets)
@@ -4143,7 +4145,14 @@ function ROOT::CreateBaseExplosion(table)
 	DebugDrawCircle(origin+Vector(0,0,1), Vector(0, 0, 255), 50, DamageDeadzone, false, 15)
 
 	if(particle != "")
-		DispatchParticleEffect(particle, origin, particle_ang)
+	{
+		local temp = SpawnEntityFromTable("info_particle_system", { effect_name = particle })
+		temp.SetAbsOrigin(origin+particle_offset)
+		temp.SetAbsAngles(particle_ang)
+		temp.AcceptInput("Start", "", null, null)
+		EntFireNew(temp, "Stop", "", TICK_DUR*3)
+		EntFireNew(temp, "Kill", "", TICK_DUR*5)
+	}
 
 	if(sound != "" && scope.LastExplosionTime <= Time())
 	{
@@ -4244,6 +4253,7 @@ function ROOT::CreateSlamAoETable(table)
 		radius = table.radius,
 		damage = table.damage,
 		ignores = table.ignore,
+		particle_offset = Vector(0, 0, 16)
 		DmgType = DMG_RADIUS_MAX|DMG_ALWAYSGIB|DMG_MELEE,
 		particle = "chaos_stomp_parent" // PARTICLE MAY NOT BE PACKED
 	})

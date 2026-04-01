@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "3.1.1")
+SetScriptVersion("GameplayApplications", "3.1.2")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -503,10 +503,9 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 	}
 
 	local FallingVel = victim.GetAbsVelocity().z
-	local PrevFallingVel = "LastVel" in GetScope(victim) ? GetScope(victim).LastVel.z : -1
+	local PrevFallingVel = "LastVel" in GetScope(victim) ? GetScope(victim).LastVel.z : 0
 
-	if(FallingVel > 0 || PrevFallingVel > 0)
-		params.damage = 1500
+	if(FallingVel > 0 || PrevFallingVel > 0) {}
 	else if (params.damage_type & DMG_FALL && victim.IsOnGround() && victim.GetGroundEntity())
 	{
 		if(FallingVel > PrevFallingVel)
@@ -520,7 +519,6 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 				radius = 300,
 				damage = -FallingVel * 15,
 				ignore = [],
-				SoundRadius = 150
 			})
 			ScreenShake(victim.GetOrigin(), 25, 2.5, 1.0, 1500, 0, true)
 		}
