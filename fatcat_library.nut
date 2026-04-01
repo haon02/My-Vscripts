@@ -10,28 +10,10 @@
 if("GetModName" in ROOT)
 {
 	local Mod = GetModName()
+	printl(Mod)
 	if(Mod == MOD_TF2C)
 	{
-		function ROOT::Assert( b, msg = null )
-		{
-			if ( b )
-				return;
-				
-			if ( msg != null )
-			{
-				throw "Assertion failed: " + msg;
-			}
-			else
-			{
-				throw "Assertion failed";
-			}
-		}
-		class Vector4D {
-			x = 0.0
-			y = 0.0
-			z = 0.0
-			w = 0.0
-		}
+		IncludeScript("TF2C Fix")
 	}
 }
 else
