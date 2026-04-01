@@ -22,24 +22,6 @@ else
 		return MOD_TF2
 }
 
-if(!("Assert" in ROOT))
-{
-	function ROOT::Assert( b, msg = null )
-	{
-		if ( b )
-			return;
-			
-		if ( msg != null )
-		{
-			throw "Assertion failed: " + msg;
-		}
-		else
-		{
-			throw "Assertion failed";
-		}
-	}
-}
-
 
 /**
  * Sets the library version

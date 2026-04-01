@@ -213,6 +213,15 @@ function ScriptDebugIterateKeysRecursive( matchFunc, path, current, visits, call
 	}
 }
 
+local isTF2C = false					//TF2C
+if(!("developer" in getroottable()))	//TF2C
+{										//TF2C
+	function developer()				//TF2C
+		return 0						//TF2C
+	isTF2C = true						//TF2C
+}										//TF2C
+	
+
 //-----------------------------------------------------------------------------
 // Documentation table
 //-----------------------------------------------------------------------------
@@ -377,6 +386,9 @@ function VSquirrel_OnReleaseScope( scope )
 //-----------------------------------------------------------------------------
 //
 //-----------------------------------------------------------------------------
+
+if(!isTF2C) 			//TF2C
+{						//TF2C
 class CCallChainer
 {
 	constructor( prefixString, scopeForThis = null )
@@ -836,6 +848,8 @@ class LateBinder
 	m_logIndent = 0;
 }
 
+}				//TF2C
+
 // support function to assemble help strings for script calls - call once all your stuff is in the VM
 ::_PublishedHelp <- {}
 function AddToScriptHelp( scopeTable )
@@ -856,6 +870,8 @@ function AddToScriptHelp( scopeTable )
 	}
 }
 
+if(!isTF2C)		//TF2C
+{				//TF2C
 /*
 	see copyright notice in sqrdbg.h
 */
@@ -1140,6 +1156,8 @@ local si;
 {
 	::print("ERROR"+e+"\n");
 }
+
+} //TF2C
 
 if ( currentscope )
 {
