@@ -3285,23 +3285,11 @@ function ROOT::SpawnEntityFromTable(name, keyvalues)
 if (!("_AddThinkToEnt" in ROOT))
 {
 	::_AddThinkToEnt <- AddThinkToEnt
-	if(GetModName() == MOD_TF2C)
+	function ROOT::AddThinkToEnt(entity, think_func)
 	{
-		function ROOT::AddThinkToEnt(entity, think_func)
-		{
-			_AddThinkToEnt(think_func == null ? "" : think_func, entity)
-			PurgeString(think_func)
-			PurgeString(entity)
-		}
-	}
-	else 
-	{
-		function ROOT::AddThinkToEnt(entity, think_func)
-		{
-			_AddThinkToEnt(entity, think_func)
-			PurgeString(think_func)
-			PurgeString(entity)
-		}
+		_AddThinkToEnt(entity, think_func == null ? "" : think_func)
+		PurgeString(think_func)
+		PurgeString(entity)
 	}
 }
 
