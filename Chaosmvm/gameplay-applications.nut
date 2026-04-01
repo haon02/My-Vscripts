@@ -6,7 +6,7 @@ SetScriptVersion("GameplayApplications", "3.1.0")
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
 ::TOMISLAV_SETTINGS <- {
-	TimeBeforeHeatLost = 7.50
+	TimeBeforeHeatLost = 5.0
 	HeatLostPerSecond = 15
 	Attributes = [
 		//	[	AttributeName, 					AttributeChange, 	StartingValue, 	MaxValue, 	MinValue]
@@ -256,9 +256,11 @@ function GameplayThink()
 			if(IsNotInScope("m_flLastHeatLoseTime", scope))
 				scope.m_flLastHeatLoseTime <- Time()
 
+			local HeatLoss = GetRoundState() != GR_STATE_RND_RUNNING ? TOMISLAV_SETTINGS.HeatLostPerSecond * 0.1 : TOMISLAV_SETTINGS.HeatLostPerSecond
+
 			if (scope.Hits >= 1 && 
 				scope.m_flLastHeatHit + TOMISLAV_SETTINGS.TimeBeforeHeatLost.tofloat() <= Time() &&
-				scope.m_flLastHeatLoseTime + (1.0/TOMISLAV_SETTINGS.HeatLostPerSecond.tofloat()) <= Time())
+				scope.m_flLastHeatLoseTime + (1.0/HeatLoss.tofloat()) <= Time())
 			{
 				scope.m_flLastHeatLoseTime <- Time()
 				scope.Hits -= 1
@@ -296,7 +298,7 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 	{
 	case TF_DMG_CUSTOM_BACKSTAB: {
 		local iExplosiveShot = weapon.GetAttribute("explosive sniper shot", 0)
-		if ( iExplosiveShot == 0)
+		if ( iExplosiveShot == 0 )
 			break;
 		CreateKnifeAoETable({
 			owner = attacker
@@ -362,11 +364,20 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 		if (attacker.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_TOMISLAV) 
 			break;
 
+		local addHits = 1
+
+		if(params.damage_type & DMG_CRITICAL)
+			addHits = 3
+		else if (victim.IsMinicritDebuffed() || attacker.IsMinicritBuffed())
+			addHits = 2
+
+		printl("Adding "+addHits+" Hits")
+
 		local scope = GetScope(weapon)
 		if ( IsNotInScope("Hits", scope) )
 			scope.Hits <- 0
 
-		scope.Hits++
+		scope.Hits += addHits
 		scope.m_flLastHeatHit <- Time()
 		foreach (attribs in TOMISLAV_SETTINGS.Attributes)
 			weapon.CalculateAttributeChange(scope.Hits, attribs[0], attribs[1], attribs[2], attribs[3], attribs[4])
@@ -527,6 +538,32 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 
 	if(victim.IsInvincible() || IsPlayerABot(attacker))
 		return CallbackDataReturn(params, CONST_DATA)
+
+	// if(attacker.HasWeapon(TF_WEAPON_TOMISLAV) && attacker.GetWeaponIDXInSlotNew(SLOT_PRIMARY) == TF_WEAPON_TOMISLAV)
+	// {
+	// 	local weapon = attacker.GetWeapon(TF_WEAPON_TOMISLAV)
+	// 	PrintTable(params)
+	// 	// PrintDamageBits(params.damage_type)
+
+	// 	local scope = GetScope(weapon)
+	// 	if ( IsNotInScope("Hits", scope) )
+	// 		scope.Hits <- 0
+
+	// 	scope.Hits++
+	// 	scope.m_flLastHeatHit <- Time()
+	// 	foreach (attribs in TOMISLAV_SETTINGS.Attributes)
+	// 		weapon.CalculateAttributeChange(scope.Hits, attribs[0], attribs[1], attribs[2], attribs[3], attribs[4])
+			
+	// 	weapon.AddAttribute("Set DamageType Ignite", (scope.Hits > 400).tointeger(), 0)
+	// 	weapon.AddAttribute("ragdolls become ash", (scope.Hits > 700).tointeger(), 0)
+	// 	weapon.AddAttribute("turn to gold", (scope.Hits > 1000).tointeger(), 0)
+	// 	if(attacker.GetPrimaryAmmo() > attacker.GetMaximumPrimaryAmmo())
+	// 		attacker.ResetPrimaryAmmo()
+				
+	// 	if( scope.Hits >= 1000 )
+	// 		scope.Hits = 1000
+	// 	weapon.ReapplyProvision()
+	// }
 
 	return CallbackDataReturn(MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor), CONST_DATA)
 })

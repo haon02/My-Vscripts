@@ -153,10 +153,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.16.0", 0))
+if (!SetLibraryVersion("1.16.0", 1))
 	return
 
-SetLibraryTimeStamp("3-31-2026_20:10")
+SetLibraryTimeStamp("3-31-2026_20:57")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -1694,6 +1694,9 @@ function CTFPlayer::SwitchWeapon(wep)
 // TODO: Add to Snippets
 function CTFPlayer::IsMinicritDebuffed()
 	return !InCond(TF_COND_DEFENSEBUFF) && InMultiCond([TF_COND_URINE, TF_COND_MARKEDFORDEATH, TF_COND_MARKEDFORDEATH_SILENT])
+
+function CTFPlayer::IsMinicritBuffed()
+	return InMultiCond([TF_COND_OFFENSEBUFF, TF_COND_ENERGY_BUFF, TF_COND_NOHEALINGDAMAGEBUFF, TF_COND_MINICRITBOOSTED_ON_KILL])
 
 /* function CTFPlayer::CopyWeapon( 
 	weapon, idx_over = false, override_slot = false, copy_attrib = false, duration = false, regenerate = false, reset_ammo = false, switch_slot = false, attributes = {})
@@ -3946,13 +3949,6 @@ function ROOT::PrecacheObject(thing)
 	{
 		return (40 + (20 * log10(radius / 36.0))).tointeger()
 	}
-	/* function RandomVec3(min, max, type = "int")
-	{
-		if(type == "int")
-			return Vector(RandomInt(min, max), RandomInt(min, max), RandomInt(min, max))
-		if(type == "float")
-			return Vector(RandomFloat(min, max), RandomFloat(min, max), RandomFloat(min, max))
-	} */
 	function RandomVec(min, max)
 	{
 		local v = Vector()
@@ -4333,6 +4329,50 @@ function ROOT::CreateTankPath(data)
 			DebugDrawBox(origin, Vector(-12,-12,-12), Vector(12, 12, 12), 255, 0, 0, 100, 60)
 		}
 		SpawnEntityGroupFromTable(Paths)
+	}
+}
+
+::DMG_BIT_NAMES <- {}
+DMG_BIT_NAMES[DMG_GENERIC] 				<- "DMG_GENERIC"
+DMG_BIT_NAMES[DMG_CRUSH] 				<- "DMG_CRUSH"
+DMG_BIT_NAMES[DMG_BULLET] 				<- "DMG_BULLET"
+DMG_BIT_NAMES[DMG_SLASH] 				<- "DMG_SLASH"
+DMG_BIT_NAMES[DMG_BURN] 				<- "DMG_BURN"
+DMG_BIT_NAMES[DMG_VEHICLE] 				<- "DMG_VEHICLE"
+DMG_BIT_NAMES[DMG_FALL] 				<- "DMG_FALL"
+DMG_BIT_NAMES[DMG_BLAST] 				<- "DMG_BLAST"
+DMG_BIT_NAMES[DMG_CLUB] 				<- "DMG_CLUB"
+DMG_BIT_NAMES[DMG_SHOCK] 				<- "DMG_SHOCK"
+DMG_BIT_NAMES[DMG_SONIC] 				<- "DMG_SONIC"
+DMG_BIT_NAMES[DMG_ENERGYBEAM] 			<- "DMG_ENERGYBEAM"
+DMG_BIT_NAMES[DMG_PREVENT_PHYSICS_FORCE]<- "DMG_PREVENT_PHYSICS_FORCE"
+DMG_BIT_NAMES[DMG_NEVERGIB] 			<- "DMG_NEVERGIB"
+DMG_BIT_NAMES[DMG_ALWAYSGIB] 			<- "DMG_ALWAYSGIB"
+DMG_BIT_NAMES[DMG_DROWN] 				<- "DMG_DROWN"
+DMG_BIT_NAMES[DMG_PARALYZE] 			<- "DMG_PARALYZE"
+DMG_BIT_NAMES[DMG_NERVEGAS] 			<- "DMG_NERVEGAS"
+DMG_BIT_NAMES[DMG_POISON] 				<- "DMG_POISON"
+DMG_BIT_NAMES[DMG_RADIATION] 			<- "DMG_RADIATION"
+DMG_BIT_NAMES[DMG_DROWNRECOVER] 		<- "DMG_DROWNRECOVER"
+DMG_BIT_NAMES[DMG_ACID] 				<- "DMG_ACID/DMG_CRIT"
+DMG_BIT_NAMES[DMG_SLOWBURN] 			<- "DMG_SLOWBURN"
+DMG_BIT_NAMES[DMG_REMOVENORAGDOLL] 		<- "DMG_REMOVENORAGDOLL"
+DMG_BIT_NAMES[DMG_PHYSGUN] 				<- "DMG_PHYSGUN"
+DMG_BIT_NAMES[DMG_PLASMA] 				<- "DMG_PLASMA"
+DMG_BIT_NAMES[DMG_AIRBOAT] 				<- "DMG_AIRBOAT"
+DMG_BIT_NAMES[DMG_DISSOLVE] 			<- "DMG_DISSOLVE"
+DMG_BIT_NAMES[DMG_BLAST_SURFACE] 		<- "DMG_BLAST_SURFACE"
+DMG_BIT_NAMES[DMG_DIRECT] 				<- "DMG_DIRECT"
+DMG_BIT_NAMES[DMG_BUCKSHOT] 			<- "DMG_BUCKSHOT"
+
+
+
+function ROOT::PrintDamageBits(bits)
+{
+	for (local i = 0; i < 32; i++) {
+		local bit = 1 << i
+		if(bits & bit)
+			printl("Damage has "+DMG_BIT_NAMES[bit])
 	}
 }
 
