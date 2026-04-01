@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "3.0.6")
+SetScriptVersion("GameplayApplications", "3.1.0")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -319,15 +319,26 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 
 		if(FallingVel > 0 || PrevFallingVel > 0)
 		{
-			params.damage = -1000
+			params.damage = 1000
 			break;
 		}
 
 		if(FallingVel > PrevFallingVel)
 			FallingVel = PrevFallingVel
+		
+		local FALL_DMG_MULT = weapon.GetIDX() == TF_WEAPON_WARRIOR_SPIRIT ? 60 : 100
 
-		// Minimum falling dmg is -1000
-		params.damage = MATH.Min(FallingVel * -100, -1000)
+		attacker.PrintToHud("Falling: "+FallingVel+"\nPrevFalling: "+PrevFallingVel)
+
+		// Minimum falling dmg is 1000
+		if(weapon.GetIDX() == TF_WEAPON_WARRIOR_SPIRIT && FallingVel < -1500)
+		{
+			if(victim.IsPlayer())
+				victim.AddCondEx(TF_COND_MARKEDFORDEATH_SILENT, TICK_DUR, attacker)
+		}
+		// SetPropFloat(victim, "m_flDamageAccumulator", 1.1) // technically adds 1 damage
+		// Minimum falling dmg is 1000
+		params.damage = MATH.Max(-FallingVel * FALL_DMG_MULT, 1000)
 	}
 	break;
 	case TF_DMG_CUSTOM_KART: {	// [11/12/25] Please, dear god, why do i have to do this stupid hack
@@ -462,7 +473,49 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 			params.weapon = attacker.GetWeaponInSlotNew(SLOT_MELEE)
 	}
 	if (attacker.IsPlayer() && params.damage_custom == TF_DMG_CUSTOM_BOOTS_STOMP)
-		params.weapon = attacker.GetWeaponInSlotNew(SLOT_SECONDARY)
+	{
+		if(attacker.GetWeaponInSlotNew(SLOT_SECONDARY).IsWearable())
+			params.weapon = attacker.GetWeaponInSlotNew(SLOT_SECONDARY)
+		else 
+		{
+			foreach (wep in attacker.GetAllWeapons())
+			{
+				if(wep.GetSlot() == SLOT_PRIMARY)
+					continue
+				if(wep.GetAttribute("provide on active", 0) && attacker.GetActiveWeapon() != wep)
+						continue
+				if(wep.GetAttribute("boots falling stomp", 0))
+				{
+					params.weapon = wep
+					break;
+				}
+			}
+		}
+	}
+
+	local FallingVel = victim.GetAbsVelocity().z
+	local PrevFallingVel = "LastVel" in GetScope(victim) ? GetScope(victim).LastVel.z : -1
+
+	if(FallingVel > 0 || PrevFallingVel > 0)
+		params.damage = 1500
+	else if (params.damage_type & DMG_FALL && victim.IsOnGround() && victim.GetGroundEntity())
+	{
+		if(FallingVel > PrevFallingVel)
+			FallingVel = PrevFallingVel
+		if(victim.GetActiveWeaponIDX() == TF_WEAPON_WARRIOR_SPIRIT && FallingVel < -1500)
+		{
+			CreateSlamAoETable({
+				owner = victim,
+				weapon = victim.GetActiveWeapon(),
+				center = victim.GetOrigin()+Vector(0, 0, -16),
+				radius = 300,
+				damage = -FallingVel * 15,
+				ignore = [],
+				SoundRadius = 150
+			})
+			ScreenShake(victim.GetOrigin(), 25, 2.5, 1.0, 1500, 0, true)
+		}
+	}
 
 	weapon = params.weapon
 

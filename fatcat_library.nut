@@ -153,10 +153,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.15.11", 2))
+if (!SetLibraryVersion("1.16.0", 0))
 	return
 
-SetLibraryTimeStamp("3-28-2026_22:08")
+SetLibraryTimeStamp("3-31-2026_20:10")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -3122,8 +3122,8 @@ function ROOT::PrintClass(clas, filter = [])
 
 function ROOT::PrintCollection(collection, filter = [], indentation = 0, no_indent_header = false)
 {
-	if (::type(collection) == "instance")
-		collection = collection.getclass()
+	// if (type(collection) == "instance")
+		// collection = collection.getclass()
 
 	local type = typeof collection
 	if(type != "table" && type != "array" && type != "class")
@@ -3147,8 +3147,8 @@ function ROOT::PrintCollection(collection, filter = [], indentation = 0, no_inde
 		if(key == "__vname" || key == "__vrefs") continue
 		if(IsInArray(key, filter)) continue
 		
-		if (::type(value) == "instance")
-			value = value.getclass()
+		// if (type(value) == "instance")
+			// value = value.getclass()
 
 		local valType = typeof value
 		if(IsInArray(valType, filter)) continue
@@ -4137,6 +4137,7 @@ function ROOT::CreateBaseExplosion(table)
 				currentDamage = MATH.RemapVal(distance, DamageDeadzone, radius, damage, MinDamage)
 			// printl("DEBUG: Dist: " + distance + " | Rad: " + radius + " | Deadzone: " + DamageDeadzone + " | Dmg: " + damage + " | MinDmg: " + MinDamage + " | Final: " + currentDamage)
 		}
+		// DebugDrawText(player.GetCenter(),currentDamage.tostring(), false, 60)
 		if(FuncBeforeDmg) ExplodeFunc(player)
 		player.TakeDamageCustom(owner, owner, weapon, Vector(), Vector(), currentDamage, DmgType, TF_DMG_CUSTOM_TRIGGER_HURT)
 		if(!FuncBeforeDmg) ExplodeFunc(player)
@@ -4235,6 +4236,31 @@ function ROOT::CreateKnifeAoETable(table)
 		FuncBeforeDmg = true,
 		FuncOnIgnore = true,
 		ExplodeFunc = table.func
+	})
+}
+
+function ROOT::CreateSlamAoETable(table)
+{
+	CreateBaseExplosion({
+		owner = table.owner,
+		weapon = table.weapon,
+		origin = table.center,
+		radius = table.radius,
+		damage = table.damage,
+		ignores = table.ignore,
+		DmgType = DMG_RADIUS_MAX|DMG_ALWAYSGIB|DMG_MELEE,
+		// particle = "vsh_mighty_slam" // PARTICLE MAY NOT BE PACKED
+	})
+	PrecacheSound("ambient/explosions/explode_1.wav")
+	EmitSoundEx({
+		channel 		= 6
+		volume 			= 1.0
+		pitch 			= 100
+		sound_level		= 150
+
+		sound_name		= "ambient/explosions/explode_1.wav"
+
+		entity = table.owner
 	})
 }
 /**
@@ -5379,15 +5405,3 @@ seterrorhandler(function(e)
 })
 ClientPrint(null, 2, "Included Library Successfully")
 printl("Included Library Successfully")
-
-/* 
-function CountEdicts()
-{
-	local edicts = 0
-	for (local i = 0; i < 2049; i++) {
-		local entity = EnableStringPurge(EntIndexToHScript(i))
-		if(entity)
-			edicts++
-	}
-	PrintToHudAll("Total of "+edicts)
-} */
