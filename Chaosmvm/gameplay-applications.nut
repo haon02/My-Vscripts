@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "3.1.2")
+SetScriptVersion("GameplayApplications", "4.0.0")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -292,7 +292,7 @@ function GameplayThink()
 	return -1
 }
 
-function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
+function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 {
 	switch (params.damage_custom)
 	{
@@ -356,7 +356,10 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 		victim.AddCondEx(TF_COND_MARKEDFORDEATH, 10, attacker)
 	break;
 	}
+}
 
+function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor)
+{
 	switch (weapon.GetIDX())
 	{
 	case TF_WEAPON_TOMISLAV:
@@ -368,7 +371,7 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 
 		if(params.damage_type & DMG_CRITICAL)
 			addHits = 3
-		else if (victim.IsMinicritDebuffed() || attacker.IsMinicritBuffed())
+		else if ((victim.IsPlayer() && victim.IsMinicritDebuffed()) || attacker.IsMinicritBuffed())
 			addHits = 2
 
 		local scope = GetScope(weapon)
@@ -394,13 +397,13 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 	case TF_WEAPON_VITA_SAW:
 	{
 		if (attacker.GetWeaponIDXInSlotNew(SLOT_MELEE) != TF_WEAPON_VITA_SAW) 
-			return params
+			return
 		if (!(params.damage_type & DMG_CLUB))
-			return params
+			return
 
 		local spell_book = attacker.GetSpellBook()
 		if (!spell_book) 
-			return params
+			return
 
 		spell_book.ModifySpells(TF_SPELL_HEAL, 5)
 	}
@@ -417,8 +420,7 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 				attacker.TranslateToChat("REPROG_BOT_STRONG", victim.GetUserName())
 			else if(victim.GetPlayerClass() == TF_CLASS_MEDIC)
 				attacker.TranslateToChat("REPROG_BOT_NOT_SUIT", victim.GetUserName())
-				
-			return params;
+			return
 		}
 		TranslateToChatAll("REPROG_BOT_MESSAGE", attacker.GetUserName(), victim.GetUserName())
 
@@ -444,7 +446,7 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 		if( !victim.CanHaveCorrosion() || victim.HasCorrosion() )
 			break
 				
-		attacker.PrintToHud("Made Corrosion on " + victim)
+		// attacker.PrintToHud("Made Corrosion on " + victim)
 		EmitGlobalSound({
 			sound_name = ""
 			entity = victim
@@ -454,16 +456,21 @@ function ROOT::MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor)
 	}
 	break;
 	}
-
-	return params
 }
 
 // if other scripts use DamageCallbacks then Remove this!!
 ClearDamageCallbacks()
 
-RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
+// RegisterDamageCallback("player", "GameplayPlayer" function(params) {
+// 	params.damage <- 100
+// 	ModifyCallbackDamage(params, params.victim, params.attacker, params.weapon, params.inflictor)
+// 	ProcessChaosWeaponHit(params, params.victim, params.attacker, params.weapon, params.inflictor)
+// })
+
+
+RegisterDamageCallback("player", "GameplayPlayer" function(params) {
 	if(params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT || params.damage_custom == TF_DMG_CUSTOM_IGNORE_EVENTS)
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
 	local victim 	= params.victim
 	local attacker 	= params.attacker
@@ -471,7 +478,7 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 	local inflictor	= params.inflictor
 
 	if(!attacker)
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
 	if (attacker.IsPlayer() && params.damage_custom >= TF_DMG_CUSTOM_SPELL_TELEPORT && params.damage_custom <= TF_DMG_CUSTOM_KART)
 	{
@@ -489,10 +496,8 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 		{
 			foreach (wep in attacker.GetAllWeapons())
 			{
-				if(wep.GetSlot() == SLOT_PRIMARY)
-					continue
 				if(wep.GetAttribute("provide on active", 0) && attacker.GetActiveWeapon() != wep)
-						continue
+					continue
 				if(wep.GetAttribute("boots falling stomp", 0))
 				{
 					params.weapon = wep
@@ -506,7 +511,7 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 	local PrevFallingVel = "LastVel" in GetScope(victim) ? GetScope(victim).LastVel.z : 0
 
 	if(FallingVel > 0 || PrevFallingVel > 0) {}
-	else if (params.damage_type & DMG_FALL && victim.IsOnGround() && victim.GetGroundEntity())
+	else if (params.damage_type & DMG_FALL && victim.GetGroundEntity())
 	{
 		if(FallingVel > PrevFallingVel)
 			FallingVel = PrevFallingVel
@@ -514,7 +519,7 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 		{
 			CreateSlamAoETable({
 				owner = victim,
-				weapon = victim.GetActiveWeapon(),
+				weapon = victim.GetWeapon(TF_WEAPON_WARRIOR_SPIRIT),
 				center = victim.GetOrigin()+Vector(0, 0, -16),
 				radius = 300,
 				damage = -FallingVel * 15,
@@ -527,46 +532,21 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params, CONST_DATA) {
 	weapon = params.weapon
 
 	if(!attacker || !weapon || !inflictor)
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
 	if( !(startswith(weapon.GetClassname(), "tf_weapon") || startswith(weapon.GetClassname(), "tf_wearable")) )
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
 	if(victim.IsInvincible() || IsPlayerABot(attacker))
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
-	// if(attacker.HasWeapon(TF_WEAPON_TOMISLAV) && attacker.GetWeaponIDXInSlotNew(SLOT_PRIMARY) == TF_WEAPON_TOMISLAV)
-	// {
-	// 	local weapon = attacker.GetWeapon(TF_WEAPON_TOMISLAV)
-	// 	PrintTable(params)
-	// 	// PrintDamageBits(params.damage_type)
-
-	// 	local scope = GetScope(weapon)
-	// 	if ( IsNotInScope("Hits", scope) )
-	// 		scope.Hits <- 0
-
-	// 	scope.Hits++
-	// 	scope.m_flLastHeatHit <- Time()
-	// 	foreach (attribs in TOMISLAV_SETTINGS.Attributes)
-	// 		weapon.CalculateAttributeChange(scope.Hits, attribs[0], attribs[1], attribs[2], attribs[3], attribs[4])
-			
-	// 	weapon.AddAttribute("Set DamageType Ignite", (scope.Hits > 400).tointeger(), 0)
-	// 	weapon.AddAttribute("ragdolls become ash", (scope.Hits > 700).tointeger(), 0)
-	// 	weapon.AddAttribute("turn to gold", (scope.Hits > 1000).tointeger(), 0)
-	// 	if(attacker.GetPrimaryAmmo() > attacker.GetMaximumPrimaryAmmo())
-	// 		attacker.ResetPrimaryAmmo()
-				
-	// 	if( scope.Hits >= 1000 )
-	// 		scope.Hits = 1000
-	// 	weapon.ReapplyProvision()
-	// }
-
-	return CallbackDataReturn(MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor), CONST_DATA)
+	ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
+	ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor)
 })
 
-RegisterDamageCallback(["obj_sentrygun", "obj_teleporter", "obj_dispenser", "tank_boss"], "GameplayOthers", function(params, CONST_DATA) {
+RegisterDamageCallback(["obj_sentrygun", "obj_teleporter", "obj_dispenser", "tank_boss"], "GameplayOthers", function(params) {
 	if(params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT || params.damage_custom == TF_DMG_CUSTOM_IGNORE_EVENTS)
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
 	local victim 	= params.victim
 	local attacker 	= params.attacker
@@ -585,20 +565,23 @@ RegisterDamageCallback(["obj_sentrygun", "obj_teleporter", "obj_dispenser", "tan
 	weapon = params.weapon
 
 	if(!attacker || !weapon || !inflictor || IsPlayerABot(attacker))
-		return CallbackDataReturn(params, CONST_DATA)
+		return
 
-	if( !startswith(weapon.GetClassname(), "tf_weapon") || !startswith(weapon.GetClassname(), "tf_wearable") )
-		return CallbackDataReturn(params, CONST_DATA)
+	if( !(startswith(weapon.GetClassname(), "tf_weapon") || startswith(weapon.GetClassname(), "tf_wearable")) )
+		return
 
-	return CallbackDataReturn(MODIFYCALLBACKDAMAGE(params, victim, attacker, weapon, inflictor), CONST_DATA)
+	ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
+	ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor)
 })
 
-RegisterDamageCallback("tf_zombie", "GameplaySkeletons", function(params, CONST_DATA) {
-	if(params.damage > 5.0)
-		params.damage <- 5.0
-
-	return CallbackDataReturn(params, CONST_DATA)
+RegisterDamageCallback("tf_zombie", "GameplaySkeletons", function(params) {
+	if(params.damage_custom == TF_DMG_CUSTOM_IGNORE_EVENTS)
+		return
+	params.damage = 0
+	params.victim.TakeDamageCustom(params.inflictor, params.attacker, null, Vector(), Vector(), 5.0, DMG_GENERIC, TF_DMG_CUSTOM_IGNORE_EVENTS)
 })
+
+
 
 if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 ::GameplayEvents <- {

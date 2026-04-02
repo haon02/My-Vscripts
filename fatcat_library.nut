@@ -170,10 +170,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.16.0", 3))
+if (!SetLibraryVersion("1.16.1", 0))
 	return
 
-SetLibraryTimeStamp("3-31-2026_23:25")
+SetLibraryTimeStamp("4-1-2026_23:59 -uwu")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -4530,6 +4530,8 @@ function ROOT::ParamsToDamageCallbackData(params)
 function ROOT::GetModifiedDamage(type)
 {
 	local array = array(88, -1)
+	if(type < 0 || type > array.len())
+		type = 0
 	array[TF_DMG_CUSTOM_SPELL_SKELETON] 	= 8500
 	array[TF_DMG_CUSTOM_SPELL_MIRV] 		= 15000
 	array[TF_DMG_CUSTOM_SPELL_METEOR] 		= 3000
@@ -4760,17 +4762,17 @@ function ROOT::ProjectileThink()
 		local victim = params.const_entity
 		local attacker = params.attacker
 		
-		eventdata.victim <- victim
-		if(victim.IsPlayer()) eventdata.hit_group <- GetPropInt(victim, "m_LastHitGroup")
-		eventdata.damage_custom <- params.damage_stats
-		eventdata.base_damage <- params.const_base_damage
-		eventdata.penetration_count <- params.player_penetration_count
-		eventdata.others_damaged <- params.damaged_other_players
+		eventdata.victim 							<- victim
+		if(victim.IsPlayer()) eventdata.hit_group 	<- GetPropInt(victim, "m_LastHitGroup")
+		eventdata.damage_custom 					<- params.damage_stats
+		eventdata.base_damage 						<- params.const_base_damage
+		eventdata.penetration_count 				<- params.player_penetration_count
+		eventdata.others_damaged 					<- params.damaged_other_players
 
 		if(params.weapon && params.weapon.GetClassname() == "tf_weapon_flamethrower")
 		{
-			params.damage_position <- victim.GetOrigin() + Vector(0, 0, 32)
-			eventdata.damage_position <- victim.GetOrigin() + Vector(0, 0, 32)
+			params.damage_position 					<- victim.GetOrigin() + Vector(0, 0, 32)
+			eventdata.damage_position 				<- params.damage_position
 		}
 
 		// [1/1/26]
@@ -4810,10 +4812,13 @@ function ROOT::ProjectileThink()
 		{
 			foreach (callback_name, callback in RegisteredDmgCallbacks[victim.GetClassname()])
 			{
-				local callback_return = callback(ParamsToDamageCallbackData(params), params)
+				local ReturningData = ParamsToDamageCallbackData(clone params)
 
-				if(callback_return)
-					params = callback_return
+				// Call the Callback with this table
+				callback(ReturningData)
+
+				foreach ( key, value in ReturningData )
+					params[key] <- value
 			}
 		}
 
@@ -4822,11 +4827,9 @@ function ROOT::ProjectileThink()
 		if(override_damage != -1)
 			params.damage = override_damage
 
-		// printl("FINAL FINAL DAMAGE == "+params.damage+" WITH TYPE "+params.damage_stats)
-
 		if(eventdata.damage_custom != TF_DMG_CUSTOM_IGNORE_EVENTS)
 		{
-			if(victim.IsPlayer())
+			if(victim && victim.IsValid() && victim.IsPlayer())
 				FireScriptEvent(victim.IsBot() ? "PostTakeDamageBot" : "PostTakeDamageHuman", eventdata)
 			else if(victim == Worldspawn)
 				FireScriptEvent("PostTakeDamageWorld", eventdata)
