@@ -3690,7 +3690,7 @@ function ROOT::GetState(entity)
 function ROOT::ClearThinks(entity)
 {
 	SetPropString(entity, "m_iszScriptThinkFunction", "")
-	AddThinkToEnt(entity, null)
+	AddThinkToEnt(entity, "")
 }
 
 function ROOT::IsBuilding(object)
