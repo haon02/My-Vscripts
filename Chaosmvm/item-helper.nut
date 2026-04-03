@@ -1,8 +1,6 @@
 IncludeScript("fatcat_library")
 
-// POTATO VERSION
-// IncludeScript("chaosmvm/translations")
-IncludeScript("translations")
+IncludeScript("chaosmvm/translations")
 
 const item_help_color = "\x08FFFF00DD"
 const text_color = "\x08FFFFFFBB"
@@ -10,7 +8,7 @@ const item_help_color_header = "\x0826c2ffDD"
 const text_color_header = "\x0826beffBB"
 const error_color = "\x07D43F3F"
 
-SetScriptVersion("item_helper", "3.3.1")
+SetScriptVersion("item_helper", "3.4.0")
 ::helper <- {}
 
 ::ItemTranslateTable <- {
@@ -23,7 +21,7 @@ SetScriptVersion("item_helper", "3.3.1")
 	"BABYFACEBLASTER" 	: [772]
 	"BACKSCATTER" 		: [1103]
 	/// Secondary
-	"PISTOL"			: [22, 23, 209, 160, 294, 15013, 15018, 15035, 15041, 15046, 15056, 15060, 15061, 15100, 15101, 15102, 15126, 15148, 30666]
+	"PISTOL"			: [22, 23, 209, 160, 294, 15013, 15018, 15035, 15041, 15046, 15056, 15060, 15061, 15100, 15101, 15102, 15126, 15148, 30666, 1202]
 	"BONK"				: [46, 1145]
 	"CRITACOLA"			: [163]
 	"MADMILK"			: [222]
@@ -56,8 +54,8 @@ SetScriptVersion("item_helper", "3.3.1")
 	"BEGGARSBAZOOKA"	: [730]
 	"AIRSTRIKE"			: [1104]
 	/// Secondary
-	"SHOTGUN_SOLD"		: [10]
-	"SHOTGUN"			: [199, 1141, 15003, 15016, 15044, 15047, 15085, 15109, 15132, 15133, 15152]
+	//"SHOTGUN_SOLD"		: [10]
+	"SHOTGUN"			: [9, 10, 11, 12, 199, 1141, 15003, 15016, 15044, 15047, 15085, 15109, 15132, 15133, 15152]
 	"BUFFBANNER"		: [129, 1001]
 	"GUNBOATS"			: [133]
 	"BATTALIONS"		: [226]
@@ -86,7 +84,7 @@ SetScriptVersion("item_helper", "3.3.1")
 	"DRAGONSFURY"		: [1178]
 	"NOSTROMONAPALMER"	: [30474]
 	/// Secondary
-	"SHOTGUN_PYRO"		: [12]
+	//"SHOTGUN_PYRO"		: [12]
 	"FLAREGUN"			: [39, 1081]
 	"DETONATOR"			: [351]
 	"MANMELTER"			: [595]
@@ -135,14 +133,14 @@ SetScriptVersion("item_helper", "3.3.1")
 
 	///// Heavy
 	/// Primary
-	"MINIGUN"			: [15, 202, 298, 654, 793, 802, 882, 891, 900, 909, 958, 967, 15004, 15020, 15026, 15031, 15040, 15055, 15086, 15087, 15088, 15098, 15099, 15123, 15124, 15125, 15147]
+	"MINIGUN"			: [15, 202, 298, 654, 793, 802, 882, 891, 900, 909, 958, 967, 15004, 15020, 15026, 15031, 15040, 15055, 15086, 15087, 15088, 15098, 15099, 15123, 15124, 15125, 15147, 1206]
 	"NATASCHA"			: [41]
 	"BRASSBEAST"		: [312]
 	"TOMISLAV"			: [424]
 	"HUOHEATER"			: [811]
 	"GENUINEHUOHEATER"	: [832]
 	/// Secondary
-	"SHOTGUN_HVY"		: [11]
+	//"SHOTGUN_HVY"		: [11]
 	"SANDVICH"			: [42, 863, 1002]
 	"DALOKOHSBAR"		: [159]
 	"BUFFALOSTEAK"		: [311]
@@ -162,7 +160,7 @@ SetScriptVersion("item_helper", "3.3.1")
 
 	///// Engineer
 	/// Primary
-	"SHOTGUN_ENGI"		: [9]
+	//"SHOTGUN_ENGI"		: [9]
 	"FRONTIERJUSTICE"	: [141, 1004]
 	"WIDOWMAKER"		: [527]
 	"POMSON"			: [588]
@@ -239,7 +237,7 @@ SetScriptVersion("item_helper", "3.3.1")
 	"SHARPDRESSER"		: [638]
 	"SPYCICLE"			: [649]
 	/// Watch
-	"INVISWATCH"		: [30, 297, 947]
+	"INVISWATCH"		: [30, 297, 947, 1205]
 	"DEADRINGER"		: [59]
 	"CLOAKANDDAGGER"	: [60]
 
@@ -270,7 +268,6 @@ AddChatTrigger("itemhelp", function(player, ...) {
 		setting = vargv[0].tointeger()
 	}
 	catch(e) {}
-
 
 	if (setting > 2 || setting < 0)
 	{

@@ -7,7 +7,7 @@ IncludeScript("fatcat_library")
 ::IH_error_color <- "\x07D43F3F"
 
 if("SetScriptVersion" in getroottable())
-	SetScriptVersion("Translations", "1.2.2")
+	SetScriptVersion("Translations", "1.2.3")
 
 ::TRANSLATION_TABLE <- {
 	english = {
@@ -146,7 +146,7 @@ if("SetScriptVersion" in getroottable())
 		SHOTGUN_SOLD_DESC 		= " Very fast fire rate and crits while rocket jumping." 
 		//
 		SHOTGUN_NAME 			= "SHOTGUN" 
-		SHOTGUN_DESC 			= " Standard option for reliable damage." 
+		SHOTGUN_DESC 			= " Standard option for reliable damage. Deals crits while rocket jumping. Increased damage vs burning enemies and to your Sentry's target." 
 		//
 		BUFFBANNER_NAME 		= "BUFF BANNER" 
 		BUFFBANNER_DESC 		= " Unlimited range and significantly increased duration." 
@@ -395,7 +395,7 @@ if("SetScriptVersion" in getroottable())
 		BREADBITE_DESC 			= " Critical hits infect your victim with Corrosion, a permanent debuff that deals damage based on max health and causes the victim to explode into a small corrosive cloud on death, spreading the effect to other enemies."
 		//
 		WARRIRORSSPIRIT_NAME 	= "WARRIOR'S SPIRIT"
-		WARRIRORSSPIRIT_DESC 	= " Left-click to leap high into the air. Land on enemies to deal massive stomp damage. Removes all primary and secondary ammo."
+		WARRIRORSSPIRIT_DESC 	= " Left-click to launch high into the air. Land on enemies to deal massive stomp damage. Launch velocity temporarily increased on kill. Removes all primary and secondary ammo."
 		//
 		FISTSOFSTEEL_NAME 		= "FISTS OF STEEL"
 		FISTSOFSTEEL_DESC 		= " Become a giant Heavy gauntlet with 250,000 health. You are immune to push forces and can deal heavy damage. Removes all primary and secondary ammo. You can only heal from lunchbox items."

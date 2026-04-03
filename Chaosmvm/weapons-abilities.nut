@@ -1,6 +1,6 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
-SetScriptVersion("Abilities", "2.6.3")
+SetScriptVersion("Abilities", "2.7.0")
 
 ::Debug_Abilities <- false
 
@@ -17,13 +17,13 @@ local BASE_attack_cooldown = 5           // |
 // - - - - - - - - - Rage - - - - - - - - - |
 ::RageSettings <- {
 	SpawnCooldown 	= 180.0
-	AttackCooldown 	= 105.0
+	AttackCooldown 	= 120.0
 	BombRange 		= 75.0
 	ExplodeDmg 		= 750000.0
 	ExplodeRad 		= 500.0
 	ExplodeDmgSmall = 40000.0
 	ExplodeRadSmall = 500.0
-	CondDuration 	= 12.0
+	CondDuration 	= 20.0
 }
 // - - - - - - - - - - - - - - - - - - - - -|
 // Engineer
@@ -39,15 +39,11 @@ local BASE_attack_cooldown = 5           // |
 	Duration       = 20.0
 	UseTimes       = array(TF_CLASS_MAXNORMAL+1, 4.0)
 }
-// CheersSettings.UseTimes[TF_CLASS_SCOUT] 		= 4.0
-// CheersSettings.UseTimes[TF_CLASS_SOLDIER] 		= 4.0
 CheersSettings.UseTimes[TF_CLASS_PYRO] 			= 3.85
 CheersSettings.UseTimes[TF_CLASS_DEMOMAN] 		= 4.4
-// CheersSettings.UseTimes[TF_CLASS_ENGINEER] 		= 4.0
 CheersSettings.UseTimes[TF_CLASS_MEDIC] 		= 3.9
 CheersSettings.UseTimes[TF_CLASS_HEAVYWEAPONS] 	= 4.1
 CheersSettings.UseTimes[TF_CLASS_SNIPER] 		= 3.15
-// CheersSettings.UseTimes[TF_CLASS_SPY] 			= 4.0
 // - - - - - - - - - - - - - - - - - - - - -|
 // - - - - - - - -   KART   - - - - - - - - |
 ::KartSettings <- {
@@ -56,15 +52,10 @@ CheersSettings.UseTimes[TF_CLASS_SNIPER] 		= 3.15
 	Duration       = 25.0
 	UseTimes       = array(TF_CLASS_MAXNORMAL+1, 2.75)
 }
-// KartSettings.UseTimes[TF_CLASS_SCOUT] 			= 2.75
-// KartSettings.UseTimes[TF_CLASS_SOLDIER] 		= 2.75
-// KartSettings.UseTimes[TF_CLASS_PYRO] 			= 2.75
 KartSettings.UseTimes[TF_CLASS_DEMOMAN] 		= 3.75
-// KartSettings.UseTimes[TF_CLASS_ENGINEER] 		= 2.75
 KartSettings.UseTimes[TF_CLASS_MEDIC] 			= 2.6
 KartSettings.UseTimes[TF_CLASS_HEAVYWEAPONS] 	= 2.6
 KartSettings.UseTimes[TF_CLASS_SNIPER] 			= 2.2
-// KartSettings.UseTimes[TF_CLASS_SPY] 			= 2.75
 // - - - - - - - - - - - - - - - - - - - - -|
 function AbilityValid(player, player_class, idx)
 {
@@ -231,7 +222,7 @@ function HeavyGoKaboom(player)
 	}
 	else
 	{
-		DispatchParticleEffect("ExplosionCore_Wall", (player.GetOrigin() + Vector(0,0,10)), QAngle(-90, 0, 0).Forward())
+		DispatchParticleEffect("chaos_rage_burst", (player.GetOrigin() + Vector(0,0,10)), QAngle(-90, 0, 0).Forward())
 		player.EmitSound("weapons/airstrike_small_explosion_02.wav")
 
 		player.DamageEveryBotWithin(RageSettings.ExplodeRadSmall, RageSettings.ExplodeDmgSmall)

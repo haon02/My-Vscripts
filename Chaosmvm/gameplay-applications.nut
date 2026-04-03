@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.0.0")
+SetScriptVersion("GameplayApplications", "4.0.1")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -330,7 +330,7 @@ function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 		
 		local FALL_DMG_MULT = weapon.GetIDX() == TF_WEAPON_WARRIOR_SPIRIT ? 60 : 100
 
-		attacker.PrintToHud("Falling: "+FallingVel+"\nPrevFalling: "+PrevFallingVel)
+		//attacker.PrintToHud("Falling: "+FallingVel+"\nPrevFalling: "+PrevFallingVel)
 
 		// Minimum falling dmg is 1000
 		if(weapon.GetIDX() == TF_WEAPON_WARRIOR_SPIRIT && FallingVel < -1500)
@@ -522,7 +522,7 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params) {
 				weapon = victim.GetWeapon(TF_WEAPON_WARRIOR_SPIRIT),
 				center = victim.GetOrigin()+Vector(0, 0, -16),
 				radius = 300,
-				damage = -FallingVel * 15,
+				damage = -FallingVel * 10,
 				ignore = [],
 			})
 			ScreenShake(victim.GetOrigin(), 25, 2.5, 1.0, 1500, 0, true)
