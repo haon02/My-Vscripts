@@ -589,6 +589,18 @@ function ROOT::GetRuneCondition(rune)
 	1, 		// idk
 ]
 
+function ROOT::IsConvarAllowed(cvar)
+	return Convars.IsConVarOnAllowList(cvar)
+function ROOT::GetCvarFloat(cvar)
+	return Convars.GetFloat(cvar)
+function ROOT::GetCvarBool(cvar)
+	return Convars.GetBool(cvar)
+function ROOT::GetCvarInt(cvar)
+	return Convars.GetInt(cvar)
+function ROOT::GetCvarStr(cvar)
+	return Convars.GetStr(cvar)
+ROOT.GetCvarString <- ROOT.GetCvarStr
+
 
 ///////////////////////////////////////
 function CTFPlayer::PrintToHud(message)
@@ -1653,7 +1665,7 @@ function CTFPlayer::CalculateEHP()
 		CondMult *= 0.65
 	
 	if(InCond(TF_COND_STEALTHED))
-		CondMult *= Convars.GetFloat("tf_stealth_damage_reduction")
+		CondMult *= GetCvarFloat("tf_stealth_damage_reduction")
 	if(IsMinicritDebuffed())
 		CondMult *= (1.0 + (0.35 * CritMult))
 
@@ -2336,8 +2348,8 @@ function CTFPlayer::GetMoveSpeed()
 	}
 
 	local WhipBoost = 105.0
-	if ( Convars.IsConVarOnAllowList("tf_whip_speed_increase") )
-		WhipBoost = Convars.GetFloat("tf_whip_speed_increase")
+	if ( IsConvarAllowed("tf_whip_speed_increase") )
+		WhipBoost = GetCvarFloat("tf_whip_speed_increase")
 
 
 	if ( InCond( TF_COND_SPEED_BOOST ) && speed > 0.0)
@@ -2351,15 +2363,9 @@ function CTFPlayer::GetMoveSpeed()
 		local Sword = GetWeaponClassname("tf_weapon_sword")
 		if ( Sword )
 			speed *= Sword.GetSwordSpeedMod()
-		
-
-		if ( !bIgnoreSpecialAbility && m_Shared.InCond( TF_COND_SHIELD_CHARGE ) )
-		{
-			maxfbspeed = tf_max_charge_speed.GetFloat();
-		}
 	}
 	if ( InCond( TF_COND_SHIELD_CHARGE ) )
-		speed = (Convars.IsConVarOnAllowList("tf_max_charge_speed") && Convars.GetFloat("tf_max_charge_speed")) ? Convars.GetFloat("tf_max_charge_speed") : 750
+		speed = (IsConvarAllowed("tf_max_charge_speed") && GetCvarFloat("tf_max_charge_speed")) ? GetCvarFloat("tf_max_charge_speed") : 750.0
 
 	if ( !IsMannVsMachineMode() && GetPropBool(this, "m_Shared.m_bCarryingObject") )
 		speed *= 0.9
@@ -3090,6 +3096,51 @@ function ROOT::PrintToHudAll(message)
 function ROOT::PrintToChatAll(message)
 	ClientPrint(null, 3, message == null ? NULL_S : message.tostring())
 
+function ROOT::PrintToChatAllF(msg, ...)
+{
+	if(msg == null)
+		msg = "NULL"
+	else 
+		msg = msg.tostring()
+
+	local args = vargv
+
+	local leng = args.len()
+
+	for (local i = 0; i < leng; i++) 
+	{
+		if(args[i] == null)
+			args[i] = "NULL"
+	}
+
+	if (leng > 0)
+		msg = format.acall([this, msg].extend(args))
+
+	ClientPrint(null, 3, msg)
+}
+function ROOT::PrintToHudAllF(msg, ...)
+{
+	if(msg == null)
+		msg = "NULL"
+	else 
+		msg = msg.tostring()
+
+	local args = vargv
+
+	local leng = args.len()
+
+	for (local i = 0; i < leng; i++) 
+	{
+		if(args[i] == null)
+			args[i] = "NULL"
+	}
+
+	if (leng > 0)
+		msg = format.acall([this, msg].extend(args))
+
+	ClientPrint(null, 2, msg)
+}
+
 function ROOT::TranslateToChatAll( ... )
 {
 	foreach (player in m_aHumans)
@@ -3794,7 +3845,7 @@ function ROOT::PrintBenchmarkTime(text = "")
 
 function ROOT::SetCvar(convar, value, admin_notify = false, notify_all = false)
 {
-	if(!Convars.IsConVarOnAllowList(convar))
+	if(!IsConvarAllowed(convar))
 	{
 		PrintToAdmins(3, "\x07FF0000fatcat_library::SetCvar: \x01Warning Cvar \x03" + convar + "\x01 is Not on the Allowlist!")
 		PrintToAdmins(2, "fatcat_library::SetCvar: Warning Cvar \"" + convar + "\" is Not on the Allowlist!")
@@ -3810,9 +3861,9 @@ function ROOT::SetCvar(convar, value, admin_notify = false, notify_all = false)
 
 function ROOT::IsPotato()
 {
-	if(!Convars.IsConVarOnAllowList("sv_tags"))
+	if(!IsConvarAllowed("sv_tags"))
 		return false
-	return split(Convars.GetStr("sv_tags"), ",").find("potato") != null
+	return split(GetCvarStr("sv_tags"), ",").find("potato") != null
 }
 
 function ROOT::EntFireNew(target, action, input = "", delay = -1, activator = null, caller = null)
@@ -5395,14 +5446,18 @@ function ROOT::ProjectileThink()
 __CollectGameEventCallbacks(ChaosCustomEvents)
 
 // Admin cmds
-AddChatTrigger("lib_version", function(player, ...) {
-	PrintToChatAll(format("\x07D000D0► FatCatLib ◄\x03 Last Modified Timestamp \x04%s\x03\n", FatCatLibTimeStamp))
-	PrintToChatAll(format("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%i\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version, FatCatLibVersion.forced))
+AddChatTrigger(["lib_version", "lib_versions"], function(player, ...) {
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp)
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced)
 
 	foreach (item, value in FatCatLibScriptsVersion)
 	{
-		PrintToChatAll(format("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value))
+		PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value)
 	}
+}, "IsAdmin", "IsEventJudge")
+AddChatTrigger("lib_info", function(player, ...) {
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp)
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced)
 }, "IsAdmin", "IsEventJudge")
 AddChatTrigger("lib_force", function(player, ...) {
 	if("FatCatLibForce" in ROOT)
@@ -5435,7 +5490,7 @@ seterrorhandler(function(e)
 
 	if(public == true)
 	{
-		PrintToChatAll(format("\x07FF0000A VSCRIPT ERROR HAS OCCURRED [%s].", e)+" Please report to @The Fatcat in #"+(IsPotato() ? "scripting" : "bug-reports") + " with a screenshot")
+		PrintToChatAll(format("\x07FF0000A VSCRIPT ERROR HAS OCCURRED [%s].", e)+" Please report to @The Fatcat in #bug-reports" + " with a screenshot")
 
 		foreach (stackinfo in STACK)
 		{
@@ -5452,7 +5507,6 @@ seterrorhandler(function(e)
 	{
 		PrintToAdmins(3, format("\x07FF0000AN ERROR HAS OCCURRED [%s].\nCheck console for details", e))
 	}
-		
 
 	Chat(format("\n====== TIMESTAMP: %g ======\nAN ERROR HAS OCCURRED [%s]", Time(), e))
 	Chat("CALLSTACK")
@@ -5473,7 +5527,7 @@ seterrorhandler(function(e)
 							 Chat(format("[%s] %s %s" , n, t, v.tostring()))
 		}
 	}
+
 	return
 })
-ClientPrint(null, 2, "Included Library Successfully")
 printl("Included Library Successfully")
