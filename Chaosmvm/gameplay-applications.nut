@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.0.1")
+SetScriptVersion("GameplayApplications", "4.0.2")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -412,6 +412,9 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 	{
 		if(!victim.IsPlayer())
 			break
+
+		if(inflictor && inflictor.GetOwner() && inflictor.GetOwner() == victim)
+			return
 
 		if( !victim.IsValidReprogramTarget() || victim.GetPlayerClass() == TF_CLASS_MEDIC || victim.GetTeam() == TF_TEAM_RED)
 		{
