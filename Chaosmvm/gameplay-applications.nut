@@ -310,6 +310,8 @@ function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 			SoundRadius = (EBSettings.base_range + (iExplosiveShot * EBSettings.additive_range)) * 1
 			use_func_on_ignore = true
 			func = function(player) {
+				if(!player || !player.IsValid() || !player.IsPlayer())
+					return
 				player.StunPlayer(MATH.Clamp(iExplosiveShot - 1, 0, 2), 0.6, TF_STUN_MOVEMENT, attacker )
 			}
 		})

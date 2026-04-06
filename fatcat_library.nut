@@ -2065,8 +2065,8 @@ function CTFPlayer::AddPreservedThink(delay, func, offset = 0.0, name = null)
  * 
  * @param {float}	 	delay 	The Time Inbetween each think (set to below 0 for every tick thinking).
  * @param {function} 	func 	The Think Function.
- * @param {float} 		offset 	Time offset of the next Think.
- * @param {name} 		func 	The Think function name in the ThinkTable (used for removing a think).
+ * @param {float} 		[offset] 	Time offset of the next Think. (Default: 0.0)
+ * @param {string|null} [name] 	The Think function name in the ThinkTable (used for removing a think). (Default: null)
  */
 function CTFPlayer::AddThink(delay, func, offset = 0.0, name = null)
 {
@@ -4054,6 +4054,11 @@ function Vector::Random(min, max)
 	this.z = min + (::RandomInt(0, 0x7FFF).tofloat() / 0x7FFF) * (max - min);
 }
 
+function Vector::DistanceTo(point2)
+{
+	return (this-point2).Length()
+}
+
 function Vector2D::Normalize()
 {
 	local new = this + ::Vector2D()
@@ -4067,6 +4072,7 @@ function ROOT::DummyN( ... )
 	return 1
 function ROOT::DummyV( ... )
 	return Vector()
+
 
 function ROOT::min(a, b)
 {
@@ -4114,53 +4120,59 @@ function ROOT::ConvertRadiusToSndLvl(radius)
 	return (40 + (20 * log10(radius / 36.0))).tointeger()
 }
 
+// function ROOT::GetVisibleEntities(ent, point, )
+
 if(!("CORROSION_ICON" in ROOT))
 	::CORROSION_ICON <- CreateKillIcon("infection_acid_puddle")
 ////
 /**
  * Creates a base explosion to use
  * 
- * @param {entity} 		owner 			The player to report the damage to.
- * @param {entity|null}	weapon 			The weapon to give credit to.
- * @param {entity[]}	ignores 		The Entitys to ignore for the explosion (usually the victim).
- * @param {string} 		sound 			The sound to play on explosion.
- * @param {float} 		radius 			The radius of the explosion.
- * @param {vector} 		origin 			The origin of the explosion.
- * @param {float} 		damage 			The damage dealt at the center.
- * @param {float} 		MinDamage 		The damage dealt at the edge.
- * @param {float} 		DamageDeadzone	The radius from the center where zero falloff occurs.
- * @param {string}		particle 		The explosion particle.
- * @param {vector}		particle_ang	The angle of the explosion particle.
- * @param {vector}		particle_offset	How much to offset the explosion particle spawn.
- * @param {long}		DmgType 		The damage types to use (add DMG_RADIUS_MAX to ignore damage falloff).
- * @param {float}		SoundRadius		The radius the sound travels.
- * @param {float}		SoundDelay		Cooldown between explosion sounds.
- * @param {function}	ExplodeFunc		Callback function for players hit.
- * @param {bool}		FuncBeforeDmg	If true, call ExplodeFunc before dealing damage.
- * @param {bool}		FuncOnIgnore	If true, call ExplodeFunc on ignored targets.
+ * @param {entity} 		owner 				The player to report the damage to.
+ * @param {entity|null}	[weapon] 			The weapon to give credit to. (Default: null)
+ * @param {entity[]}	[ignores] 			The Entitys to ignore for the explosion (usually the victim). (Default: [])
+ * @param {string} 		[sound] 			The sound to play on explosion. (Default: "")
+ * @param {float} 		[radius] 			The radius of the explosion. (Default: 147.0)
+ * @param {vector} 		[origin] 			The origin of the explosion. (Default: Vector())
+ * @param {float} 		[damage] 			The damage dealt at the center. (Default: 90.0)
+ * @param {float} 		[MinDamage] 		The damage dealt at the edge. (Default: damage/2.0)
+ * @param {float} 		[DamageDeadzone]	The radius from the center where zero falloff occurs. (Default: 0.0)
+ * @param {string}		[particle] 			The explosion particle. (Default: "")
+ * @param {vector}		[particle_ang]		The angle of the explosion particle. (Default: QAngle(-90, 0, 0))
+ * @param {vector}		[particle_offset]	How much to offset the explosion particle spawn. (Default: Vector())
+ * @param {long}		[DmgType] 			The damage types to use (add DMG_RADIUS_MAX to ignore damage falloff). (Default: DMG_GENERIC|DMG_BLAST)
+ * @param {float}		[SoundRadius]		The radius the sound travels. (Default: radius)
+ * @param {float}		[SoundDelay]		Cooldown between explosion sounds. (Default: 0.5)
+ * @param {function}	[ExplodeFunc]		Callback function for players hit. (Default: null)
+ * @param {bool}		[FuncBeforeDmg]		If true, call ExplodeFunc before dealing damage. (Default: false)
+ * @param {bool}		[FuncOnIgnore]		If true, call ExplodeFunc on ignored targets. (Default: false)
+ * @param {bool}		[OnlyPlayers]		If true, only collect players to attack. (Default: false)
+ * @param {bool}		[FuncIgnoreObjects]	If true, ignore non-players when calling ExplodeFunc. (Default: false)
  */
 function ROOT::CreateBaseExplosion(table)
 {
-	local owner 			= "owner" 			in table ? table.owner 				: null
-	local weapon 			= "weapon" 			in table ? table.weapon 			: null
-	local sound 			= "sound" 			in table ? table.sound 				: ""
-	local origin 			= "origin" 			in table ? table.origin 			: owner && owner.IsPlayer() ? owner.GetCenter() : Vector()
-	local radius 			= "radius" 			in table ? table.radius 			: 147.0
-	local damage 			= "damage" 			in table ? table.damage.tofloat() 	: 90.0
-	local MinDamage 		= "MinDamage" 		in table ? table.MinDamage	 		: damage.tofloat()/2.0
-	local DamageDeadzone 	= "DamageDeadzone" in table ? table.DamageDeadzone		: 0.0
-	local trace 			= "trace" 			in table ? table.trace	 			: true
-	local particle 			= "particle" 		in table ? table.particle 			: ""
-	local particle_ang 		= "particle_ang"	in table ? table.particle_ang 		: QAngle(-90, 0, 0)
-	local particle_offset 	= "particle_offset"	in table ? table.particle_offset 	: Vector()
-	local DmgType 			= "DmgType" 		in table ? table.DmgType 			: DMG_GENERIC|DMG_BLAST
-	local FuncBeforeDmg		= "FuncBeforeDmg"	in table ? table.FuncBeforeDmg 		: false
-	local ExplodeFunc		= "ExplodeFunc"		in table ? table.ExplodeFunc		: function(player) { /* do what you want on explosion */ }
-	local ignores			= "ignores"			in table ? table.ignores			: []
-	local FuncOnIgnore		= "FuncOnIgnore"	in table ? table.FuncOnIgnore 		: false
+	local owner 			= "owner" 				in table ? table.owner 				: null
+	local weapon 			= "weapon" 				in table ? table.weapon 			: null
+	local sound 			= "sound" 				in table ? table.sound 				: ""
+	local origin 			= "origin" 				in table ? table.origin 			: owner && owner.IsPlayer() ? owner.GetCenter() : Vector()
+	local radius 			= "radius" 				in table ? table.radius 			: 147.0
+	local damage 			= "damage" 				in table ? table.damage.tofloat() 	: 90.0
+	local MinDamage 		= "MinDamage" 			in table ? table.MinDamage	 		: damage.tofloat()/2.0
+	local DamageDeadzone 	= "DamageDeadzone" 		in table ? table.DamageDeadzone		: 0.0
+	local trace 			= "trace" 				in table ? table.trace	 			: true
+	local particle 			= "particle" 			in table ? table.particle 			: ""
+	local particle_ang 		= "particle_ang"		in table ? table.particle_ang 		: QAngle(-90, 0, 0)
+	local particle_offset 	= "particle_offset"		in table ? table.particle_offset 	: Vector()
+	local DmgType 			= "DmgType" 			in table ? table.DmgType 			: DMG_GENERIC|DMG_BLAST
+	local FuncBeforeDmg		= "FuncBeforeDmg"		in table ? table.FuncBeforeDmg 		: false
+	local ExplodeFunc		= "ExplodeFunc"			in table ? table.ExplodeFunc		: function(player) { /* do what you want on explosion */ }
+	local ignores			= "ignores"				in table ? table.ignores			: []
+	local OnlyPlayers		= "OnlyPlayers"			in table ? table.OnlyPlayers		: false
+	local FuncOnIgnore		= "FuncOnIgnore"		in table ? table.FuncOnIgnore 		: false
+	local FuncIgnoreObjects	= "FuncIgnoreObjects"	in table ? table.FuncIgnoreObjects 	: false
 
-	local SoundRadius 		= "SoundRadius" 	in table ? table.SoundRadius 		: radius
-	local SoundDelay 		= "SoundDelay" 		in table ? table.SoundDelay 		: 0.5
+	local SoundRadius 		= "SoundRadius" 		in table ? table.SoundRadius 		: radius
+	local SoundDelay 		= "SoundDelay" 			in table ? table.SoundDelay 		: 0.5
 
 	Assert(owner && owner.IsPlayer(), "CreateBaseExplosion currently need a owner")
 
@@ -4174,25 +4186,31 @@ function ROOT::CreateBaseExplosion(table)
 	// always update the list (could be expensive but this func is not run often)
 	ReCalculatePlayers()
 
-	local targets = Players.filter(@(i, p) p.GetTeam() != owner.GetTeam() ).extend(GetAllEntitiesByClassname("tank_boss"))
+	local targets = Players.filter(@(i, p) p.GetTeam() != owner.GetTeam() )
+
+	if(!OnlyPlayers)
+	{
+		targets.extend(GetAllEntitiesByClassnameWithin("tank_boss", origin, radius).filter(@(i, ent) ent.GetTeam() != owner.GetTeam() ))
+		targets.extend(GetAllEntitiesByClassnameWithin("obj*", origin, radius).filter(@(i, ent) ent.GetClassname() != "obj_attachment_sapper").filter(@(i, ent) ent.GetTeam() != owner.GetTeam()))
+	}
 
 	DebugDrawClear()
-	foreach (player in targets)
+	foreach (entity in targets)
 	{
-		local isIgnored = ignores.find(player) != null
-		local delta = player.GetCenter() - origin
+		local isIgnored = ignores.find(entity) != null
+		local delta = entity.GetCenter() - origin
 		local distance = delta.Length()
 
 		if(distance > radius)
 			continue
 
-		if(trace && !CanPointSeePoint(origin, player.GetCenter()))
+		if(trace && !CanPointSeePoint(origin, entity.GetCenter()))
 			continue
 
 		if(isIgnored)
 		{
-			if(FuncOnIgnore)
-				ExplodeFunc(player)
+			if(FuncOnIgnore && (!FuncIgnoreObjects || entity.IsPlayer()))
+				ExplodeFunc(entity)
 			continue
 		}
 
@@ -4205,10 +4223,13 @@ function ROOT::CreateBaseExplosion(table)
 				currentDamage = MATH.RemapVal(distance, DamageDeadzone, radius, damage, MinDamage)
 			// printl("DEBUG: Dist: " + distance + " | Rad: " + radius + " | Deadzone: " + DamageDeadzone + " | Dmg: " + damage + " | MinDmg: " + MinDamage + " | Final: " + currentDamage)
 		}
-		// DebugDrawText(player.GetCenter(),currentDamage.tostring(), false, 60)
-		if(FuncBeforeDmg) ExplodeFunc(player)
-		player.TakeDamageCustom(owner, owner, weapon, Vector(), Vector(), currentDamage, DmgType, TF_DMG_CUSTOM_TRIGGER_HURT)
-		if(!FuncBeforeDmg) ExplodeFunc(player)
+		// DebugDrawText(entity.GetCenter(),currentDamage.tostring(), false, 60)
+
+		if(FuncBeforeDmg && (!FuncIgnoreObjects || entity.IsPlayer())) 
+			ExplodeFunc(entity)
+		entity.TakeDamageCustom(owner, owner, weapon, Vector(), Vector(), currentDamage, DmgType, TF_DMG_CUSTOM_TRIGGER_HURT)
+		if(!FuncBeforeDmg && (!FuncIgnoreObjects || entity.IsPlayer())) 
+			ExplodeFunc(entity)
 	}
 
 	DebugDrawCircle(origin, Vector(255, 0, 0), 50, radius, false, 15)
@@ -4241,10 +4262,10 @@ function ROOT::CreateBaseExplosion(table)
  * @param {float} 		radius		How big the explosion can hit.
  * @param {float} 		maxDmg		The Maximum damage to deal.
  * @param {float} 		minDmg		The Minimum damage to deal.
- * @param {entity[]}	ignore		What entitys to ignore in the explosion.
- * @param {int}			dmg_Type	DMG_ type to mark the damage as.
- * @param {string}		sound		Sound to play on explosion.
- * @param {string}		particle	Particle to spawn on explosion.
+ * @param {entity[]}	[ignore]	What entitys to ignore in the explosion. (Default: [])
+ * @param {int}			[dmg_Type]	DMG_ type to mark the damage as. (Default: DMG_BLAST)
+ * @param {string}		[sound]		Sound to play on explosion. (Default: "weapons/explode1.wav")
+ * @param {string}		[particle]	Particle to spawn on explosion. (Default: "ExplosionCore_Wall")
  */
 function ROOT::CreateAoE(owner, center, radius, maxDmg, minDmg, ignore = [], dmg_Type = DMG_BLAST, sound = "weapons/explode1.wav", particle = "ExplosionCore_Wall")
 {
@@ -4311,6 +4332,7 @@ function ROOT::CreateKnifeAoETable(table)
 		FuncBeforeDmg = true,
 		FuncOnIgnore = true,
 		ExplodeFunc = table.func
+		FuncIgnoreObjects = true
 	})
 }
 
@@ -4545,21 +4567,6 @@ function ROOT::RemoveDamageCallback(entity_name, callback_name)
 			delete RegisteredDmgCallbacks[entity]
 	}
 }
-// TODO: REPLACE WITH THE EVENT HANDLING THIS DATA
-function ROOT::CallbackDataReturn(data, params)
-{
-	if(data == null || typeof data != "table" || params == null || typeof params != "table")
-	{
-		throw "Damage Callback data or CONST_DATA is either NULL or not a Table!\nDid you forget to return params and CONST_DATA?"
-		return null
-	}
-	foreach ( key, value in data )
-	{
-		params[key] <- value
-	}
-	return params
-}
-
 // TODO: Add to Snippets
 function ROOT::ParamsToDamageCallbackData(params)
 	return {
@@ -4718,18 +4725,8 @@ CreateThinker("OnEntityPostSpawn" , function() {
 	// entity.SetAbsAngles(owner.EyeAngles())
 	entity.SetForwardVector(Vector(1, 0 ,0))
 })
+*/
 
-function ROOT::ProjectileThink()
-{
-	DebugDrawText(self.GetOrigin(), "(["+self.entindex()+"]"+self.GetClassname()+")", false, 0.015)
-	return -1
-} */
-
-/* RegisterDamageCallback("player", "FUCK THIS SHIT", function(params, CONST_DATA) {
-	params.damage = 10
-
-	return CallbackDataReturn(params, CONST_DATA)
-}) */
 
 // Makes Custom Events to listen to
 ::ChaosCustomEvents <- {
