@@ -3860,11 +3860,7 @@ function ROOT::SetCvar(convar, value, admin_notify = false, notify_all = false)
 }
 
 function ROOT::IsPotato()
-{
-	if(!IsConvarAllowed("sv_tags"))
-		return false
-	return split(GetCvarStr("sv_tags"), ",").find("potato") != null
-}
+	return "__potato" in ROOT
 
 function ROOT::EntFireNew(target, action, input = "", delay = -1, activator = null, caller = null)
 {
