@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.0.3")
+SetScriptVersion("GameplayApplications", "4.1.0")
 
 local Thinker = CreateThinker("Thinker_GlobalGameText", "GameplayThink", THINKER_PERSIST)
 
@@ -294,6 +294,8 @@ function GameplayThink()
 
 function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 {
+	if(params.damage_custom > (1<<7))
+		return
 	switch (params.damage_custom)
 	{
 	case TF_DMG_CUSTOM_BACKSTAB: {
@@ -475,7 +477,7 @@ ClearDamageCallbacks()
 
 
 RegisterDamageCallback("player", "GameplayPlayer" function(params) {
-	if(params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT || params.damage_custom == TF_DMG_CUSTOM_IGNORE_EVENTS)
+	if((params.damage_custom & TF_DMG_CUSTOM_IGNORE_EVENTS) || params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT)
 		return
 
 	local victim 	= params.victim
@@ -551,7 +553,7 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params) {
 })
 
 RegisterDamageCallback(["obj_sentrygun", "obj_teleporter", "obj_dispenser", "tank_boss"], "GameplayOthers", function(params) {
-	if(params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT || params.damage_custom == TF_DMG_CUSTOM_IGNORE_EVENTS)
+	if((params.damage_custom & TF_DMG_CUSTOM_IGNORE_EVENTS) || params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT)
 		return
 
 	local victim 	= params.victim
@@ -581,10 +583,10 @@ RegisterDamageCallback(["obj_sentrygun", "obj_teleporter", "obj_dispenser", "tan
 })
 
 RegisterDamageCallback("tf_zombie", "GameplaySkeletons", function(params) {
-	if(params.damage_custom == TF_DMG_CUSTOM_IGNORE_EVENTS)
+	if(params.damage_custom & TF_DMG_CUSTOM_IGNORE_EVENTS)
 		return
 	params.damage = 0
-	params.victim.TakeDamageCustom(params.inflictor, params.attacker, null, Vector(), Vector(), 5.0, DMG_GENERIC, TF_DMG_CUSTOM_IGNORE_EVENTS)
+	params.victim.TakeDamageCustom(params.inflictor, params.attacker, null, Vector(), Vector(), 5.0, DMG_GENERIC, TF_DMG_CUSTOM_NO_CALLBACKS)
 })
 
 

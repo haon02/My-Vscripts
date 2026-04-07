@@ -5,4 +5,5 @@ vssaxtonhale/
 Testing/
 infection/
 
+.vscode/
 *.cache

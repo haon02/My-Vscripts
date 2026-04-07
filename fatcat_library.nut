@@ -170,10 +170,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.16.2", 0))
+if (!SetLibraryVersion("1.16.3", 0))
 	return
 
-SetLibraryTimeStamp("4-6-2026_19:41")
+SetLibraryTimeStamp("4-7-2026_00:56")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -479,9 +479,17 @@ BONUS_EFFECT_REMAP[kBonusEffect_Stomp] 					= BONUS_EFFECT_STOMP
 ::SF_TRIGGER_ONLY_NPCS_IN_VEHICLES 			<- (1<<11)
 ::SF_TRIGGER_DISALLOW_BOTS 					<- (1<<12)
 
+
 ////////// Custom DamageCustoms
-::TF_DMG_CUSTOM_IGNORE_EVENTS 	<- -1
-::TF_DMG_CUSTOM_BYPASS		 	<- -1
+::TF_DMG_CUSTOM_IGNORE_EVENTS 			<- (1<<7)
+::TF_DMG_CUSTOM_NO_CALLBACKS 			<- (1<<8)
+::TF_DMG_CUSTOM_NO_CALLBACKS_IGNORE 	<- (TF_DMG_CUSTOM_IGNORE_EVENTS|TF_DMG_CUSTOM_NO_CALLBACKS)
+
+function ROOT::IsCustomFlags(dmg_custom)
+	return dmg_custom >= (1<<7)
+
+function ROOT::HasFCUSTOMDmgCustom(dmg_custom)
+	return dmg_custom >= (1<<7)
 
 ////////// RUNES
 ::RUNE_NONE 				<- -1
@@ -604,10 +612,13 @@ ROOT.GetCvarString <- ROOT.GetCvarStr
 
 ///////////////////////////////////////
 function CTFPlayer::PrintToHud(message)
-	ClientPrint(this, 4, message != null ? message.tostring() : NULL_S)
+	ClientPrint(this, HUD_PRINTCENTER, message != null ? message.tostring() : NULL_S)
 
 function CTFPlayer::PrintToChat(message)
-	ClientPrint(this, 3, message != null ? message.tostring() : NULL_S)
+	ClientPrint(this, HUD_PRINTTALK, message != null ? message.tostring() : NULL_S)
+
+function CTFPlayer::PrintToConsole(message)
+	ClientPrint(this, HUD_PRINTCONSOLE, message != null ? message.tostring() : NULL_S)
 
 function CTFPlayer::IsOnGround()
 	return GetPropEntity(this, "m_hGroundEntity") != null
@@ -3089,88 +3100,71 @@ function ROOT::GetWeaponInSlot(player = null, slot = 0)
 	return player.GetWeaponInSlot(slot)
 }
 
-///////// Printing functions
-function ROOT::PrintToHudAll(message)
-	ClientPrint(null, 4, message == null ? NULL_S : message.tostring())
+function ROOT::CleanUpAndFormatString(msg, ...)
+{
+	if(msg == null)
+		msg = "NULL"
+	else 
+		msg = msg.tostring()
 
-function ROOT::PrintToChatAll(message)
-	ClientPrint(null, 3, message == null ? NULL_S : message.tostring())
+	local args = vargv
+
+	local leng = args.len()
+
+	for (local i = 0; i < leng; i++) 
+	{
+		if(args[i] == null)
+			args[i] = "NULL"
+	}
+
+	if (leng > 0)
+		msg = format.acall([this, msg].extend(args))
+
+	return msg
+}
+
+///////// Printing functions
+////// HUD PRINTS //////
+function ROOT::PrintToHudAll(msg)
+	ClientPrint(null, HUD_PRINTCENTER, msg == null ? NULL_S : msg.tostring())
+	
+function ROOT::PrintToHudAllF(msg, ...)
+	ClientPrint(null, HUD_PRINTCENTER, CleanUpAndFormatString(msg, vargv))
+
+function ROOT::PrintToHudAllFilter(msg, filter = [])
+{
+	ReCalculatePlayers()
+	local plrs = Players.filter(@(i, p) !IsInArray(p, filter))
+	foreach (player in plrs)
+		player.PrintToHud(msg)
+}
+///// CHAT PRINTS /////
+function ROOT::PrintToChatAll(msg)
+	ClientPrint(null, HUD_PRINTTALK, msg == null ? NULL_S : msg.tostring())
 
 function ROOT::PrintToChatAllF(msg, ...)
-{
-	if(msg == null)
-		msg = "NULL"
-	else 
-		msg = msg.tostring()
-
-	local args = vargv
-
-	local leng = args.len()
-
-	for (local i = 0; i < leng; i++) 
-	{
-		if(args[i] == null)
-			args[i] = "NULL"
-	}
-
-	if (leng > 0)
-		msg = format.acall([this, msg].extend(args))
-
-	ClientPrint(null, 3, msg)
-}
-function ROOT::PrintToHudAllF(msg, ...)
-{
-	if(msg == null)
-		msg = "NULL"
-	else 
-		msg = msg.tostring()
-
-	local args = vargv
-
-	local leng = args.len()
-
-	for (local i = 0; i < leng; i++) 
-	{
-		if(args[i] == null)
-			args[i] = "NULL"
-	}
-
-	if (leng > 0)
-		msg = format.acall([this, msg].extend(args))
-
-	ClientPrint(null, 2, msg)
-}
+	ClientPrint(null, HUD_PRINTTALK, CleanUpAndFormatString(msg, vargv))
 
 function ROOT::TranslateToChatAll( ... )
 {
 	foreach (player in m_aHumans)
-	{
 		player.TranslateToChat.acall([player].extend(vargv))
-	}
 }
 
-function ROOT::PrintToChatAllFilter(message, filter = [])
+function ROOT::PrintToChatAllFilter(msg, filter = [])
 {
 	ReCalculatePlayers()
-	foreach (player in Players)
-	{
-		if(IsInArray(player, filter))
-			continue
-		player.PrintToChat(message)
-	}
+	local plrs = Players.filter(@(i, p) !IsInArray(p, filter))
+	foreach (player in plrs)
+		player.PrintToChat(msg)
 }
 
-function ROOT::PrintToHudAllFilter(message, filter = [])
-{
-	ReCalculatePlayers()
-	foreach (player in Players)
-	{
-		if(IsInArray(player, filter))
-			continue
-		player.PrintToHud(message)
-	}
-}
+///// CONSOLE PRINTS /////
+// TODO: Add to Snippets
+function ROOT::PrintToConsoleAll(msg)
+	ClientPrint(null, HUD_PRINTCONSOLE, msg == null ? NULL_S : msg.tostring())
 
+///// OTHER PRINTS /////
 function ROOT::PrintToAdmins(level, message)
 {
 	foreach (player in m_aHumans)
@@ -3193,9 +3187,6 @@ function ROOT::PrintClass(clas, filter = [])
 
 function ROOT::PrintCollection(collection, filter = [], indentation = 0, no_indent_header = false)
 {
-	// if (type(collection) == "instance")
-		// collection = collection.getclass()
-
 	local type = typeof collection
 	if(type != "table" && type != "array" && type != "class")
 	{
@@ -3217,9 +3208,6 @@ function ROOT::PrintCollection(collection, filter = [], indentation = 0, no_inde
 		// Skip internal Squirrel variables and filtered keys
 		if(key == "__vname" || key == "__vrefs") continue
 		if(IsInArray(key, filter)) continue
-		
-		// if (type(value) == "instance")
-			// value = value.getclass()
 
 		local valType = typeof value
 		if(IsInArray(valType, filter)) continue
@@ -3235,59 +3223,35 @@ function ROOT::PrintCollection(collection, filter = [], indentation = 0, no_inde
 			PrintCollection(value, filter, indentation + 1, true)
 		}
 		else if(valType == "function" || valType == "native function")
-		{
 			printl(itemIndents + "function (" + keyDisplay + "): " + value)
-		}
 		else
-		{
 			printl(itemIndents + keyDisplay + " : " + value)
-		}
 	}
 	printl(indents + ((type == "table" || type == "class") ? "}" : "]"))
 }
 
-// function ROOT::PrintClass(clas, filter = "")
-// {
-// 	PrintCollection(clas)
-// 	return
-// 	if( typeof clas != "class")
-// 	{
-// 		printl("Trying to PrintClass() an " + typeof clas)
-// 		return
-// 	}
-
-// 	foreach (item, value in clas)
-// 	{
-// 		if(typeof value != filter)
-// 		{
-// 			printl(typeof value + "\t" + item + "\t:\t" + value)
-// 		}
-// 	}
-// }
-
 //// Entity Debug
-function ROOT::ShowBBOX(entity = null, rgba = Vector(255, 0, 0), alpha = 5, duration = 1)
+function ROOT::ShowBBOX(entity = null, rgba = Vector(255, 0, 0), alpha = 5, duration = 5)
 {
 	Assert(entity, "ROOT::ShowBBOX Missing Entity")
 	DebugDrawBox(entity.GetOrigin(), entity.GetBoundingMins(), entity.GetBoundingMaxs(), rgba.x, rgba.y, rgba.z, alpha,  duration)
 }
 
-function ROOT::ShowOBB(entity = null, rgba = Vector(255, 0, 0), alpha = 5, duration = 1)
+function ROOT::ShowOBB(entity = null, rgba = Vector(255, 0, 0), alpha = 5, duration = 5)
 {
 	Assert(entity, "ROOT::ShowOBB Missing Entity")
 	DebugDrawBoxAngles(entity.GetOrigin(), entity.GetBoundingMins(), entity.GetBoundingMaxs(), entity.GetAbsAngles(), Vector(rgba.x, rgba.y, rgba.z), alpha, duration)
 }
 
-function ROOT::ShowAABB(entity = null, rgba = Vector(255, 0, 0), alpha = 5, duration = 1)
+function ROOT::ShowAABB(entity = null, rgba = Vector(255, 0, 0), alpha = 5, duration = 5)
 {
 	Assert(entity, "ROOT::ShowAABB Missing Entity")
 	DebugDrawBox(entity.GetOrigin(),entity.GetBoundingMins(), entity.GetBoundingMaxs(), rgba.x, rgba.y, rgba.z, alpha, duration)
 }
 
-function ROOT::DebugDrawTrigger(trigger = null, color = Vector(255, 128, 0), alpha = 1, duration = 5)
+function ROOT::DebugDrawTrigger(trigger = null, color = Vector(255, 128, 0), alpha = 5, duration = 5)
 {
 	Assert(trigger, "ROOT::DebugDrawTrigger Missing Trigger")
-	if( !trigger ) return
 
 	if (trigger.GetSolid() == 2)
 		DebugDrawBox(trigger.GetOrigin(), GetPropVector(trigger, "m_Collision.m_vecMins"), GetPropVector(trigger, "m_Collision.m_vecMaxs"), color.x, color.y, color.z, alpha, duration)
@@ -3311,14 +3275,19 @@ function ROOT::EnableStringPurge(entity)
 function ROOT::CreateByClassname(classname)
 	return EnableStringPurge(Entities.CreateByClassname(classname))
 
+/// DISPATCH SPAWN NOT NEEDED
+
 function ROOT::FindByClassname(previous, classname)
 	return EnableStringPurge(Entities.FindByClassname(previous, classname))
 
-function ROOT::FindByClassnameWithin(previous, classname, center, radius)
-	return EnableStringPurge(Entities.FindByClassnameWithin(previous, classname, center, radius))
-
 function ROOT::FindByClassnameNearest(classname, center,radius)
 	return EnableStringPurge(Entities.FindByClassnameNearest(classname, center, radius))
+
+function ROOT::FindByClassnameWithin(previous, classname, center, radius)
+	return EnableStringPurge(Entities.FindByClassnameWithin(previous, classname, center, radius))
+// TODO: Add to Snippets
+function ROOT::FindByModel(previous, modelname)
+	return EnableStringPurge(Entities.FindByModel(previous, modelname))
 
 function ROOT::FindByName(previous, name)
 	return EnableStringPurge(Entities.FindByName(previous, name))
@@ -3328,6 +3297,20 @@ function ROOT::FindByNameNearest(targetname, center, radius)
 
 function ROOT::FindByNameWithin(previous, targetname, center, radius)
 	return EnableStringPurge(Entities.FindByNameWithin(previous, targetname, center, radius))
+// TODO: Add to Snippets
+function ROOT::FindByTarget(previous, target)
+	return EnableStringPurge(Entities.FindByTarget(previous, target))
+// TODO: Add to Snippets
+function ROOT::FindInSphere(previous, center, radius)
+	return EnableStringPurge(Entities.FindInSphere(previous, center, radius))
+// TODO: Add to Snippets
+function ROOT::First()
+	return EnableStringPurge(Entities.First())
+// TODO: Add to Snippets
+function ROOT::Next(previous)
+	return EnableStringPurge(Entities.Next(previous))
+
+
 
 if (!("SpawnEntityFromTableOriginal" in ROOT))
    ::SpawnEntityFromTableOriginal <- ::SpawnEntityFromTable
@@ -4546,6 +4529,7 @@ function ROOT::RemoveDamageCallback(entity_name, callback_name)
 
 		if(RegisteredDmgCallbacks[entity_name].len() == 0)
 			delete RegisteredDmgCallbacks[entity_name]
+		return
 	}
 
 	if(typeof entity_name != "array")
@@ -4553,6 +4537,8 @@ function ROOT::RemoveDamageCallback(entity_name, callback_name)
 
 	foreach (entity in entity_name)
 	{
+		if(typeof entity != "string")
+			continue
 		if(IsNotInTable(entity, RegisteredDmgCallbacks))
 			continue
 
@@ -4606,7 +4592,6 @@ if(!("m_aHumans" in ROOT))
 
 if(!("m_aRobots" in ROOT))
 	::m_aRobots <- []
-
 
 if(!("PlayerArray" in ROOT))
 	::PlayerArray <- []
@@ -4757,9 +4742,7 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		eventdata.weaponIDX <- params.weapon_def_index
 		eventdata.inflictor <- EntIndexToHScript(params.inflictor_entindex)
 		if(attacker && attacker.IsPlayer() && attacker.HasWeapon(eventdata.weaponIDX))
-		{
 			eventdata.weapon <- attacker.GetWeapon(eventdata.weaponIDX)
-		}
 		else eventdata.weapon <- null
 
 		if(eventdata.rocket_jump != 0) 	eventdata.rocket_jump <- true
@@ -4801,6 +4784,11 @@ CreateThinker("OnEntityPostSpawn" , function() {
 	}
 	function OnScriptHook_OnTakeDamage(params)
 	{
+		if(params.damage_custom & TF_DMG_CUSTOM_IGNORE_EVENTS)
+		{
+			params.early_out = true
+			return
+		}
 		local eventdata = clone params
 
 		local victim = params.const_entity
@@ -4852,7 +4840,7 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		delete eventdata.damaged_other_players
 
 
-		if(victim.GetClassname() in RegisteredDmgCallbacks)
+		if(victim.GetClassname() in RegisteredDmgCallbacks && !(params.damage_custom & TF_DMG_CUSTOM_NO_CALLBACKS))
 		{
 			foreach (callback_name, callback in RegisteredDmgCallbacks[victim.GetClassname()])
 			{
@@ -4950,12 +4938,10 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		if(!eventdata.player.IsBot())
 		{
 			eventdata.player.SetUpThinkTable()
-			if("PreservedThinks" in GetScope(eventdata.player))
+			if("PreservedThinks" in GetScope(eventdata.player) && GetScope(eventdata.player).PreservedThinks.len() != 0)
 			{
 				foreach (name, data in GetScope(eventdata.player).PreservedThinks)
-				{
 					eventdata.player.AddPreservedThink(data.delay, data.func, data.offset, name)
-				}
 			}
 		}
 		// overridden
@@ -5168,8 +5154,7 @@ CreateThinker("OnEntityPostSpawn" , function() {
 
 		if ( player in HumanArray )
 			delete HumanArray[ player ]
-
-		// this is normally not needed, but certain missions (red ridge) will kick bots instead of moving them to spectator
+			
 		if ( player in BotArray )
 			delete BotArray[ player ]
 
@@ -5226,7 +5211,6 @@ CreateThinker("OnEntityPostSpawn" , function() {
 
 		ValidatePlayers()
 	}
-
 
 	function OnGameEvent_mvm_wave_failed(_)
 	function OnGameEvent_mvm_wave_complete(_)
@@ -5474,7 +5458,7 @@ seterrorhandler(function(e)
 			continue
 		STACK.append(format("%s line [%d]\n", s.src, s.line))
 	}
-	local Chat = @(m) (printl(m))
+	local Chat = @(m) ("PrintToConsoleAll" in ROOT ? PrintToConsoleAll(m) : ClientPrint(null, HUD_PRINTCONSOLE, m))
 	if(!("ConsoleErrors" in FatCatLibSettings) || !("PublicErrors" in FatCatLibSettings))
 		SetLibrarySettings({}) // Init settings to default
 	
@@ -5483,7 +5467,7 @@ seterrorhandler(function(e)
 
 	if(public == true)
 	{
-		PrintToChatAll(format("\x07FF0000A VSCRIPT ERROR HAS OCCURRED [%s].", e)+" Please report to @The Fatcat in #bug-reports" + " with a screenshot")
+		PrintToChatAll("\x07FF0000A VSCRIPT ERROR HAS OCCURRED ["+e+"]. Please report to @The Fatcat in #bug-reports with a screenshot")
 
 		foreach (stackinfo in STACK)
 		{
@@ -5523,4 +5507,4 @@ seterrorhandler(function(e)
 
 	return
 })
-printl("Included Library Successfully")
+PrintToConsoleAll("Included Library Successfully")
