@@ -170,10 +170,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.16.1", 0))
+if (!SetLibraryVersion("1.16.2", 0))
 	return
 
-SetLibraryTimeStamp("4-1-2026_23:59 -uwu")
+SetLibraryTimeStamp("4-6-2026_19:41")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
