@@ -355,7 +355,8 @@ function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 	case TF_DMG_CUSTOM_SPELL_MIRV:
 	case TF_DMG_CUSTOM_SPELL_METEOR:
 	case TF_DMG_CUSTOM_SPELL_BLASTJUMP: 
-		victim.AddCondEx(TF_COND_MARKEDFORDEATH, 10, attacker)
+		if(victim.IsPlayer())
+			victim.AddCondEx(TF_COND_MARKEDFORDEATH, 10, attacker)
 	break;
 	}
 }
