@@ -5184,9 +5184,12 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		eventdata.player <- GetPlayerFromUserID(params.userid)
 		Assert(eventdata.player && eventdata.player.IsPlayer(), "player_team Received a NULL/Non player")
 
-		eventdata.player.SetTrackedDamage( ) // reset to 0
-		eventdata.player.SetTrackedTankDamage( ) // reset to 0
-		eventdata.player.SetTrackedHealing( ) // reset to 0
+		if(IsMannVsMachineMode())
+		{
+			eventdata.player.SetTrackedDamage( ) 	// reset to 0
+			eventdata.player.SetTrackedTankDamage( ) 	// reset to 0
+			eventdata.player.SetTrackedHealing( ) 		// reset to 0
+		}
 		eventdata.username <- eventdata.name
 
 		// overridden
