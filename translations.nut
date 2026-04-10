@@ -7,7 +7,7 @@ IncludeScript("fatcat_library")
 ::IH_error_color <- "\x07D43F3F"
 
 if("SetScriptVersion" in getroottable())
-	SetScriptVersion("Translations", "1.2.3")
+	SetScriptVersion("Translations", "1.2.4")
 
 ::TRANSLATION_TABLE <- {
 	english = {
@@ -32,10 +32,10 @@ if("SetScriptVersion" in getroottable())
 		VITALRESURGENCE 		= "VITAL RESURGENCE"
 		VEHICULARMANNSLAUGHTER 	= "VEHICULAR MANNSLAUGHTER"
 		TEST 					= "Test Ability"
-		NO_MONEY				= "You can't afford this! (Cost: $%s, you have: $%s)"
+		NO_MONEY				= "You can't afford this! (Cost: $%s, you have: $%s)" // Dont Translate this, my own project
 		REPROG_BOT_STRONG		= TF_TEAM_COLOR_REPROG_B+"%s\x01 is too resistant and cannot be reprogrammed."
 		REPROG_BOT_NOT_SUIT		= TF_TEAM_COLOR_REPROG_B+"%s\x01 is not suitable for combat and cannot be reprogrammed."
-		REPROG_BOT_LEAVE		= TF_TEAM_COLOR_SPEC+"%s has left your team."
+		REPROG_BOT_LEAVE		= TF_TEAM_COLOR_SPEC+"%s died."
 		REPROG_BOT_MESSAGE 		= TF_TEAM_COLOR_RED+"%s\x01 has reprogrammed "+TF_TEAM_COLOR_REPROG_B+"%s\x01!"
 		//---------------------------------------------------------
 		SCATTERGUN_NAME 		= "SCATTERGUN"
@@ -146,13 +146,13 @@ if("SetScriptVersion" in getroottable())
 		SHOTGUN_SOLD_DESC 		= " Very fast fire rate and crits while rocket jumping." 
 		//
 		SHOTGUN_NAME 			= "SHOTGUN" 
-		SHOTGUN_DESC 			= " Standard option for reliable damage. Deals crits while rocket jumping. Increased damage vs burning enemies and to your Sentry's target." 
+		SHOTGUN_DESC 			= " Standard option for reliable damage." 
 		//
 		BUFFBANNER_NAME 		= "BUFF BANNER" 
 		BUFFBANNER_DESC 		= " Unlimited range and significantly increased duration." 
 		//
 		GUNBOATS_NAME 			= "GUNBOATS" 
-		GUNBOATS_DESC 			= " Enables bunnyhopping by holding 'jump' key. Gain significant increase to step height. Grants immunity to fall damage." 
+		GUNBOATS_DESC 			= " Enables bunnyhopping by holding 'jump' key. Grants immunity to fall damage." 
 		//
 		BATTALIONS_NAME 		= "BATTALION'S BACKUP" 
 		BATTALIONS_DESC 		= " Unlimited range and significantly increased duration." 
@@ -223,7 +223,7 @@ if("SetScriptVersion" in getroottable())
 		SHOTGUN_PYRO_DESC 		= " Guaranteed crits against burning enemies." 
 		//
 		FLAREGUN_NAME 			= "FLARE GUN" 
-		FLAREGUN_DESC 			= " Fires a hitscan attack that penetrates enemies. Damage exponentially increases with each penetrated enemy along the path." 
+		FLAREGUN_DESC 			= " Fires a hitscan attack that penetrates enemies. Damage exponentially increases with each penetrated enemy along the path. Also has a chance to stun enemies on hit." 
 		//
 		DETONATOR_NAME 			= "DETONATOR" 
 		DETONATOR_DESC 			= " Flare has infinite explosion radius and will hit anything within line of sight. Forces all spy bots to uncloak and undisguise. Also great choice for mobility." 
@@ -232,7 +232,7 @@ if("SetScriptVersion" in getroottable())
 		MANMELTER_DESC 			= " Rapid-fire flares specialized to automatically seek out enemies. Unlimited ammo and no reload. Alt-Fire: Launch a burst of flares at once." 
 		//
 		SCORCHSHOT_NAME 		= "SCORCH SHOT" 
-		SCORCHSHOT_DESC 		= " On hit: Deal large damage, extinguish the enemy and inflict a strong push force. Your target MUST be on fire, or this attack will do nothing. Alt-Fire: Use slow seeker flare." 
+		SCORCHSHOT_DESC 		= " On hit: Deal large damage, extinguish the enemy and inflict knockback. Your target MUST be on fire, or this attack will do nothing. Alt-Fire: Use slow seeker flare." 
 		//
 		THERMALTHRUSTER_NAME 	= "THERMAL THRUSTER" 
 		THERMALTHRUSTER_DESC 	= " Reduced fuel consumption with no launch delay. Able to redeploy in-air and deal massive stomp damage. Gain a brief critboost on kill." 
@@ -262,7 +262,7 @@ if("SetScriptVersion" in getroottable())
 		POSTALPUMMELER_DESC 	= " On hit: Inflict Confusion, causing enemies to walk backward along the bomb path for a short time. Hold Alt-Fire when attacking to teleport back to spawn."
 		//
 		MAUL_NAME 				= "MAUL"
-		MAUL_DESC 				= " Launch enemies into the air with reduced gravity."
+		MAUL_DESC 				= " On hit: Launch enemies into the air with reduced gravity."
 		//
 		THIRDDEGREE_NAME 		= "THIRD DEGREE"
 		THIRDDEGREE_DESC 		= " Become nearly immune to fire damage while equipped, and gain and additional heavy resistance to all ranged attacks while active."
@@ -395,7 +395,7 @@ if("SetScriptVersion" in getroottable())
 		BREADBITE_DESC 			= " Critical hits infect your victim with Corrosion, a permanent debuff that deals damage based on max health and causes the victim to explode into a small corrosive cloud on death, spreading the effect to other enemies."
 		//
 		WARRIRORSSPIRIT_NAME 	= "WARRIOR'S SPIRIT"
-		WARRIRORSSPIRIT_DESC 	= " Left-click to launch high into the air. Land on enemies to deal massive stomp damage. Launch velocity temporarily increased on kill. Removes all primary and secondary ammo."
+		WARRIRORSSPIRIT_DESC 	= " Left-click to leap high into the air. Land on enemies to deal massive stomp damage. Removes all primary and secondary ammo."
 		//
 		FISTSOFSTEEL_NAME 		= "FISTS OF STEEL"
 		FISTSOFSTEEL_DESC 		= " Become a giant Heavy gauntlet with 250,000 health. You are immune to push forces and can deal heavy damage. Removes all primary and secondary ammo. You can only heal from lunchbox items."
@@ -453,7 +453,7 @@ if("SetScriptVersion" in getroottable())
 		SYRINGEGUN_DESC			= " Gain 0.5% Ubercharge per hit."
 		//
 		BLUTSAUGER_NAME			= "BLUTSAUGER"
-		BLUTSAUGER_DESC			= " Requires and consumes 100% Ubercharge to reprogram a robot into an ally, causing them to fight alongside you for a short time."
+		BLUTSAUGER_DESC			= " Requires and consumes 100% Ubercharge to reprogram a robot to join your team temporarily before self-destructing. Alt-Fire: Manually terminate the reprogramming of all affected bots."
 		//
 		CRUSADERSCROSSBOW_NAME	= "CRUSADER'S CROSSBOW"
 		CRUSADERSCROSSBOW_DESC	= " Gain 0.25% Ubercharge per hit, inflict bleed and gain another 0.5% Ubercharge per tick of bleed damage."
@@ -559,7 +559,7 @@ if("SetScriptVersion" in getroottable())
 		AMBASSADOR_DESC 		= " Deal massive headshot damage. Damage is doubled if you are not disguised."
 		//
 		LETRANGER_NAME 			= "L'ETRANGER"
-		LETRANGER_DESC 			= " Able to execute any non-giant in a single shot. Zero damage to Giants or Tanks however. Alt-Fire: Launch a grappling hook."
+		LETRANGER_DESC 			= " Able to execute any non-giant in a single shot. Zero damage to Giants or Tanks however."
 		//
 		ENFORCER_NAME 			= "ENFORCER"
 		ENFORCER_DESC 			= " Ignores damage resistances and stores a crit for every backstab or building destroyed with a Sapper."
