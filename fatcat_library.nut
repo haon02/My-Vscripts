@@ -172,7 +172,7 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.0", 0))
+if (!SetLibraryVersion("1.17.0", 1))
 	return
 
 SetLibraryTimeStamp("4-10-2026_01:04")
