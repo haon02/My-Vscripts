@@ -5193,6 +5193,10 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		if(!("m_iHealing" in GetScope(PlayerManager)))
 			GetScope(PlayerManager).m_iHealing <- array(MAX_CLIENTS+1, 0)
 
+		if(!("BetterStatTracking" in FatCatLibSettings))
+			SetLibrarySettings()
+
+
 		if(FatCatLibSettings["BetterStatTracking"] == true)
 		{
 			ventdata.player.SetTrackedDamage( ) 		// reset to 0

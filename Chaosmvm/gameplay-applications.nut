@@ -234,6 +234,9 @@ function GameplayThink()
 	{
 		GetScope(Human).LastVel <- Human.GetAbsVelocity()
 
+		if(!("BetterStatTracking" in FatCatLibSettings))
+			SetLibrarySettings()
+
 		if(FatCatLibSettings["BetterStatTracking"] == true)
 		{
 			SetPropIntArray(PlayerManager, "m_iDamage", GetScope(PlayerManager).m_iDamage[Human.entindex()], Human.entindex())
