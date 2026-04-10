@@ -173,7 +173,7 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.0", 1))
+if (!SetLibraryVersion("1.17.0", 3))
 	return
 
 SetLibraryTimeStamp("4-10-2026_01:04")
@@ -5200,7 +5200,7 @@ CreateThinker("OnEntityPostSpawn" , function() {
 
 		if(FatCatLibSettings["BetterStatTracking"] == true)
 		{
-			ventdata.player.SetTrackedDamage( ) 		// reset to 0
+			eventdata.player.SetTrackedDamage( ) 		// reset to 0
 			eventdata.player.SetTrackedTankDamage( ) 	// reset to 0
 			eventdata.player.SetTrackedHealing( ) 		// reset to 0
 		}

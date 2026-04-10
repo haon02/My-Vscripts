@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.2.1")
+SetScriptVersion("GameplayApplications", "4.2.2")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -188,7 +188,7 @@ ClearSpawnCallbacks()
 
 RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entity) {
 	local owner = entity.GetOwner()
-	if(!owner || owner.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
+	if(!owner || !owner.IsPlayer() || owner.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
 		return
 	SetDestroyCallback(entity, function() {
 		// owner.PrintToChat("Your Rocket: i dies now but did i deal damage to anything??? "+("DidDamage" in GetScope(self) && DidDamage.tostring()))
