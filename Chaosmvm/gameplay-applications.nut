@@ -55,7 +55,7 @@ local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", T
 	sound = "mvm/mvm_tele_activate.wav"		// Sound to play when Reprogramming a bot
 	sound_radius = 120000 					// how far the sound can be heard, 120000 == sound level 110
 	refund = 100.0							// % of uber to restore on invalid target
-	duration = 45.0							// Time to explode bot after death
+	duration = 60.0							// Time to explode bot after death
 }
 ::EBSettings <- {
 	base_range = 250
@@ -454,7 +454,7 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 		}
 		TranslateToChatAll("REPROG_BOT_MESSAGE", attacker.GetUserName(), victim.GetUserName())
 
-		EntFireNew(victim, "$BotCommand", "switch_action Mobber -duration 45")
+		EntFireNew(victim, "$BotCommand", "switch_action Mobber -duration "+BlutsaugerSettings.duration)
 
 		RunWithDelay(@() victim.UndoReprogram(), BlutsaugerSettings.duration)
 
