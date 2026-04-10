@@ -188,7 +188,7 @@ ClearSpawnCallbacks()
 
 RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entity) {
 	local owner = entity.GetOwner()
-	if(owner.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
+	if(!owner || owner.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
 		return
 	SetDestroyCallback(entity, function() {
 		// owner.PrintToChat("Your Rocket: i dies now but did i deal damage to anything??? "+("DidDamage" in GetScope(self) && DidDamage.tostring()))
