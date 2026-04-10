@@ -4825,8 +4825,8 @@ if(!("m_iDamage" in GetScope(PlayerManager)))
 if(!("m_iDamageBoss" in GetScope(PlayerManager)))
 	GetScope(PlayerManager).m_iDamageBoss <- array(MAX_CLIENTS+1, 0)
 
-if(!("m_iTotalScore" in GetScope(PlayerManager)))
-	GetScope(PlayerManager).m_iTotalScore <- array(MAX_CLIENTS+1, 0)
+// if(!("m_iTotalScore" in GetScope(PlayerManager)))
+	// GetScope(PlayerManager).m_iTotalScore <- array(MAX_CLIENTS+1, 0)
 
 if(!("m_iHealing" in GetScope(PlayerManager)))
 	GetScope(PlayerManager).m_iHealing <- array(MAX_CLIENTS+1, 0)
@@ -5184,12 +5184,16 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		eventdata.player <- GetPlayerFromUserID(params.userid)
 		Assert(eventdata.player && eventdata.player.IsPlayer(), "player_team Received a NULL/Non player")
 
-		if(IsMannVsMachineMode())
-		{
-			eventdata.player.SetTrackedDamage( ) 	// reset to 0
-			eventdata.player.SetTrackedTankDamage( ) 	// reset to 0
-			eventdata.player.SetTrackedHealing( ) 		// reset to 0
-		}
+		if(!("m_iDamage" in GetScope(PlayerManager)))
+			GetScope(PlayerManager).m_iDamage <- array(MAX_CLIENTS+1, 0)
+		if(!("m_iDamageBoss" in GetScope(PlayerManager)))
+			GetScope(PlayerManager).m_iDamageBoss <- array(MAX_CLIENTS+1, 0)
+		if(!("m_iHealing" in GetScope(PlayerManager)))
+			GetScope(PlayerManager).m_iHealing <- array(MAX_CLIENTS+1, 0)
+
+		eventdata.player.SetTrackedDamage( ) 	// reset to 0
+		eventdata.player.SetTrackedTankDamage( ) 	// reset to 0
+		eventdata.player.SetTrackedHealing( ) 		// reset to 0
 		eventdata.username <- eventdata.name
 
 		// overridden
