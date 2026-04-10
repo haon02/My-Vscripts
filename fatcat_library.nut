@@ -136,6 +136,7 @@ function ROOT::ReloadLibrary()
 		ToggleForceFlag(false)
 }
 
+
 function ROOT::SetLibrarySettings(settings_table = {})
 {
 	if(!("FatCatLibSettings" in ROOT))
@@ -5690,6 +5691,20 @@ AddChatTrigger("noclip", function(player, ...) {
 	else 
 		player.SetMoveType(MOVETYPE_NOCLIP, MOVECOLLIDE_DEFAULT)
 }, "IsAdmin")
+
+AddChatTrigger("disable_errors", function(player, ...) {
+	SetLibrarySettings({
+		"ConsoleErrors" : true
+		"PublicErrors" : false
+	})
+}, "IsAdmin", "IsEventJudge")
+
+AddChatTrigger("enable_errors", function(player, ...) {
+	SetLibrarySettings({
+		"ConsoleErrors" : false
+		"PublicErrors" : true
+	})
+}, "IsAdmin", "IsEventJudge")
 
 /* AddChatTrigger(["lib_reload", "reload_library"], function(player, ...) {
 	ReloadLibrary()
