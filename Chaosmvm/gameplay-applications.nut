@@ -234,9 +234,13 @@ function GameplayThink()
 	{
 		GetScope(Human).LastVel <- Human.GetAbsVelocity()
 
-		SetPropIntArray(PlayerManager, "m_iDamage", GetScope(PlayerManager).m_iDamage[Human.entindex()], Human.entindex())
-		SetPropIntArray(PlayerManager, "m_iDamageBoss", GetScope(PlayerManager).m_iDamageBoss[Human.entindex()], Human.entindex())
-		SetPropIntArray(PlayerManager, "m_iHealing", GetScope(PlayerManager).m_iHealing[Human.entindex()], Human.entindex())
+		if(FatCatLibSettings["BetterStatTracking"] == true)
+		{
+			SetPropIntArray(PlayerManager, "m_iDamage", GetScope(PlayerManager).m_iDamage[Human.entindex()], Human.entindex())
+			SetPropIntArray(PlayerManager, "m_iDamageBoss", GetScope(PlayerManager).m_iDamageBoss[Human.entindex()], Human.entindex())
+			SetPropIntArray(PlayerManager, "m_iHealing", GetScope(PlayerManager).m_iHealing[Human.entindex()], Human.entindex())
+		}
+
 		// 
 		Human.SetGravity(DEFAULT_GRAVITY)
 		Human.RemoveCondEx(TF_COND_SWIMMING_NO_EFFECTS, true)

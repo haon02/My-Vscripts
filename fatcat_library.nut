@@ -118,6 +118,8 @@ function SetLibraryTimeStamp(timestamp)
 	"ConsoleErrors" : false
 	// Print a different Error Message to All Clients
 	"PublicErrors" : true
+	// Tracks Better Statistics
+	"BetterStatTracking" : true
 }
 
 function IsValidSetting(setting)
@@ -5191,9 +5193,12 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		if(!("m_iHealing" in GetScope(PlayerManager)))
 			GetScope(PlayerManager).m_iHealing <- array(MAX_CLIENTS+1, 0)
 
-		eventdata.player.SetTrackedDamage( ) 	// reset to 0
-		eventdata.player.SetTrackedTankDamage( ) 	// reset to 0
-		eventdata.player.SetTrackedHealing( ) 		// reset to 0
+		if(FatCatLibSettings["BetterStatTracking"] == true)
+		{
+			ventdata.player.SetTrackedDamage( ) 		// reset to 0
+			eventdata.player.SetTrackedTankDamage( ) 	// reset to 0
+			eventdata.player.SetTrackedHealing( ) 		// reset to 0
+		}
 		eventdata.username <- eventdata.name
 
 		// overridden
