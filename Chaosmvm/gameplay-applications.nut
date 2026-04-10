@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.2.0")
+SetScriptVersion("GameplayApplications", "4.2.1")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
