@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.2.2")
+SetScriptVersion("GameplayApplications", "4.2.3")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -532,7 +532,7 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params) {
 			{
 				if(wep.GetAttribute("provide on active", 0) && attacker.GetActiveWeapon() != wep)
 					continue
-				if(wep.GetAttribute("boots falling stomp", 0))
+				if(wep.GetAttribute("boots falling stomp", 0) || wep.GetAttribute("thermal_thruster", 0))
 				{
 					params.weapon = wep
 					break;
