@@ -5665,13 +5665,15 @@ AddChatTrigger(["lib_version", "lib_versions"], function(player, ...) {
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
 
 	foreach (item, value in FatCatLibScriptsVersion)
-	{
 		PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value)
-	}
 }, "IsAdmin", "IsEventJudge")
 AddChatTrigger("lib_info", function(player, ...) {
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp)
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
+})
+AddChatTrigger("lib_addons", function(player, ...) {
+	foreach (item, value in FatCatLibScriptsVersion)
+		PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value)
 })
 AddChatTrigger("lib_force", function(player, ...) {
 	if("FatCatLibForce" in ROOT)
