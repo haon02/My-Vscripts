@@ -5671,9 +5671,37 @@ AddChatTrigger("lib_info", function(player, ...) {
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp)
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
 })
-AddChatTrigger("lib_addons", function(player, ...) {
-	foreach (item, value in FatCatLibScriptsVersion)
-		PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value)
+AddChatTrigger("lib_addonver", function(player, ...) {
+	if(vargv.len() == 0)
+	{
+		player.PrintToChat("Missing argument. . .")
+		return
+	}
+	local addon = -1
+	try {
+		addon = vargv[0].tointeger()
+	}
+	catch(e) {}
+
+	if(addon < 0)
+	{
+		player.PrintToChat("Incorrect argument expected!")
+		return
+	}
+
+	local Keys = FatCatLibScriptsVersion.keys()
+	local Values = FatCatLibScriptsVersion.values()
+
+	if(addon > Keys.len())
+	{
+		player.PrintToChat("Incorrect argument expected!")
+		return
+	}
+
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", Keys[addon], Values[addon])
+
+	// foreach (item, value in FatCatLibScriptsVersion)
+		// PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value)
 })
 AddChatTrigger("lib_force", function(player, ...) {
 	if("FatCatLibForce" in ROOT)
