@@ -662,6 +662,8 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 		{
 			if(!attacker.IsReprogrammed() || !MATH.OneInChance(10))
 				return
+			if(attacker.HasBotTag("NoChatter"))
+				return
 			attacker.SayChatterMessage(victim)
 			return
 		}
