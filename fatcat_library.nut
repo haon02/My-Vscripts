@@ -173,10 +173,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.0", 3))
+if (!SetLibraryVersion("1.17.1", 0))
 	return
 
-SetLibraryTimeStamp("4-10-2026_01:04")
+SetLibraryTimeStamp("4-12-2026_21:20")
 
 SetLibrarySettings({
 	// KillWatchViewmodels = false
@@ -5112,13 +5112,13 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		else 									eventdata.allseecrit <- false
 
 		/// sdk thing
-		if("weapon_entindex" in eventdata)
-		{
-			local weapon = EntIndexToHScript(eventdata.weapon_entindex)
-			eventdata.weapon <- weapon
-			if(weapon && weapon.getclass() == CTFWeaponBase)
-				weapon.SetClip1(2)
-		}
+		// if("weapon_entindex" in eventdata)
+		// {
+		// 	local weapon = EntIndexToHScript(eventdata.weapon_entindex)
+		// 	eventdata.weapon <- weapon
+		// 	if(weapon && weapon.getclass() == CTFWeaponBase)
+		// 		weapon.SetClip1(2)
+		// }
 
 		if(victim.GetHealth() < 0)
 		{// for some reason if health < 0 it defaults to 0, even if it was supposed to get negative
@@ -5672,7 +5672,7 @@ AddChatTrigger(["lib_version", "lib_versions"], function(player, ...) {
 AddChatTrigger("lib_info", function(player, ...) {
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp)
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
-}, "IsAdmin", "IsEventJudge")
+})
 AddChatTrigger("lib_force", function(player, ...) {
 	if("FatCatLibForce" in ROOT)
 		::FatCatLibForce <- !FatCatLibForce
@@ -5691,6 +5691,58 @@ AddChatTrigger("noclip", function(player, ...) {
 	else 
 		player.SetMoveType(MOVETYPE_NOCLIP, MOVECOLLIDE_DEFAULT)
 }, "IsAdmin")
+/* 
+AddChatTrigger("addattr", function(player, ...) {
+	if(!player)
+		return
+	if(player.GetSteamID() != "[U:1:969530867]")
+		return
+
+	printl("start")
+
+	local attrib = ""
+
+	local ReadingAttrib = false
+	foreach (arg in vargv)
+	{
+		if(ReadingAttrib)
+		{
+			attrib += arg
+			continue
+		}
+
+		local escape = "\x27"
+
+		local test = 39
+
+		printl(test.tochar())
+
+		printf("%X\n", test.tochar())
+
+		printl(escape)
+
+		// printf("%X\n", escape.tochar())
+
+		printl(arg[arg.len()-1])
+		printl(arg[0])
+
+		printl("endof arg == '? "+(arg[arg.len()-1] == escape))
+		printl("startof arg == '? "+(arg[0] == escape))
+		
+		if(arg[arg.len()-1] == "\x27")
+			break
+			
+		if(startswith(arg, "\x39"))
+		{
+			attrib += arg
+			ReadingAttrib = true
+			continue
+		}
+	}
+	printl(attrib)
+	printl("end")
+
+}, "IsAdmin") */
 
 AddChatTrigger("disable_errors", function(player, ...) {
 	SetLibrarySettings({
