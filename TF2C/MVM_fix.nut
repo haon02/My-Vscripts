@@ -121,20 +121,6 @@ if(!("FatCatLibVersion" in getroottable()))
 	}
 }
 
-function CTFBot::GetActiveHealers()
-	{
-		local healers = []
-		foreach (player in GetAllEntitiesByClassname("player"))
-		{
-			if(player.GetTeam() != TF_TEAM_PVE_INVADERS || player.GetPlayerClass() != TF_CLASS_MEDIC)
-				continue
-			if(player.GetHealTarget() == null || player.GetHealTarget() != this)
-				continue
-			healers.append(player)
-		}
-		return healers
-	}
-
 ::Currencys <- []
 function CollectNewDroppedCurrency()
 {
@@ -189,7 +175,7 @@ if(!Thinker) Thinker = SpawnEntityFromTable("info_target", { targetname = "Think
 AddThinkToEnt(Thinker, "MVMThink")
 
 function MVMThink() {
-	if(GetListenServerHost())
+	/* if(GetListenServerHost())
 	{
 		local R_Acquired = GetPropInt(MvMStats, "m_runningTotalWaveStats.nCreditsAcquired")
 		local R_Dropped = GetPropInt(MvMStats, "m_runningTotalWaveStats.nCreditsDropped")
@@ -209,7 +195,7 @@ function MVMThink() {
 		message += "Current: ( "+C_Acquired+" / " +(C_Dropped+C_Acquired)+" ) (+"+C_Bonus+")\n"
 		if("Host" in ROOT)
 			Host.PrintToHud(message)
-	}
+	} */
 
 
 	for (local player = FindByClassname(null, "player"); player; player = FindByClassname(player, "player"))
@@ -227,6 +213,9 @@ function MVMThink() {
 
 		player.RemoveCondEx(TF_COND_INVULNERABLE, true)
 		player.RemoveCondEx(TF_COND_INVULNERABLE_HIDE_UNLESS_DAMAGED, true)
+
+		SetPropInt(player, "m_Shared.m_iSpawnRoomTouchCount", 0)
+		SetPropBool(player, "m_Shared.m_bInUpgradeZone", false)
 	}
 	return -1
 }
@@ -258,7 +247,7 @@ function MVMThink() {
 			foreach (healer in healers)
 			{
 				local weapon = GetPropEntityArray(healer, "m_hMyWeapons", 1)
-				if(!NetProps.HasProp(weapon, "m_bChargeRelease"))
+				if(!HasProp(weapon, "m_bChargeRelease"))
 					continue
 				// if(weapon.GetAttribute("medigun charge is crit boost", 0) != 0)
 					// continue
@@ -313,9 +302,9 @@ function MVMThink() {
 	}
 
 
-	function OnGameEvent_mvm_tank_destroyed_by_players(params)
-	{
-		RunWithDelay( @() CollectNewDroppedCurrency(), 0.015)
-	}
+	// function OnGameEvent_mvm_tank_destroyed_by_players(params)
+	// {
+	// 	RunWithDelay( @() CollectNewDroppedCurrency(), 0.015)
+	// }
 }
 __CollectGameEventCallbacks(Events)
