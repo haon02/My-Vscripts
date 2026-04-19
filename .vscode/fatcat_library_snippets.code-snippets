@@ -1349,6 +1349,11 @@
 		"body": "AddChatTrigger(${1:trigger}, ${2:callback}, ${3:...})",
 		"description": "Adds a ChatTrigger that is triggered when someone says (! or /)[trigger]"
 	},
+	"RemoveChatTrigger": {
+		"prefix": "RemoveChatTrigger",
+		"body": "RemoveChatTrigger(${1:string})",
+		"description": "Removes a chat trigger"
+	},
 	"RegisterAdminTrigger":{
 		"prefix": "RegisterAdminTrigger",
 		"body": "RegisterAdminTrigger(${1:trigger}, ${2:callback})",
@@ -1602,14 +1607,15 @@
 	},
 	"IsStringATrigger": {
 		"prefix": "IsStringATrigger",
-		"body": "IsStringATrigger(${1:string}, ${1:triggers = [\"/\", \"!\"]})",
+		"body": "IsStringATrigger(${1:string}, ${2:triggers = [\"/\", \"!\"]})",
 		"description": "Returns if this string is a chat trigger"
 	},
-	"RemoveChatTrigger": {
-		"prefix": "RemoveChatTrigger",
-		"body": "RemoveChatTrigger(${1:string}, ${1:triggers = [\"/\", \"!\"]})",
+	"RemoveCommandTrigger": {
+		"prefix": "RemoveCommandTrigger",
+		"body": "RemoveCommandTrigger(${1:string}, ${2:triggers = [\"/\", \"!\"]})",
 		"description": "Returns a string with the chat trigger removed"
 	},
+
 
 
 	"SetCvar": {

@@ -3518,7 +3518,7 @@ function ROOT::ArrayToString(array)
 function ROOT::IsStringATrigger(string, triggers = ["/", "!"])
 	return IsInArray(StringToArray(string)[0], triggers)
 
-function ROOT::RemoveChatTrigger(string, triggers = ["/", "!"])
+function ROOT::RemoveCommandTrigger(string, triggers = ["/", "!"])
 {
 	if(!IsStringATrigger(string, triggers))
 		return string
@@ -4560,16 +4560,44 @@ function ROOT::AddChatTrigger(trigger, callback, ...)
 		{
 			if(typeof trig != "string")
 			{
-				errors.append(format("AddChatTrigger:: Item %s : Unknown Type %s when Registering Chat Trigger", trig.tostring(), typeof trig))
+				errors.append(format("AddChatTrigger: Item %s : Unknown Type %s when Registering Chat Trigger", trig.tostring(), typeof trig))
 				continue
 			}
 			ChatTriggers[trig] <- [callback].extend(vargv)
 		}
 	}
-	else throw format("AddChatTrigger:: Unknown Type %s when Registering Chat Trigger", typeof trigger)
+	else throw format("AddChatTrigger: Unknown Type %s when Registering Chat Trigger", typeof trigger)
+	if(errors.len() != 0)
+		PrintArray(errors)
 }
 function ROOT::RegisterAdminTrigger(trigger, callback)
 	AddChatTrigger(trigger, callback, "IsAdmin")
+
+function ROOT::RemoveChatTrigger(triger)
+{
+	local errors = []
+	if(typeof trigger == "string")
+	{
+		if(trigger in ChatTriggers)
+			delete ChatTriggers[trigger]
+	}
+	else if(typeof trigger == "array")
+	{
+		foreach (trig in trigger)
+		{
+			if(typeof trig != "string")
+			{
+				errors.append(format("AddChatTrigger: Item %s : Unknown Type %s when Removing Chat Trigger", trig.tostring(), typeof trig))
+				continue
+			}
+			if(trig in ChatTriggers)
+				delete ChatTriggers[trig]
+		}
+	}
+	else throw format("AddChatTrigger: Unknown Type %s when Removing Chat Trigger", typeof trigger)
+	if(errors.len() != 0)
+		PrintArray(errors)
+}
 
 
 if(!("RegisteredDmgCallbacks" in ROOT))
@@ -5137,7 +5165,8 @@ CreateThinker("OnEntityPostSpawn" , function() {
 
 		if(!IsStringATrigger(text))
 			return
-		local data = split(RemoveChatTrigger(text), " ")
+		local data = split(RemoveCommandTrigger(text), " ")
+
 		if(data.len() == 0)
 			return
 		local trigger = data[0]
