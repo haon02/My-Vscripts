@@ -334,8 +334,7 @@ function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 			damage = (iExplosiveShot * EBSettings.base_damage / 1.25)
 			center = victim.GetOrigin() + Vector(0, 0, 16)
 			ignore = [victim]
-			SoundRadius = (EBSettings.base_range + (iExplosiveShot * EBSettings.additive_range)) * 1
-			use_func_on_ignore = true
+			SoundRadius = (EBSettings.base_range + (iExplosiveShot * EBSettings.additive_range)) * 3
 			func = function(player) {
 				if(!player || !player.IsValid() || !player.IsPlayer())
 					return

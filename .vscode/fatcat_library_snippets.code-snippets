@@ -1,0 +1,2301 @@
+{
+	// Custom Events
+	/* 
+	"description": [
+			"Fired when a bot is hurt (after damage calculation).",
+			"params = {",
+			"\t",
+			"\t",
+			"\t",
+			"}",
+		],
+	*/
+	"evn.OnScriptEvent_HumanResupply": {
+		"prefix": "OnScriptEvent_HumanResupply",
+		"body": "OnScriptEvent_HumanResupply(params)",
+		"description": [
+			"fired when a human resupplys",
+			"params = {",
+			"\tplayer",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanUpgraded": {
+		"prefix": "OnScriptEvent_HumanUpgraded",
+		"body": "OnScriptEvent_HumanUpgraded(params)",
+		"description": [
+			"fired when a human upgrades",
+			"params = {",
+			"\tplayer",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotResupply": {
+		"prefix": "OnScriptEvent_BotResupply",
+		"body": "OnScriptEvent_BotResupply(params)",
+		"description": [
+			"fired when a bot resupplys",
+			"params = {",
+			"\tplayer",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotUpgraded": {
+		"prefix": "OnScriptEvent_BotUpgraded",
+		"body": "OnScriptEvent_BotUpgraded(params)",
+		"description": [
+			"fired when a bot upgrades",
+			"params = {",
+			"\tplayer",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotDeath": {
+		"prefix": "OnScriptEvent_BotDeath",
+		"body": "OnScriptEvent_BotDeath(params)",
+		"description": [
+			"fired when a bot dies",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tassister",
+			"\tweapon",
+			"\tinflictor",
+			"\tlogname",
+			"\tdamagebits",
+			"\tweaponIDX",
+			"\tdeath_flags",
+			"\tcustom",
+			"\tstun_flags",
+			"\trocket_jump",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanDeath": {
+		"prefix": "OnScriptEvent_HumanDeath",
+		"body": "OnScriptEvent_HumanDeath(params)",
+		"description": [
+			"fired when a Human dies",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tassister",
+			"\tweapon",
+			"\tinflictor",
+			"\tlogname",
+			"\tdamagebits",
+			"\tweaponIDX",
+			"\tdeath_flags",
+			"\tcustom",
+			"\tstun_flags",
+			"\trocket_jump",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_PostTakeDamageBot": {
+		"prefix": "OnScriptEvent_PostTakeDamageBot",
+		"body": "OnScriptEvent_PostTakeDamageBot(params)",
+		"description": [
+			"fired when a bot takes damage",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tinflictor",
+			"\tweapon",
+			"\tdamage_position",
+			"\tdamage",
+			"\tbase_damage",
+			"\tdamage_type",
+			"\thit_group",
+			"\tdamage_custom",
+			"\tcrit_type",
+			"\tpenetration_count",
+			"\tothers_damaged",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_PostTakeDamageHuman": {
+		"prefix": "OnScriptEvent_PostTakeDamageHuman",
+		"body": "OnScriptEvent_PostTakeDamageHuman(params)",
+		"description": [
+			"fired when a Human takes damage",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tinflictor",
+			"\tweapon",
+			"\tdamage_position",
+			"\tdamage",
+			"\tbase_damage",
+			"\tdamage_type",
+			"\thit_group",
+			"\tdamage_custom",
+			"\tcrit_type",
+			"\tpenetration_count",
+			"\tothers_damaged",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_PostTakeDamageWorld": {
+		"prefix": "OnScriptEvent_PostTakeDamageWorld",
+		"body": "OnScriptEvent_PostTakeDamageWorld(params)",
+		"description": [
+			"Fired when the world is about to take damage",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tinflictor",
+			"\tweapon",
+			"\tdamage_position",
+			"\tdamage",
+			"\tbase_damage",
+			"\tdamage_type",
+			"\tdamage_custom",
+			"\tcrit_type",
+			"\tpenetration_count",
+			"\tothers_damaged",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_PostTakeDamage": {
+		"prefix": "OnScriptEvent_PostTakeDamage",
+		"body": "OnScriptEvent_PostTakeDamage(params)",
+		"description": [
+			"Fired when any other entity is about to take damage",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tinflictor",
+			"\tweapon",
+			"\tdamage_position",
+			"\tdamage",
+			"\tbase_damage",
+			"\tdamage_type",
+			"\tdamage_custom",
+			"\tcrit_type",
+			"\tpenetration_count",
+			"\tothers_damaged",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_PostBotHurt": {
+		"prefix": "OnScriptEvent_PostBotHurt",
+		"body": "OnScriptEvent_PostBotHurt(params)",
+		"description": [
+			"Fired when a bot is hurt (after damage calculation).",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tdamage_custom",
+			"\tbonuseffect",
+			"\tkilled",
+			"\tshowdisguisedcrit",
+			"\tallseecrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_PostHumanHurt": {
+		"prefix": "OnScriptEvent_PostHumanHurt",
+		"body": "OnScriptEvent_PostHumanHurt(params)",
+		"description": [
+			"Fired when a human is hurt (after damage calculation).",
+			"params = {",
+			"\tvictim",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tdamage_custom",
+			"\tbonuseffect",
+			"\tkilled",
+			"\tshowdisguisedcrit",
+			"\tallseecrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotInitialSpawn": {
+		"prefix": "OnScriptEvent_BotInitialSpawn",
+		"body": "OnScriptEvent_BotInitialSpawn(params)",
+		"description": [
+			"Fired when a bot spawns.",
+			"params = {",
+			"\tplayer",
+			"\tclass",
+			"\tteam",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotSpawn": {
+		"prefix": "OnScriptEvent_BotSpawn",
+		"body": "OnScriptEvent_BotSpawn(params)",
+		"description": [
+			"Fired when a bot spawns.",
+			"params = {",
+			"\tplayer",
+			"\tclass",
+			"\tteam",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanInitialSpawn": {
+		"prefix": "OnScriptEvent_HumanInitialSpawn",
+		"body": "OnScriptEvent_HumanInitialSpawn(params)",
+		"description": [
+			"Fired when a Human spawns.",
+			"params = {",
+			"\tplayer",
+			"\tclass",
+			"\tteam",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanSpawn": {
+		"prefix": "OnScriptEvent_HumanSpawn",
+		"body": "OnScriptEvent_HumanSpawn(params)",
+		"description": [
+			"Fired when a Human spawns.",
+			"params = {",
+			"\tplayer",
+			"\tclass",
+			"\tteam",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotTeam": {
+		"prefix": "OnScriptEvent_BotTeam",
+		"body": "OnScriptEvent_BotTeam(params)",
+		"description": [
+			"Fired when a bot changes team.",
+			"params = {",
+			"\tplayer",
+			"\tteam",
+			"\toldteam",
+			"\tdisconnect",
+			"\tautoteam",
+			"\tsilent",
+			"\tusername",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanTeam": {
+		"prefix": "OnScriptEvent_HumanTeam",
+		"body": "OnScriptEvent_HumanTeam(params)",
+		"description": [
+			"Fired when a Human changes team.",
+			"params = {",
+			"\tplayer",
+			"\tteam",
+			"\toldteam",
+			"\tdisconnect",
+			"\tautoteam",
+			"\tsilent",
+			"\tusername",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotSay": {
+		"prefix": "OnScriptEvent_BotSay",
+		"body": "OnScriptEvent_BotSay(params)",
+		"description": [
+			"Fired when a bot speaks.",
+			"params = {",
+			"\tplayer",
+			"\tmessage",
+			"\tteamonly",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanSay": {
+		"prefix": "OnScriptEvent_HumanSay",
+		"body": "OnScriptEvent_HumanSay(params)",
+		"description": [
+			"Fired when a Human speaks.",
+			"params = {",
+			"\tplayer",
+			"\tmessage",
+			"\tteamonly",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_ConsoleSay": {
+		"prefix": "OnScriptEvent_ConsoleSay",
+		"body": "OnScriptEvent_ConsoleSay(params)",
+		"description": [
+			"Fired when the Console speaks.",
+			"params = {",
+			"\tplayer",
+			"\tmessage",
+			"\tteamonly",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BuildingHurt": {
+		"prefix": "OnScriptEvent_BuildingHurt",
+		"body": "OnScriptEvent_BuildingHurt(params)",
+		"description": [
+			"Fired when a Building is hurt.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_TankHurt": {
+		"prefix": "OnScriptEvent_TankHurt",
+		"body": "OnScriptEvent_TankHurt(params)",
+		"description": [
+			"Fired when a Tank is hurt.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BaseBossHurt": {
+		"prefix": "OnScriptEvent_BaseBossHurt",
+		"body": "OnScriptEvent_BaseBossHurt(params)",
+		"description": [
+			"Fired when a BaseBoss is hurt.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HHHHurt": {
+		"prefix": "OnScriptEvent_BuildingHurt",
+		"body": "OnScriptEvent_BuildingHurt(params)",
+		"description": [
+			"Fired when HHH is hurt.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_MonoculusHurt": {
+		"prefix": "OnScriptEvent_BuildingHurt",
+		"body": "OnScriptEvent_BuildingHurt(params)",
+		"description": [
+			"Fired when Monoculus is hurt.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_MerasmusHurt": {
+		"prefix": "OnScriptEvent_MerasmusHurt",
+		"body": "OnScriptEvent_MerasmusHurt(params)",
+		"description": [
+			"Fired when Merasmus is hurt.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BuildingKilled": {
+		"prefix": "OnScriptEvent_BuildingHurt",
+		"body": "OnScriptEvent_BuildingHurt(params)",
+		"description": [
+			"Fired when a Building is Killed.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_TankKilled": {
+		"prefix": "OnScriptEvent_TankHurt",
+		"body": "OnScriptEvent_TankHurt(params)",
+		"description": [
+			"Fired when a Tank is Killed.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BaseBossKilled": {
+		"prefix": "OnScriptEvent_BaseBossHurt",
+		"body": "OnScriptEvent_BaseBossHurt(params)",
+		"description": [
+			"Fired when a BaseBoss is Killed.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HHHKilled": {
+		"prefix": "OnScriptEvent_BuildingHurt",
+		"body": "OnScriptEvent_BuildingHurt(params)",
+		"description": [
+			"Fired when HHH is Killed.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_MonoculusKilled": {
+		"prefix": "OnScriptEvent_BuildingHurt",
+		"body": "OnScriptEvent_BuildingHurt(params)",
+		"description": [
+			"Fired when Monoculus is Killed.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_MerasmusKilled": {
+		"prefix": "OnScriptEvent_MerasmusHurt",
+		"body": "OnScriptEvent_MerasmusHurt(params)",
+		"description": [
+			"Fired when Merasmus is Killed.",
+			"params = {",
+			"\tobject",
+			"\tattacker",
+			"\tdamage",
+			"\thealth",
+			"\tover_damage",
+			"\tcrit",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_BotHealed": {
+		"prefix": "OnScriptEvent_BotHealed",
+		"body": "OnScriptEvent_BotHealed(params)",
+		"description": [
+			"Fired when a bot is healed.",
+			"params = {",
+			"\tpatient",
+			"\thealer",
+			"\tamount",
+			"}",
+		],
+	},
+	"evn.OnScriptEvent_HumanHealed": {
+		"prefix": "OnScriptEvent_HumanHealed",
+		"body": "OnScriptEvent_HumanHealed(params)",
+		"description": [
+			"Fired when a Human is healed.",
+			"params = {",
+			"\tpatient",
+			"\thealer",
+			"\tamount",
+			"}",
+		],
+	},
+	// player weapon extensions
+	"plr.GetWeaponInSlot": {
+		"prefix": "GetWeaponInSlot",
+		"body": "GetWeaponInSlot(${1:slot})",
+		"description": "Gets a Players Weapon in a slot.\n Slots are numbered 0 - 8 \n [ Use GetWeaponInSlotNew() instead ]"
+	},
+	"plr.GetWeaponInSlotNew": {
+		"prefix": "GetWeaponInSlotNew",
+		"body": "GetWeaponInSlotNew(${1:slot})",
+		"description": "Gets a Players Weapon in a slot.\n Slots are numbered 0 - 8"
+	},
+	"plr.GetWeaponIDXInSlot": {
+		"prefix": "GetWeaponIDXInSlot",
+		"body": "GetWeaponIDXInSlot(${1:slot})",
+		"description": "Gets a Players Weapon Index in a slot.\n Slots are numbered 0 - 8 \n [ Use GetWeaponIDXInSlotNew() instead ]"
+	},
+	"plr.GetWeaponIDXInSlotNew": {
+		"prefix": "GetWeaponIDXInSlotNew",
+		"body": "GetWeaponIDXInSlotNew(${1:slot})",
+		"description": "Gets a Players Weapon Index in a slot.\n Slots are numbered 0 - 8"
+	},
+	"plr.GetActiveWeaponIDX": {
+		"prefix": "GetActiveWeaponIDX",
+		"body": "GetActiveWeaponIDX()",
+		"description": "Gets a Players Active Weapon Index."
+	},
+	"plr.GetAllWeapons": {
+		"prefix": "GetAllWeapons",
+		"body": "GetAllWeapons()",
+		"description": "Gets Every weapon from a player.",
+	},
+	"plr.GetSpellBook": {
+		"prefix": "GetSpellBook",
+		"body": "GetSpellBook()",
+		"description": "Returns a players spell book / or null in not found"
+	},
+	"plr.IsUberDraining": {
+		"prefix": "IsUberDraining",
+		"body": "IsUberDraining()",
+		"description": "Returns if a player's uber is draining"
+	},
+	"plr.GetAbilityWeapon": {
+		"prefix": "GetAbilityWeapon",
+		"body": "GetAbilityWeapon()",
+		"description": "Returns a players Ability weapon / or null if not found"
+	},
+	"plr.GetAbilityWeaponIDX": {
+		"prefix": "GetAbilityWeaponIDX",
+		"body": "GetAbilityWeaponIDX()",
+		"description": "Returns a players Ability weapon Index / or null if not found"
+	},
+	// player Methods
+	"plr.IsAdmin": {
+		"prefix": "IsAdmin",
+		"body": "IsAdmin()",
+		"description": "Returns if a player is and admin"
+	},
+	"plr.InRespawnRoom": {
+		"prefix": "InRespawnRoom",
+		"body": "InRespawnRoom()",
+		"description": "Returns if a player is in a respawn room"
+	},
+	"plr.InAnyRespawnRoom": {
+		"prefix": "InAnyRespawnRoom",
+		"body": "InAnyRespawnRoom()",
+		"description": "Returns if a player is in any teams respawn room"
+	},
+	"plr.IsPressingButton": {
+		"prefix": "IsPressingButton",
+		"body": "IsPressingButton(${1:button_flag})",
+		"description": "Returns if a player is pressing a certain button"
+	},
+	"plr.PrintToHud": {
+		"prefix": "PrintToHud",
+		"body": "PrintToHud(${1:message})",
+		"description": "prints to a players hud"
+	},
+	"plr.PrintToChat": {
+		"prefix": "PrintToChat",
+		"body": "PrintToChat(${1:message})",
+		"description": "prints to a players chat"
+	},
+	"plr.IsOnGround": {
+		"prefix": "IsOnGround",
+		"body": "IsOnGround()",
+		"description": "Returns if a player is on solid ground"
+	},
+	"plr.GetUserName": {
+		"prefix": "GetUserName",
+		"body": "GetUserName()",
+		"description": "Returns a players Username"
+	},
+	"plr.GetSteamID": {
+		"prefix": "GetSteamID",
+		"body": "GetSteamID()",
+		"description": "Returns a players Steam3 ID"
+	},
+	"plr.GetHealers": {
+		"prefix": "GetHealers",
+		"body": "GetHealers()",
+		"description": "Returns the number of healers a player has"
+	},
+	"plr.GetPrimaryAmmo": {
+		"prefix": "GetPrimaryAmmo",
+		"body": "GetPrimaryAmmo()",
+		"description": "Returns the Primary ammo count of a player"
+	},
+	"plr.GetSecondaryAmmo": {
+		"prefix": "GetSecondaryAmmo",
+		"body": "GetSecondaryAmmo()",
+		"description": "Returns the Secondary ammo count of a player"
+	},
+	"plr.SetPrimaryAmmo": {
+		"prefix": "SetPrimaryAmmo",
+		"body": "SetPrimaryAmmo(${1:ammo})",
+		"description": "Sets a players Primary ammo"
+	},
+	"plr.SetSecondaryAmmo": {
+		"prefix": "SetSecondaryAmmo",
+		"body": "SetSecondaryAmmo(${1:ammo})",
+		"description": "Sets a players Secondary ammo"
+	},
+	"plr.SetMetal": {
+		"prefix": "SetMetal",
+		"body": "SetMetal(${1:metal})",
+		"description": "Sets a players Metal (Note: Does not do anything on Non Engi's)"
+	},
+	"plr.SetAmmoByIndex": {
+		"prefix": "SetAmmoByIndex",
+		"body": "SetAmmoByIndex(${1:index}, ${2:ammo})",
+		"description": "Sets a players Ammo by index"
+	},
+	"plr.ResetPrimaryAmmo": {
+		"prefix": "ResetPrimaryAmmo",
+		"body": "ResetPrimaryAmmo()",
+		"description": "Reset's the players primary ammo"
+	},
+	"plr.ResetSecondaryAmmo": {
+		"prefix": "ResetSecondaryAmmo",
+		"body": "ResetSecondaryAmmo()",
+		"description": "Reset's the players secondary ammo"
+	},
+	"plr.ResetMetal": {
+		"prefix": "ResetMetal",
+		"body": "ResetMetal()",
+		"description": "Reset's the players metal"
+	},
+	"plr.GetMaximumPrimaryAmmo": {
+		"prefix": "GetMaximumPrimaryAmmo",
+		"body": "GetMaximumPrimaryAmmo()",
+		"description": "Returns the maximum primary ammo you can carry"
+	},
+	"plr.GetMaximumSecondaryAmmo": {
+		"prefix": "GetMaximumSecondaryAmmo",
+		"body": "GetMaximumSecondaryAmmo()",
+		"description": "Returns the maximum secondary ammo you can carry"
+	},
+	"plr.GetMaximumMetal": {
+		"prefix": "GetMaximumMetal",
+		"body": "GetMaximumMetal()",
+		"description": "Returns the maximum metal you can carry"
+	},
+	"plr.ResetAmmo": {
+		"prefix": "ResetAmmo",
+		"body": "ResetAmmo()",
+		"description": "Resets all of your ammo"
+	},
+	"plr.ResetHealth": {
+		"prefix": "ResetHealth",
+		"body": "ResetHealth()",
+		"description": "Resets a players hp to their Maximum"
+	},
+	"plr.SetScale": {
+		"prefix": "SetScale",
+		"body": "SetScale(${1:scale})",
+		"description": "Sets a players model scale"
+	},
+	"plr.IsOverhealed": {
+		"prefix": "IsOverhealed",
+		"body": "IsOverhealed()",
+		"description": "Returns if a player has more hp than their maximum"
+	},
+	"plr.ForceTaunt": {
+		"prefix": "ForceTaunt",
+		"body": "ForceTaunt(${1:Index})",
+		"description": "Forces a player to taunt from in item Index"
+	},
+	"plr.EyeVector": {
+		"prefix": "EyeVector",
+		"body": "EyeVector()",
+		"description": "Gets the players Actual Forward Vector"
+	},
+	"plr.IsDead": {
+		"prefix": "IsDead",
+		"body": "IsDead()",
+		"description": "Returns the opposite of IsAlive()"
+	},
+	"plr.GetHeads": {
+		"prefix": "GetHeads",
+		"body": "GetHeads()",
+		"description": "Returns the number of heads the player has collected"
+	},
+	"plr.MultiplyGravity": {
+		"prefix": "MultiplyGravity",
+		"body": "MultiplyGravity(${1:gravity})",
+		"description": "Multiplies gravity by x"
+	},
+	"plr.PlayerFire": {
+		"prefix": "PlayerFire",
+		"body": "PlayerFire(${1:action}, ${2:input}, ${3:delay = -1}, ${4:activator = this}, ${5:caller = this})",
+		"description": "Calls EntFireNew on player"
+	},
+	"plr.RunScriptCode": {
+		"prefix": "RunScriptCode",
+		"body": "RunScriptCode(${1:input}, ${2:delay = -1})",
+		"description": "Calls RunWithDelay on player"
+	},
+	"plr.HasWeapon": {
+		"prefix": "HasWeapon",
+		"body": "HasWeapon(${1:index = -1})",
+		"description": "Returns if a player has a certain weapon Index"
+	},
+	"plr.HasWeaponClassname": {
+		"prefix": "HasWeaponClassname",
+		"body": "HasWeaponClassname(${1:classname = NULL_S})",
+		"description": "Returns if a player has a certain weapon classname"
+	},
+	"plr.GetWeapon": {
+		"prefix": "GetWeapon",
+		"body": "GetWeapon(${1:index = -1})",
+		"description": "Returns the item with this index in the players loadout, or null"
+	},
+	"plr.GetWeaponClassname": {
+		"prefix": "HasWeaponClassname",
+		"body": "HasWeaponClassname(${1:classname = NULL_S})",
+		"description": "Returns the item with this classname in the players loadout, or null"
+	},
+	"plr.IsInvincible": {
+		"prefix": "IsInvincible",
+		"body": "IsInvincible()",
+		"description": "Returns if a player/bot is in an invincible cond"
+	},
+	"plr.RemoveStun": {
+		"prefix": "RemoveStun",
+		"body": "RemoveStun()",
+		"description": "Removes a player/bot's stun"
+	},
+	"plr.GetGroundEntity": {
+		"prefix": "GetGroundEntity",
+		"body": "GetGroundEntity()",
+		"description": "Returns the players ground entity"
+	},
+	"plr.GetFallingVelocity": {
+		"prefix": "GetFallingVelocity",
+		"body": "GetFallingVelocity()",
+		"description": "Returns the players z velocity"
+	},
+	"plr.TakeUnblockableDamage": {
+		"prefix": "TakeUnblockableDamage",
+		"body": "TakeUnblockableDamage(${1:damage}, ${2:attacker = Entities.First()}, ${3:inflictor = this}, ${3:weapon = this})",
+		"description": "Makes the player take damage that cannot be blocked"
+	},
+	"plr.Suicide": {
+		"prefix": "Suicide",
+		"body": "Suicide()",
+		"description": "Forces the player to Die"
+	},
+	"plr.IsDucking": {
+		"prefix": "IsDucking",
+		"body": "IsDucking()",
+		"description": "Is the player ducking"
+	},
+	"plr.IsCrouching": {
+		"prefix": "IsCrouching",
+		"body": "IsCrouching()",
+		"description": "dupelicate of IsDucking()"
+	},
+	"plr.SetCond": {
+		"prefix": "SetCond",
+		"body": "SetCond(${1:cond}, ${2:duration = -1})",
+		"description": "Better version of AddCond that only needs 1 parameter"
+	},
+	"plr.GetTrackedDamage": {
+		"prefix": "GetTrackedDamage",
+		"body": "GetTrackedDamage()",
+		"description": "Gets the players custom tracked damage"
+	},
+	"plr.SetTrackedDamage": {
+		"prefix": "SetTrackedDamage",
+		"body": "SetTrackedDamage(${1:damage = 0})",
+		"description": "Sets the players custom tracked damage"
+	},
+	"plr.AddTrackedDamage": {
+		"prefix": "AddTrackedDamage",
+		"body": "AddTrackedDamage(${1:damage = 0})",
+		"description": "Adds damage to the players custom tracked damage"
+	},
+	"plr.GetTrackedHealing": {
+		"prefix": "GetTrackedHealing",
+		"body": "GetTrackedHealing()",
+		"description": "Gets the players custom tracked healing"
+	},
+	"plr.SetTrackedHealing": {
+		"prefix": "SetTrackedHealing",
+		"body": "SetTrackedHealing(${1:healing = 0})",
+		"description": "Sets the players custom tracked healing"
+	},
+	"plr.AddTrackedHealing": {
+		"prefix": "AddTrackedHealing",
+		"body": "AddTrackedHealing(${1:healing = 0})",
+		"description": "Adds healing to the players custom tracked healing"
+	},
+	"plr.GetTrackedTankDamage": {
+		"prefix": "GetTrackedTankDamage",
+		"body": "GetTrackedTankDamage()",
+		"description": "Gets the players custom tracked tank damage"
+	},
+	"plr.SetTrackedTankDamage": {
+		"prefix": "SetTrackedTankDamage",
+		"body": "SetTrackedTankDamage(${1:damage = 0})",
+		"description": "Sets the players custom tracked tank damage"
+	},
+	"plr.AddTrackedTankDamage": {
+		"prefix": "AddTrackedTankDamage",
+		"body": "AddTrackedTankDamage(${1:damage = 0})",
+		"description": "Adds damage to the players custom tracked tank damage"
+	},
+	"plr.GetCurrentRune": {
+		"prefix": "GetCurrentRune",
+		"body": "GetCurrentRune()",
+		"description": "Returns what rune the player has"
+	},
+	"plr.GetRuneResistance": {
+		"prefix": "GetRuneResistance",
+		"body": "GetRuneResistance()",
+		"description": "Returns the resistance os your current rune"
+	},
+	"plr.IsValidReprogramTarget": {
+		"prefix": "IsValidReprogramTarget",
+		"body": "IsValidReprogramTarget()",
+		"description": "Returns if the player is valid for Reprogram"
+	},
+	"plr.IsBot": {
+		"prefix": "IsBot",
+		"body": "IsBot()",
+		"description": "Returns if the player is a bot or not"
+	},
+	"plr.SetFoodItemCharge": {
+		"prefix": "SetFoodItemCharge",
+		"body": "SetFoodItemCharge(${1:charge})",
+		"description": "Sets the players food item charge"
+	},
+	"plr.SetJetpackCharge": {
+		"prefix": "SetJetpackCharge",
+		"body": "SetJetpackCharge(${1:charge})",
+		"description": "Sets the players Jetpack charge"
+	},
+	"plr.AddThrowableCharge": {
+		"prefix": "AddThrowableCharge",
+		"body": "AddThrowableCharge(${1:charge})",
+		"description": "Adds charge to the players throwable charge"
+	},
+	"plr.SetThrowableCharge": {
+		"prefix": "SetThrowableCharge",
+		"body": "SetThrowableCharge(${1:charge})",
+		"description": "Sets the charge to the players throwable charge"
+	},
+	"plr.InMultiCond": {
+		"prefix": "InMultiCond",
+		"body": "InMultiCond(${1:conds = []})",
+		"description": "Returns if the player is in any of these conds"
+	},
+	"plr.ForceChangeClass": {
+		"prefix": "ForceChangeClass",
+		"body": "ForceChangeClass(${1:class_index})",
+		"description": "Forces a player to change class"
+	},
+	"plr.GetLanguage": {
+		"prefix": "GetLanguage",
+		"body": "GetLanguage()",
+		"description": "Returns which language the user is set to"
+	},
+	"plr.GetTranslatedString": {
+		"prefix": "GetTranslatedString",
+		"body": "GetTranslatedString(${1:string})",
+		"description": "Returns a translated string from the translation table"
+	},
+	"plr.IHTranslateToChat": {
+		"prefix": "IHTranslateToChat",
+		"body": "IHTranslateToChat(${1:name}, ${2:description})",
+		"description": "Translates an items name and description to chat"
+	},
+	"plr.IHTranslateToChat2": {
+		"prefix": "IHTranslateToChat2",
+		"body": "IHTranslateToChat2(${1:item})",
+		"description": "Translates an item to chat"
+	},
+	"plr.GetTranslatedAndFormattedString": {
+		"prefix": "GetTranslatedAndFormattedString",
+		"body": "GetTranslatedAndFormattedString(${1:. . .})",
+		"description": "Returns a translated and formatted message"
+	},
+	"plr.TranslateToChat": {
+		"prefix": "TranslateToChat",
+		"body": "TranslateToChat(${1:. . .})",
+		"description": "Translates and formats a message to chat"
+	},
+	"plr.TranslateToHud": {
+		"prefix": "TranslateToHud",
+		"body": "TranslateToHud(${1:. . .})",
+		"description": "Translates and formats a message to hud"
+	},
+	"plr.SetAbilityTime": {
+		"prefix": "SetAbilityTime",
+		"body": "SetAbilityTime(${1:time})",
+		"description": "Sets the time for an ability"
+	},
+	"plr.AddAbilityTime": {
+		"prefix": "AddAbilityTime",
+		"body": "AddAbilityTime(${1:time})",
+		"description": "Adds time for an ability cooldown"
+	},
+	"plr.TeamFortress_SetSpeed": {
+		"prefix": "TeamFortress_SetSpeed",
+		"body": "TeamFortress_SetSpeed()",
+		"description": "Forces the game to update the players max move speed"
+	},
+	"plr.CalculateEHP": {
+		"prefix": "CalculateEHP",
+		"body": "CalculateEHP()",
+		"description": "Calculates and prints the players Effective Health"
+	},
+	"plr.IsReprogrammed": {
+		"prefix": "IsReprogrammed",
+		"body": "IsReprogrammed()",
+		"description": "Returns if the Player/Bot is Reprogrammed"
+	},
+	"plr.GetAdminFlags": {
+		"prefix": "GetAdminFlags",
+		"body": "GetAdminFlags()",
+		"description": "Returns the players adminflags"
+	},
+	"plr.GetPlayerClassName": {
+		"prefix": "GetPlayerClassName",
+		"body": "GetPlayerClassName()",
+		"description": "Returns the players class name"
+	},
+	"plr.SwitchWeaponSlot": {
+		"prefix": "SwitchWeaponSlot",
+		"body": "SwitchWeaponSlot(${1:slot})",
+		"description": "Attemps to switch the players active weapon to the weapon in a slot"
+	},
+	"plr.IsMinicritDebuffed": {
+		"prefix": "IsMinicritDebuffed",
+		"body": "IsMinicritDebuffed()",
+		"description": "Returns if the player is minicrit debuffed"
+	},
+	"plr.IsMinicritBuffed": {
+		"prefix": "IsMinicritBuffed",
+		"body": "IsMinicritBuffed()",
+		"description": "Returns if the player is minicrit buffed"
+	},
+	"plr.KillUnknownWeapons": {
+		"prefix": "KillUnknownWeapons",
+		"body": "KillUnknownWeapons()",
+		"description": "Kills unknown player attachments"
+	},
+	"plr.HasCorrosion": {
+		"prefix": "HasCorrosion",
+		"body": "HasCorrosion()",
+		"description": "Returns if the player has corrosion"
+	},
+	"plr.GetCorrosion": {
+		"prefix": "GetCorrosion",
+		"body": "GetCorrosion()",
+		"description": "Returns the players corrosion, null if none"
+	},
+	"plr.CanRemoveCorrosion": {
+		"prefix": "CanRemoveCorrosion",
+		"body": "CanRemoveCorrosion()",
+		"description": "Returns the the players corrosion can be remove"
+	},
+	"plr.RemoveCorrosion": {
+		"prefix": "RemoveCorrosion",
+		"body": "RemoveCorrosion()",
+		"description": "Removes a players collsion"
+	},
+	"plr.MakeCorrosion": {
+		"prefix": "MakeCorrosion",
+		"body": "MakeCorrosion(${1:attacker}, ${1:weapon})",
+		"description": "Makes corrosion on a player"
+	},
+	"plr.CorrosionTick": {
+		"prefix": "CorrosionTick",
+		"body": "CorrosionTick()",
+		"description": "Makes the corrosion deal damage"
+	},
+	"plr.CanHaveCorrosion": {
+		"prefix": "CanHaveCorrosion",
+		"body": "CanHaveCorrosion()",
+		"description": "Returns if the player can have corrosion"
+	},
+	"plr.MakeCorrosionPuddle": {
+		"prefix": "MakeCorrosionPuddle",
+		"body": "MakeCorrosionPuddle()",
+		"description": "Makes a corrosion puddle at the players position"
+	},
+	"plr.RollSpell": {
+		"prefix": "RollSpell",
+		"body": "RollSpell()",
+		"description": "Makes a player roll a spell"
+	},
+	"plr.GetChatColor": {
+		"prefix": "GetChatColor",
+		"body": "GetChatColor()",
+		"description": "Returns the players chat color"
+	},
+	"plr.SetUpThinkTable": {
+		"prefix": "SetUpThinkTable",
+		"body": "SetUpThinkTable()",
+		"description": "Sets up the players think table"
+	},
+	"plr.AddPreservedThink": {
+		"prefix": "AddPreservedThink",
+		"body": "AddPreservedThink(${1:func}, ${2:name = null}, ${3:offset = 0.0})",
+		"description": "Adds a think that stays on death, internally calls AddThink"
+	},
+	"plr.AddThink": {
+		"prefix": "AddThink",
+		"body": "AddThink(${1:func}, ${2:name = null}, ${3:offset = 0.0})",
+		"description": "Adds a think, returns the thinks name"
+	},
+	"plr.RemoveThink": {
+		"prefix": "RemoveThink",
+		"body": "RemoveThink(${1:name})",
+		"description": "Tries to remove a think (and preserved)"
+	},
+	"plr.DiedWithAbility": {
+		"prefix": "DiedWithAbility",
+		"body": "DiedWithAbility()",
+		"description": "Returns if the player died with an ability"
+	},
+	"plr.FixAmmo": {
+		"prefix": "FixAmmo",
+		"body": "FixAmmo()",
+		"description": "Fixes the players ammo (because rafmod is terrible)"
+	},
+	"plr.TransformGHeavy": {
+		"prefix": "TransformGHeavy",
+		"body": "TransformGHeavy()",
+		"description": "Transforms the player into a GHeavy"
+	},
+	"plr.UndoGHeavy": {
+		"prefix": "UndoGHeavy",
+		"body": "UndoGHeavy()",
+		"description": "Undo's the GHeavy Transform"
+	},
+	"plr.IsGHeavy": {
+		"prefix": "IsGHeavy",
+		"body": "IsGHeavy()",
+		"description": "Returns if the player is a GHeavy"
+	},
+	"plr.EquipItem": {
+		"prefix": "EquipItem",
+		"body": "EquipItem(${1:classname}, ${2:idx}, ${3:switch = true}, ${4:attrib_overrides = {}})",
+		"description": "Weird way to make weapons"
+	},
+	"plr.EquipItemBAD": {
+		"prefix": "EquipItemBAD",
+		"body": "EquipItemBAD(${1:ItemName})",
+		"description": "BAD! Internally calls a function ONLY for bots!!!! VALVE MIGHT PATCH"
+	},
+	"plr.IsMedicButtonDown": {
+		"prefix": "IsMedicButtonDown",
+		"body": "IsMedicButtonDown()",
+		"description": "Returns if the medic call button is down"
+	},
+	"plr.GetActiveHealers": {
+		"prefix": "GetActiveHealers",
+		"body": "GetActiveHealers()",
+		"description": "Returns any medics healing the player"
+	},
+	"plr.AddHealth": {
+		"prefix": "AddHealth",
+		"body": "AddHealth(${1:amount})",
+		"description": "Adds health to the player"
+	},
+	"plr.RemoveHealth": {
+		"prefix": "RemoveHealth",
+		"body": "RemoveHealth(${1:amount})",
+		"description": "Removes health to the player"
+	},
+	"plr.GetOverHealCapMult": {
+		"prefix": "GetOverHealCapMult",
+		"body": "GetOverHealCapMult(${1:start = 1.0})",
+		"description": "Returns the players overheal max multiplier"
+	},
+	"plr.HealPlayer": {
+		"prefix": "HealPlayer",
+		"body": "HealPlayer(${1:amount}, ${2:overheal = false}, ${3:overheal_cap = false}, ${4:display = true}, ${5:type = T_HEAL_NONE})",
+		"description": "Heals a player"
+	},
+	"plr.HookMultAttributes": {
+		"prefix": "HookMultAttributes",
+		"body": "HookMultAttributes(${1:attribute}, ${2:weapons = true})",
+		"description": "Hooks attributes multiplicatively"
+	},
+	"plr.HookAdditiveAttributes": {
+		"prefix": "HookAdditiveAttributes",
+		"body": "HookAdditiveAttributes(${1:attribute}, ${2:weapons = true})",
+		"description": "Hooks attributes additively"
+	},
+	"plr.GetBaseMovespeed": {
+		"prefix": "GetBaseMovespeed",
+		"body": "GetBaseMovespeed(${1:classidx = false})",
+		"description": "Returns the player (or other classes) base movespeed"
+	},
+	"plr.GetMoveSpeed": {
+		"prefix": "GetMoveSpeed",
+		"body": "GetMoveSpeed()",
+		"description": "Returns the players total calculated move speed"
+	},
+	// weapons?
+	"wpn.HasAttribute": {
+		"prefix": "HasAttribute",
+		"body": "HasAttribute(${1:attrib}, ${2:default_value})",
+		"description": "This function is meant to be run on Weapons so \"weapon.func_name\""
+	},
+	"wpn.GetIDX": {
+		"prefix": "GetIDX",
+		"body": "GetIDX()",
+		"description": "Gets a Weapons Item Def Index"
+	},
+	"wpn.IsAbilityWeapon": {
+		"prefix": "IsAbilityWeapon",
+		"body": "IsAbilityWeapon()",
+		"description": "Returns if this weapon is one of the ability weapons"
+	},
+	"wpn.SetSpellIndex": {
+		"prefix": "SetSpellIndex",
+		"body": "SetSpellIndex(${1:index})",
+		"description": "Sets a spell books spell index"
+	},
+	"wpn.GetSpellIndex": {
+		"prefix": "GetSpellIndex",
+		"body": "GetSpellIndex()",
+		"description": "Returns a spell books spell index"
+	},
+	"wpn.GetSpellCharges": {
+		"prefix": "GetSpellCharges",
+		"body": "GetSpellCharges()",
+		"description": "Returns the spell books current charges"
+	},
+	"wpn.SetSpellCharges": {
+		"prefix": "SetSpellCharges",
+		"body": "SetSpellCharges(${1:charges})",
+		"description": "Sets a spell books spell charges"
+	},
+	"wpn.IncrementSpellCharge": {
+		"prefix": "IncrementSpellCharge",
+		"body": "IncrementSpellCharge(${1:num})",
+		"description": "Adds num to a spell books spell charges"
+	},
+	"wpn.IsHolstered": {
+		"prefix": "IsHolstered",
+		"body": "IsHolstered()",
+		"description": "Returns if this weapon is holstered"
+	},
+	"wpn.GetChargeTime": {
+		"prefix": "GetChargeTime",
+		"body": "GetChargeTime()",
+		"description": "Returns the weapons charge time"
+	},
+	"wpn.SetChargeTime": {
+		"prefix": "SetChargeTime",
+		"body": "SetChargeTime(${1:time})",
+		"description": "Sets the weapons charge time"
+	},
+	"wpn.GetDefaultChargeTime": {
+		"prefix": "GetDefaultChargeTime",
+		"body": "GetDefaultChargeTime()",
+		"description": "Returns the weapons default charge time"
+	},
+	"wpn.CalculateAttributes": {
+		"prefix": "CalculateAttributes",
+		"body": "CalculateAttributes(${1:AttributeName}, ${2:AttributeChange}, ${3:StartingValue}, ${4:MaxValue}, ${5:MinValue})",
+		"description": "" // TODO: update
+	},
+	"wpn.CalculateAttributeChange": {
+		"prefix": "CalculateAttributeChange",
+		"body": "CalculateAttributeChange(${1:mult_val}, ${2:AttributeName}, ${3:AttributeChange}, ${4:StartingValue}, ${5:MaxValue}, ${6:MinValue})",
+		"description": "" // TODO: update
+	},
+	"wpn.SetProp": {
+		"prefix": "SetProp",
+		"body": "SetProp(${1:propertyName}, ${2:value})",
+		"description": "Sets a netprop"
+	},
+	"wpn.SetPropArray": {
+		"prefix": "SetPropArray",
+		"body": "SetPropArray(${1:propertyName}, ${2:value}, ${3:index})",
+		"description": "Sets a netprop array"
+	},
+	"wpn.GetUberChargePercent": {
+		"prefix": "GetUberChargePercent",
+		"body": "GetUberChargePercent()",
+		"description": "Returns the uber charge percent"
+	},
+	"wpn.SetUberChargePercent": {
+		"prefix": "SetUberChargePercent",
+		"body": "SetUberChargePercent(${1:percent})",
+		"description": "Sets the uber charge percent"
+	},
+	"wpn.IncreaseUberChargePercent": {
+		"prefix": "IncreaseUberChargePercent",
+		"body": "IncreaseUberChargePercent(${1:percent})",
+		"description": "Increases the uber charge percent"
+	},
+	"wpn.DecreaseUberChargePercent": {
+		"prefix": "DecreaseUberChargePercent",
+		"body": "DecreaseUberChargePercent(${1:percent})",
+		"description": "Decreases the uber charge percent"
+	},
+	"wpn.ModifySpells": {
+		"prefix": "ModifySpells",
+		"body": "ModifySpells(${1:index}, ${2:max}, ${3:compared = 1}, ${4:mod_compare = 1})",
+		"description": "" // TODO: update
+	},
+	"wpn.SetAbilityTime": {
+		"prefix": "SetAbilityTime",
+		"body": "SetAbilityTime(${1:time})",
+		"description": "Sets the weapons ability time"
+	},
+	"wpn.AddAbilityTime": {
+		"prefix": "AddAbilityTime",
+		"body": "AddAbilityTime(${1:time})",
+		"description": "Adds time to the weapons ability time"
+	},
+	"wpn.SetAbilityDamage": {
+		"prefix": "SetAbilityDamage",
+		"body": "SetAbilityDamage(${1:max_dmg}, ${2:cur_dmg = 0.0})",
+		"description": "Sets the damage of the weapons damage ability, and current damage"
+	},
+	"wpn.AddAbilityDamage": {
+		"prefix": "AddAbilityDamage",
+		"body": "AddAbilityDamage(${1:dmg})",
+		"description": "Adds damage to the weapons damage ability"
+	},
+	"wpn.ResetAbilityDamage": {
+		"prefix": "ResetAbilityDamage",
+		"body": "ResetAbilityDamage()",
+		"description": "Sets the damage of the weapons damage ability to 0"
+	},
+	"wpn.GetAbilityDamage": {
+		"prefix": "GetAbilityDamage",
+		"body": "GetAbilityDamage()",
+		"description": "Returns the damage of the weapons damage abilty"
+	},
+	"wpn.SetAbilityType": {
+		"prefix": "SetAbilityType",
+		"body": "SetAbilityType(${1:type})",
+		"description": "Sets the type of this weapon ability"
+	},
+	"wpn.GetAbilityType": {
+		"prefix": "GetAbilityType",
+		"body": "GetAbilityType()",
+		"description": "Returns the ability type"
+	},
+	"wpn.IsAbilityActive": {
+		"prefix": "IsAbilityActive",
+		"body": "IsAbilityActive()",
+		"description": "Returns if the ability is active"
+	},
+	"wpn.SetRandomSpell": {
+		"prefix": "SetRandomSpell",
+		"body": "SetRandomSpell(${1:rares = true}, ${2:lower_rares = false})",
+		"description": "Forces the spellbook to roll a spell"
+	},
+	"wpn.ShootPosition": {
+		"prefix": "ShootPosition",
+		"body": "ShootPosition()",
+		"description": "Returns the weapons shoot position"
+	},
+	"wpn.IsWearable": {
+		"prefix": "IsWearable",
+		"body": "IsWearable()",
+		"description": "Returns if the weapon is a wearable"
+	},
+	"wpn.IsSniperRifle": {
+		"prefix": "IsSniperRifle",
+		"body": "IsSniperRifle()",
+		"description": "Returns if the weapon is a Sniper Rifle"
+	},
+	"wpn.IsBow": {
+		"prefix": "IsBow",
+		"body": "IsBow()",
+		"description": "Returns if the weapon is a Bow"
+	},
+	"wpn.IsMinigun": {
+		"prefix": "IsMinigun",
+		"body": "IsMinigun()",
+		"description": "Returns if the weapon is a Minigun"
+	},
+	"wpn.GetSpeedMod": {
+		"prefix": "GetSpeedMod",
+		"body": "GetSpeedMod()",
+		"description": "Returns the weapons speed modification"
+	},
+	"wpn.GetSwordSpeedMod": {
+		"prefix": "GetSwordSpeedMod",
+		"body": "GetSwordSpeedMod()",
+		"description": "Returns the weapons speed modification from heads"
+	},
+	// chat triggers
+	"AddChatTrigger":{
+		"prefix": "AddChatTrigger",
+		"body": "AddChatTrigger(${1:trigger}, ${2:callback}, ${3:...})",
+		"description": "Adds a ChatTrigger that is triggered when someone says (! or /)[trigger]"
+	},
+	"RegisterAdminTrigger":{
+		"prefix": "RegisterAdminTrigger",
+		"body": "RegisterAdminTrigger(${1:trigger}, ${2:callback})",
+		"description": "Adds a ChatTrigger that is triggered when an admin says (! or /)[trigger]"
+	},
+	// dmg callbacks
+	"ClearDamageCallbacks":{
+		"prefix": "ClearDamageCallbacks",
+		"body": "ClearDamageCallbacks()",
+		"description": "Resets the damage callbacks table"
+	},
+	"RegisterDamageCallback":{
+		"prefix": "RegisterDamageCallback",
+		"body": "RegisterDamageCallback(${1:ent_name}, ${2:callback_name}, ${3:callback})",
+		"description": "Registers a damage callback in the system, accepts `entity_name` as an array of entity names"
+	},
+	"RemoveDamageCallback":{
+		"prefix": "RemoveDamageCallback",
+		"body": "RemoveDamageCallback(${1:ent_name}, ${2:callback_name})",
+		"description": "Removes a damage callback"
+	},
+	// spawn callbacks
+	"ClearSpawnCallbacks":{
+		"prefix": "ClearSpawnCallbacks",
+		"body": "ClearSpawnCallbacks()",
+		"description": "Resets the spawn callbacks table"
+	},
+	"RegisterSpawnCallback":{
+		"prefix": "RegisterSpawnCallback",
+		"body": "RegisterSpawnCallback(${1:ent_name}, ${2:callback_name}, ${3:callback})",
+		"description": "Registers a spawn callback in the system, accepts `entity_name` as an array of entity names"
+	},
+	"RemoveSpawnCallback":{
+		"prefix": "RemoveSpawnCallback",
+		"body": "RemoveSpawnCallback(${1:ent_name}, ${2:callback_name})",
+		"description": "Removes a spawn callback"
+	},
+	// other entity stuff
+	"SetDestroyCallback":{
+		"prefix": "SetDestroyCallback",
+		"body": "SetDestroyCallback(${1:callback})",
+		"description": "Fires the Callback when the entity is destroyed, self = entity"		
+	},
+	"IsValidEnemy": {
+		"prefix": "IsValidEnemy",
+		"body": "IsValidEnemy(${1:entity})",
+		"description": "Returns true if the entity is a valid Enemy"
+	},
+	"CanPointSeePoint": {
+		"prefix": "CanPointSeePoint",
+		"body": "CanPointSeePoint(${1:point1}, ${2:point1})",
+		"description": "Returns true if point1 can see point2"
+	},
+	"EntFireNew": {
+		"prefix": "EntFireNew",
+		"body": "EntFireNew(${1:target}, ${2:action}, ${3:imput = \"\"}, ${4:delay = -1}, ${5:activator = null}, ${6:caller = null})",
+		"description": "allows a targetname or entity handle as input"
+	},
+	"PurgeString": {
+		"prefix": "PurgeString",
+		"body": "PurgeString(${1:String})",
+		"description": "Purges a string from the string table, You God Damn Piece of Shit"
+	},
+	"CreateKillIcon": {
+		"prefix": "CreateKillIcon",
+		"body": "CreateKillIcon(${1:icon})",
+		"description": "Creates an entity to use for a custom kill icon"
+	},
+	"GetClientConVar": {
+		"prefix": "GetClientConVar",
+		"body": "GetClientConVar(${1:cvar}, ${1:plr_entidx})",
+		"description": "Returns what the client has set for this client cvar"
+	},
+	// Entities
+	"GetAllEntitiesByClassname": {
+		"prefix": "GetAllEntitiesByClassname",
+		"body": "GetAllEntitiesByClassname(${1:classname})",
+		"description": "Returns an array of every entity with that classname"
+	},
+	"GetAllEntitiesByClassnameWithin": {
+		"prefix": "GetAllEntitiesByClassnameWithin",
+		"body": "GetAllEntitiesByClassnameWithin(${1:classname}, ${2:center}, ${3:radius})",
+		"description": "Returns an array of every entity within a point with that classname"
+	},
+	"GetAllEntitiesByTargetname": {
+		"prefix": "GetAllEntitiesByTargetname",
+		"body": "GetAllEntitiesByTargetname(${1:targetname})",
+		"description": "Returns an array of every entity with that classname"
+	},
+	"GetAllEntitiesByTargetnameWithin": {
+		"prefix": "GetAllEntitiesByTargetnameWithin",
+		"body": "GetAllEntitiesByTargetnameWithin(${1:targetname}, ${2:center}, ${3:radius})",
+		"description": "Returns an array of every entity within a point with that classname"
+	},
+	"GetAllPlayers": {
+		"prefix": "GetAllPlayers",
+		"body": "GetAllPlayers(${1:team = false}, ${2:radius = false}, ${3:alive = true})",
+		"description": "Returns an array of players"
+	},
+	"GetEveryTank": {
+		"prefix": "GetEveryTank",
+		"body": "GetEveryTank()",
+		"description": "Returns an array of Tank entity"
+	},
+	"GetEveryTankWithin": {
+		"prefix": "GetEveryTankWithin",
+		"body": "GetEveryTankWithin(${1:center}, ${2:radius})",
+		"description": "Returns an array of Bot entity within a point"
+	},
+	"EnableStringPurge": {
+		"prefix": "EnableStringPurge",
+		"body": "EnableStringPurge(${1:entity})",
+	},
+	"FirstEntity": {
+		"prefix": "FirstEntity",
+		"body": "FirstEntity()",
+	},
+	"NextEntity": {
+		"prefix": "NextEntity",
+		"body": "NextEntity(${1:previous})",
+	},
+	"GetBuilder": {
+		"prefix": "GetBuilder",
+		"body": "GetBuilder(${1:entity})",
+		"description": "Returns an entity's builder if it has the NetProps"
+	},
+	"GetLauncher": {
+		"prefix": "GetLauncher",
+		"body": "GetLauncher(${1:entity})",
+		"description": "Returns an entity's Launcher if it has the NetProps"
+	},
+	"GetFlagStatus": {
+		"prefix": "GetFlagStatus",
+		"body": "GetFlagStatus(${1:flag})",
+		"description": "Returns the flag's current flag_state"
+	},
+	"GetState": {
+		"prefix": "GetState",
+		"body": "GetState(${1:entity})",
+		"description": "Returns the current state netprop of entity"
+	},
+	"ClearThinks": {
+		"prefix": "ClearThinks",
+		"body": "ClearThinks(${1:entity})",
+		"description": "Clears the entity's think funcs"
+	},
+	"IsBuilding": {
+		"prefix": "IsBuilding",
+		"body": "IsBuilding(${1:entity})",
+		"description": "Returns if the entity is a building"
+	},
+	"IsEntityAProjectile": {
+		"prefix": "IsEntityAProjectile",
+		"body": "IsEntityAProjectile(${1:entity})",
+		"description": "Returns if the entity is a projectile"
+	},
+	"IsBuildingValid": {
+		"prefix": "IsBuildingValid",
+		"body": "IsBuildingValid(${1:building})",
+		"description": "Returns if the building is not null and can be placed"
+	},
+	"GetCurrentWaveNumber": {
+		"prefix": "GetCurrentWaveNumber",
+		"body": "GetCurrentWaveNumber()",
+		"description": "Returns the Current Wave number"
+	},
+	"GetMaximumWaveNumber": {
+		"prefix": "GetMaximumWaveNumber",
+		"body": "GetMaximumWaveNumber()",
+		"description": "Returns the Maximum Wave number"
+	},
+	"GetPopfileName": {
+		"prefix": "GetPopfileName",
+		"body": "GetPopfileName()",
+		"description": "Returns the Popfiles Name"
+	},
+	"SetPopfileName": {
+		"prefix": "SetPopfileName",
+		"body": "SetPopfileName(${1:name})",
+		"description": "Sets the Popfiles name"
+	},
+	"CreateThinker": {
+		"prefix": "CreateThinker",
+		"body": "CreateThinker()", // name, think_func, type = THINKER_NO_PERSIST
+		"description": "Creates a thinker"
+	},
+	"GetPlayerReadyCount": {
+		"prefix": "GetPlayerReadyCount",
+		"body": "GetPlayerReadyCount()",
+		"description": "Returns how many players are ready"
+	},
+	"IsWaveStarted": {
+		"prefix": "IsWaveStarted",
+		"body": "IsWaveStarted()",
+		"description": "Returns if a wave has started"
+	},
+	"PrintDamageBits": {
+		"prefix": "PrintDamageBits",
+		"body": "PrintDamageBits(${1:bits})",
+		"description": "DEBUG: prints dmg bits"
+	},
+	// misc
+	"RunWithDelay": {
+		"prefix": "RunWithDelay",
+		"body": "RunWithDelay(${1:func}, ${2:delay = 0.0})",
+		"description": "Fires this function with a delay"
+	},
+	"CreateTimer": {
+		"prefix": "CreateTimer",
+		"body": "CreateTimer(${1:on_timer_func}, ${2:first_delay = 0.0})",
+		"description": "Creates a timer that calls a func with a first delay, Returns the timer, Return null or dont return to kill timer"
+	},
+	"KillTimer": {
+		"prefix": "KillTimer",
+		"body": "KillTimer(${1:timer})",
+		"description": "Kills the specified timer"
+	},
+	"FireTimer": {
+		"prefix": "FireTimer",
+		"body": "FireTimer(${1:timer})",
+		"description": "Activates the timer then kills the timer"
+	},
+
+	"IsNotInScope": {
+		"prefix": "IsNotInScope",
+		"body": "IsNotInScope(${1:item}, ${2:scope})",
+		"description": "Returns if an item is not in a scope"
+	},
+	"IsNotInTable": {
+		"prefix": "IsNotInTable",
+		"body": "IsNotInTable(${1:item}, ${2:table})",
+		"description": "Returns if an item is not in a table"
+	},
+	//
+	"GetScope": {
+		"prefix": "GetScope",
+		"body": "GetScope(${1:entity})",
+		"description": "Validates and returns an entity's scope"
+	},
+
+	//
+	"StringToArray": {
+		"prefix": "StringToArray",
+		"body": "StringToArray(${1:string})",
+		"description": "Returns an array of letters from the given string"
+	},
+	"ArrayToString": {
+		"prefix": "ArrayToString",
+		"body": "ArrayToString(${1:array})",
+		"description": "Returns an string from an array of objects"
+	},
+	"IsStringATrigger": {
+		"prefix": "IsStringATrigger",
+		"body": "IsStringATrigger(${1:string}, ${1:triggers = [\"/\", \"!\"]})",
+		"description": "Returns if this string is a chat trigger"
+	},
+	"RemoveChatTrigger": {
+		"prefix": "RemoveChatTrigger",
+		"body": "RemoveChatTrigger(${1:string}, ${1:triggers = [\"/\", \"!\"]})",
+		"description": "Returns a string with the chat trigger removed"
+	},
+
+
+	"SetCvar": {
+		"prefix": "SetCvar",
+		"body": "SetCvar(${1:convar}, ${2:value}, ${3:admin_notify = false}, ${4:notify_all = false})",
+		"description": "Sets a convar, with options to notify admins or all"
+	},
+	"CreateAoETable": {
+		"prefix": "CreateAoE",
+		"body": [
+			"CreateAoETable(${1:info = {",
+			"\towner = ${2:null}",
+			"\tweapon = ${3:null},",
+			"\torigin = ${4:Vector()},",
+			"\tradius = ${5:147},",
+			"\tdamage = ${6:90},",
+			"\tMinDamage = ${7:45},",
+			"\tignores = ${8:[]},",
+			"\tDmgType = ${9:DMG_BLAST},",
+			"\tsound = ${10:\"weapons/explode1.wav\"},",
+			"\tparticle = ${11:\"ExplosionCore_Wall\"},",
+			"\\}})"
+		],
+		"description": "Creates an AoE effect with alot of customization"
+	},
+	"CreateKnifeAoE": {
+		"prefix": "CreateKnifeAoE",
+		"body": [
+			"CreateKnifeAoE(${1:info = {",
+			"\towner = ${2:null},",
+			"\tweapon = ${3:null},",
+			"\tcenter = ${4:Vector()},",
+			"\tradius = ${5:147},",
+			"\tdamage = ${6:90},",
+			"\tignore = ${7:[]},",
+			"\tSoundRadius = ${8:500},",
+			"\tExplodeFunc = ${9:function func(){}},",
+			"\\}})"
+		],
+		"description": "Creates an AoE effect for Explosive Backstab with alot of customization"
+	},
+	"CreateSlamAoE": {
+		"prefix": "CreateSlamAoE",
+		"body": [
+			"CreateSlamAoE(${1:info = {",
+			"\towner = ${2:null},",
+			"\tweapon = ${3:null},",
+			"\tcenter = ${4:Vector()},",
+			"\tradius = ${5:100},",
+			"\tdamage = ${6:100},",
+			"\tignore = ${7:[]},",
+			"\\}})"
+		],
+		"description": "Creates an AoE effect for Explosive Backstab with alot of customization"
+	},
+	"CreatePickup": {
+		"prefix": "CreatePickup",
+		"body": [
+			"CreatePickup(${1:info = {",
+			"\torigin = Vector(),",
+			"\tangles = Vector(),",
+			"\tteam = TF_TEAM_ANY,",
+			"\tmodel = \"models/weapons/c_models/c_toolbox/c_toolbox.mdl\",",
+			"\tsound = \"player/souls_receive2.wav\",",
+			"\tfunc = function() {PrintToChatAll(\"Default Pickup Message\")\\}",
+			"\\}})"
+		],
+		"description": "Creates a custom pickup",
+	},
+
+	////// HUD PRINTS //////
+	"PrintToHudAll": {
+		"prefix": "PrintToHudAll",
+		"body": "PrintToHudAll(${1:msg})",
+		"description": "Prints a hud message to everyone",
+	},
+	"PrintToHudAllF": {
+		"prefix": "PrintToHudAllF",
+		"body": "PrintToHudAllF(${1:msg}, ${2:...})",
+		"description": "Prints a hud message to everyone, with format args",
+	},
+	"PrintToHudAllFilter": {
+		"prefix": "PrintToHudAllFilter",
+		"body": "PrintToHudAllFilter(${1:msg}, ${2:filter = []})",
+		"description": "Prints a hud message to everyone with a filter",
+	},
+	
+	///// CHAT PRINTS /////
+	"PrintToChatAll": {
+		"prefix": "PrintToChatAll",
+		"body": "PrintToChatAll(${1:msg})",
+		"description": "Prints a chat message to everyone",
+	},
+	"PrintToChatAllF": {
+		"prefix": "PrintToChatAllF",
+		"body": "PrintToChatAllF(${1:msg}, ${2:...})",
+		"description": "Prints a chat message to everyone, with format args",
+	},
+	"PrintToChatAllFilter": {
+		"prefix": "PrintToChatAllFilter",
+		"body": "PrintToChatAllFilter(${1:msg}, ${2:filter = []})",
+		"description": "Prints a chat message to everyone with a filter",
+	},	
+	"TranslateToChatAll": {
+		"prefix": "TranslateToChatAll",
+		"body": "TranslateToChatAll(${1:...})",
+		"description": "Translates a chat message to everyone",
+	},
+
+	///// CONSOLE PRINTS /////
+	"PrintToConsoleAll": {
+		"prefix": "PrintToConsoleAll",
+		"body": "PrintToConsoleAll(${1:message})",
+		"description": "Prints a console message to everyone",
+	},
+	"PrintToConsoleAllF": {
+		"prefix": "PrintToConsoleAllF",
+		"body": "PrintToConsoleAllF(${1:message}, ${2:...})",
+		"description": "Prints a console message to everyone, with format args",
+	},
+
+	///// OTHER PRINTS /////	
+	"PrintToAdmins": {
+		"prefix": "PrintToAdmins",
+		"body": "PrintToAdmins(${1:Level}, ${2:message})",
+		"description": "Prints a message to admins, with the level, Level is EHudNotify",
+	},
+	"PrintTable": {
+		"prefix": "PrintTable",
+		"body": "PrintTable(${1:table}, ${2:filter = []})",
+		"description": "Prints out a table into console"
+	},
+	"PrintArray": {
+		"prefix": "PrintArray",
+		"body": "PrintArray(${1:array}, ${2:filter = []})",
+		"description": "Prints out a array into console"
+	},
+	"PrintClass": {
+		"prefix": "PrintClass",
+		"body": "PrintClass(${1:class}, ${2:filter = []})",
+		"description": "prints out an entire Class such as CTFPlayer, or CTFBot, and an option to filter out a specific type"
+	},
+	"PrintCollection": {
+		"prefix": "PrintCollection",
+		"body": "PrintCollection(${1:collection}, ${2:filter = []}, ${3:indentation = 0}, ${4:no_indent_header = false})",
+		"description": "Prints out a collection into console"
+	},
+
+	"CreateTestTank": {
+		"prefix": "CreateTestTank",
+		"body": "CreateTestTank(${1:origin = Vector()}, ${2:angles = QAngle()})",
+		"description": "Creates a tank with 2.147 Billion hp",
+	},
+	"DebugDrawTrigger": {
+		"prefix": "DebugDrawTrigger",
+		"body": "DebugDrawTrigger(${1:trigger}, ${2:color = Vector4D(255, 128, 0, 1)}, ${3:duration = 5})",
+		"description": "Draws a triggers bounds",
+	},
+	"IncludeLibrary": {
+		"prefix": "IncludeScript",
+		"body": "IncludeScript(\"fatcat_library\")",
+		"description": "Quickly include Library",
+	},
+	"IsListenServer": {
+		"prefix": "IsListenServer",
+		"body": "IsListenServer()",
+		"description": "Returns if the server is a listen server, !IsDedicatedServer()",
+	},
+	"DrawTraceHull": {
+		"prefix": "DrawTraceHull",
+		"body": "DrawTraceHull(${1:trace}, ${2:starting_color = Vector(255, 0, 0)}, ${3:ending_color = Vector(0, 0, 255)})",
+		"description": "Draws a Trace Hull/trace",
+	},
+	"DeprecatedWarning": {
+		"prefix": "DeprecatedWarning",
+		"body": "DeprecatedWarning(${1:info1)}, ${2:info2})",
+		"description": "Prints a deprecated message",
+	},
+	//
+	"ReCalculatePlayers": {
+		"prefix": "ReCalculatePlayers",
+		"body": "ReCalculatePlayers()",
+		"description": "Updates the players array",
+	},
+	"ValidatePlayerArray": {
+		"prefix": "ValidatePlayerArray",
+		"body": "ValidatePlayerArray()",
+		"description": "Validates if the player array has correct information",
+	},
+	"snippets": {
+		"prefix": "Add to snippets",
+		"body": "// TODO: Add to Snippets",
+	},
+	"m_aHumans": {
+		"prefix": "humans",
+		"body": "m_aHumans",
+	},
+	"m_aRobots": {
+		"prefix": "robots",
+		"body": "m_aRobots",
+	},
+	// Math
+	"MATH.BitWise": {
+		"prefix": "Math.BitWise",
+		"body": "Math.BitWise(${1:a}, ${2:b})",
+	},
+	"MATH.Min": {
+		"prefix": "Math.Min",
+		"body": "Math.Min(${1:a}, ${2:b})",
+	},
+	"MATH.Max": {
+		"prefix": "Math.Max",
+		"body": "Math.Max(${1:a}, ${2:b})",
+	},
+	"MATH.Clamp": {
+		"prefix": "Math.Clamp",
+		"body": "Math.Clamp(${1:value}, ${2:min}, ${2:max})",
+	},
+	"MATH.RemapVal": {
+		"prefix": "Math.RemapVal",
+		"body": "Math.RemapVal(${1:value}, ${2:a}, ${3:b}, ${4:c}, ${5:d})",
+		// "description": "Remaps a number between a and b, then"
+	},
+	"MATH.RemapValClamped": {
+		"prefix": "Math.RemapValClamped",
+		"body": "Math.RemapValClamped(${1:value}, ${2:a}, ${3:b}, ${4:c}, ${5:d})",
+	},
+	"MATH.ConvertRadiusToSndLvl": {
+		"prefix": "Math.ConvertRadiusToSndLvl",
+		"body": "Math.ConvertRadiusToSndLvl(${1:radius})",
+	},
+	"MATH.RandomVec": {
+		"prefix": "Math.RandomVec",
+		"body": "Math.RandomVec(${1:min}, ${2:max})",
+	},
+	"MATH.Distance": {
+		"prefix": "Math.Distance",
+		"body": "Math.Distance(${1:point1}, ${2:point2})",
+	},
+	"MATH.RandomChance": {
+		"prefix": "Math.RandomChance",
+		"body": "Math.RandomChance()",
+	},
+	"MATH.OneInChance": {
+		"prefix": "Math.OneInChance",
+		"body": "Math.OneInChance(${1:num})",
+	},
+	// Random Constants
+	"SLOT_PRIMARY": {
+		"prefix": "SLOT_PRIMARY",
+		"body": "SLOT_PRIMARY",
+	},
+	"SLOT_SECONDARY": {
+		"prefix": "SLOT_SECONDARY",
+		"body": "SLOT_SECONDARY",
+	},
+	"SLOT_MELEE": {
+		"prefix": "SLOT_MELEE",
+		"body": "SLOT_MELEE",
+	},
+	"SLOT_UTILITY": {
+		"prefix": "SLOT_UTILITY",
+		"body": "SLOT_UTILITY",
+	},
+	"SLOT_BUILDING": {
+		"prefix": "SLOT_BUILDING",
+		"body": "SLOT_BUILDING",
+	},
+	"SLOT_PDA": {
+		"prefix": "SLOT_PDA",
+		"body": "SLOT_PDA",
+	},
+	"SLOT_PDA2": {
+		"prefix": "SLOT_PDA2",
+		"body": "SLOT_PDA2",
+	},
+	"SLOT_COUNT": {
+		"prefix": "SLOT_COUNT",
+		"body": "SLOT_COUNT",
+	},
+	//
+	"MASK_ALL": {
+		"prefix": "MASK_ALL",
+		"body": "MASK_ALL",
+	},
+	"MASK_SOLID": {
+		"prefix": "MASK_SOLID",
+		"body": "MASK_SOLID",
+	},
+	"MASK_PLAYERSOLID": {
+		"prefix": "MASK_PLAYERSOLID",
+		"body": "MASK_PLAYERSOLID",
+	},
+	"MASK_NPCSOLID": {
+		"prefix": "MASK_NPCSOLID",
+		"body": "MASK_NPCSOLID",
+	},
+	"MASK_WATER": {
+		"prefix": "MASK_WATER",
+		"body": "MASK_WATER",
+	},
+	"MASK_OPAQUE": {
+		"prefix": "MASK_OPAQUE",
+		"body": "MASK_OPAQUE",
+	},
+	"MASK_OPAQUE_AND_NPCS": {
+		"prefix": "MASK_OPAQUE_AND_NPCS",
+		"body": "MASK_OPAQUE_AND_NPCS",
+	},
+	"MASK_BLOCKLOS": {
+		"prefix": "MASK_BLOCKLOS",
+		"body": "MASK_BLOCKLOS",
+	},
+	"MASK_BLOCKLOS_AND_NPCS": {
+		"prefix": "MASK_BLOCKLOS_AND_NPCS",
+		"body": "MASK_BLOCKLOS_AND_NPCS",
+	},
+	"MASK_VISIBLE": {
+		"prefix": "MASK_VISIBLE",
+		"body": "MASK_VISIBLE",
+	},
+	"MASK_VISIBLE_AND_NPCS": {
+		"prefix": "MASK_VISIBLE_AND_NPCS",
+		"body": "MASK_VISIBLE_AND_NPCS",
+	},
+	"MASK_SHOT": {
+		"prefix": "MASK_SHOT",
+		"body": "MASK_SHOT",
+	},
+	"MASK_SHOT_HULL": {
+		"prefix": "MASK_SHOT_HULL",
+		"body": "MASK_SHOT_HULL",
+	},
+	"MASK_SHOT_PORTAL": {
+		"prefix": "MASK_SHOT_PORTAL",
+		"body": "MASK_SHOT_PORTAL",
+	},
+	"MASK_SOLID_BRUSHONLY": {
+		"prefix": "MASK_SOLID_BRUSHONLY",
+		"body": "MASK_SOLID_BRUSHONLY",
+	},
+	"MASK_PLAYERSOLID_BRUSHONLY": {
+		"prefix": "MASK_PLAYERSOLID_BRUSHONLY",
+		"body": "MASK_PLAYERSOLID_BRUSHONLY",
+	},
+	"MASK_NPCSOLID_BRUSHONLY": {
+		"prefix": "MASK_NPCSOLID_BRUSHONLY",
+		"body": "MASK_NPCSOLID_BRUSHONLY",
+	},
+	"MASK_NPCWORLDSTATIC": {
+		"prefix": "MASK_NPCWORLDSTATIC",
+		"body": "MASK_NPCWORLDSTATIC",
+	},
+	"MASK_SPLITAREAPORTAL": {
+		"prefix": "MASK_SPLITAREAPORTAL",
+		"body": "MASK_SPLITAREAPORTAL",
+	},
+	"MASK_CUSTOM_PLAYERSOLID": {
+		"prefix": "MASK_CUSTOM_PLAYERSOLID",
+		"body": "MASK_CUSTOM_PLAYERSOLID",
+	},
+	//
+	"SNDLVL_NONE": {
+		"prefix": "SNDLVL_NONE",
+		"body": "SNDLVL_NONE",
+	},
+	"SNDLVL_20dB": {
+		"prefix": "SNDLVL_20db",
+		"body": "SNDLVL_20db",
+	},
+	"SNDLVL_25db": {
+		"prefix": "SNDLVL_25db",
+		"body": "SNDLVL_25db",
+	},
+	"SNDLVL_30db": {
+		"prefix": "SNDLVL_30db",
+		"body": "SNDLVL_30db",
+	},
+	"SNDLVL_35db": {
+		"prefix": "SNDLVL_35db",
+		"body": "SNDLVL_35db",
+	},
+	"SNDLVL_40db": {
+		"prefix": "SNDLVL_40db",
+		"body": "SNDLVL_40db",
+	},
+	"SNDLVL_45db": {
+		"prefix": "SNDLVL_45db",
+		"body": "SNDLVL_45db",
+	},
+	"SNDLVL_50db": {
+		"prefix": "SNDLVL_50db",
+		"body": "SNDLVL_50db",
+	},
+	"SNDLVL_55db": {
+		"prefix": "SNDLVL_55db",
+		"body": "SNDLVL_55db",
+	},
+	"SNDLVL_60db": {
+		"prefix": "SNDLVL_60db",
+		"body": "SNDLVL_60db",
+	},
+	"SNDLVL_IDLE": {
+		"prefix": "SNDLVL_IDLE",
+		"body": "SNDLVL_IDLE",
+	},
+	"SNDLVL_65db": {
+		"prefix": "SNDLVL_65db",
+		"body": "SNDLVL_65db",
+	},
+	"SNDLVL_STATIC": {
+		"prefix": "SNDLVL_STATIC",
+		"body": "SNDLVL_STATIC",
+	},
+	"SNDLVL_70db": {
+		"prefix": "SNDLVL_70db",
+		"body": "SNDLVL_70db",
+	},
+	"SNDLVL_75db": {
+		"prefix": "SNDLVL_75db",
+		"body": "SNDLVL_75db",
+	},
+	"SNDLVL_NORM": {
+		"prefix": "SNDLVL_NORM",
+		"body": "SNDLVL_NORM",
+	},
+	"SNDLVL_80db": {
+		"prefix": "SNDLVL_80db",
+		"body": "SNDLVL_80db",
+	},
+	"SNDLVL_TALKING": {
+		"prefix": "SNDLVL_TALKING",
+		"body": "SNDLVL_TALKING",
+	},
+	"SNDLVL_85db": {
+		"prefix": "SNDLVL_85db",
+		"body": "SNDLVL_85db",
+	},
+	"SNDLVL_90db": {
+		"prefix": "SNDLVL_90db",
+		"body": "SNDLVL_90db",
+	},
+	"SNDLVL_95db": {
+		"prefix": "SNDLVL_95db",
+		"body": "SNDLVL_95db",
+	},
+	"SNDLVL_100db": {
+		"prefix": "SNDLVL_100db",
+		"body": "SNDLVL_100db",
+	},
+	"SNDLVL_105db": {
+		"prefix": "SNDLVL_105db",
+		"body": "SNDLVL_105db",
+	},
+	"SNDLVL_110db": {
+		"prefix": "SNDLVL_110db",
+		"body": "SNDLVL_110db",
+	},
+	"SNDLVL_120db": {
+		"prefix": "SNDLVL_120db",
+		"body": "SNDLVL_120db",
+	},
+	"SNDLVL_130db": {
+		"prefix": "SNDLVL_130db",
+		"body": "SNDLVL_130db",
+	},
+	"SNDLVL_GUNFIRE": {
+		"prefix": "SNDLVL_GUNFIRE",
+		"body": "SNDLVL_GUNFIRE",
+	},
+	"SNDLVL_140db": {
+		"prefix": "SNDLVL_140db",
+		"body": "SNDLVL_140db",
+	},
+	"SNDLVL_145db": {
+		"prefix": "SNDLVL_145db",
+		"body": "SNDLVL_145db",
+	},
+	"SNDLVL_150db": {
+		"prefix": "SNDLVL_150db",
+		"body": "SNDLVL_150db",
+	},
+	"SNDLVL_180db": {
+		"prefix": "SNDLVL_180db",
+		"body": "SNDLVL_180db",
+	},
+	//
+	"TFCOLLISION_GROUP_GRENADES": {
+		"prefix": "TFCOLLISION_GROUP_GRENADES",
+		"body": "TFCOLLISION_GROUP_GRENADES",
+	},
+	"TFCOLLISION_GROUP_OBJECT": {
+		"prefix": "TFCOLLISION_GROUP_OBJECT",
+		"body": "TFCOLLISION_GROUP_OBJECT",
+	},
+	"TFCOLLISION_GROUP_OBJECT_SOLIDTOPLAYERMOVEMENT": {
+		"prefix": "TFCOLLISION_GROUP_OBJECT_SOLIDTOPLAYERMOVEMENT",
+		"body": "TFCOLLISION_GROUP_OBJECT_SOLIDTOPLAYERMOVEMENT",
+	},
+	"TFCOLLISION_GROUP_COMBATOBJECT": {
+		"prefix": "TFCOLLISION_GROUP_COMBATOBJECT",
+		"body": "TFCOLLISION_GROUP_COMBATOBJECT",
+	},
+	"TFCOLLISION_GROUP_ROCKETS": {
+		"prefix": "TFCOLLISION_GROUP_ROCKETS",
+		"body": "TFCOLLISION_GROUP_ROCKETS",
+	},
+	"TFCOLLISION_GROUP_RESPAWNROOMS": {
+		"prefix": "TFCOLLISION_GROUP_RESPAWNROOMS",
+		"body": "TFCOLLISION_GROUP_RESPAWNROOMS",
+	},
+	"TFCOLLISION_GROUP_PUMPKIN_BOMB": {
+		"prefix": "TFCOLLISION_GROUP_PUMPKIN_BOMB",
+		"body": "TFCOLLISION_GROUP_PUMPKIN_BOMB",
+	},
+	"TFCOLLISION_GROUP_ROCKET_BUT_NOT_WITH_OTHER_ROCKETS": {
+		"prefix": "TFCOLLISION_GROUP_ROCKET_BUT_NOT_WITH_OTHER_ROCKETS",
+		"body": "TFCOLLISION_GROUP_ROCKET_BUT_NOT_WITH_OTHER_ROCKETS",
+	},
+	//
+	"TF_SPELL_UNKNOWN": {
+		"prefix": "TF_SPELL_UNKNOWN",
+		"body": "TF_SPELL_UNKNOWN",
+	},
+	"TF_SPELL_EMPTY": {
+		"prefix": "TF_SPELL_EMPTY",
+		"body": "TF_SPELL_EMPTY",
+	},
+	"TF_SPELL_FIREBALL": {
+		"prefix": "TF_SPELL_FIREBALL",
+		"body": "TF_SPELL_FIREBALL",
+	},
+	"TF_SPELL_BATS": {
+		"prefix": "TF_SPELL_BATS",
+		"body": "TF_SPELL_BATS",
+	},
+	"TF_SPELL_HEAL": {
+		"prefix": "TF_SPELL_HEAL",
+		"body": "TF_SPELL_HEAL",
+	},
+	"TF_SPELL_MIRV": {
+		"prefix": "TF_SPELL_MIRV",
+		"body": "TF_SPELL_MIRV",
+	},
+	"TF_SPELL_BLAST": {
+		"prefix": "TF_SPELL_BLAST",
+		"body": "TF_SPELL_BLAST",
+	},
+	"TF_SPELL_STEALTH": {
+		"prefix": "TF_SPELL_STEALTH",
+		"body": "TF_SPELL_STEALTH",
+	},
+	"TF_SPELL_TELEPORT": {
+		"prefix": "TF_SPELL_TELEPORT",
+		"body": "TF_SPELL_TELEPORT",
+	},
+	"TF_SPELL_LIGHTNING": {
+		"prefix": "TF_SPELL_LIGHTNING",
+		"body": "TF_SPELL_LIGHTNING",
+	},
+	"TF_SPELL_MINIFY": {
+		"prefix": "TF_SPELL_MINIFY",
+		"body": "TF_SPELL_MINIFY",
+	},
+	"TF_SPELL_METEOR": {
+		"prefix": "TF_SPELL_METEOR",
+		"body": "TF_SPELL_METEOR",
+	},
+	"TF_SPELL_MONOCULUS": {
+		"prefix": "TF_SPELL_MONOCULUS",
+		"body": "TF_SPELL_MONOCULUS",
+	},
+	"TF_SPELL_SKELETON": {
+		"prefix": "TF_SPELL_SKELETON",
+		"body": "TF_SPELL_SKELETON",
+	},
+	"TF_SPELL_BOXING_KART": {
+		"prefix": "TF_SPELL_BOXING_KART",
+		"body": "TF_SPELL_BOXING_KART",
+	},
+	"TF_SPELL_BASE_JUMP_KART": {
+		"prefix": "TF_SPELL_BASE_JUMP_KART",
+		"body": "TF_SPELL_BASE_JUMP_KART",
+	},
+	"TF_SPELL_OVERHEAL_KART": {
+		"prefix": "TF_SPELL_OVERHEAL_KART",
+		"body": "TF_SPELL_OVERHEAL_KART",
+	},
+	"TF_SPELL_BOMB_HEAD_KART": {
+		"prefix": "TF_SPELL_BOMB_HEAD_KART",
+		"body": "TF_SPELL_BOMB_HEAD_KART",
+	},
+	//
+	"TF_TEAM_ANY": {
+		"prefix": "TF_TEAM_ANY",
+		"body": "TF_TEAM_ANY",
+	},
+	"TF_TEAM_INVALID": {
+		"prefix": "TF_TEAM_INVALID",
+		"body": "TF_TEAM_INVALID",
+	},
+	"TF_TEAM_UNASSIGNED": {
+		"prefix": "TF_TEAM_UNASSIGNED",
+		"body": "TF_TEAM_UNASSIGNED",
+	},
+	"TF_TEAM_SPECTATOR": {
+		"prefix": "TF_TEAM_SPECTATOR",
+		"body": "TF_TEAM_SPECTATOR",
+	},
+	/* "TF_TEAM_COUNT": {
+		"prefix": "TF_TEAM_COUNT",
+		"body": "TF_TEAM_COUNT",
+	}, */
+	"TF_TEAM_HALLOWEEN": {
+		"prefix": "TF_TEAM_HALLOWEEN",
+		"body": "TF_TEAM_HALLOWEEN",
+	},
+	//
+	"TF_STUN_NONE": {
+		"prefix": "TF_STUN_NONE",
+		"body": "TF_STUN_NONE",
+	},
+	"TF_STUN_MOVEMENT": {
+		"prefix": "TF_STUN_MOVEMENT",
+		"body": "TF_STUN_MOVEMENT",
+	},
+	"TF_STUN_CONTROLS": {
+		"prefix": "TF_STUN_CONTROLS",
+		"body": "TF_STUN_CONTROLS",
+	},
+	"TF_STUN_MOVEMENT_FORWARD_ONLY": {
+		"prefix": "TF_STUN_MOVEMENT_FORWARD_ONLY",
+		"body": "TF_STUN_MOVEMENT_FORWARD_ONLY",
+	},
+	"TF_STUN_SPECIAL_SOUND": {
+		"prefix": "TF_STUN_SPECIAL_SOUND",
+		"body": "TF_STUN_SPECIAL_SOUND",
+	},
+	"TF_STUN_DODGE_COOLDOWN": {
+		"prefix": "TF_STUN_DODGE_COOLDOWN",
+		"body": "TF_STUN_DODGE_COOLDOWN",
+	},
+	"TF_STUN_NO_EFFECTS": {
+		"prefix": "TF_STUN_NO_EFFECTS",
+		"body": "TF_STUN_NO_EFFECTS",
+	},
+	"TF_STUN_LOSER_STATE": {
+		"prefix": "TF_STUN_LOSER_STATE",
+		"body": "TF_STUN_LOSER_STATE",
+	},
+	"TF_STUN_BY_TRIGGER": {
+		"prefix": "TF_STUN_BY_TRIGGER",
+		"body": "TF_STUN_BY_TRIGGER",
+	},
+	"TF_STUN_BOTH": {
+		"prefix": "TF_STUN_BOTH",
+		"body": "TF_STUN_BOTH",
+	},
+	"TF_STUN_SOUND": {
+		"prefix": "TF_STUN_SOUND",
+		"body": "TF_STUN_SOUND",
+	},
+	//
+	"FLAG_HOME": {
+		"prefix": "FLAG_HOME",
+		"body": "FLAG_HOME",
+	},
+	"FLAG_PICKED_UP": {
+		"prefix": "FLAG_PICKED_UP",
+		"body": "FLAG_PICKED_UP",
+	},
+	"FLAG_DROPPED": {
+		"prefix": "FLAG_DROPPED",
+		"body": "FLAG_DROPPED",
+	},
+	//
+	"OBJ_DISPENSER": {
+		"prefix": "OBJ_DISPENSER",
+		"body": "OBJ_DISPENSER",
+	},
+	"OBJ_TELEPORTER": {
+		"prefix": "OBJ_TELEPORTER",
+		"body": "OBJ_TELEPORTER",
+	},
+	"OBJ_SENTRY": {
+		"prefix": "OBJ_SENTRY",
+		"body": "OBJ_SENTRY",
+	},
+}
