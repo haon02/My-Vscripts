@@ -327,7 +327,7 @@ function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 		local iExplosiveShot = weapon.GetAttribute("explosive sniper shot", 0)
 		if ( iExplosiveShot == 0 )
 			break;
-		CreateKnifeAoETable({
+		CreateKnifeAoE({
 			owner = attacker
 			weapon = weapon
 			radius = (EBSettings.base_range + (iExplosiveShot * EBSettings.additive_range))

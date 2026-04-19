@@ -21,6 +21,16 @@ else
 		return MOD_TF2
 }
 
+/* if(!("__IncludeScript" in ROOT))
+{
+	ROOT.__IncludeScript <- IncludeScript
+
+	function ROOT::IncludeScript(file, scope = null)
+	{
+		SetScriptVersion(file, "__unknown__")
+		__IncludeScript(file, scope)
+	}
+} */
 
 /**
  * Sets the library version
