@@ -1,4 +1,6 @@
-IncludeScript("fatcat_library")
+if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
+	IncludeScript("fatcat_library")
+
 ::IH_color <- "\x08FFFF00DD"
 ::IH_text_color <- "\x08FFFFFFBB"
 ::IH_color_header <- "\x0826c2ffDD"
