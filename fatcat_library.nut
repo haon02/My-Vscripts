@@ -5568,7 +5568,6 @@ CreateThinker("OnEntityPostSpawn" , function() {
 }
 __CollectGameEventCallbacks(ChaosCustomEvents)
 
-// Admin cmds
 AddChatTrigger(["lib_version", "lib_versions"], function(player, ...) {
 	PrintToConsoleAll(type(FatCatLibTimeStamp))
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp.tostring())
