@@ -5140,9 +5140,11 @@ CreateThinker("OnEntityPostSpawn" , function() {
 		{
 			if(trigger != Trigger)
 				continue
+			local temp = clone data
+			temp.remove(0)
 			if(CallbackInfo.len() == 1 || !player)
 			{
-				CallbackInfo[0].acall(data)
+				CallbackInfo[0].acall([ROOT].extend(temp))
 				continue
 			}
 
@@ -5164,7 +5166,7 @@ CreateThinker("OnEntityPostSpawn" , function() {
 			}
 
 			if(PassedFilters)
-				CallbackInfo[0].acall(data)
+				CallbackInfo[0].acall([ROOT].extend(temp))
 		}
 	}
 	function OnGameEvent_npc_hurt(params)
@@ -5662,9 +5664,10 @@ RegisterAdminTrigger("enable_errors", function(player, ...) {
 	})
 })
 
-/* AddChatTrigger(["lib_reload", "reload_library"], function(player, ...) {
+RegisterAdminTrigger(["lib_reload", "reload_library"], function(player, ...) {
 	ReloadLibrary()
-}, "IsAdmin") */
+})
+
 
 
 // the admins wowow
