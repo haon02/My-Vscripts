@@ -1701,6 +1701,11 @@
 		"prefix": "PrintToHudAllFilter",
 		"body": "PrintToHudAllFilter(${1:msg}, ${2:filter = []})",
 		"description": "Prints a hud message to everyone with a filter",
+	},	
+	"TranslateToHudAll": {
+		"prefix": "TranslateToHudAll",
+		"body": "TranslateToHudAll(${1:...})",
+		"description": "Translates a hud message to everyone",
 	},
 	
 	///// CHAT PRINTS /////

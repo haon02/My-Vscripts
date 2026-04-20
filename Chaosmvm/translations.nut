@@ -8,8 +8,11 @@ if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatC
 ::IH_disable_color <- "\x0826beff66"
 ::IH_error_color <- "\x07D43F3F"
 
+if(!("CHECKPOINT_ERROR" in getroottable()))
+	::CHECKPOINT_ERROR <- "\x07bf4137"
+
 if("SetScriptVersion" in getroottable())
-	SetScriptVersion("Translations", "1.2.5")
+	SetScriptVersion("Translations", "1.2.6")
 
 ::TRANSLATION_TABLE <- {
 	english = {
@@ -39,6 +42,13 @@ if("SetScriptVersion" in getroottable())
 		REPROG_BOT_NOT_SUIT		= TF_TEAM_COLOR_REPROG_B+"%s\x01 is not suitable for combat and cannot be reprogrammed."
 		REPROG_BOT_LEAVE		= TF_TEAM_COLOR_SPEC+"%s died."
 		REPROG_BOT_MESSAGE 		= TF_TEAM_COLOR_RED+"%s\x01 has reprogrammed "+TF_TEAM_COLOR_REPROG_B+"%s\x01!"
+		//---------------------------------------------------------
+		CHECKPOINT_CREATED		= "\x077c8cc2Checkpoint created:\x078165cf [/%s]"
+		CHECKPOINT_WRONG_MAP	= CHECKPOINT_ERROR+"That checkpoint was not set for this map."
+		CHECKPOINT_WRONG_MISS	= CHECKPOINT_ERROR+"That checkpoint was not set for this mission."
+		CHECKPOINT_EXPIRE		= CHECKPOINT_ERROR+"That checkpoint has expired."
+		CHECKPOINT_RESTORE		= "\x0744CC44Restored to last saved checkpoint."
+		CHECKPOINT_RESTORE_HUD	= "Restored to last saved checkpoint."
 		//---------------------------------------------------------
 		SCATTERGUN_NAME 		= "SCATTERGUN"
 		SCATTERGUN_DESC 		= " Standard option for reliable damage. Highly effective at close range."
@@ -665,6 +675,13 @@ if("SetScriptVersion" in getroottable())
 		REPROG_BOT_NOT_SUIT		= TF_TEAM_COLOR_REPROG_B+"%s\x01 不适合战斗且无法被重编程."
 		REPROG_BOT_LEAVE		= TF_TEAM_COLOR_SPEC+"%s 死亡."
 		REPROG_BOT_MESSAGE 		= TF_TEAM_COLOR_RED+"%s\x01 重编程了 "+TF_TEAM_COLOR_REPROG_B+"%s\x01!"
+		//--------------------------------------------------------- // TODO: TRANSLATE
+		CHECKPOINT_CREATED		= "\x077c8cc2Checkpoint created:\x078165cf [/%s]"
+		CHECKPOINT_WRONG_MAP	= CHECKPOINT_ERROR+"That checkpoint was not set for this map."
+		CHECKPOINT_WRONG_MISS	= CHECKPOINT_ERROR+"That checkpoint was not set for this mission."
+		CHECKPOINT_EXPIRE		= CHECKPOINT_ERROR+"That checkpoint has expired."
+		CHECKPOINT_RESTORE		= "\x0744CC44Restored to last saved checkpoint."
+		CHECKPOINT_RESTORE_HUD	= "Restored to last saved checkpoint."
 		//---------------------------------------------------------
 		SCATTERGUN_NAME 		= "猎枪"
 		SCATTERGUN_DESC 		= "标准的输出选择. 对近距离敌人更加有效."

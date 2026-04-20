@@ -615,6 +615,18 @@ ADMINFLAGS["Noclip"] 	<- 0x0002
 	1, 		// idk
 ]
 
+if(!("MissionMakers" in ROOT))
+	::MissionMakers <- []
+
+function ROOT::AddMissionMaker(id)
+	MissionMakers.append(id)
+
+function ROOT::RemoveMissionMaker(id)
+{
+	if(MissionMakers.find(id))
+		MissionMakers.remove(MissionMakers.find(id))
+}
+
 function ROOT::IsConvarAllowed(cvar)
 	return Convars.IsConVarOnAllowList(cvar)
 function ROOT::GetCvarFloat(cvar)
@@ -1170,9 +1182,12 @@ function CTFPlayer::IsEventJudge()
 		//"[U:1:294258124]"	// Gregarious
 		//"[U:1:889968517]"	// Ralsei
 
+function CTFPlayer::IsMissionMaker()
+	return IsInArray(GetPropString(this, PROP_PLAYER_STEAMID), MissionMakers)
+
 function CTFPlayer::IsAdmin()
 {
-	return IsEventJudge() || IsInArray(GetPropString(this, PROP_PLAYER_STEAMID), [
+	return IsMissionMaker() || IsEventJudge() || IsInArray(GetPropString(this, PROP_PLAYER_STEAMID), [
 		"[U:1:969530867]"	// Fatcat
 		"[U:1:101345257]"	// ShadowBolt
 		"[U:1:1768280682]"	// MiirioKing
@@ -3247,6 +3262,11 @@ function ROOT::PrintToHudAll(msg)
 	
 function ROOT::PrintToHudAllF(msg, ...)
 	ClientPrint(null, HUD_PRINTCENTER, CleanUpAndFormatString.acall([this, msg].extend(vargv)))
+function ROOT::TranslateToHudAll( ... )
+{
+	foreach (player in m_aHumans)
+		player.TranslateToHud.acall([player].extend(vargv))
+}
 
 function ROOT::PrintToHudAllFilter(msg, filter = [])
 {
