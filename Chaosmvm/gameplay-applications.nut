@@ -491,13 +491,6 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 // if other scripts use DamageCallbacks then Remove this!!
 ClearDamageCallbacks()
 
-// RegisterDamageCallback("player", "GameplayPlayer" function(params) {
-// 	params.damage <- 100
-// 	ModifyCallbackDamage(params, params.victim, params.attacker, params.weapon, params.inflictor)
-// 	ProcessChaosWeaponHit(params, params.victim, params.attacker, params.weapon, params.inflictor)
-// })
-
-
 RegisterDamageCallback("player", "GameplayPlayer" function(params) {
 	if((params.damage_custom & TF_DMG_CUSTOM_IGNORE_EVENTS) || params.damage_custom == TF_DMG_CUSTOM_TRIGGER_HURT)
 		return
@@ -508,7 +501,10 @@ RegisterDamageCallback("player", "GameplayPlayer" function(params) {
 	local inflictor	= params.inflictor
 
 	if(inflictor && inflictor.GetClassname() == "tf_projectile_rocket" && victim.GetTeam() == TF_TEAM_PVE_INVADERS)
-		GetScope(inflictor).DidDamage <- true
+	{
+		if(!victim.IsInvincible())
+			GetScope(inflictor).DidDamage <- true
+	}
 
 	if(!attacker)
 		return
