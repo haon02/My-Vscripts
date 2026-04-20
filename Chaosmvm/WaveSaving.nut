@@ -76,14 +76,14 @@ function ReadCheckpoint(player)
 		return
 	}
 
-	printl(map)
-	printl(mission)
-	printl(waves)
-	printl(endTime)
-	printl(command)
-	printl(valid)
+	// printl(map)
+	// printl(mission)
+	// printl(waves)
+	// printl(endTime)
+	// printl(command)
+	// printl(valid)
 
-	printl(endTime - GetTimeOfDay())
+	// printl(endTime - GetTimeOfDay())
 
 	if(GetMapName() != map)
 		return player.GetTranslatedAndFormattedString("CHECKPOINT_WRONG_MAP")
@@ -133,13 +133,13 @@ function InvalidateCheckpoint()
 	}
 
 	if(index == null)
-		return printl("GUG")
+		return //printl("GUG")
 
-	printl(file[index])
+	// printl(file[index])
 
 	file[index] = 0
 
-	printl(file[index])
+	// printl(file[index])
 
 	StringToFile(WAVE_SAVE_FILE, ArrayToString(file))
 }
