@@ -4573,7 +4573,7 @@ function ROOT::AddChatTrigger(trigger, callback, ...)
 function ROOT::RegisterAdminTrigger(trigger, callback)
 	AddChatTrigger(trigger, callback, "IsAdmin")
 
-function ROOT::RemoveChatTrigger(triger)
+function ROOT::RemoveChatTrigger(trigger)
 {
 	local errors = []
 	if(typeof trigger == "string")
