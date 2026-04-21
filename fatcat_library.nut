@@ -1174,7 +1174,6 @@ function CTFPlayer::IsEventJudge()
 		"[U:1:1075756146]"	// GET ANGRY !!! 	//furuka
 		"[U:1:312592019]"	// the fat			//T_TFBot_Eel_New_Jersey
 		"[U:1:1104797071]"	// Katsu
-		"[U:1:969530867]"
 	])
 }
 
@@ -3055,9 +3054,7 @@ function CTFWeaponBase::ShootPosition()
 	case 44: // Sandman
 	case 648: // The Wrap Assassin
 		if(!GetOwner())
-		{
 			return GetOrigin() + Vector(0.0, 0.0, 50.0) + (GetAbsAngles().Forward() * 32.0)
-		}
 		return GetOwner().GetOrigin() + GetOwner().GetModelScale() *
 				(GetOwner().EyeAngles().Forward() * 32.0 + Vector(0.0, 0.0, 50.0))
 	default:

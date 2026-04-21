@@ -200,24 +200,6 @@ RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entit
 	})
 })
 
-function CenterText(totalWidth, text) {
-    local textLen = text.len();
-    if (textLen >= totalWidth) return text;
-
-    // Proportional fonts usually need ~1.5x more spaces to 
-    // equal the visual width of a standard character.
-    local spaceFactor = 1.6; 
-    local paddingNeeded = (totalWidth - textLen) / 2;
-    local adjustedPadding = (paddingNeeded * spaceFactor).tointeger();
-
-    local leftPad = "";
-    for (local i = 0; i < adjustedPadding; i++) {
-        leftPad += " "; 
-    }
-    
-    return leftPad + text;
-}
-
 function GameplayThink()
 {
 	if ( Players.len() < 1 || !ValidatePlayerArray() || (m_aHumans.len() + m_aRobots.len()) != Players.len())
