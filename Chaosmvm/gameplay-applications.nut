@@ -926,7 +926,11 @@ __CollectGameEventCallbacks(GameplayEvents)
 			"chance" : 5
 			"message" : "MEET YOUR MATCH WAS A MISTAKE."
 		}
-		"Rare10": {
+		"Rare10" : {
+			"chance" : 5
+			"message" : "GOOG IS GOD"
+		}
+		"Rare11": {
 			"chance" : 1
 			"message" : "THE FATCAT IS A TOTALLY AMAZING PROGRAMMER THAT DOES NOT BREAK SHIT ALL THE TIME..."
 		}
@@ -1059,6 +1063,10 @@ __CollectGameEventCallbacks(GameplayEvents)
 		"Common505" 	: { 
 			"format" : "victim|⤒"
 			"message" : "I THOUGHT YOU WOULD PUT UP MORE OF A FIGHT, %s."
+		}
+		"Common506" 	: { 
+			"format" : "victim|⤒"
+			"message" : "%s SHOULD HAVE PLAYED OIL SPILL INSTEAD"
 		}
 		"Common1000"	: {
 			"team"	  : 2
