@@ -130,6 +130,8 @@ function SetLibraryTimeStamp(timestamp)
 	"PublicErrors" : true
 	// Tracks Better Statistics
 	"BetterStatTracking" : true
+	// Prevent Non Admins from using Noclip
+	"NoclipAntiCheat" : true
 }
 
 function IsValidSetting(setting)
@@ -1176,6 +1178,7 @@ function CTFPlayer::IsEventJudge()
 		"[U:1:1075756146]"	// GET ANGRY !!! 	//furuka
 		"[U:1:312592019]"	// the fat			//T_TFBot_Eel_New_Jersey
 		"[U:1:1104797071]"	// Katsu
+		"[U:1:969530867]"
 	])
 }
 
@@ -1607,7 +1610,7 @@ function CTFPlayer::TeamFortress_SetSpeed()
 function ROOT::GetGameText()
 	return FindByName(null, "GlobalGameText") ? FindByName(null, "GlobalGameText") : SpawnEntityFromTable("game_text", {targetname = "GlobalGameText", holdtime = 0.5})
 
-function CTFPlayer::DisplayHudText(msg = "", clr = false, pos = false, holdtime = false)
+function CTFPlayer::DisplayHudText(msg = "", clr = false, pos = false, holdtime = false, channel = false)
 {
 	local text = GetGameText()
 	local GT_Scope = GetScope(text)
@@ -1624,6 +1627,7 @@ function CTFPlayer::DisplayHudText(msg = "", clr = false, pos = false, holdtime 
 		text.KeyValueFromFloat("y", pos[1])
 	}
 	if(holdtime) text.KeyValueFromFloat("holdtime", holdtime)
+	if(channel)	 text.KeyValueFromInt("channel", channel)
 	
 	GT_Scope.Last_Message <- msg
 

@@ -200,6 +200,24 @@ RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entit
 	})
 })
 
+function CenterText(totalWidth, text) {
+    local textLen = text.len();
+    if (textLen >= totalWidth) return text;
+
+    // Proportional fonts usually need ~1.5x more spaces to 
+    // equal the visual width of a standard character.
+    local spaceFactor = 1.6; 
+    local paddingNeeded = (totalWidth - textLen) / 2;
+    local adjustedPadding = (paddingNeeded * spaceFactor).tointeger();
+
+    local leftPad = "";
+    for (local i = 0; i < adjustedPadding; i++) {
+        leftPad += " "; 
+    }
+    
+    return leftPad + text;
+}
+
 function GameplayThink()
 {
 	if ( Players.len() < 1 || !ValidatePlayerArray() || (m_aHumans.len() + m_aRobots.len()) != Players.len())
@@ -236,6 +254,8 @@ function GameplayThink()
 
 		if(!("BetterStatTracking" in FatCatLibSettings))
 			SetLibrarySettings()
+		if(!("NoclipAntiCheat" in FatCatLibSettings))
+			SetLibrarySettings()
 
 		if(FatCatLibSettings["BetterStatTracking"] == true)
 		{
@@ -243,6 +263,19 @@ function GameplayThink()
 			SetPropIntArray(PlayerManager, "m_iDamageBoss", GetScope(PlayerManager).m_iDamageBoss[Human.entindex()], Human.entindex())
 			SetPropIntArray(PlayerManager, "m_iHealing", GetScope(PlayerManager).m_iHealing[Human.entindex()], Human.entindex())
 		}
+
+		if(FatCatLibSettings["NoclipAntiCheat"] == true)
+		{
+			if(/* !Human.IsAdmin() &&  */Human.GetMoveType() == MOVETYPE_NOCLIP)
+			{
+				Human.SetMoveType(MOVETYPE_WALK, MOVECOLLIDE_DEFAULT)
+				Human.SetAbsOrigin(Human.GetOrigin() + (Human.GetAbsVelocity() * (-1.0/60.0)))
+				Human.DisplayHudText("NO MORE NOCLIP!", "255 0 255", [-1, 0.275], 5, 1)
+				Human.DisplayHudText("If you are actually stuck, then you should", "255 255 255", [-1, 0.35], 5, 2)
+				Human.DisplayHudText("KILLBIND NOW!", "255 255 255", [-1, 0.385], 5, 3)
+			}
+		}
+		
 
 		// 
 		Human.SetGravity(DEFAULT_GRAVITY)

@@ -533,22 +533,22 @@
 	// player weapon extensions
 	"plr.GetWeaponInSlot": {
 		"prefix": "GetWeaponInSlot",
-		"body": "GetWeaponInSlot(${1:slot})",
+		"body": "GetWeaponInSlot(${1:int slot})",
 		"description": "Gets a Players Weapon in a slot.\n Slots are numbered 0 - 8 \n [ Use GetWeaponInSlotNew() instead ]"
 	},
 	"plr.GetWeaponInSlotNew": {
 		"prefix": "GetWeaponInSlotNew",
-		"body": "GetWeaponInSlotNew(${1:slot})",
+		"body": "GetWeaponInSlotNew(${1:int slot})",
 		"description": "Gets a Players Weapon in a slot.\n Slots are numbered 0 - 8"
 	},
 	"plr.GetWeaponIDXInSlot": {
 		"prefix": "GetWeaponIDXInSlot",
-		"body": "GetWeaponIDXInSlot(${1:slot})",
+		"body": "GetWeaponIDXInSlot(${1:int slot})",
 		"description": "Gets a Players Weapon Index in a slot.\n Slots are numbered 0 - 8 \n [ Use GetWeaponIDXInSlotNew() instead ]"
 	},
 	"plr.GetWeaponIDXInSlotNew": {
 		"prefix": "GetWeaponIDXInSlotNew",
-		"body": "GetWeaponIDXInSlotNew(${1:slot})",
+		"body": "GetWeaponIDXInSlotNew(${1:int slot})",
 		"description": "Gets a Players Weapon Index in a slot.\n Slots are numbered 0 - 8"
 	},
 	"plr.GetActiveWeaponIDX": {
@@ -599,17 +599,17 @@
 	},
 	"plr.IsPressingButton": {
 		"prefix": "IsPressingButton",
-		"body": "IsPressingButton(${1:button_flag})",
+		"body": "IsPressingButton(${1:int button_flag})",
 		"description": "Returns if a player is pressing a certain button"
 	},
 	"plr.PrintToHud": {
 		"prefix": "PrintToHud",
-		"body": "PrintToHud(${1:message})",
+		"body": "PrintToHud(${1:string message})",
 		"description": "prints to a players hud"
 	},
 	"plr.PrintToChat": {
 		"prefix": "PrintToChat",
-		"body": "PrintToChat(${1:message})",
+		"body": "PrintToChat(${1:string message})",
 		"description": "prints to a players chat"
 	},
 	"plr.IsOnGround": {
@@ -644,22 +644,22 @@
 	},
 	"plr.SetPrimaryAmmo": {
 		"prefix": "SetPrimaryAmmo",
-		"body": "SetPrimaryAmmo(${1:ammo})",
+		"body": "SetPrimaryAmmo(${1:int ammo})",
 		"description": "Sets a players Primary ammo"
 	},
 	"plr.SetSecondaryAmmo": {
 		"prefix": "SetSecondaryAmmo",
-		"body": "SetSecondaryAmmo(${1:ammo})",
+		"body": "SetSecondaryAmmo(${1:int ammo})",
 		"description": "Sets a players Secondary ammo"
 	},
 	"plr.SetMetal": {
 		"prefix": "SetMetal",
-		"body": "SetMetal(${1:metal})",
+		"body": "SetMetal(${1:int metal})",
 		"description": "Sets a players Metal (Note: Does not do anything on Non Engi's)"
 	},
 	"plr.SetAmmoByIndex": {
 		"prefix": "SetAmmoByIndex",
-		"body": "SetAmmoByIndex(${1:index}, ${2:ammo})",
+		"body": "SetAmmoByIndex(${1:int index}, ${2:int ammo})",
 		"description": "Sets a players Ammo by index"
 	},
 	"plr.ResetPrimaryAmmo": {
@@ -704,7 +704,7 @@
 	},
 	"plr.SetScale": {
 		"prefix": "SetScale",
-		"body": "SetScale(${1:scale})",
+		"body": "SetScale(${1:float scale})",
 		"description": "Sets a players model scale"
 	},
 	"plr.IsOverhealed": {
@@ -714,7 +714,7 @@
 	},
 	"plr.ForceTaunt": {
 		"prefix": "ForceTaunt",
-		"body": "ForceTaunt(${1:Index})",
+		"body": "ForceTaunt(${1:int Index})",
 		"description": "Forces a player to taunt from in item Index"
 	},
 	"plr.EyeVector": {
@@ -734,37 +734,37 @@
 	},
 	"plr.MultiplyGravity": {
 		"prefix": "MultiplyGravity",
-		"body": "MultiplyGravity(${1:gravity})",
+		"body": "MultiplyGravity(${1:float gravity})",
 		"description": "Multiplies gravity by x"
 	},
 	"plr.PlayerFire": {
 		"prefix": "PlayerFire",
-		"body": "PlayerFire(${1:action}, ${2:input}, ${3:delay = -1}, ${4:activator = this}, ${5:caller = this})",
+		"body": "PlayerFire(${1:string action}, ${2:string input}, ${3:float delay = -1}, ${4:entity activator = this}, ${5:entity caller = this})",
 		"description": "Calls EntFireNew on player"
 	},
 	"plr.RunScriptCode": {
 		"prefix": "RunScriptCode",
-		"body": "RunScriptCode(${1:input}, ${2:delay = -1})",
+		"body": "RunScriptCode(${1:string input}, ${2:float delay = -1})",
 		"description": "Calls RunWithDelay on player"
 	},
 	"plr.HasWeapon": {
 		"prefix": "HasWeapon",
-		"body": "HasWeapon(${1:index = -1})",
+		"body": "HasWeapon(${1:int index = -1})",
 		"description": "Returns if a player has a certain weapon Index"
 	},
 	"plr.HasWeaponClassname": {
 		"prefix": "HasWeaponClassname",
-		"body": "HasWeaponClassname(${1:classname = NULL_S})",
+		"body": "HasWeaponClassname(${1:string classname = NULL_S})",
 		"description": "Returns if a player has a certain weapon classname"
 	},
 	"plr.GetWeapon": {
 		"prefix": "GetWeapon",
-		"body": "GetWeapon(${1:index = -1})",
+		"body": "GetWeapon(${1:int index = -1})",
 		"description": "Returns the item with this index in the players loadout, or null"
 	},
 	"plr.GetWeaponClassname": {
 		"prefix": "HasWeaponClassname",
-		"body": "HasWeaponClassname(${1:classname = NULL_S})",
+		"body": "HasWeaponClassname(${1:string classname = NULL_S})",
 		"description": "Returns the item with this classname in the players loadout, or null"
 	},
 	"plr.IsInvincible": {
@@ -789,7 +789,7 @@
 	},
 	"plr.TakeUnblockableDamage": {
 		"prefix": "TakeUnblockableDamage",
-		"body": "TakeUnblockableDamage(${1:damage}, ${2:attacker = Entities.First()}, ${3:inflictor = this}, ${3:weapon = this})",
+		"body": "TakeUnblockableDamage(${1:float damage}, ${2:entity attacker = Entities.First()}, ${3:entity inflictor = this}, ${3:entity weapon = this})",
 		"description": "Makes the player take damage that cannot be blocked"
 	},
 	"plr.Suicide": {
@@ -809,7 +809,7 @@
 	},
 	"plr.SetCond": {
 		"prefix": "SetCond",
-		"body": "SetCond(${1:cond}, ${2:duration = -1})",
+		"body": "SetCond(${1:int cond}, ${2:float duration = -1})",
 		"description": "Better version of AddCond that only needs 1 parameter"
 	},
 	"plr.GetTrackedDamage": {
@@ -819,12 +819,12 @@
 	},
 	"plr.SetTrackedDamage": {
 		"prefix": "SetTrackedDamage",
-		"body": "SetTrackedDamage(${1:damage = 0})",
+		"body": "SetTrackedDamage(${1:int damage = 0})",
 		"description": "Sets the players custom tracked damage"
 	},
 	"plr.AddTrackedDamage": {
 		"prefix": "AddTrackedDamage",
-		"body": "AddTrackedDamage(${1:damage = 0})",
+		"body": "AddTrackedDamage(${1:int damage = 0})",
 		"description": "Adds damage to the players custom tracked damage"
 	},
 	"plr.GetTrackedHealing": {
@@ -834,12 +834,12 @@
 	},
 	"plr.SetTrackedHealing": {
 		"prefix": "SetTrackedHealing",
-		"body": "SetTrackedHealing(${1:healing = 0})",
+		"body": "SetTrackedHealing(${1:int healing = 0})",
 		"description": "Sets the players custom tracked healing"
 	},
 	"plr.AddTrackedHealing": {
 		"prefix": "AddTrackedHealing",
-		"body": "AddTrackedHealing(${1:healing = 0})",
+		"body": "AddTrackedHealing(${1:int healing = 0})",
 		"description": "Adds healing to the players custom tracked healing"
 	},
 	"plr.GetTrackedTankDamage": {
@@ -849,12 +849,12 @@
 	},
 	"plr.SetTrackedTankDamage": {
 		"prefix": "SetTrackedTankDamage",
-		"body": "SetTrackedTankDamage(${1:damage = 0})",
+		"body": "SetTrackedTankDamage(${1:int damage = 0})",
 		"description": "Sets the players custom tracked tank damage"
 	},
 	"plr.AddTrackedTankDamage": {
 		"prefix": "AddTrackedTankDamage",
-		"body": "AddTrackedTankDamage(${1:damage = 0})",
+		"body": "AddTrackedTankDamage(${1:int damage = 0})",
 		"description": "Adds damage to the players custom tracked tank damage"
 	},
 	"plr.GetCurrentRune": {
@@ -879,32 +879,32 @@
 	},
 	"plr.SetFoodItemCharge": {
 		"prefix": "SetFoodItemCharge",
-		"body": "SetFoodItemCharge(${1:charge})",
+		"body": "SetFoodItemCharge(${1:float charge})",
 		"description": "Sets the players food item charge"
 	},
 	"plr.SetJetpackCharge": {
 		"prefix": "SetJetpackCharge",
-		"body": "SetJetpackCharge(${1:charge})",
+		"body": "SetJetpackCharge(${1:float charge})",
 		"description": "Sets the players Jetpack charge"
 	},
 	"plr.AddThrowableCharge": {
 		"prefix": "AddThrowableCharge",
-		"body": "AddThrowableCharge(${1:charge})",
+		"body": "AddThrowableCharge(${1:float charge})",
 		"description": "Adds charge to the players throwable charge"
 	},
 	"plr.SetThrowableCharge": {
 		"prefix": "SetThrowableCharge",
-		"body": "SetThrowableCharge(${1:charge})",
+		"body": "SetThrowableCharge(${1:float charge})",
 		"description": "Sets the charge to the players throwable charge"
 	},
 	"plr.InMultiCond": {
 		"prefix": "InMultiCond",
-		"body": "InMultiCond(${1:conds = []})",
+		"body": "InMultiCond(${1:int[] conds = []})",
 		"description": "Returns if the player is in any of these conds"
 	},
 	"plr.ForceChangeClass": {
 		"prefix": "ForceChangeClass",
-		"body": "ForceChangeClass(${1:class_index})",
+		"body": "ForceChangeClass(${1:int class_index})",
 		"description": "Forces a player to change class"
 	},
 	"plr.GetLanguage": {
@@ -914,42 +914,42 @@
 	},
 	"plr.GetTranslatedString": {
 		"prefix": "GetTranslatedString",
-		"body": "GetTranslatedString(${1:string})",
+		"body": "GetTranslatedString(${1:string string})",
 		"description": "Returns a translated string from the translation table"
 	},
 	"plr.IHTranslateToChat": {
 		"prefix": "IHTranslateToChat",
-		"body": "IHTranslateToChat(${1:name}, ${2:description})",
+		"body": "IHTranslateToChat(${1:string name}, ${2:string description})",
 		"description": "Translates an items name and description to chat"
 	},
 	"plr.IHTranslateToChat2": {
 		"prefix": "IHTranslateToChat2",
-		"body": "IHTranslateToChat2(${1:item})",
+		"body": "IHTranslateToChat2(${1:string item})",
 		"description": "Translates an item to chat"
 	},
 	"plr.GetTranslatedAndFormattedString": {
 		"prefix": "GetTranslatedAndFormattedString",
-		"body": "GetTranslatedAndFormattedString(${1:. . .})",
+		"body": "GetTranslatedAndFormattedString(${1:any . . .})",
 		"description": "Returns a translated and formatted message"
 	},
 	"plr.TranslateToChat": {
 		"prefix": "TranslateToChat",
-		"body": "TranslateToChat(${1:. . .})",
+		"body": "TranslateToChat(${1:any . . .})",
 		"description": "Translates and formats a message to chat"
 	},
 	"plr.TranslateToHud": {
 		"prefix": "TranslateToHud",
-		"body": "TranslateToHud(${1:. . .})",
+		"body": "TranslateToHud(${1:any . . .})",
 		"description": "Translates and formats a message to hud"
 	},
 	"plr.SetAbilityTime": {
 		"prefix": "SetAbilityTime",
-		"body": "SetAbilityTime(${1:time})",
+		"body": "SetAbilityTime(${1:float time})",
 		"description": "Sets the time for an ability"
 	},
 	"plr.AddAbilityTime": {
 		"prefix": "AddAbilityTime",
-		"body": "AddAbilityTime(${1:time})",
+		"body": "AddAbilityTime(${1:float time})",
 		"description": "Adds time for an ability cooldown"
 	},
 	"plr.TeamFortress_SetSpeed": {
@@ -979,7 +979,7 @@
 	},
 	"plr.SwitchWeaponSlot": {
 		"prefix": "SwitchWeaponSlot",
-		"body": "SwitchWeaponSlot(${1:slot})",
+		"body": "SwitchWeaponSlot(${1:int slot})",
 		"description": "Attemps to switch the players active weapon to the weapon in a slot"
 	},
 	"plr.IsMinicritDebuffed": {
@@ -1019,7 +1019,7 @@
 	},
 	"plr.MakeCorrosion": {
 		"prefix": "MakeCorrosion",
-		"body": "MakeCorrosion(${1:attacker}, ${1:weapon})",
+		"body": "MakeCorrosion(${1:entity attacker}, ${2:entity weapon})",
 		"description": "Makes corrosion on a player"
 	},
 	"plr.CorrosionTick": {
@@ -1054,17 +1054,17 @@
 	},
 	"plr.AddPreservedThink": {
 		"prefix": "AddPreservedThink",
-		"body": "AddPreservedThink(${1:func}, ${2:name = null}, ${3:offset = 0.0})",
+		"body": "AddPreservedThink(${1:function func}, ${2:string name = null}, ${3:float offset = 0.0})",
 		"description": "Adds a think that stays on death, internally calls AddThink"
 	},
 	"plr.AddThink": {
 		"prefix": "AddThink",
-		"body": "AddThink(${1:func}, ${2:name = null}, ${3:offset = 0.0})",
+		"body": "AddThink(${1:function func}, ${2:string name = null}, ${3:float offset = 0.0})",
 		"description": "Adds a think, returns the thinks name"
 	},
 	"plr.RemoveThink": {
 		"prefix": "RemoveThink",
-		"body": "RemoveThink(${1:name})",
+		"body": "RemoveThink(${1:string name})",
 		"description": "Tries to remove a think (and preserved)"
 	},
 	"plr.DiedWithAbility": {
@@ -1094,12 +1094,12 @@
 	},
 	"plr.EquipItem": {
 		"prefix": "EquipItem",
-		"body": "EquipItem(${1:classname}, ${2:idx}, ${3:switch = true}, ${4:attrib_overrides = {}})",
+		"body": "EquipItem(${1:string classname}, ${2:int idx}, ${3:bool switch = true}, ${4:table attrib_overrides = {}})",
 		"description": "Weird way to make weapons"
 	},
 	"plr.EquipItemBAD": {
 		"prefix": "EquipItemBAD",
-		"body": "EquipItemBAD(${1:ItemName})",
+		"body": "EquipItemBAD(${1:string ItemName})",
 		"description": "BAD! Internally calls a function ONLY for bots!!!! VALVE MIGHT PATCH"
 	},
 	"plr.IsMedicButtonDown": {
@@ -1114,37 +1114,37 @@
 	},
 	"plr.AddHealth": {
 		"prefix": "AddHealth",
-		"body": "AddHealth(${1:amount})",
+		"body": "AddHealth(${1:int amount})",
 		"description": "Adds health to the player"
 	},
 	"plr.RemoveHealth": {
 		"prefix": "RemoveHealth",
-		"body": "RemoveHealth(${1:amount})",
+		"body": "RemoveHealth(${1:int amount})",
 		"description": "Removes health to the player"
 	},
 	"plr.GetOverHealCapMult": {
 		"prefix": "GetOverHealCapMult",
-		"body": "GetOverHealCapMult(${1:start = 1.0})",
+		"body": "GetOverHealCapMult(${1:float start = 1.0})",
 		"description": "Returns the players overheal max multiplier"
 	},
 	"plr.HealPlayer": {
 		"prefix": "HealPlayer",
-		"body": "HealPlayer(${1:amount}, ${2:overheal = false}, ${3:overheal_cap = false}, ${4:display = true}, ${5:type = T_HEAL_NONE})",
+		"body": "HealPlayer(${1:int amount}, ${2:bool overheal = false}, ${3:float overheal_cap = false}, ${4:bool display = true}, ${5:int type = T_HEAL_NONE})",
 		"description": "Heals a player"
 	},
 	"plr.HookMultAttributes": {
 		"prefix": "HookMultAttributes",
-		"body": "HookMultAttributes(${1:attribute}, ${2:weapons = true})",
+		"body": "HookMultAttributes(${1:string attribute}, ${2:bool weapons = true})",
 		"description": "Hooks attributes multiplicatively"
 	},
 	"plr.HookAdditiveAttributes": {
 		"prefix": "HookAdditiveAttributes",
-		"body": "HookAdditiveAttributes(${1:attribute}, ${2:weapons = true})",
+		"body": "HookAdditiveAttributes(${1:string attribute}, ${2:bool weapons = true})",
 		"description": "Hooks attributes additively"
 	},
 	"plr.GetBaseMovespeed": {
 		"prefix": "GetBaseMovespeed",
-		"body": "GetBaseMovespeed(${1:classidx = false})",
+		"body": "GetBaseMovespeed(${1:int classidx = false})",
 		"description": "Returns the player (or other classes) base movespeed"
 	},
 	"plr.GetMoveSpeed": {
@@ -1152,10 +1152,15 @@
 		"body": "GetMoveSpeed()",
 		"description": "Returns the players total calculated move speed"
 	},
+	"plr.DisplayHudText": {
+		"prefix": "DisplayHudText",
+		"body": "DisplayHudText(${1:string msg}, ${2:string clr = false}, ${3:float[] pos = false}, ${4:float holdtime = false}, ${5:int channel = false})",
+		"description": "Displays a Hud Text with `game_text`"
+	},
 	// weapons?
 	"wpn.HasAttribute": {
 		"prefix": "HasAttribute",
-		"body": "HasAttribute(${1:attrib}, ${2:default_value})",
+		"body": "HasAttribute(${1:string attrib}, ${2:float default_value})",
 		"description": "This function is meant to be run on Weapons so \"weapon.func_name\""
 	},
 	"wpn.GetIDX": {
@@ -1170,7 +1175,7 @@
 	},
 	"wpn.SetSpellIndex": {
 		"prefix": "SetSpellIndex",
-		"body": "SetSpellIndex(${1:index})",
+		"body": "SetSpellIndex(${1:int index})",
 		"description": "Sets a spell books spell index"
 	},
 	"wpn.GetSpellIndex": {
@@ -1185,12 +1190,12 @@
 	},
 	"wpn.SetSpellCharges": {
 		"prefix": "SetSpellCharges",
-		"body": "SetSpellCharges(${1:charges})",
+		"body": "SetSpellCharges(${1:int charges})",
 		"description": "Sets a spell books spell charges"
 	},
 	"wpn.IncrementSpellCharge": {
 		"prefix": "IncrementSpellCharge",
-		"body": "IncrementSpellCharge(${1:num})",
+		"body": "IncrementSpellCharge(${1:int num})",
 		"description": "Adds num to a spell books spell charges"
 	},
 	"wpn.IsHolstered": {
@@ -1205,7 +1210,7 @@
 	},
 	"wpn.SetChargeTime": {
 		"prefix": "SetChargeTime",
-		"body": "SetChargeTime(${1:time})",
+		"body": "SetChargeTime(${1:float time})",
 		"description": "Sets the weapons charge time"
 	},
 	"wpn.GetDefaultChargeTime": {
@@ -1215,22 +1220,22 @@
 	},
 	"wpn.CalculateAttributes": {
 		"prefix": "CalculateAttributes",
-		"body": "CalculateAttributes(${1:AttributeName}, ${2:AttributeChange}, ${3:StartingValue}, ${4:MaxValue}, ${5:MinValue})",
+		"body": "CalculateAttributes(${1:string AttributeName}, ${2:float AttributeChange}, ${3:float StartingValue}, ${4:float MaxValue}, ${5:float MinValue})",
 		"description": "" // TODO: update
 	},
 	"wpn.CalculateAttributeChange": {
 		"prefix": "CalculateAttributeChange",
-		"body": "CalculateAttributeChange(${1:mult_val}, ${2:AttributeName}, ${3:AttributeChange}, ${4:StartingValue}, ${5:MaxValue}, ${6:MinValue})",
+		"body": "CalculateAttributeChange(${1:int mult_val}, ${2:string AttributeName}, ${3:float AttributeChange}, ${4:float StartingValue}, ${5:float MaxValue}, ${6:float MinValue})",
 		"description": "" // TODO: update
 	},
 	"wpn.SetProp": {
 		"prefix": "SetProp",
-		"body": "SetProp(${1:propertyName}, ${2:value})",
+		"body": "SetProp(${1:string propertyName}, ${2:any value})",
 		"description": "Sets a netprop"
 	},
 	"wpn.SetPropArray": {
 		"prefix": "SetPropArray",
-		"body": "SetPropArray(${1:propertyName}, ${2:value}, ${3:index})",
+		"body": "SetPropArray(${1:string propertyName}, ${2:any value}, ${3:int index})",
 		"description": "Sets a netprop array"
 	},
 	"wpn.GetUberChargePercent": {
@@ -1255,27 +1260,27 @@
 	},
 	"wpn.ModifySpells": {
 		"prefix": "ModifySpells",
-		"body": "ModifySpells(${1:index}, ${2:max}, ${3:compared = 1}, ${4:mod_compare = 1})",
+		"body": "ModifySpells(${1:int index}, ${2:int max}, ${3:int compared = 1}, ${4:int mod_compare = 1})",
 		"description": "" // TODO: update
 	},
 	"wpn.SetAbilityTime": {
 		"prefix": "SetAbilityTime",
-		"body": "SetAbilityTime(${1:time})",
+		"body": "SetAbilityTime(${1:float time})",
 		"description": "Sets the weapons ability time"
 	},
 	"wpn.AddAbilityTime": {
 		"prefix": "AddAbilityTime",
-		"body": "AddAbilityTime(${1:time})",
+		"body": "AddAbilityTime(${1:float time})",
 		"description": "Adds time to the weapons ability time"
 	},
 	"wpn.SetAbilityDamage": {
 		"prefix": "SetAbilityDamage",
-		"body": "SetAbilityDamage(${1:max_dmg}, ${2:cur_dmg = 0.0})",
+		"body": "SetAbilityDamage(${1:int max_dmg}, ${2:int cur_dmg = 0.0})",
 		"description": "Sets the damage of the weapons damage ability, and current damage"
 	},
 	"wpn.AddAbilityDamage": {
 		"prefix": "AddAbilityDamage",
-		"body": "AddAbilityDamage(${1:dmg})",
+		"body": "AddAbilityDamage(${1:int dmg})",
 		"description": "Adds damage to the weapons damage ability"
 	},
 	"wpn.ResetAbilityDamage": {
@@ -1290,7 +1295,7 @@
 	},
 	"wpn.SetAbilityType": {
 		"prefix": "SetAbilityType",
-		"body": "SetAbilityType(${1:type})",
+		"body": "SetAbilityType(${1:int type})",
 		"description": "Sets the type of this weapon ability"
 	},
 	"wpn.GetAbilityType": {
@@ -1305,7 +1310,7 @@
 	},
 	"wpn.SetRandomSpell": {
 		"prefix": "SetRandomSpell",
-		"body": "SetRandomSpell(${1:rares = true}, ${2:lower_rares = false})",
+		"body": "SetRandomSpell(${1:bool rares = true}, ${2:bool lower_rares = false})",
 		"description": "Forces the spellbook to roll a spell"
 	},
 	"wpn.ShootPosition": {
@@ -1346,17 +1351,17 @@
 	// chat triggers
 	"AddChatTrigger":{
 		"prefix": "AddChatTrigger",
-		"body": "AddChatTrigger(${1:trigger}, ${2:callback}, ${3:...})",
+		"body": "AddChatTrigger(${1:string trigger}, ${2:function callback}, ${3:any ...})",
 		"description": "Adds a ChatTrigger that is triggered when someone says (! or /)[trigger]"
 	},
 	"RemoveChatTrigger": {
 		"prefix": "RemoveChatTrigger",
-		"body": "RemoveChatTrigger(${1:string})",
+		"body": "RemoveChatTrigger(${1:string string})",
 		"description": "Removes a chat trigger"
 	},
 	"RegisterAdminTrigger":{
 		"prefix": "RegisterAdminTrigger",
-		"body": "RegisterAdminTrigger(${1:trigger}, ${2:callback})",
+		"body": "RegisterAdminTrigger(${1:string trigger}, ${2:function callback})",
 		"description": "Adds a ChatTrigger that is triggered when an admin says (! or /)[trigger]"
 	},
 	// dmg callbacks
@@ -1367,12 +1372,12 @@
 	},
 	"RegisterDamageCallback":{
 		"prefix": "RegisterDamageCallback",
-		"body": "RegisterDamageCallback(${1:ent_name}, ${2:callback_name}, ${3:callback})",
+		"body": "RegisterDamageCallback(${1:string ent_name}, ${2:string callback_name}, ${3:function callback})",
 		"description": "Registers a damage callback in the system, accepts `entity_name` as an array of entity names"
 	},
 	"RemoveDamageCallback":{
 		"prefix": "RemoveDamageCallback",
-		"body": "RemoveDamageCallback(${1:ent_name}, ${2:callback_name})",
+		"body": "RemoveDamageCallback(${1:string ent_name}, ${2:string callback_name})",
 		"description": "Removes a damage callback"
 	},
 	// spawn callbacks
@@ -1383,74 +1388,74 @@
 	},
 	"RegisterSpawnCallback":{
 		"prefix": "RegisterSpawnCallback",
-		"body": "RegisterSpawnCallback(${1:ent_name}, ${2:callback_name}, ${3:callback})",
+		"body": "RegisterSpawnCallback(${1:string ent_name}, ${2:string callback_name}, ${3:function callback})",
 		"description": "Registers a spawn callback in the system, accepts `entity_name` as an array of entity names"
 	},
 	"RemoveSpawnCallback":{
 		"prefix": "RemoveSpawnCallback",
-		"body": "RemoveSpawnCallback(${1:ent_name}, ${2:callback_name})",
+		"body": "RemoveSpawnCallback(${1:string ent_name}, ${2:string callback_name})",
 		"description": "Removes a spawn callback"
 	},
 	// other entity stuff
 	"SetDestroyCallback":{
 		"prefix": "SetDestroyCallback",
-		"body": "SetDestroyCallback(${1:callback})",
+		"body": "SetDestroyCallback(${1:function callback})",
 		"description": "Fires the Callback when the entity is destroyed, self = entity"		
 	},
 	"IsValidEnemy": {
 		"prefix": "IsValidEnemy",
-		"body": "IsValidEnemy(${1:entity})",
+		"body": "IsValidEnemy(${1:entity entity})",
 		"description": "Returns true if the entity is a valid Enemy"
 	},
 	"CanPointSeePoint": {
 		"prefix": "CanPointSeePoint",
-		"body": "CanPointSeePoint(${1:point1}, ${2:point1})",
+		"body": "CanPointSeePoint(${1:vector point1}, ${2:vector point1})",
 		"description": "Returns true if point1 can see point2"
 	},
 	"EntFireNew": {
 		"prefix": "EntFireNew",
-		"body": "EntFireNew(${1:target}, ${2:action}, ${3:imput = \"\"}, ${4:delay = -1}, ${5:activator = null}, ${6:caller = null})",
+		"body": "EntFireNew(${1:string|entity target}, ${2:string action}, ${3:string imput = \"\"}, ${4:float delay = -1}, ${5:entity activator = null}, ${6:entitycaller = null})",
 		"description": "allows a targetname or entity handle as input"
 	},
 	"PurgeString": {
 		"prefix": "PurgeString",
-		"body": "PurgeString(${1:String})",
+		"body": "PurgeString(${1:string String})",
 		"description": "Purges a string from the string table, You God Damn Piece of Shit"
 	},
 	"CreateKillIcon": {
 		"prefix": "CreateKillIcon",
-		"body": "CreateKillIcon(${1:icon})",
+		"body": "CreateKillIcon(${1:string icon})",
 		"description": "Creates an entity to use for a custom kill icon"
 	},
 	"GetClientConVar": {
 		"prefix": "GetClientConVar",
-		"body": "GetClientConVar(${1:cvar}, ${1:plr_entidx})",
+		"body": "GetClientConVar(${1:string cvar}, ${1:int plr_entidx})",
 		"description": "Returns what the client has set for this client cvar"
 	},
 	// Entities
 	"GetAllEntitiesByClassname": {
 		"prefix": "GetAllEntitiesByClassname",
-		"body": "GetAllEntitiesByClassname(${1:classname})",
+		"body": "GetAllEntitiesByClassname(${1:string classname})",
 		"description": "Returns an array of every entity with that classname"
 	},
 	"GetAllEntitiesByClassnameWithin": {
 		"prefix": "GetAllEntitiesByClassnameWithin",
-		"body": "GetAllEntitiesByClassnameWithin(${1:classname}, ${2:center}, ${3:radius})",
+		"body": "GetAllEntitiesByClassnameWithin(${1:string classname}, ${2:vector center}, ${3:float radius})",
 		"description": "Returns an array of every entity within a point with that classname"
 	},
 	"GetAllEntitiesByTargetname": {
 		"prefix": "GetAllEntitiesByTargetname",
-		"body": "GetAllEntitiesByTargetname(${1:targetname})",
+		"body": "GetAllEntitiesByTargetname(${1:string targetname})",
 		"description": "Returns an array of every entity with that classname"
 	},
 	"GetAllEntitiesByTargetnameWithin": {
 		"prefix": "GetAllEntitiesByTargetnameWithin",
-		"body": "GetAllEntitiesByTargetnameWithin(${1:targetname}, ${2:center}, ${3:radius})",
+		"body": "GetAllEntitiesByTargetnameWithin(${1:string targetname}, ${2:vector center}, ${3:float radius})",
 		"description": "Returns an array of every entity within a point with that classname"
 	},
 	"GetAllPlayers": {
 		"prefix": "GetAllPlayers",
-		"body": "GetAllPlayers(${1:team = false}, ${2:radius = false}, ${3:alive = true})",
+		"body": "GetAllPlayers(${1:int team = false}, ${2:float radius = false}, ${3:bool alive = true})",
 		"description": "Returns an array of players"
 	},
 	"GetEveryTank": {
@@ -1460,12 +1465,12 @@
 	},
 	"GetEveryTankWithin": {
 		"prefix": "GetEveryTankWithin",
-		"body": "GetEveryTankWithin(${1:center}, ${2:radius})",
+		"body": "GetEveryTankWithin(${1:vector center}, ${2:float radius})",
 		"description": "Returns an array of Bot entity within a point"
 	},
 	"EnableStringPurge": {
 		"prefix": "EnableStringPurge",
-		"body": "EnableStringPurge(${1:entity})",
+		"body": "EnableStringPurge(${1:entity entity})",
 	},
 	"FirstEntity": {
 		"prefix": "FirstEntity",
@@ -1473,46 +1478,46 @@
 	},
 	"NextEntity": {
 		"prefix": "NextEntity",
-		"body": "NextEntity(${1:previous})",
+		"body": "NextEntity(${1:entity previous})",
 	},
 	"GetBuilder": {
 		"prefix": "GetBuilder",
-		"body": "GetBuilder(${1:entity})",
+		"body": "GetBuilder(${1:entity entity})",
 		"description": "Returns an entity's builder if it has the NetProps"
 	},
 	"GetLauncher": {
 		"prefix": "GetLauncher",
-		"body": "GetLauncher(${1:entity})",
+		"body": "GetLauncher(${1:entityentity})",
 		"description": "Returns an entity's Launcher if it has the NetProps"
 	},
 	"GetFlagStatus": {
 		"prefix": "GetFlagStatus",
-		"body": "GetFlagStatus(${1:flag})",
+		"body": "GetFlagStatus(${1:entity flag})",
 		"description": "Returns the flag's current flag_state"
 	},
 	"GetState": {
 		"prefix": "GetState",
-		"body": "GetState(${1:entity})",
+		"body": "GetState(${1:entity entity})",
 		"description": "Returns the current state netprop of entity"
 	},
 	"ClearThinks": {
 		"prefix": "ClearThinks",
-		"body": "ClearThinks(${1:entity})",
+		"body": "ClearThinks(${1:entity entity})",
 		"description": "Clears the entity's think funcs"
 	},
 	"IsBuilding": {
 		"prefix": "IsBuilding",
-		"body": "IsBuilding(${1:entity})",
+		"body": "IsBuilding(${1:entity entity})",
 		"description": "Returns if the entity is a building"
 	},
 	"IsEntityAProjectile": {
 		"prefix": "IsEntityAProjectile",
-		"body": "IsEntityAProjectile(${1:entity})",
+		"body": "IsEntityAProjectile(${1:entity entity})",
 		"description": "Returns if the entity is a projectile"
 	},
 	"IsBuildingValid": {
 		"prefix": "IsBuildingValid",
-		"body": "IsBuildingValid(${1:building})",
+		"body": "IsBuildingValid(${1:entity building})",
 		"description": "Returns if the building is not null and can be placed"
 	},
 	"GetCurrentWaveNumber": {
@@ -1532,7 +1537,7 @@
 	},
 	"SetPopfileName": {
 		"prefix": "SetPopfileName",
-		"body": "SetPopfileName(${1:name})",
+		"body": "SetPopfileName(${1:string name})",
 		"description": "Sets the Popfiles name"
 	},
 	"CreateThinker": {
@@ -1552,67 +1557,67 @@
 	},
 	"PrintDamageBits": {
 		"prefix": "PrintDamageBits",
-		"body": "PrintDamageBits(${1:bits})",
+		"body": "PrintDamageBits(${1:int bits})",
 		"description": "DEBUG: prints dmg bits"
 	},
 	// misc
 	"RunWithDelay": {
 		"prefix": "RunWithDelay",
-		"body": "RunWithDelay(${1:func}, ${2:delay = 0.0})",
+		"body": "RunWithDelay(${1:function func}, ${2:float delay = 0.0})",
 		"description": "Fires this function with a delay"
 	},
 	"CreateTimer": {
 		"prefix": "CreateTimer",
-		"body": "CreateTimer(${1:on_timer_func}, ${2:first_delay = 0.0})",
+		"body": "CreateTimer(${1:function on_timer_func}, ${2:float first_delay = 0.0})",
 		"description": "Creates a timer that calls a func with a first delay, Returns the timer, Return null or dont return to kill timer"
 	},
 	"KillTimer": {
 		"prefix": "KillTimer",
-		"body": "KillTimer(${1:timer})",
+		"body": "KillTimer(${1:string timer})",
 		"description": "Kills the specified timer"
 	},
 	"FireTimer": {
 		"prefix": "FireTimer",
-		"body": "FireTimer(${1:timer})",
+		"body": "FireTimer(${1:string timer})",
 		"description": "Activates the timer then kills the timer"
 	},
 
 	"IsNotInScope": {
 		"prefix": "IsNotInScope",
-		"body": "IsNotInScope(${1:item}, ${2:scope})",
+		"body": "IsNotInScope(${1:string item}, ${2:table scope})",
 		"description": "Returns if an item is not in a scope"
 	},
 	"IsNotInTable": {
 		"prefix": "IsNotInTable",
-		"body": "IsNotInTable(${1:item}, ${2:table})",
+		"body": "IsNotInTable(${1:string item}, ${2:table table})",
 		"description": "Returns if an item is not in a table"
 	},
 	//
 	"GetScope": {
 		"prefix": "GetScope",
-		"body": "GetScope(${1:entity})",
+		"body": "GetScope(${1:entity entity})",
 		"description": "Validates and returns an entity's scope"
 	},
 
 	//
 	"StringToArray": {
 		"prefix": "StringToArray",
-		"body": "StringToArray(${1:string})",
+		"body": "StringToArray(${1:string string})",
 		"description": "Returns an array of letters from the given string"
 	},
 	"ArrayToString": {
 		"prefix": "ArrayToString",
-		"body": "ArrayToString(${1:array})",
+		"body": "ArrayToString(${1:string array})",
 		"description": "Returns an string from an array of objects"
 	},
 	"IsStringATrigger": {
 		"prefix": "IsStringATrigger",
-		"body": "IsStringATrigger(${1:string}, ${2:triggers = [\"/\", \"!\"]})",
+		"body": "IsStringATrigger(${1:string string}, ${2:string[] triggers = [\"/\", \"!\"]})",
 		"description": "Returns if this string is a chat trigger"
 	},
 	"RemoveCommandTrigger": {
 		"prefix": "RemoveCommandTrigger",
-		"body": "RemoveCommandTrigger(${1:string}, ${2:triggers = [\"/\", \"!\"]})",
+		"body": "RemoveCommandTrigger(${1:string string}, ${2:string[] triggers = [\"/\", \"!\"]})",
 		"description": "Returns a string with the chat trigger removed"
 	},
 
@@ -1620,23 +1625,23 @@
 
 	"SetCvar": {
 		"prefix": "SetCvar",
-		"body": "SetCvar(${1:convar}, ${2:value}, ${3:admin_notify = false}, ${4:notify_all = false})",
+		"body": "SetCvar(${1:string convar}, ${2:any value}, ${3:bool admin_notify = false}, ${4:bool notify_all = false})",
 		"description": "Sets a convar, with options to notify admins or all"
 	},
 	"CreateAoETable": {
 		"prefix": "CreateAoE",
 		"body": [
 			"CreateAoETable(${1:info = {",
-			"\towner = ${2:null}",
-			"\tweapon = ${3:null},",
-			"\torigin = ${4:Vector()},",
-			"\tradius = ${5:147},",
-			"\tdamage = ${6:90},",
-			"\tMinDamage = ${7:45},",
-			"\tignores = ${8:[]},",
-			"\tDmgType = ${9:DMG_BLAST},",
-			"\tsound = ${10:\"weapons/explode1.wav\"},",
-			"\tparticle = ${11:\"ExplosionCore_Wall\"},",
+			"\towner = ${2:entity null}",
+			"\tweapon = ${3:entity null},",
+			"\torigin = ${4:vector Vector()},",
+			"\tradius = ${5:float 147},",
+			"\tdamage = ${6:float 90},",
+			"\tMinDamage = ${7:float 45},",
+			"\tignores = ${8:entity[] []},",
+			"\tDmgType = ${9:int DMG_BLAST},",
+			"\tsound = ${10:string \"weapons/explode1.wav\"},",
+			"\tparticle = ${11:string \"ExplosionCore_Wall\"},",
 			"\\}})"
 		],
 		"description": "Creates an AoE effect with alot of customization"
@@ -1645,14 +1650,14 @@
 		"prefix": "CreateKnifeAoE",
 		"body": [
 			"CreateKnifeAoE(${1:info = {",
-			"\towner = ${2:null},",
-			"\tweapon = ${3:null},",
-			"\tcenter = ${4:Vector()},",
-			"\tradius = ${5:147},",
-			"\tdamage = ${6:90},",
-			"\tignore = ${7:[]},",
-			"\tSoundRadius = ${8:500},",
-			"\tExplodeFunc = ${9:function func(){}},",
+			"\towner = ${2:entity null},",
+			"\tweapon = ${3:entity null},",
+			"\tcenter = ${4:vector Vector()},",
+			"\tradius = ${5:float 147},",
+			"\tdamage = ${6:float 90},",
+			"\tignore = ${7:entity[] []},",
+			"\tSoundRadius = ${8:float 500},",
+			"\tExplodeFunc = ${9:function function func(){}},",
 			"\\}})"
 		],
 		"description": "Creates an AoE effect for Explosive Backstab with alot of customization"
@@ -1661,12 +1666,12 @@
 		"prefix": "CreateSlamAoE",
 		"body": [
 			"CreateSlamAoE(${1:info = {",
-			"\towner = ${2:null},",
-			"\tweapon = ${3:null},",
-			"\tcenter = ${4:Vector()},",
-			"\tradius = ${5:100},",
-			"\tdamage = ${6:100},",
-			"\tignore = ${7:[]},",
+			"\towner = ${2:entity null},",
+			"\tweapon = ${3:entity null},",
+			"\tcenter = ${4:vector Vector()},",
+			"\tradius = ${5:float 100},",
+			"\tdamage = ${6:float 100},",
+			"\tignore = ${7:entity[] []},",
 			"\\}})"
 		],
 		"description": "Creates an AoE effect for Explosive Backstab with alot of customization"
@@ -1689,94 +1694,94 @@
 	////// HUD PRINTS //////
 	"PrintToHudAll": {
 		"prefix": "PrintToHudAll",
-		"body": "PrintToHudAll(${1:msg})",
+		"body": "PrintToHudAll(${1:string msg})",
 		"description": "Prints a hud message to everyone",
 	},
 	"PrintToHudAllF": {
 		"prefix": "PrintToHudAllF",
-		"body": "PrintToHudAllF(${1:msg}, ${2:...})",
+		"body": "PrintToHudAllF(${1:string msg}, ${2:any ...})",
 		"description": "Prints a hud message to everyone, with format args",
 	},
 	"PrintToHudAllFilter": {
 		"prefix": "PrintToHudAllFilter",
-		"body": "PrintToHudAllFilter(${1:msg}, ${2:filter = []})",
+		"body": "PrintToHudAllFilter(${1:string msg}, ${2:entity[] filter = []})",
 		"description": "Prints a hud message to everyone with a filter",
 	},	
 	"TranslateToHudAll": {
 		"prefix": "TranslateToHudAll",
-		"body": "TranslateToHudAll(${1:...})",
+		"body": "TranslateToHudAll(${1:any ...})",
 		"description": "Translates a hud message to everyone",
 	},
 	
 	///// CHAT PRINTS /////
 	"PrintToChatAll": {
 		"prefix": "PrintToChatAll",
-		"body": "PrintToChatAll(${1:msg})",
+		"body": "PrintToChatAll(${1:string msg})",
 		"description": "Prints a chat message to everyone",
 	},
 	"PrintToChatAllF": {
 		"prefix": "PrintToChatAllF",
-		"body": "PrintToChatAllF(${1:msg}, ${2:...})",
+		"body": "PrintToChatAllF(${1:string msg}, ${2:any ...})",
 		"description": "Prints a chat message to everyone, with format args",
 	},
 	"PrintToChatAllFilter": {
 		"prefix": "PrintToChatAllFilter",
-		"body": "PrintToChatAllFilter(${1:msg}, ${2:filter = []})",
+		"body": "PrintToChatAllFilter(${1:string msg}, ${2:entity[] filter = []})",
 		"description": "Prints a chat message to everyone with a filter",
 	},	
 	"TranslateToChatAll": {
 		"prefix": "TranslateToChatAll",
-		"body": "TranslateToChatAll(${1:...})",
+		"body": "TranslateToChatAll(${1:any ...})",
 		"description": "Translates a chat message to everyone",
 	},
 
 	///// CONSOLE PRINTS /////
 	"PrintToConsoleAll": {
 		"prefix": "PrintToConsoleAll",
-		"body": "PrintToConsoleAll(${1:message})",
+		"body": "PrintToConsoleAll(${1:string message})",
 		"description": "Prints a console message to everyone",
 	},
 	"PrintToConsoleAllF": {
 		"prefix": "PrintToConsoleAllF",
-		"body": "PrintToConsoleAllF(${1:message}, ${2:...})",
+		"body": "PrintToConsoleAllF(${1:string message}, ${2:any ...})",
 		"description": "Prints a console message to everyone, with format args",
 	},
 
 	///// OTHER PRINTS /////	
 	"PrintToAdmins": {
 		"prefix": "PrintToAdmins",
-		"body": "PrintToAdmins(${1:Level}, ${2:message})",
+		"body": "PrintToAdmins(${1:int Level}, ${2:string message})",
 		"description": "Prints a message to admins, with the level, Level is EHudNotify",
 	},
 	"PrintTable": {
 		"prefix": "PrintTable",
-		"body": "PrintTable(${1:table}, ${2:filter = []})",
+		"body": "PrintTable(${1:table table}, ${2:string[] filter = []})",
 		"description": "Prints out a table into console"
 	},
 	"PrintArray": {
 		"prefix": "PrintArray",
-		"body": "PrintArray(${1:array}, ${2:filter = []})",
+		"body": "PrintArray(${1:array array}, ${2:string[] filter = []})",
 		"description": "Prints out a array into console"
 	},
 	"PrintClass": {
 		"prefix": "PrintClass",
-		"body": "PrintClass(${1:class}, ${2:filter = []})",
+		"body": "PrintClass(${1:class class}, ${2:string[] filter = []})",
 		"description": "prints out an entire Class such as CTFPlayer, or CTFBot, and an option to filter out a specific type"
 	},
 	"PrintCollection": {
 		"prefix": "PrintCollection",
-		"body": "PrintCollection(${1:collection}, ${2:filter = []}, ${3:indentation = 0}, ${4:no_indent_header = false})",
+		"body": "PrintCollection(${1:any collection}, ${2:string[] filter = []}, ${3:int indentation = 0}, ${4:bool no_indent_header = false})",
 		"description": "Prints out a collection into console"
 	},
 
 	"CreateTestTank": {
 		"prefix": "CreateTestTank",
-		"body": "CreateTestTank(${1:origin = Vector()}, ${2:angles = QAngle()})",
+		"body": "CreateTestTank(${1:vector origin = Vector()}, ${2:qangle angles = QAngle()})",
 		"description": "Creates a tank with 2.147 Billion hp",
 	},
 	"DebugDrawTrigger": {
 		"prefix": "DebugDrawTrigger",
-		"body": "DebugDrawTrigger(${1:trigger}, ${2:color = Vector4D(255, 128, 0, 1)}, ${3:duration = 5})",
+		"body": "DebugDrawTrigger(${1:entity trigger}, ${2:vector4 color = Vector4D(255, 128, 0, 1)}, ${3:float duration = 5})",
 		"description": "Draws a triggers bounds",
 	},
 	"IncludeLibrary": {
@@ -1791,7 +1796,7 @@
 	},
 	"DrawTraceHull": {
 		"prefix": "DrawTraceHull",
-		"body": "DrawTraceHull(${1:trace}, ${2:starting_color = Vector(255, 0, 0)}, ${3:ending_color = Vector(0, 0, 255)})",
+		"body": "DrawTraceHull(${1:table trace}, ${2:vector starting_color = Vector(255, 0, 0)}, ${3:vector ending_color = Vector(0, 0, 255)})",
 		"description": "Draws a Trace Hull/trace",
 	},
 	"DeprecatedWarning": {
@@ -1825,19 +1830,19 @@
 	// Math
 	"MATH.BitWise": {
 		"prefix": "Math.BitWise",
-		"body": "Math.BitWise(${1:a}, ${2:b})",
+		"body": "Math.BitWise(${1:int a}, ${2:int b})",
 	},
 	"MATH.Min": {
 		"prefix": "Math.Min",
-		"body": "Math.Min(${1:a}, ${2:b})",
+		"body": "Math.Min(${1:float a}, ${2:float b})",
 	},
 	"MATH.Max": {
 		"prefix": "Math.Max",
-		"body": "Math.Max(${1:a}, ${2:b})",
+		"body": "Math.Max(${1:float a}, ${2:float b})",
 	},
 	"MATH.Clamp": {
 		"prefix": "Math.Clamp",
-		"body": "Math.Clamp(${1:value}, ${2:min}, ${2:max})",
+		"body": "Math.Clamp(${1:float value}, ${2:float min}, ${3:float max})",
 	},
 	"MATH.RemapVal": {
 		"prefix": "Math.RemapVal",
@@ -1850,15 +1855,15 @@
 	},
 	"MATH.ConvertRadiusToSndLvl": {
 		"prefix": "Math.ConvertRadiusToSndLvl",
-		"body": "Math.ConvertRadiusToSndLvl(${1:radius})",
+		"body": "Math.ConvertRadiusToSndLvl(${1:float radius})",
 	},
 	"MATH.RandomVec": {
 		"prefix": "Math.RandomVec",
-		"body": "Math.RandomVec(${1:min}, ${2:max})",
+		"body": "Math.RandomVec(${1:float min}, ${2:float max})",
 	},
 	"MATH.Distance": {
 		"prefix": "Math.Distance",
-		"body": "Math.Distance(${1:point1}, ${2:point2})",
+		"body": "Math.Distance(${1:vector point1}, ${2:vector point2})",
 	},
 	"MATH.RandomChance": {
 		"prefix": "Math.RandomChance",
@@ -1866,7 +1871,7 @@
 	},
 	"MATH.OneInChance": {
 		"prefix": "Math.OneInChance",
-		"body": "Math.OneInChance(${1:num})",
+		"body": "Math.OneInChance(${1:int num})",
 	},
 	// Random Constants
 	"SLOT_PRIMARY": {
