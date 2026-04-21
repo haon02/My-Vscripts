@@ -6,4 +6,10 @@ It contains a bunch of helper functions and new functions that Make vscript just
 <h1>Credits:</h1>
 - Me <br>
 - Potato.tf <br>
-- PepperTAT (zh-hans translations) <br>
+- Lizard of Oz <br>
+- Translation Credits Below <br>
+
+<h1>Translations:</h1>
+- PepperTAT : Zh-Hans <br>
+- Liverfull : Russian ( WIP ) <br>
+- Decimate  : Swedish ( WIP ) <br>
