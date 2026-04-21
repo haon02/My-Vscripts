@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.3.0")
+SetScriptVersion("GameplayApplications", "4.4.0")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -266,7 +266,7 @@ function GameplayThink()
 
 		if(FatCatLibSettings["NoclipAntiCheat"] == true)
 		{
-			if(/* !Human.IsAdmin() &&  */Human.GetMoveType() == MOVETYPE_NOCLIP)
+			if(!Human.IsAdmin() && Human.GetMoveType() == MOVETYPE_NOCLIP)
 			{
 				Human.SetMoveType(MOVETYPE_WALK, MOVECOLLIDE_DEFAULT)
 				Human.SetAbsOrigin(Human.GetOrigin() + (Human.GetAbsVelocity() * (-1.0/60.0)))

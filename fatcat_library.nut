@@ -185,16 +185,12 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.2", 0))
+if (!SetLibraryVersion("1.17.3", 0))
 	return
 
-SetLibraryTimeStamp("4-18-2026_23:25")
+SetLibraryTimeStamp("4-20-2026_20:33")
 
-SetLibrarySettings({
-	// KillWatchViewmodels = false
-	// ConsoleErrors = false
-	// PublicErrors = true
-})
+SetLibrarySettings({})
 
 if (!("ConstantNamingConvention" in ROOT)) // make sure folding is only done once
 {
