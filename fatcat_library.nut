@@ -3958,8 +3958,9 @@ function ROOT::SetCvar(convar, value, admin_notify = false, notify_all = false)
 {
 	if(!IsConvarAllowed(convar))
 	{
-		PrintToAdmins(3, "\x07FF0000fatcat_library::SetCvar: \x01Warning Cvar \"\x03" + convar + "\x01\" is Not on the Allowlist!")
-		PrintToAdmins(2, "fatcat_library::SetCvar: Warning Cvar \"" + convar + "\" is Not on the Allowlist!")
+		PrintToChatAllF("\x07FF4040:SetCvar: \x01Warning Cvar \"\x03%s\x01\" is Not on the Allowlist!")
+		// PrintToAdmins(3, "\x07FF0000fatcat_library::SetCvar: \x01Warning Cvar \"\x03" + convar + "\x01\" is Not on the Allowlist!")
+		// PrintToAdmins(2, "fatcat_library::SetCvar: Warning Cvar \"" + convar + "\" is Not on the Allowlist!")
 		return
 	}
 
@@ -5748,7 +5749,8 @@ seterrorhandler(function(e)
 
 	if(public == true)
 	{
-		PrintToChatAll("\x07FF0000A VSCRIPT ERROR HAS OCCURRED ["+e+"]. Please report to @The Fatcat in #bug-reports with a screenshot")
+		local message = "\x07FF0000A VSCRIPT ERROR HAS OCCURRED [%s]. Please report to @The Fatcat in "+(IsPotato() ? "Titan's Submission Post" : "#bug-reports")+" with a screenshot."
+		PrintToChatAllF(message, e)
 
 		foreach (stackinfo in STACK)
 		{

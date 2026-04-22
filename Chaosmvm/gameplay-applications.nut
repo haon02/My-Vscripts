@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.4.3")
+SetScriptVersion("GameplayApplications", "4.4.4")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -214,6 +214,7 @@ function GameplayThink()
 		if("EndReprogramTime" in GetScope(bot) && GetScope(bot).EndReprogramTime <= Time())
 		{
 			bot.UndoReprogram()
+			GetScope(bot).EndReprogramTime <- INT_MAX + 1.0
 		}
 
 		if(bot.InCond(TF_COND_REPROGRAMMED) && (!bot.IsValidReprogramTarget() || bot.GetPlayerClass() == TF_CLASS_MEDIC))
