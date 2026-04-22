@@ -5627,7 +5627,6 @@ CreateThinker("OnEntityPostSpawn" , function() {
 __CollectGameEventCallbacks(ChaosCustomEvents)
 
 AddChatTrigger(["lib_version", "lib_versions"], function(player, ...) {
-	PrintToConsoleAll(type(FatCatLibTimeStamp))
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp.tostring())
 	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
 
