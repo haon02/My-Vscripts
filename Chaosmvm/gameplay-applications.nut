@@ -802,6 +802,8 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 					if(!self.IsPressingButton(IN_ATTACK2))
 						return -1
 
+					self.PrintToHud("KILLING ROBOTS!")
+
 					foreach (robot in m_aRobots)
 					{
 						if("ReProgrammer" in GetScope(robot) && GetScope(robot).ReProgrammer == self)
