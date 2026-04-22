@@ -477,7 +477,7 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 
 		GetScope(victim).ReProgrammer <- attacker
 
-		EmitGlobalSound({
+		EmitSoundEx({
 			sound_name = BlutsaugerSettings.sound
 			entity = victim
 			sound_level = MATH.ConvertRadiusToSndLvl(BlutsaugerSettings.sound_radius)
@@ -492,11 +492,11 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 			break
 				
 		// attacker.PrintToHud("Made Corrosion on " + victim)
-		EmitGlobalSound({
+		/* EmitSoundEx({
 			sound_name = ""
 			entity = victim
 			sound_level = 80
-		})
+		}) */
 		victim.MakeCorrosion(attacker, weapon)
 	}
 	break;
@@ -768,16 +768,18 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 						return 500
 					}
 
+					local weapon = self.GetWeaponInSlotNew(SLOT_PRIMARY)
+					weapon.SetClip1(1)
+					self.SetPrimaryAmmo(0)
+
 					if(self.GetWeaponInSlotNew(SLOT_SECONDARY).GetUberChargePercent() < 1.0)
 					{
-						local weapon = self.GetWeaponInSlotNew(SLOT_PRIMARY)
 						weapon.AddAttribute("provide on active", 1, 0)
 						weapon.AddAttribute("no_attack", 1, 0)
 						weapon.AddAttribute("ubercharge ammo", 0, 0)
 					}
 					else 
 					{
-						local weapon = self.GetWeaponInSlotNew(SLOT_PRIMARY)
 						weapon.AddAttribute("provide on active", 0, 0)
 						weapon.AddAttribute("no_attack", 0, 0)
 						weapon.AddAttribute("ubercharge ammo", 100, 0)
@@ -786,9 +788,6 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 					if(self.GetActiveWeaponIDX() != TF_WEAPON_BLUTSAUGER)
 						return 0.1
 
-
-					local weapon = self.GetActiveWeapon()
-					// if(weapon.GetAttribute())
 					if(!self.IsPressingButton(IN_ATTACK2))
 						return -1
 
@@ -796,12 +795,12 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 					{
 						if("ReProgrammer" in GetScope(robot) && GetScope(robot).ReProgrammer == self)
 						{
-							robot.RemoveCondEx(TF_COND_REPROGRAMMED, true)
+							// robot.RemoveCondEx(TF_COND_REPROGRAMMED, true)
 							robot.UndoReprogram()
 						}
 					}
 					return -1
-				}, "BlutsaugerDisrupt")
+				}, "BlutsaugerDisrupt", 0.15)
 			}
 		}
 	}

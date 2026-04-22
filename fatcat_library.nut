@@ -2711,14 +2711,13 @@ function CTFBot::UndoReprogram()
 	if(!this||!IsValid()||IsDead())
 		return
 
-	local temp = SpawnEntityFromTable("info_particle_system", {effect_name = "drg_cow_explosioncore_charged"})
-	temp.SetAbsOrigin(GetOrigin()+Vector(0, 0, 8))
-	temp.SetAbsAngles(QAngle(-90, 0, 0))
-	temp.AcceptInput("Start", "", null, null)
-	EntFireNew(temp, "Stop", "", TICK_DUR*3)
-	EntFireNew(temp, "Kill", "", TICK_DUR*5)
+	CreateParticle("drg_cow_explosioncore_charged", GetOrigin()+Vector(0, 0, 8))
+
+	RemoveCondEx(TF_COND_REPROGRAMMED, true)
 
 	Suicide()
+	SetHealth(0)
+	TakeDamage(GetMaxHealth()*100, DMG_GENERIC, FirstEntity())
 }
 
 
@@ -4225,6 +4224,16 @@ function ROOT::ConvertRadiusToSndLvl(radius)
 	DeprecatedWarning(getstackinfos(1), getstackinfos(2))
 	return (40 + (20 * log10(radius / 36.0))).tointeger()
 }
+// TODO: Add to Snippets
+function ROOT::CreateParticle(particle, origin, angle = QAngle(-90, 0, 0))
+{
+	local temp = SpawnEntityFromTable("info_particle_system", {effect_name = particle})
+	temp.SetAbsOrigin(origin)
+	temp.SetAbsAngles(angle)
+	temp.AcceptInput("Start", "", null, null)
+	EntFireNew(temp, "Stop", "", TICK_DUR*3)
+	EntFireNew(temp, "Kill", "", TICK_DUR*5)
+}
 
 if(!("CORROSION_ICON" in ROOT))
 	::CORROSION_ICON <- CreateKillIcon("infection_acid_puddle")
@@ -4340,14 +4349,7 @@ function ROOT::CreateBaseExplosion(table)
 	DebugDrawCircle(origin+Vector(0,0,1), Vector(0, 0, 255), 50, DamageDeadzone, false, 15)
 
 	if(particle != "")
-	{
-		local temp = SpawnEntityFromTable("info_particle_system", { effect_name = particle })
-		temp.SetAbsOrigin(origin+particle_offset)
-		temp.SetAbsAngles(particle_ang)
-		temp.AcceptInput("Start", "", null, null)
-		EntFireNew(temp, "Stop", "", TICK_DUR*3)
-		EntFireNew(temp, "Kill", "", TICK_DUR*5)
-	}
+		CreateParticle(particle, origin+particle_offset, particle_ang)
 
 	if(sound != "" && scope.LastExplosionTime <= Time())
 	{
