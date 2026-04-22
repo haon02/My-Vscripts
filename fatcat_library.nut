@@ -3959,7 +3959,7 @@ function ROOT::SetCvar(convar, value, admin_notify = false, notify_all = false)
 {
 	if(!IsConvarAllowed(convar))
 	{
-		PrintToAdmins(3, "\x07FF0000fatcat_library::SetCvar: \x01Warning Cvar \x03" + convar + "\x01 is Not on the Allowlist!")
+		PrintToAdmins(3, "\x07FF0000fatcat_library::SetCvar: \x01Warning Cvar \"\x03" + convar + "\x01\" is Not on the Allowlist!")
 		PrintToAdmins(2, "fatcat_library::SetCvar: Warning Cvar \"" + convar + "\" is Not on the Allowlist!")
 		return
 	}
