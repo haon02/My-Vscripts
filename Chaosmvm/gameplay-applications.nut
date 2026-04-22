@@ -768,8 +768,6 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 
 			if(weapon.GetIDX() == TF_WEAPON_BLUTSAUGER)
 			{
-				weapon.AddAttribute("mod use metal ammo type", 1, 0)
-
 				player.AddThink(function() {
 					if(self.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
 					{
@@ -778,8 +776,8 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 					}
 
 					local weapon = self.GetWeaponInSlotNew(SLOT_PRIMARY)
-					// weapon.SetClip1(1)
-					// self.SetPrimaryAmmo(0)
+					weapon.SetClip1(1)
+					self.SetPrimaryAmmo(0)
 					self.SetMetal(200)
 
 					if(self.GetWeaponInSlotNew(SLOT_SECONDARY).GetUberChargePercent() < 1.0)
@@ -787,12 +785,14 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 						weapon.AddAttribute("provide on active", 1, 0)
 						weapon.AddAttribute("no_attack", 1, 0)
 						weapon.AddAttribute("ubercharge ammo", 0, 0)
+						SetPropInt(weapon, "m_iPrimaryAmmoType", TF_AMMO_METAL)
 					}
 					else 
 					{
 						weapon.AddAttribute("provide on active", 0, 0)
 						weapon.AddAttribute("no_attack", 0, 0)
 						weapon.AddAttribute("ubercharge ammo", 100, 0)
+						SetPropInt(weapon, "m_iPrimaryAmmoType", TF_AMMO_PRIMARY)
 					}
 
 					if(self.GetActiveWeaponIDX() != TF_WEAPON_BLUTSAUGER)
