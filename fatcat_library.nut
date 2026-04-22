@@ -5725,6 +5725,51 @@ RegisterAdminTrigger(["lib_reload", "reload_library"], function(player, ...) {
 	ReloadLibrary()
 })
 
+RegisterAdminTrigger("cvar", function(player, ...) {
+	if(vargv.len() < 2)
+		return
+	local cvar = vargv[0]
+	// query a value
+	local type = vargv[1][0].tochar()
+	if(IsInArray(type, ["s", "i", "b", "f"]))
+	{
+		local func
+		switch (type)
+		{
+		case "s":
+			func = GetCvarStr
+		break
+		case "i":
+			func = GetCvarInt
+		break
+		case "b":
+			func = GetCvarBool
+		break
+		case "f":
+			func = GetCvarFloat
+		break
+		default:
+			return player.PrintToChat(FATCATLIB_PREFIX+"  Unknown Cvar Type: "+type)
+		}
+
+		local ret = func(cvar)
+		if(ret == "hunter2")
+		{
+			ret = ""
+			for (local i = 0; i < RandomInt(12, 64); i++) {
+				ret += "*"
+			}
+		}
+
+		return player.PrintToChat(format(FATCATLIB_PREFIX+" Querying Cvar \"%s\": \"%s\"", cvar, ret.tostring()))
+	}
+
+	if(!IsConvarAllowed(cvar))
+		return player.PrintToChat(FATCATLIB_PREFIX+" Cvar \""+cvar+"\" is Unknown or not Allowed!")
+
+	SetCvar(cvar, vargv[1])
+	return player.PrintToChat(format(FATCATLIB_PREFIX+" Set Cvar \"%s\": \"%s\"", cvar, vargv[1]))
+})
 
 
 // the admins wowow
