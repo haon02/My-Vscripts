@@ -12,4 +12,5 @@ It contains a bunch of helper functions and new functions that Make vscript just
 <h1>Translations:</h1>
 - PepperTAT : Zh-Hans <br>
 - Liverfull : Russian ( WIP ) <br>
-- Decimate  : Swedish ( WIP ) <br>
+- Decimate  : Swedish <br>
+- Kimmy     : Polish ( WIP ) <br>
