@@ -185,10 +185,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.3", 1))
+if (!SetLibraryVersion("1.17.3", 2))
 	return
 
-SetLibraryTimeStamp("4-21-2026_21:53")
+SetLibraryTimeStamp("4-21-2026_22:10")
 
 SetLibrarySettings({})
 
@@ -2705,7 +2705,7 @@ function CTFBot::SayChatterMessage(victim)
 	}
 	PrintToChatAll(format("%s%s\x01 :  %s", GetChatColor(), GetUserName(), Message))
 }
-
+// TODO: Add to Snippets
 function CTFBot::UndoReprogram()
 {
 	if(!this||!IsValid()||IsDead())

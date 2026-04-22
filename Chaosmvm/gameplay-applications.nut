@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.4.2")
+SetScriptVersion("GameplayApplications", "4.4.3")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -208,6 +208,11 @@ function GameplayThink()
 	foreach (bot in m_aRobots)
 	{
 		GetScope(bot).LastVel <- bot.GetAbsVelocity()
+
+		if("EndReprogramTime" in GetScope(bot) && GetScope(bot).EndReprogramTime <= Time())
+		{
+			bot.UndoReprogram()
+		}
 
 		if(bot.InCond(TF_COND_REPROGRAMMED) && (!bot.IsValidReprogramTarget() || bot.GetPlayerClass() == TF_CLASS_MEDIC))
 		{
@@ -474,6 +479,8 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 		EntFireNew(victim, "$BotCommand", "switch_action Mobber -duration "+BlutsaugerSettings.duration)
 
 		RunWithDelay(@() victim.UndoReprogram(), BlutsaugerSettings.duration)
+
+		GetScope(victim).EndReprogramTime <- Time() + BlutsaugerSettings.duration
 
 		GetScope(victim).ReProgrammer <- attacker
 
