@@ -207,6 +207,8 @@ function GameplayThink()
 
 	foreach (bot in m_aRobots)
 	{
+		if(bot.IsDead())
+			continue
 		GetScope(bot).LastVel <- bot.GetAbsVelocity()
 
 		if("EndReprogramTime" in GetScope(bot) && GetScope(bot).EndReprogramTime <= Time())
@@ -677,9 +679,9 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 			return
 		if(attacker.IsBot())
 		{
-			if(!attacker.IsReprogrammed() || !MATH.OneInChance(10))
-				return
 			if(attacker.HasBotTag("NoChatter"))
+				return
+			if(!attacker.IsReprogrammed() || !MATH.OneInChance(10))
 				return
 			attacker.SayChatterMessage(victim)
 			return
@@ -745,8 +747,6 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 				continue
 			if(weapon == spellbook)
 				GetScope(weapon).m_iKills <- 0
-			// if(weapon.getclass() == CEconEntity && weapon.getclass() != CTFWeaponBase)
-				// continue
 			
 			if(weapon.GetIDX() == TF_WEAPON_TOMISLAV)
 			{
@@ -768,6 +768,8 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 
 			if(weapon.GetIDX() == TF_WEAPON_BLUTSAUGER)
 			{
+				weapon.AddAttribute("mod use metal ammo type", 1, 0)
+
 				player.AddThink(function() {
 					if(self.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
 					{
@@ -776,8 +778,9 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 					}
 
 					local weapon = self.GetWeaponInSlotNew(SLOT_PRIMARY)
-					weapon.SetClip1(1)
-					self.SetPrimaryAmmo(0)
+					// weapon.SetClip1(1)
+					// self.SetPrimaryAmmo(0)
+					self.SetMetal(200)
 
 					if(self.GetWeaponInSlotNew(SLOT_SECONDARY).GetUberChargePercent() < 1.0)
 					{
