@@ -478,7 +478,7 @@ function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor
 
 		EntFireNew(victim, "$BotCommand", "switch_action Mobber -duration "+BlutsaugerSettings.duration)
 
-		RunWithDelay(@() victim.UndoReprogram(), BlutsaugerSettings.duration)
+		// RunWithDelay(@() victim.UndoReprogram(), BlutsaugerSettings.duration)
 
 		GetScope(victim).EndReprogramTime <- Time() + BlutsaugerSettings.duration
 
