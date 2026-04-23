@@ -10,7 +10,7 @@ It contains a bunch of helper functions and new functions that Make vscript just
 - Translation Credits Below <br>
 
 <h1>Translations:</h1>
-- PepperTAT : Zh-Hans <br>
-- Liverfull : Russian ( WIP ) <br>
-- Decimate  : Swedish <br>
-- Kimmy     : Polish ( WIP ) <br>
+- PepperTAT  :  Zh-Hans <br>
+- Liverfull  :  Russian <br>
+- Decimate  :  Swedish <br>
+- Kimmy  :  Polish ( WIP ) <br>
