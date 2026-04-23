@@ -197,7 +197,10 @@ RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entit
 		if(false)
 		{
 			local target = GetClosestPlayer(self, TF_TEAM_PVE_INVADERS)
-			if(self.GetOrigin().DistanceTo(target.GetOrigin()))
+			if(!target)
+				return
+			if(self.GetOrigin().DistanceTo(target.GetOrigin()) > 50)
+				return
 
 			target.TakeDamageEx(null, owner, owner.GetWeaponInSlotNew(SLOT_PRIMARY), Vector(), Vector(), 0.01, DMG_GENERIC)
 		}
