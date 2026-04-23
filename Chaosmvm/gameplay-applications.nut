@@ -190,8 +190,17 @@ RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entit
 	local owner = entity.GetOwner()
 	if(!owner || !owner.IsPlayer() || owner.GetWeaponIDXInSlotNew(SLOT_PRIMARY) != TF_WEAPON_BLUTSAUGER)
 		return
+
 	SetDestroyCallback(entity, function() {
 		// owner.PrintToChat("Your Rocket: i dies now but did i deal damage to anything??? "+("DidDamage" in GetScope(self) && DidDamage.tostring()))
+
+		if(false)
+		{
+			local target = GetClosestPlayer(self, TF_TEAM_PVE_INVADERS)
+			if(self.GetOrigin().DistanceTo(target.GetOrigin()))
+
+			target.TakeDamageEx(null, owner, owner.GetWeaponInSlotNew(SLOT_PRIMARY), Vector(), Vector(), 0.01, DMG_GENERIC)
+		}
 
 		if(!("DidDamage" in GetScope(self)) || GetScope(self).DidDamage == false)
 		{
@@ -202,6 +211,8 @@ RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entit
 
 function GameplayThink()
 {
+	local ReprogrammedBots = []
+	local AliveBots = 0
 	if ( Players.len() < 1 || !ValidatePlayerArray() || (m_aHumans.len() + m_aRobots.len()) != Players.len())
 		ReCalculatePlayers()
 
@@ -209,20 +220,43 @@ function GameplayThink()
 	{
 		if(bot.IsDead())
 			continue
+
+		if(bot.IsReprogrammed())
+			ReprogrammedBots.append(bot)
+
+		if(bot.IsAlive())
+			AliveBots += 1
+
 		GetScope(bot).LastVel <- bot.GetAbsVelocity()
 
 		if("EndReprogramTime" in GetScope(bot) && GetScope(bot).EndReprogramTime <= Time())
-		{
 			bot.UndoReprogram()
-			GetScope(bot).EndReprogramTime <- INT_MAX + 1.0
+
+		if(bot.IsReprogrammed())
+		{
+			ReprogrammedBots.append(bot)
+			if(bot.GetPlayerClass() == TF_CLASS_MEDIC)
+			{
+				local nearest = "ReProgrammer" in GetScope(bot) ? GetScope(bot).ReProgrammer : bot.GetClosestPlayer()
+				bot.SetMission(6, true)
+				bot.SetMissionTarget(nearest)
+			}
+			if(!bot.IsValidReprogramTarget())
+			{
+				// should always be the last index
+				ReprogrammedBots.pop()
+				bot.RemoveCondEx(TF_COND_REPROGRAMMED, true)
+				foreach(attribute in BlutsaugerRemoveAttributes)
+					bot.RemoveCustomAttribute(attribute)
+			}
 		}
 
-		if(bot.InCond(TF_COND_REPROGRAMMED) && (!bot.IsValidReprogramTarget() || bot.GetPlayerClass() == TF_CLASS_MEDIC))
+		/* if(bot.InCond(TF_COND_REPROGRAMMED) && (!bot.IsValidReprogramTarget()))
 		{
 			bot.RemoveCondEx(TF_COND_REPROGRAMMED, true)
 			foreach(attribute in BlutsaugerRemoveAttributes)
 				bot.RemoveCustomAttribute(attribute)
-		}
+		} */
 
 		local Corrosion = bot.GetCorrosion()
 
@@ -336,6 +370,13 @@ function GameplayThink()
 
 		RunWithDelay(@() SetPropBool(tank, "m_bGlowEnabled", true), 0.1)
 	}
+
+	if(AliveBots == 0)
+	{
+		foreach (bot in ReprogrammedBots)
+			bot.UndoReprogram()
+	}
+
 
 	return -1
 }

@@ -2528,6 +2528,20 @@ function CTFPlayer::GetMoveSpeed()
 	return speed
 }
 
+function CTFPlayer::DistanceTo(thing)
+{
+	if(typeof thing == "Vector")
+		return GetOrigin().DistanceTo(thing)
+	else
+		return GetOrigin().DistanceTo(thing.GetOrigin())
+	
+}
+
+function CTFPlayer::GetClosestPlayer(team = GetTeam())
+{
+	return GetClosestPlayer(this, team)
+}
+
 CTFPlayer.GenerateAndWearItem <- CTFBot.GenerateAndWearItem
 /* 
 function CTFPlayer::CreateParticle(particle, duration = -1)
@@ -2685,10 +2699,10 @@ function CTFBot::SayChatterMessage(victim)
 			FormatData = split(FormatData, "|")
 		else 
 			FormatData = [FormatData]
-		// ADD CUSTOM FORMAT RULES LUL
+		// ADD CUSTOM FORMAT RULES
 		local victim_in = FormatData.find("victim")
-		printl(FormatData.find("victim"))
-		printl(FormatData.find("⤒"))
+		// printl(FormatData.find("victim"))
+		// printl(FormatData.find("⤒"))
 		if(victim_in != null)
 		{
 			local msg = victim.GetUserName()
@@ -2712,6 +2726,9 @@ function CTFBot::UndoReprogram()
 		return
 
 	CreateParticle("drg_cow_explosioncore_charged", GetOrigin()+Vector(0, 0, 8))
+
+	if("EndReprogramTime" in GetScope(this)) 
+		delete GetScope(this).EndReprogramTime
 
 	RemoveCondEx(TF_COND_REPROGRAMMED, true)
 
@@ -3467,6 +3484,26 @@ function ROOT::GetScope(entity)
 		return null
 	entity.ValidateScriptScope()
 	return entity.GetScriptScope()
+}
+
+function ROOT::GetClosestPlayer(target, team = TF_TEAM_BLUE)
+{
+	local closest_dist = 100000
+	local closest = null
+	foreach (player in Players)
+	{
+		if(player == target || player.IsDead())
+			continue
+		if(player.GetTeam() != team)
+			continue
+		local dist = target.GetOrigin().DistanceTo(player)
+		if(dist < closest_dist)
+		{
+			closest_dist = dist
+			closest = human
+		}
+	}
+	return closest
 }
 
 
