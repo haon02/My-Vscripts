@@ -4,7 +4,7 @@ if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatC
 // CREDITS
 // Standard Chinese		--		Pepper[^▽^] 	(pepper_1656 on Discord)
 // Swedish				--		Decimate 		(decimatetf on Discord)
-// Russian				--		Liverfull 		(liverfull on Discord)
+// Russian				--		Liverfull 		(liverfullprod@gmail.com)
 
 ::IH_color <- "\x08FFFF00DD"
 ::IH_text_color <- "\x08FFFFFFBB"
