@@ -6,6 +6,7 @@
 
 ::MOD_TF2 <- "Team Fortress 2"
 ::MOD_TF2C <- "Team Fortress 2 Classified"
+::MOD_L4D2 <- "Left 4 Dead 2"
 
 if("GetModName" in ROOT)
 {
