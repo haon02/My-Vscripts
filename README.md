@@ -11,6 +11,6 @@ It contains a bunch of helper functions and new functions that Make vscript just
 
 <h1>Translations:</h1>
 - PepperTAT  :  Zh-Hans <br>
-- liverfullprod@gmail.com  :  Russian <br>
+- Liverfull  :  Russian <br>
 - Decimate  :  Swedish <br>
 - Kimmy  :  Polish ( WIP ) <br>
