@@ -17,7 +17,7 @@ if(!("CHECKPOINT_ERROR" in getroottable()))
 	::CHECKPOINT_ERROR <- "\x07bf4137"
 
 if("SetScriptVersion" in getroottable())
-	SetScriptVersion("Translations", "1.3.0")
+	SetScriptVersion("Translations", "1.3.1")
 
 ::TRANSLATION_TABLE <- {
 	english = {
@@ -302,10 +302,10 @@ if("SetScriptVersion" in getroottable())
 		LOCHNLOAD_DESC			= " Slow shots but with high burst damage in a large area. Effective for crowd control."
 		//
 		ALIBABA_NAME			= "ALI BABA'S WEE BOOTIES"
-		ALIBABA_DESC			= " Enhanced move speed, jump height and shield charges. Offers extra damage resistance, faster shield recharge and higher bash damage."
+		ALIBABA_DESC			= " Enhanced shield bash damage. Grants immunity to fall damage."
 		//
 		BOOTLEGGER_NAME			= "BOOTLEGGER"
-		BOOTLEGGER_DESC			= " Enhanced move speed, jump height and shield charges. Offers massive resistance to melee attacks but vulnerability to critical attacks."
+		BOOTLEGGER_DESC			= " Enhanced shield recharge rate. Grants immunity to fall damage."
 		//
 		LOOSECANNON_NAME		= "LOOSE CANNON"
 		LOOSECANNON_DESC		= " Load up to 4 cannonballs before firing all at once in a vertical spread pattern. Cannonballs explode on contact with the ground."
@@ -323,13 +323,13 @@ if("SetScriptVersion" in getroottable())
 		STICKYJUMPER_DESC 		= " Creates a shutdown field, stunning all enemies hit by the pulse. (Minibosses are immune to stun)"
 		//
 		CHARGINTARGE_NAME 		= "CHARGIN' TARGE"
-		CHARGINTARGE_DESC 		= " Heavy resistance to BLAST damage, but more vulnerable to FIRE and BULLET damage. Includes extra resistance to knockback and crits."
+		CHARGINTARGE_DESC 		= " Heavy Charge - Superior shield bash damage."
 		//
 		SPLENDIDSCREEN_NAME 	= "SPLENDID SCREEN"
-		SPLENDIDSCREEN_DESC 	= " Heavy resistance to FIRE damage, but more vulnerable to BLAST and BULLET damage. Includes extra resistance to knockback and crits."
+		SPLENDIDSCREEN_DESC 	= " Rapid Charge - Superior shield recharge rate."
 		//
 		TIDETURNER_NAME 		= "TIDE TURNER"
-		TIDETURNER_DESC 		= " Heavy resistance to BULLET damage, but more vulnerable to FIRE and BLAST damage. Includes extra resistance to knockback and crits."
+		TIDETURNER_DESC 		= " Burst Charge - Superior shield charge move speed."
 		//
 		QUICKIEBOMB_NAME 		= "QUICKIEBOMB LAUNCHER"
 		QUICKIEBOMB_DESC 		= " Auto-fires stickybombs at an insane rate with very fast arm time. Gain mini-crits on kill."
@@ -341,7 +341,7 @@ if("SetScriptVersion" in getroottable())
 		EYELANDER_DESC 			= " High damage with quick attacks gaining crits and mini-crits on kill, but cannot be used as hybrid-knight."
 		//
 		SKULLCUTTER_NAME 		= "SCOTSMAN'S SKULLCUTTER"
-		SKULLCUTTER_DESC 		= " Able to cut through enemy Ubercharge and disrupt Medi-Gun functions. Also able to deal x10 damage to enemies of the same class as you."
+		SKULLCUTTER_DESC 		= " Able to cut through enemy Ubercharge and disrupt Medi-Gun functions. Also able to deal increased damage to enemies of the same class as you."
 		//
 		CABER_NAME 				= "ULLAPOOL CABER"
 		CABER_DESC 				= " Damage increases as you become injured. Guaranteed crits if your health is below 2%. The explosion from this attack will kill you."
@@ -936,9 +936,11 @@ if("SetScriptVersion" in getroottable())
 		//
 		ALIBABA_NAME			= "阿里巴巴的尖头靴"
 		ALIBABA_DESC			= "提升移动速度, 跳跃高度与护盾冲锋距离. 提供额外的伤害抗性, 护盾充能速度以及冲撞伤害."
+		// TODO: Update! " Enhanced shield bash damage. Grants immunity to fall damage."
 		//
 		BOOTLEGGER_NAME			= "海盗头子的假腿"
 		BOOTLEGGER_DESC			= "提升移动速度, 跳跃高度与护盾冲锋距离. 大幅提升近战伤害抗性但受到额外的暴击伤害."
+		// TODO: Update! " Enhanced shield recharge rate. Grants immunity to fall damage."
 		//
 		LOOSECANNON_NAME		= "脱缰巨炮"
 		LOOSECANNON_DESC		= "以固定的散射分布发射最多 4 枚炮弹. 炮弹在接触物体表面时立刻爆炸."
@@ -957,12 +959,15 @@ if("SetScriptVersion" in getroottable())
 		//
 		CHARGINTARGE_NAME 		= "冲锋盾"
 		CHARGINTARGE_DESC 		= "大幅提升爆炸伤害抗性, 但会受到额外的火焰伤害和子弹伤害. 获得额外的击退抗性与暴击抗性."
+		// TODO: Update! " Heavy Charge - Superior shield bash damage."
 		//
 		SPLENDIDSCREEN_NAME 	= "辉煌护盾"
 		SPLENDIDSCREEN_DESC 	= "大幅提升火焰伤害抗性, 但会受到额外的爆炸伤害和子弹伤害. 获得额外的击退抗性与暴击抗性."
+		// TODO: Update! " Rapid Charge - Superior shield recharge rate."
 		//
 		TIDETURNER_NAME 		= "力挽狂澜"
 		TIDETURNER_DESC 		= "大幅提升子弹伤害抗性, 但会受到额外的爆炸伤害和火焰伤害. 获得额外的击退抗性与暴击抗性."
+		// TODO: Update! " Burst Charge - Superior shield charge move speed."
 		//
 		QUICKIEBOMB_NAME 		= "快速黏弹发射器"
 		QUICKIEBOMB_DESC 		= "大幅提升开火速度以及粘弹就绪时间. 击杀时获得一段时间的迷你暴击."
@@ -974,7 +979,8 @@ if("SetScriptVersion" in getroottable())
 		EYELANDER_DESC 			= "提升伤害与攻击速度并在击杀时获得一段时间的暴击, 无法使用榴弹."
 		//
 		SKULLCUTTER_NAME 		= "苏格兰颅骨切割者"
-		SKULLCUTTER_DESC 		= "对与你同职业的敌人造成 10 倍伤害. 击杀时获得一段时间的暴击." //TODO: UPDATE TRANSLATION
+		SKULLCUTTER_DESC 		= "对与你同职业的敌人造成 10 倍伤害. 击杀时获得一段时间的暴击."
+		// TODO: Update! " Able to cut through enemy Ubercharge and disrupt Medi-Gun functions. Also able to deal increased damage to enemies of the same class as you."
 		//
 		CABER_NAME 				= "木柄手榴弹"
 		CABER_DESC 				= "生命值越低此武器伤害越高. 生命值低于 2% 时必定暴击. 手榴弹的爆炸会杀死你."
@@ -1568,10 +1574,10 @@ if("SetScriptVersion" in getroottable())
 		LOCHNLOAD_DESC			= " Långsamma skott men med hög snabbt skada i ett stort område. Effektivt för gruppkontroll."
 		//
 		ALIBABA_NAME			= "ALI BABAS LILLA STÖVLAR"
-		ALIBABA_DESC			= " Förbättrar rörelsehastighet, hopphöjd och sköldanfall. Ger extra skademotstånd, snabbare sköldomladdning och högra kollisionsskada."
+		ALIBABA_DESC			= " Förbättad sköldkollision skada. Ger immunitet mot fallskada."
 		//
 		BOOTLEGGER_NAME			= "SPRITSMUGGLAREN"
-		BOOTLEGGER_DESC			= " Förbättrar rörelsehastighet, hopphöjd och sköldanfall. Ger massiv motstånd mot närstridsattacker men sårbarhet mot kritiska attacker."
+		BOOTLEGGER_DESC			= " Förbättrad sköldomladdnings hastighet. Ger immunitet mot fallskada."
 		//
 		LOOSECANNON_NAME		= "LADDAD KANON"
 		LOOSECANNON_DESC		= " Ladda upp till 4 kanonbollar innan man avfyrar alla på en gång i ett verktikalt spridmönster. Kanonbollar exploderar vid kontakt med marken."
@@ -1589,13 +1595,13 @@ if("SetScriptVersion" in getroottable())
 		STICKYJUMPER_DESC 		= " Skaparen ett avstängningsfält, som bedövar alla fiender träffar av pulsen. (Minibossar är immuna till denna bedövning)"
 		//
 		CHARGINTARGE_NAME 		= "ANFALLSSKÖLDEN"
-		CHARGINTARGE_DESC 		= " Tungt motstånd mot EXPLOSIONER, men är mer sårbar mot ELD och KULOR. Inkluderar extra motstånd mot knuff och kritiska träffar."
+		CHARGINTARGE_DESC 		= " Tungt Anfall - Utmärkt sköldkollision skada."
 		//
 		SPLENDIDSCREEN_NAME 	= "STRÅLANDE SKYDDET"
-		SPLENDIDSCREEN_DESC 	= " Tungt motstånd mot ELD, men mer sårbar mot EXPLOSIONER och KULOR. Inkluderar extra mostånd mot knuff och kritiska träffar."
+		SPLENDIDSCREEN_DESC 	= " Snabbt Anfall - Utmärkt sköldomladdnings hastighet."
 		//
 		TIDETURNER_NAME 		= "VINDVÄNDAREN"
-		TIDETURNER_DESC 		= " Tungt motstånd mot KULOR, men mer skada mot ELD och EXPLOSIONER. Inkluderar extra mostånd mot knuff och kritiska träffar."
+		TIDETURNER_DESC 		= " Utbrott Anfall - Utmärkt sköldanfall rörelsehastighet."
 		//
 		QUICKIEBOMB_NAME 		= "KVICKBOMBSKJUTAREN"
 		QUICKIEBOMB_DESC 		= " Auto-avfyrar klisterbomber med en sjuk hastighet med väldigt snabb armeringstid. Få mini-kritiska träffar vid döende träff."
@@ -1607,7 +1613,7 @@ if("SetScriptVersion" in getroottable())
 		EYELANDER_DESC 			= " Hög skada med snabba attacker som ger kritiska och mini-kritiska träffar vid döende träff, men kan inte användas som en hybrid-riddare."
 		//
 		SKULLCUTTER_NAME 		= "SKOTTENS SKALLSKÄRARE"
-		SKULLCUTTER_DESC 		= " Kan skära igenom fiendens Uberladdning och störa Hälsovapen funktioner. Kan också utdela x10 skada mot fiender med samma klass som dig."
+		SKULLCUTTER_DESC 		= " Kan skära igenom fiendens Uberladdning och störa Hälsovapen funktioner. Kan också utdela ökad skda mot fiender som är samma klass som dig."
 		//
 		CABER_NAME 				= "ULLAPOOL-CABER"
 		CABER_DESC 				= " Skada ökas ju mer skadad du är. Garanterade kritiska träffar om din hälsa är under 2%. Explosionen från denna attack kommer döda dig."
@@ -1621,7 +1627,7 @@ if("SetScriptVersion" in getroottable())
 		NINEIRON_NAME 			= "NESSIES JÄRNNIA"
 		NINEIRON_DESC 			= " Har en massiv svingbåge, som kan träffa flera fiender på samma gång i alla riktningar. Utdelar dubbel kritisk skada."
 		//
-		SCOTTISHHANDSHAKE_NAME 	= "SSKOTSKA HANDSLAGET"
+		SCOTTISHHANDSHAKE_NAME 	= "SKOTSKA HANDSLAGET"
 		SCOTTISHHANDSHAKE_DESC 	= " Medans den är aktiv: Motstå 90% skada från avstånd, bli immun mot knuff och öka din maxhälsa stort. Dock du kan inte fylla på din ammunition och får mindre hälsa från kit."
 		//----------------------------
 		//----------------------------
@@ -2202,9 +2208,11 @@ if("SetScriptVersion" in getroottable())
 		//
 		ALIBABA_NAME			= "БОТИНОЧКИ АЛИ-БАБЫ"
 		ALIBABA_DESC			= " Повышенная скорость передвижения, высота прыжка и заряд рывка. Даёт дополнительную сопротивляемость к урону, ускоренную перезарядку щита и повышенный урон от удара щитом."
+		// TODO: Update! " Enhanced shield bash damage. Grants immunity to fall damage."
 		//
 		BOOTLEGGER_NAME			= "БУТЛЕГЕР"
 		BOOTLEGGER_DESC			= " Повышенная скорость передвижения, высота прыжка и заряд рывка. Даёт огромную сопротивляемость к атакам ближнего боя, но уязвимость к критическим атакам."
+		// TODO: Update! " Enhanced shield recharge rate. Grants immunity to fall damage."
 		//
 		LOOSECANNON_NAME		= "ПУШКА БЕЗ ЛАФЕТА"
 		LOOSECANNON_DESC		= " Зарядите до 4 ядер, прежде чем выпустить их все за раз по вертикали. Ядра взрываются при контакте с землёй."
@@ -2223,12 +2231,15 @@ if("SetScriptVersion" in getroottable())
 		//
 		CHARGINTARGE_NAME 		= "ШТУРМОВОЙ ЩИТ"
 		CHARGINTARGE_DESC 		= " Высокая сопротивляемость к урону от взрыва, но повышенная уязвимость к огню и пулям. Также даёт дополнительную сопротивляемость к отбрасыванию и критам."
+		// TODO: Update! " Heavy Charge - Superior shield bash damage."
 		//
 		SPLENDIDSCREEN_NAME 	= "РОСКОШНОЕ ПРИКРЫТИЕ"
 		SPLENDIDSCREEN_DESC 	= "Высокая сопротивляемость к урону от огня, но повышенная уязвимость к взрывам и пулям. Также даёт дополнительную сопротивляемость к отбрасыванию и критам."
-		//
+		// TODO: Update! " Rapid Charge - Superior shield recharge rate."
+		// 
 		TIDETURNER_NAME 		= "ВЕРНЫЙ ШТУРВАЛ"
 		TIDETURNER_DESC 		= " Высокая сопротивляемость к урону от пуль, но повышенная уязвимость к огню и взрывам. Также даёт дополнительную сопротивляемость к отбрасыванию и критам."
+		// TODO: Update! " Burst Charge - Superior shield charge move speed."
 		//
 		QUICKIEBOMB_NAME 		= "БЫСТРОМЁТ"
 		QUICKIEBOMB_DESC 		= " Автоматически стреляет липучками с безумной скоростью и очень сокращённым временем подрыва. Даёт мини-криты за убийство."
@@ -2241,6 +2252,7 @@ if("SetScriptVersion" in getroottable())
 		//
 		SKULLCUTTER_NAME 		= "ШОТЛАНДСКИЙ ГОЛОВОРЕЗ"
 		SKULLCUTTER_DESC 		= " Способен пробить вражеский убер-заряд и прервать лечение. Также наносит урон в десятикратном размере по роботам того же класса, что и вы."
+		// TODO: Update! " Able to cut through enemy Ubercharge and disrupt Medi-Gun functions. Also able to deal increased damage to enemies of the same class as you."
 		//
 		CABER_NAME 				= "АЛЛАПУЛЬСКОЕ БРЕВНО"
 		CABER_DESC 				= " Урон увеличивается по мере получаемого урона. Гарантированные криты, если ваше здоровье ниже 2 %. Взрыв бревна мгновенно убивает."
