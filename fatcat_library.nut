@@ -187,10 +187,10 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.3", 6))
+if (!SetLibraryVersion("1.17.4", 0))
 	return
 
-SetLibraryTimeStamp("4-21-2026_22:10")
+SetLibraryTimeStamp("4-25-2026_18:14")
 
 SetLibrarySettings({})
 
@@ -1050,22 +1050,69 @@ function CTFPlayer::InRespawnRoom(any = false)
 
 		respawnroom.RemoveSolidFlags(FSOLID_NOT_SOLID)
 		respawnroom.SetCollisionGroup(0)
-		local trace =
-		{
-			start =       EyePosition()
-			end =         EyePosition()
-			hullmin =     GetPlayerMins()
-			hullmax =     GetPlayerMaxs()
-			mask =        CONTENTS_SOLID
+		// local trace =
+		// {
+		// 	start =       GetOrigin()
+		// 	end =         GetOrigin()
+		// 	hullmin =     GetPlayerMins()
+		// 	hullmax =     GetPlayerMaxs()
+		// 	mask =        CONTENTS_SOLID
+		// }
+		// // DebugDrawBox(GetOrigin(), GetPlayerMins(), GetPlayerMaxs(), 255, 255, 0, 0, 100)
+		// // ShowBBOX(respawnroom, Vector(255, 0, 0), 0, 100)
+		// TraceHull(trace)
+
+		local trace = {
+			start = GetOrigin(),
+			end = GetOrigin()
+			hullmin = GetPlayerMins()
+			hullmax = GetPlayerMaxs()
+			mask = CONTENTS_SOLID,
+			filter = function(entity)
+			{
+				if(entity.GetClassname() != "func_respawnroom")
+					return TRACE_CONTINUE
+				else
+					return TRACE_OK_CONTINUE
+			}
 		}
-		TraceHull(trace)
+		TraceHullGather(trace)
+
 		respawnroom.AddSolidFlags(FSOLID_NOT_SOLID)
 		respawnroom.SetCollisionGroup(TFCOLLISION_GROUP_RESPAWNROOMS)
 
-		if(trace.hit && trace.enthit == respawnroom) return true
+		if(trace.hits.len() != 0 && trace.hits[0].enthit) return true
 	}
 	return false
 }
+
+/* 
+///////////
+	// Trace //
+	///////////
+	local trace = {
+		start = GetOrigin(),
+		end = GetOrigin()
+		hullmin = GetPlayerMins()
+		hullmax = GetPlayerMaxs()
+		mask = CONTENTS_SOLID,
+		filter = function(entity)
+		{
+			if(entity.GetClassname() != "func_respawnroom")
+				return TRACE_CONTINUE
+			else
+				return TRACE_OK_CONTINUE
+		}
+	}
+
+	DebugDrawClear()
+	local EntitysHit = []
+	TraceHullGather(trace)
+	foreach (index, hit in trace.hits)
+	{
+		EntitysHit.append(hit.enthit)
+	}
+ */
 
 function CTFPlayer::InAnyRespawnRoom()
 {

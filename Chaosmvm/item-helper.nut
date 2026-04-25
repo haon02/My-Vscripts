@@ -359,36 +359,5 @@ AddChatTrigger("itemhelp", function(player, ...) {
 				player.TranslateToChat("IH_DIS_MSG")
 		}
 	}
-	/////////////////////
-	/* function OnScriptEvent_HumanSay(params)
-	{
-		local player = params.player
-		local text = split(params.message, " ")
-
-		if(text[0] != "/itemhelp")
-			{ if(text[0] != "!itemhelp") return }
-		
-		if(text.len() != 2)
-		{
-			player.TranslateToChat("IH_HELP_MSG")
-			return
-		}
-
-		local message_value = text[1].tointeger()
-
-		if (message_value > 2 || message_value < 0)
-		{
-			player.TranslateToChat("IH_OOB_ARG", message_value)
-			return
-		}
-
-		GetScope(player).SpawnHelper <- message_value
-		if(message_value == 0) 
-			player.TranslateToChat("IH_DISABLE")
-		if(message_value == 1) 
-			player.TranslateToChat("IH_WAVE_SETUP")
-		if(message_value == 2) 
-			player.TranslateToChat("IH_ENABLE")
-	} */
 }
 __CollectGameEventCallbacks(helper)
