@@ -1157,6 +1157,12 @@
 		"body": "DisplayHudText(${1:string msg}, ${2:string clr = false}, ${3:float[] pos = false}, ${4:float holdtime = false}, ${5:int channel = false})",
 		"description": "Displays a Hud Text with `game_text`"
 	},
+	// Bots
+	"bot.UndoReprogram": {
+		"prefix": "UndoReprogram",
+		"body": "UndoReprogram()",
+		"description": "Undos the bots Reprogram"
+	},
 	// weapons?
 	"wpn.HasAttribute": {
 		"prefix": "HasAttribute",
@@ -1620,13 +1626,23 @@
 		"body": "RemoveCommandTrigger(${1:string string}, ${2:string[] triggers = [\"/\", \"!\"]})",
 		"description": "Returns a string with the chat trigger removed"
 	},
-
-
-
 	"SetCvar": {
 		"prefix": "SetCvar",
 		"body": "SetCvar(${1:string convar}, ${2:any value}, ${3:bool admin_notify = false}, ${4:bool notify_all = false})",
 		"description": "Sets a convar, with options to notify admins or all"
+	},
+	"CreateParticle": {
+		"prefix": "CreateParticle",
+		"body": "CreateParticle(${1:string particle}, ${2:vector origin}, ${3:qangle angle = QAngle(-90, 0, )})",
+		"description": "Creates a one off particle system then kills it"
+		// "description": "Sets a convar, with options to notify admins or all"
+	},
+
+
+	"CreateBaseExplosion":{
+		"prefix": "CreateBaseExplosion",
+		"body": "CreateBaseExplosion(${1:table table})",
+		// "description": "Returns an string from an array of objects"
 	},
 	"CreateAoETable": {
 		"prefix": "CreateAoE",

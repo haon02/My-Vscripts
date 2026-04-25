@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.4.4")
+SetScriptVersion("GameplayApplications", "4.4.5")
 
 local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -193,19 +193,13 @@ RegisterSpawnCallback("tf_projectile_rocket", "BlutsaugerRocket", function(entit
 
 	SetDestroyCallback(entity, function() {
 		// owner.PrintToChat("Your Rocket: i dies now but did i deal damage to anything??? "+("DidDamage" in GetScope(self) && DidDamage.tostring()))
-
-		if(false)
+		/* local target = GetClosestPlayer(self, TF_TEAM_PVE_INVADERS, true)
+	
+		if(target && self.GetOrigin().DistanceTo(target.GetOrigin()) < 50)
 		{
-			local target = GetClosestPlayer(self, TF_TEAM_PVE_INVADERS)
-			if(!target)
-				return
-			if(self.GetOrigin().DistanceTo(target.GetOrigin()) > 50)
-				return
-
-			target.TakeDamageEx(null, owner, owner.GetWeaponInSlotNew(SLOT_PRIMARY), Vector(), Vector(), 0.01, DMG_GENERIC)
+			target.TakeDamageEx(self, owner, owner.GetWeaponInSlotNew(SLOT_PRIMARY), Vector(), Vector(), 0.01, DMG_GENERIC)
 		}
-
-		if(!("DidDamage" in GetScope(self)) || GetScope(self).DidDamage == false)
+		else */ if(!("DidDamage" in GetScope(self)) || GetScope(self).DidDamage == false)
 		{
 			owner.GetWeaponInSlotNew(SLOT_SECONDARY).IncreaseUberChargePercent(BlutsaugerSettings.refund)
 		}
@@ -224,10 +218,7 @@ function GameplayThink()
 		if(bot.IsDead())
 			continue
 
-		if(bot.IsReprogrammed())
-			ReprogrammedBots.append(bot)
-
-		if(bot.IsAlive())
+		if(bot.IsAlive() && !bot.IsReprogrammed())
 			AliveBots += 1
 
 		GetScope(bot).LastVel <- bot.GetAbsVelocity()
@@ -237,21 +228,20 @@ function GameplayThink()
 
 		if(bot.IsReprogrammed())
 		{
-			ReprogrammedBots.append(bot)
-			if(bot.GetPlayerClass() == TF_CLASS_MEDIC)
+			/* if(bot.GetPlayerClass() == TF_CLASS_MEDIC)
 			{
-				local nearest = "ReProgrammer" in GetScope(bot) ? GetScope(bot).ReProgrammer : bot.GetClosestPlayer()
+				local nearest = "ReProgrammer" in GetScope(bot) ? GetScope(bot).ReProgrammer : bot.GetClosestPlayer(null, Vector())
 				bot.SetMission(6, true)
 				bot.SetMissionTarget(nearest)
-			}
-			if(!bot.IsValidReprogramTarget())
+			} */
+			if(!bot.IsValidReprogramTarget() || bot.GetPlayerClass() == TF_CLASS_MEDIC)
 			{
-				// should always be the last index
-				ReprogrammedBots.pop()
 				bot.RemoveCondEx(TF_COND_REPROGRAMMED, true)
 				foreach(attribute in BlutsaugerRemoveAttributes)
 					bot.RemoveCustomAttribute(attribute)
 			}
+			else 
+				ReprogrammedBots.append(bot)
 		}
 
 		/* if(bot.InCond(TF_COND_REPROGRAMMED) && (!bot.IsValidReprogramTarget()))
@@ -846,7 +836,7 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 					if(!self.IsPressingButton(IN_ATTACK2))
 						return -1
 
-					self.PrintToHud("KILLING ROBOTS!")
+					self.PrintToHud("Debug: (KILLING ROBOTS!)")
 
 					foreach (robot in m_aRobots)
 					{

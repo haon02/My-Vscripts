@@ -22,14 +22,14 @@ else
 		return MOD_TF2
 }
 
-/* if(!("__IncludeScript" in ROOT))
+/* if(!("__DoIncludeScript" in ROOT))
 {
-	ROOT.__IncludeScript <- IncludeScript
+	ROOT.__DoIncludeScript <- DoIncludeScript
 
-	function ROOT::IncludeScript(file, scope = null)
+	function ROOT::DoIncludeScript(file, scope = null)
 	{
 		SetScriptVersion(file, "__unknown__")
-		__IncludeScript(file, scope)
+		__DoIncludeScript(file, scope)
 	}
 } */
 
@@ -62,7 +62,8 @@ function ROOT::SetLibraryVersion(lib_version, subversion = 0, fail_msg = true, f
 		if(developer == true)
 		{
 			FatCatLibVersion.developer <- "true"
-			PrintToChatAll(FATCATLIB_PREFIX+"\x04DONT FORGET TO DISABLE DEVELOPER MODE!!!\x01")
+			local chat = @(m) ("PrintToChatAll" in ROOT ? PrintToChatAll(m) : ClientPrint(null, 3, m))
+			chat(FATCATLIB_PREFIX+"\x04DONT FORGET TO DISABLE DEVELOPER MODE!!!\x01")
 		}
 		return true
 	}
@@ -186,7 +187,7 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.17.3", 2))
+if (!SetLibraryVersion("1.17.3", 6))
 	return
 
 SetLibraryTimeStamp("4-21-2026_22:10")
@@ -565,6 +566,8 @@ function ROOT::GetRuneCondition(rune)
 ::TICKRATE 				<- 66
 ::TICK_DUR 				<- 1.0/TICKRATE
 ::MAX_DECAPITATIONS 	<- 4
+::MAX_USER_MSG_DATA 	<- 255
+::MAX_CLIENT_PRINT_DATA <- MAX_USER_MSG_DATA-6
 
 ::Host <- GetListenServerHost()
 
@@ -1577,7 +1580,15 @@ function CTFPlayer::GetTranslatedAndFormattedString(...)
 }
 
 function CTFPlayer::TranslateToChat(...)
-	PrintToChat(GetTranslatedAndFormattedString.acall([this].extend(vargv)))
+{
+	local msg = GetTranslatedAndFormattedString.acall([this].extend(vargv))
+	if(msg.len() > MAX_CLIENT_PRINT_DATA)
+	{
+		error("Warning! a Message is too long!!!\n")
+		error(msg + "\n")
+	}
+	PrintToChat(msg)
+}
 
 function CTFPlayer::TranslateToHud(...)
 	PrintToHud(GetTranslatedAndFormattedString.acall([this].extend(vargv)))
@@ -2538,9 +2549,11 @@ function CTFPlayer::DistanceTo(thing)
 	
 }
 
-function CTFPlayer::GetClosestPlayer(team = GetTeam())
+function CTFPlayer::GetClosestPlayer(team = null, offset = Vector())
 {
-	return GetClosestPlayer(this, team)
+	if(team == null)
+		team = GetTeam()
+	return GetClosestPlayer(this, team, offset)
 }
 
 CTFPlayer.GenerateAndWearItem <- CTFBot.GenerateAndWearItem
@@ -2720,7 +2733,7 @@ function CTFBot::SayChatterMessage(victim)
 	}
 	PrintToChatAll(format("%s%s\x01 :  %s", GetChatColor(), GetUserName(), Message))
 }
-// TODO: Add to Snippets
+
 function CTFBot::UndoReprogram()
 {
 	if(!this||!IsValid()||IsDead())
@@ -3487,7 +3500,7 @@ function ROOT::GetScope(entity)
 	return entity.GetScriptScope()
 }
 
-function ROOT::GetClosestPlayer(target, team = TF_TEAM_BLUE)
+function ROOT::GetClosestPlayer(target, team = TF_TEAM_BLUE, offset = Vector())
 {
 	local closest_dist = 100000
 	local closest = null
@@ -3497,11 +3510,11 @@ function ROOT::GetClosestPlayer(target, team = TF_TEAM_BLUE)
 			continue
 		if(player.GetTeam() != team)
 			continue
-		local dist = target.GetOrigin().DistanceTo(player)
+		local dist = (target.GetOrigin() + offset).DistanceTo(player.GetOrigin()+offset)
 		if(dist < closest_dist)
 		{
 			closest_dist = dist
-			closest = human
+			closest = player
 		}
 	}
 	return closest
@@ -4200,7 +4213,16 @@ function Vector::Random(min, max)
 
 function Vector::DistanceTo(point2)
 {
+	try {
 	return (this-point2).Length()
+	}
+	catch (e)
+	{
+		::printl(this)
+		::printl(point2)
+		::printl(e)
+		return -1
+	}
 }
 
 function Vector2D::Normalize()
