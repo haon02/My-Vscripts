@@ -120,7 +120,7 @@ if(!("FatCatLibTimeStamp" in ROOT))
 	::FatCatLibTimeStamp <- {}
 
 function SetLibraryTimeStamp(timestamp)
-	FatCatLibTimeStamp <- timestamp
+	::FatCatLibTimeStamp <- timestamp
 
 ::ValidLibrarySettings <- {
 	// If True removes the unused spy watch viewmodel from every bot on spawn
@@ -140,6 +140,7 @@ function SetLibraryTimeStamp(timestamp)
 	"NoclipAntiCheat" : true
 
 	// Allows Callbacks for after a cond is applied (maximum delay 1-3 frame)
+	// reload library after setting this
 	"OnCondPostHooks" : false
 }
 
