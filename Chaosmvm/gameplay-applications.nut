@@ -1064,6 +1064,7 @@ __CollectGameEventCallbacks(GameplayEvents)
 		"Common98" 	: { "message" : "I THINK HIS HEART STOPPED." }
 		"Common99" 	: { "message" : "WHAT WAS YOUR PLAN?" }
 		"Common100" : { "message" : "THIS IS NOT A GAME." }
+		"Common101" : { "message" : "KEEP EM COMING!" }
 		"Common200" : {	// Chrstin asked for this
 			"message" : "HAHAHA RANDOMGUY WENT BOOM!"
 			"requirement" : "id|[U:1:96114934]"
@@ -1095,6 +1096,10 @@ __CollectGameEventCallbacks(GameplayEvents)
 		"Common506" 	: { 
 			"format" : "victim|⤒"
 			"message" : "%s SHOULD HAVE PLAYED OIL SPILL INSTEAD"
+		}
+		"Common506" 	: { // From MiirioKing
+			"format" : "victim|⤒"
+			"message" : "YOU KNOW WHAT REALLY GRINDS MY GEARS? %s"
 		}
 		"Common1000"	: {
 			"team"	  : 2
