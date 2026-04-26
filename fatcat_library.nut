@@ -190,7 +190,7 @@ function ROOT::ToggleForceFlag( bool )
 if (!SetLibraryVersion("1.17.4", 0))
 	return
 
-SetLibraryTimeStamp("4-25-2026_18:14")
+SetLibraryTimeStamp("4-25-2026_19:45")
 
 SetLibrarySettings({})
 
@@ -1086,36 +1086,9 @@ function CTFPlayer::InRespawnRoom(any = false)
 	return false
 }
 
-/* 
-///////////
-	// Trace //
-	///////////
-	local trace = {
-		start = GetOrigin(),
-		end = GetOrigin()
-		hullmin = GetPlayerMins()
-		hullmax = GetPlayerMaxs()
-		mask = CONTENTS_SOLID,
-		filter = function(entity)
-		{
-			if(entity.GetClassname() != "func_respawnroom")
-				return TRACE_CONTINUE
-			else
-				return TRACE_OK_CONTINUE
-		}
-	}
-
-	DebugDrawClear()
-	local EntitysHit = []
-	TraceHullGather(trace)
-	foreach (index, hit in trace.hits)
-	{
-		EntitysHit.append(hit.enthit)
-	}
- */
-
 function CTFPlayer::InAnyRespawnRoom()
 {
+	return InRespawnRoom(true)
 	foreach (respawnroom in GetAllEntitiesByClassname("func_respawnroom"))
 	{
 		respawnroom.RemoveSolidFlags(FSOLID_NOT_SOLID)
