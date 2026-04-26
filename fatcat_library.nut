@@ -126,14 +126,21 @@ function SetLibraryTimeStamp(timestamp)
 	// If True removes the unused spy watch viewmodel from every bot on spawn
 	// -1 Edict per bot
 	"KillWatchViewmodels" : false
+
 	// Only Print Errors to Console
 	"ConsoleErrors" : false
+
 	// Print a different Error Message to All Clients
 	"PublicErrors" : true
+
 	// Tracks Better Statistics
 	"BetterStatTracking" : true
+
 	// Prevent Non Admins from using Noclip
 	"NoclipAntiCheat" : true
+
+	// Allows Callbacks for after a cond is applied (maximum delay 1-3 frame)
+	"OnCondPostHooks" : false
 }
 
 function IsValidSetting(setting)
@@ -568,6 +575,7 @@ function ROOT::GetRuneCondition(rune)
 ::MAX_DECAPITATIONS 	<- 4
 ::MAX_USER_MSG_DATA 	<- 255
 ::MAX_CLIENT_PRINT_DATA <- MAX_USER_MSG_DATA-6
+::TF_COND_RANGE 		<- 131
 
 ::Host <- GetListenServerHost()
 
@@ -2572,7 +2580,7 @@ function CTFPlayer::GetMoveSpeed()
 	}
 	return speed
 }
-
+// TODO: Add to Snippets
 function CTFPlayer::DistanceTo(thing)
 {
 	if(typeof thing == "Vector")
@@ -2581,17 +2589,59 @@ function CTFPlayer::DistanceTo(thing)
 		return GetOrigin().DistanceTo(thing.GetOrigin())
 	
 }
-
+// TODO: Add to Snippets
 function CTFPlayer::GetClosestPlayer(team = null, offset = Vector())
 {
 	if(team == null)
 		team = GetTeam()
 	return GetClosestPlayer(this, team, offset)
 }
+// TODO: Add to Snippets
+function CTFPlayer::OnAddCondListener(cond, name, func)
+{
+	if(!("OnCondPostHooks" in FatCatLibSettings))
+		SetLibrarySettings()
+
+	if(FatCatLibSettings["OnCondPostHooks"] == false)
+		return printl("Warning! OnCondPostHooks is Disabled")
+
+	local scope = GetScope(this)
+	if(!("OnAddCond" in scope))
+		scope.OnAddCond <- array(TF_COND_RANGE, {})
+
+	if(name in scope.OnAddCond[cond])
+		printl("Warning, Trying to Add an AddCondListener with an already registered name!")
+
+	scope.OnAddCond[cond][name] <- func
+}
+// TODO: Add to Snippets
+function CTFPlayer::OnRemoveCondListener(cond, name, func)
+{
+	if(!("OnCondPostHooks" in FatCatLibSettings))
+		SetLibrarySettings()
+
+	if(FatCatLibSettings["OnCondPostHooks"] == false)
+		return printl("Warning! OnCondPostHooks is Disabled")
+		
+	local scope = GetScope(this)
+	if(!("OnAddCond" in scope))
+		scope.OnRemoveCond <- array(TF_COND_RANGE, {})
+
+	if(name in scope.OnRemoveCond[cond])
+		printl("Warning, Trying to Add an RemoveCondListener with an already registered name!")
+
+	scope.OnRemoveCond[cond][name] <- func
+}
+// Cool thing i can do, "this" is actually the player >:), ROOT could also work, but this makes sense
+/* Host.OnAddCondListener(TF_COND_TAUNTING, "Test" function() {
+	StopTaunt(true)
+	RemoveCondEx(TF_COND_TAUNTING, true)
+	// ApplyAbsVelocityImpulse(Vector(0, 0, 300))
+}) */
 
 CTFPlayer.GenerateAndWearItem <- CTFBot.GenerateAndWearItem
-/* 
-function CTFPlayer::CreateParticle(particle, duration = -1)
+// TODO: Add to Snippets
+function CTFPlayer::AttachParticle(particle, duration = -1, attachment_point = PATTACH_ABSORIGIN_FOLLOW)
 {
 	local trigger = CreateByClassname("trigger_particle")
 	trigger.KeyValueFromString("particle_name", particle)
@@ -2607,7 +2657,7 @@ function CTFPlayer::CreateParticle(particle, duration = -1)
 	}
 }
 
-function CTFPlayer::CreateWearable( idx, model )
+/* function CTFPlayer::CreateWearable( idx, model )
 {
 	local dummy = CreateByClassname( "tf_weapon_parachute" )
 	SetPropInt( dummy, PROP_ITEM_DEF_IDX, 1101 )
@@ -2617,12 +2667,8 @@ function CTFPlayer::CreateWearable( idx, model )
 	dummy.SetModelSimple("")
 	Weapon_Equip( dummy )
 
-	// SetPropString( dummy, "m_iName", format( "dummy_%d", dummy.entindex() ) )
-
 	local wearable = GetPropEntity( dummy, "m_hExtraWearable" )
 	dummy.Kill()
-
-	// SetPropString( wearable, "m_iName", format( "werable_%d", wearable.entindex() ) )
 
 	wearable.SetTeam(GetTeam())
 	SetPropInt( wearable, PROP_ITEM_DEF_IDX, idx )
@@ -4971,6 +5017,52 @@ CreateThinker("OnEntityPostSpawn" , function() {
 })
 */
 
+// if(FindByName(null, "OnCondition"))
+	// FindByName(null, "OnCondition").Kill()
+
+if(!("OnCondPostHooks" in FatCatLibSettings))
+	SetLibrarySettings()
+
+if(FatCatLibSettings["OnCondPostHooks"] == true) 
+{
+	CreateThinker("OnCondition", function() {
+		foreach (player in Players)
+		{
+			local scope = GetScope(player)
+			if(!("CheckedAddconds" in scope))
+				scope.CheckedAddconds <- array(TF_COND_RANGE, false) //conds go from 0 (TF_COND_AIMING) to 130 (TF_COND_IMMUNE_TO_PUSHBACK)
+			
+			if(!("OnAddCond" in scope))
+				scope.OnAddCond <- array(TF_COND_RANGE, [])
+
+			if(!("OnRemoveCond" in scope))
+				scope.OnRemoveCond <- array(TF_COND_RANGE, [])
+			
+			for (local cond = 0; cond < TF_COND_RANGE; cond++) 
+			{
+				local WasInCond = scope.CheckedAddconds[cond]
+				if(!WasInCond && player.InCond(cond))
+				{
+					// printl("Called OnAddCond for cond "+cond+" Frame: "+GetFrameCount())
+					foreach (func in scope.OnAddCond[cond])
+						func.call(player)
+				}
+
+				if(WasInCond && !player.InCond(cond))
+				{
+					// printl("Called OnRemoveCond for cond "+cond+" Frame: "+GetFrameCount())
+					foreach (func in scope.OnRemoveCond[cond])
+						func.call(player)
+				}
+
+				scope.CheckedAddconds[cond] = player.InCond(cond)
+			}
+		}
+		return -1
+	}, THINKER_PERSIST)
+}
+else if(FindByName(null, "OnCondition"))
+	FindByName(null, "OnCondition").Kill()
 
 // Makes Custom Events to listen to
 ::ChaosCustomEvents <- {
