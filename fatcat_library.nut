@@ -641,6 +641,19 @@ function ROOT::GetCvarStr(cvar)
 	return Convars.GetStr(cvar)
 ROOT.GetCvarString <- ROOT.GetCvarStr
 
+try {
+	IncludeScript("trace_filter")
+}
+catch (e)
+{
+	try {
+		IncludeScript("chaosmvm/trace_filter")
+	}
+	catch(_) {
+		throw "FAILED TO INCLUDE DEPENDENCY \"trace_filter\"!"
+	}
+}
+
 
 ///////////////////////////////////////
 function CTFPlayer::PrintToHud(message)
