@@ -6,8 +6,8 @@ SetScriptVersion("Abilities", "2.7.0")
 
 // Base
 // - - - - - - - - - Base - - - - - - - - - |
-local BASE_spawn_cooldown = 5            // |
-local BASE_attack_cooldown = 5           // |
+local _BASE_spawn_cooldown = 5            // |
+local _BASE_attack_cooldown = 5           // |
 // - - - - - - - - - - - - - - - - - - - - -|
 // Scout
 // Soldier

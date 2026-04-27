@@ -1,10 +1,21 @@
 // Ficool2's Tracefilter library
-IncludeScript("trace_filter")
+try {
+	IncludeScript("trace_filter")
+}
+catch (e)
+{
+	try {
+		IncludeScript("chaosmvm/trace_filter")
+	}
+	catch(_) {
+		throw "FAILED TO INCLUDE DEPENDENCY \"trace_filter\"!"
+	}
+}
 IncludeScript("fatcat_library")
 
 local isDebug = false
 
-SetScriptVersion("flame_sentry", "2.1.0")
+SetScriptVersion("flame_sentry", "2.1.1")
 
 local DMG_SENTRY_BURN = DMG_PLASMA|DMG_PREVENT_PHYSICS_FORCE
 
@@ -153,6 +164,9 @@ function FlameSentry()
 		NextDamageTime <- Time() + FLAME_SENTRY_DAMAGE_DELAY
 		foreach (entity in EntitysHit)
 		{
+			if(!hOwner || !hOwner.IsValid())
+				break
+
 			if(entity.IsPlayer())
 				entity.AddCondEx(TF_COND_GAS, 1, hOwner)
 			entity.TakeDamageCustom(self, hOwner, hOwner.GetWeaponInSlotNew(SLOT_MELEE), Vector(), Vector(), IsWrangled ? FLAME_SENTRY_DAMAGE * FLAME_SENTRY_WRANGLE_MULT : FLAME_SENTRY_DAMAGE, DMG_SENTRY_BURN, TF_DMG_CUSTOM_BURNING)

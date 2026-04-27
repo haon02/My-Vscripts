@@ -3,7 +3,7 @@ if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatC
 
 SetScriptVersion("GameplayApplications", "4.4.5")
 
-local Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
+local _Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
 ::TOMISLAV_SETTINGS <- {
 	TimeBeforeHeatLost = 5.0
@@ -374,6 +374,8 @@ function GameplayThink()
 	return -1
 }
 
+
+
 function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 {
 	if(params.damage_custom > (1<<7))
@@ -444,7 +446,7 @@ function ROOT::ModifyCallbackDamage(params, victim, attacker, weapon, inflictor)
 	}
 }
 
-function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, inflictor)
+function ROOT::ProcessChaosWeaponHit(params, victim, attacker, weapon, _inflictor)
 {
 	switch (weapon.GetIDX())
 	{
@@ -884,7 +886,7 @@ if("GameplayEvents" in ROOT) ::GameplayEvents.clear()
 			scope.ReProgrammer.TranslateToChat("REPROG_BOT_LEAVE", player.GetUserName())
 		scope.ReProgrammer <- null
 	}
-	function OnGameEvent_mvm_begin_wave(params)
+	function OnGameEvent_mvm_begin_wave(_)
 	{
 		local ConfusionEnt = FindByName(null, "ConfusionEnt")
 		if(!ConfusionEnt) ConfusionEnt = SpawnEntityFromTable("info_target", {targetname = "ConfusionEnt"})
