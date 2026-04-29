@@ -116,11 +116,11 @@ if(!("FatCatLibScriptsVersion" in ROOT))
 function ROOT::SetScriptVersion(item, version)
 	FatCatLibScriptsVersion[item] <- version
 
-if(!("FatCatLibTimeStamp" in ROOT))
-	::FatCatLibTimeStamp <- {}
+// if(!("FatCatLibTimeStamp" in ROOT))
+	// ::FatCatLibTimeStamp <- {}
 
-function SetLibraryTimeStamp(timestamp)
-	::FatCatLibTimeStamp <- timestamp
+// function SetLibraryTimeStamp(timestamp)
+	// ::FatCatLibTimeStamp <- timestamp
 
 ::ValidLibrarySettings <- {
 	// If True removes the unused spy watch viewmodel from every bot on spawn
@@ -198,10 +198,9 @@ function ROOT::SetLibrarySettings(settings_table = {})
 function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
-if (!SetLibraryVersion("1.18.0", 0))
+// month.day.year.hour(24format)
+if (!SetLibraryVersion("04.28.2026.20", 0))
 	return
-
-SetLibraryTimeStamp("4-25-2026_21:00")
 
 SetLibrarySettings({})
 
@@ -6151,15 +6150,13 @@ else if(FindByName(null, "OnCondition"))
 __CollectGameEventCallbacks(ChaosCustomEvents)
 
 AddChatTrigger(["lib_version", "lib_versions"], function(_player, ...) {
-	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp.tostring())
-	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring())
 
 	foreach (item, value in FatCatLibScriptsVersion)
 		PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 %s\x01: \x04%s\x01", item, value)
 })
 AddChatTrigger("lib_info", function(_player, ...) {
-	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Last Modified At \x04%s\x03   \x07606060(MM-DD-YYYY_Hr:Min)", FatCatLibTimeStamp)
-	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01, \x03force_included\x01 = \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring(), FatCatLibVersion.forced.tostring())
+	PrintToChatAllF("\x07D000D0► FatCatLib ◄\x03 Version\x01: \x04%s\x01 - \x03sub_version\x01: \x04%s\x01", FatCatLibVersion.version, FatCatLibVersion.sub_version.tostring())
 })
 RegisterAdminTrigger("lib_force", function(_player, ...) {
 	if("FatCatLibForce" in ROOT)
