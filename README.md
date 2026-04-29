@@ -14,3 +14,4 @@ It contains a bunch of helper functions and new functions that Make vscript just
 - Liverfull  :  Russian <br>
 - Decimate  :  Swedish <br>
 - Kimmy  :  Polish ( WIP ) <br>
+- Hanon  :  Danish ( WIP ) <br>
