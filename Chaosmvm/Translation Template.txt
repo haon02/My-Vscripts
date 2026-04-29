@@ -1,0 +1,644 @@
+Replace the "english" with whatever language you are translating for
+ignore any color information, such as "\x01", "/x07######", or "/x08########"
+also ignore modifying the subsitute strings, such as "%s" and "%%", or the "\n" (newline) characters
+dotn change any strings that specify commands, such as "/itemhelp #" (i might get to making this work)
+
+an example one would look like this
+
+japanese = {
+    LOW_METAL = "メタルが足りない" (sorry for if this is butchered, just used google translate)
+}
+
+All the strings and their values are below in this section
+
+english = {
+    IH_TRANSLATE_ITEM		= IH_color + "[%s]" + IH_text_color + "%s"
+    IH_INCLUDES				= IH_color_header + "[►]\x0826beffBB Your loadout includes..."
+    IH_DIS_MSG_2			= IH_disable_color + "Type '/itemhelp 1' to disable these messages during a wave. \nType '/itemhelp 0' to disable these messages entirely."
+    IH_DIS_MSG				= IH_disable_color + "Type '/itemhelp 0' to disable these messages. \nType '/itemhelp 2' to Always display this message."
+    IH_BAD_ARGS				= IH_color_header + "[Item Helper]" + IH_error_color + " {Error}\x01 Incorrect arguments!\n/itemhelp 2 - Enable\n/itemhelp 1 - Enable during Wave Setup only\n/itemhelp 0 - Disable"
+    IH_OOB_ARG				= IH_color_header + "[Item Helper]" + IH_error_color + " {Error}\x01 Out Of Bounds Value Set! : %s"
+    IH_HELP_MSG				= IH_color_header + "[Item Helper]\x01 Item helper provides simple descriptions for each \x03Chaos\x01 Item!" 
+    IH_DISABLE				= IH_color_header + "[►]\x01 Item Helper disabled."
+    IH_WAVE_SETUP			= IH_color_header + "[►]\x01 Item Helper enabled on Wave Setup only."
+    IH_ENABLE 				= IH_color_header + "[►]\x01 Item Helper enabled."
+    LOW_METAL 				= "Not enough Metal"
+    TOMISLAV_HEAT			= "Tomislav Heat: %s%%"
+    STUCK_RESPAWNED 		= "You were respawned to avoid getting stuck."
+    ABILITY_READY			= "%s\n► Ready ◄"
+    ABILITY_CHARGING		= "%s\n%s"
+    ABILITY_CHARGING_MSG	= "Charging: %ss"
+    ABILITY_CHARGING_D_MSG	= "Charging: %s%%"
+    MEGACRUSH 				= "MEGA-CRUSH"
+    VITALRESURGENCE 		= "VITAL RESURGENCE"
+    VEHICULARMANNSLAUGHTER 	= "VEHICULAR MANNSLAUGHTER"
+    REPROG_BOT_STRONG		= TF_TEAM_COLOR_REPROG_B+"%s\x01 is too resistant and cannot be reprogrammed."
+    REPROG_BOT_NOT_SUIT		= TF_TEAM_COLOR_REPROG_B+"%s\x01 is not suitable for combat and cannot be reprogrammed."
+    REPROG_BOT_LEAVE		= TF_TEAM_COLOR_SPEC+"%s died."
+    REPROG_BOT_MESSAGE 		= TF_TEAM_COLOR_RED+"%s\x01 has reprogrammed "+TF_TEAM_COLOR_REPROG_B+"%s\x01!"
+    //---------------------------------------------------------
+    CHECKPOINT_CREATED		= "\x077c8cc2Checkpoint created:\x078165cf [/%s]"
+    CHECKPOINT_WRONG_MAP	= CHECKPOINT_ERROR+"That checkpoint was not set for this map."
+    CHECKPOINT_WRONG_MISS	= CHECKPOINT_ERROR+"That checkpoint was not set for this mission."
+    CHECKPOINT_EXPIRE		= CHECKPOINT_ERROR+"That checkpoint has expired."
+    CHECKPOINT_RESTORE		= "\x0744CC44Restored to last saved checkpoint."
+    CHECKPOINT_RESTORE_HUD	= "Restored to last saved checkpoint."
+    //---------------------------------------------------------
+    SCATTERGUN_NAME 		= "SCATTERGUN"
+    SCATTERGUN_DESC 		= " Standard option for reliable damage. Highly effective at close range."
+    //
+    FORCENATURE_NAME		= "FORCE-A-NATURE"
+    FORCENATURE_DESC		= " Enhanced knockback on hit. Slightly lower DPS than Scattergun."
+    //
+    SHORTSTOP_NAME 			= "SHORTSTOP"
+    SHORTSTOP_DESC 			= " Insane fire rate and guaranteed crits to wet enemies, but slow reload."
+    //
+    SODAPOPPER_NAME 		= "SODA POPPER"
+    SODAPOPPER_DESC 		= " Hold fire to load a quick 4-shot burst."
+    //
+    BABYFACEBLASTER_NAME	= "BABY FACE'S BLASTER"
+    BABYFACEBLASTER_DESC	= " Hold fire to load a massive burst of up to 200 shots, shredding anything at point-blank range. Has very high recoil however."
+    //
+    BACKSCATTER_NAME		= "BACK SCATTER"
+    BACKSCATTER_DESC		= " Full crits on backshots. Does not require ammo and has an endless clip."
+    ///
+    PISTOL_NAME 			= "PISTOL"
+    PISTOL_DESC 			= " Fire rockets instead of bullets. Highly effective for mobility."
+    //
+    BONK_NAME 				= "BONK! ATOMIC PUNCH"
+    BONK_DESC 				= " Supercharged drink, granting invulnerability that doesn't remove your ability to attack."
+    //
+    CRITACOLA_NAME 			= "CRIT-A-COLA"
+    CRITACOLA_DESC 			= " Supercharged drink, giving full crits."
+    //
+    MADMILK_NAME 			= "MAD MILK"
+    MADMILK_DESC 			= " Enemies coated in milk are unable to move."
+    //
+    WINGER_NAME 			= "WINGER"
+    WINGER_DESC 			= " Unlimited air jumps while active. Fires a single focused shot that always crits while you are airborne. This shot also pushes enemies away."
+    //
+    PRETTYBOYS_NAME 		= "PRETTY BOY'S POCKET PISTOL"
+    PRETTYBOYS_DESC 		= " Fires rockets that deal damage based on the victim's health. Damage increases as the target becomes injured and is not affected by distance. Alt-Fire: Use Seeker rockets at the cost of -20% damage."
+    //
+    CLEAVER_NAME 			= "FLYING GUILLOTINE"
+    CLEAVER_DESC 			= " Yondu's Arrow: Summon a sentient arrow to assist in battle. Alt-Fire: Disruptor mode, -75% damage."
+    //
+    MATATEDMILK_NAME 		= "MUTATED MILK"
+    MATATEDMILK_DESC 		= " Rapidfire explosive milk jars, dealing damage to enemies. Alt-Fire: Throw a cluster of milk jars at once."
+    ///
+    BAT_NAME 				= "BAT"
+    BAT_DESC 				= " Chance to ignore death and teleport to spawn with 1hp."
+    //
+    SANDMAN_NAME			= "SANDMAN"
+    SANDMAN_DESC 			= " Able to rapidfire baseballs with high capacity and fast recharge, dealing significant burst damage to single targets."
+    //
+    HOLYMACKEREL_NAME		= "HOLY MACKEREL"
+    HOLYMACKEREL_DESC		= " Able to mark multiple enemies for death."
+    //
+    CANDYCANE_NAME 			= "CANDY CANE"
+    CANDYCANE_DESC 			= " Utility Item - You have no gravity and can freely fly."
+    //
+    BOSTONBASHSER_NAME 		= "BOSTON BASHER"
+    BOSTONBASHSER_DESC 		= " High risk / High reward. Able to instakill most small enemies, giving 10 second critboost. Enemies connected via medigun beams are also hit. However any miss is instant death."
+    //
+    SUNONASTICK_NAME		= "SUN-ON-A-STICK"
+    SUNONASTICK_DESC		= " Chance to stun enemies or receive a short critboost. Hits all enemies connected via medigun beams. However any miss will stun yourself."
+    //
+    FANOWAR_NAME 			= "FAN O'WAR"
+    FANOWAR_DESC 			= " Utility Item - Swing this melee to lunge yourself forward at high speed. Grants immunity to fall damage."
+    //
+    ATOMIZER_NAME 			= "ATOMIZER"
+    ATOMIZER_DESC 			= " Cannot deal damage with normal attacks, but a successful taunt kill will grant a critboost lasting 3 minutes."
+    //
+    THREERUNEBLADE_NAME 	= "THREE-RUNE BLADE"
+    THREERUNEBLADE_DESC 	= " While active, gain MASSIVE boost to move speed and ability to triple jump. Grants immunity to fall damage."
+    //
+    UNARMEDCOMBAT_NAME 		= "UNARMED COMBAT"
+    UNARMEDCOMBAT_DESC 		= " Every 10 kills, gain a Skeleton minion spell charge (Requires Spellbook)."
+    //
+    WRAPAASSASSIN_NAME 		= "WRAP ASSASSIN"
+    WRAPAASSASSIN_DESC 		= " Able to attack incoming projectiles, reflecting them with ease. Also grants immunity to stun."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    ROCKETLAUNCHER_NAME		= "ROCKET LAUNCHER"
+    ROCKETLAUNCHER_DESC		= " Standard option for reliable damage."
+    //
+    DIRECTHIT_NAME			= "DIRECT HIT"
+    DIRECTHIT_DESC			= " Alt-Fire: Launch a small enemy into the air for an easy minicrit follow-up. Rockets have a small amount of aim assist."
+    //
+    BLACKBOX_NAME			= "BLACK BOX"
+    BLACKBOX_DESC			= " Slow down enemies and inflict bleed. This weapon deals x2 damage against Soldier bots."
+    //
+    ROCKETJUMPER_NAME		= "ROCKET JUMPER"
+    ROCKETJUMPER_DESC		= " Slow fire and reload rate, but high damage and large blast radius. Excellent choice for crowd control."
+    //
+    LIBERTYLAUNCHER_NAME	= "LIBERTY LAUNCHER"
+    LIBERTYLAUNCHER_DESC	= " Fires a slow-moving rocket that deals massive damage in large area. Very slow reload and low ammo. This weapon automatically fires when loaded."
+    //
+    COWMANGLER_NAME			= "COW MANGLER 5000"
+    COWMANGLER_DESC			= " Immobilize small enemies on hit. Charged shot freezes enemies for longer. Hold Alt-Fire to supercharge the weapon for a multishot, resulting in even longer freeze."
+    //
+    ORIGINAL_NAME			= "ORIGINAL"
+    ORIGINAL_DESC			= " Hold fire to load a burst-shot of up to 4 rockets. This weapon automatically fires when loaded."
+    //
+    BEGGARSBAZOOKA_NAME		= "BEGGAR'S BAZOOKA"
+    BEGGARSBAZOOKA_DESC		= " Hold fire to load up to 100 rockets before unleashing them in a massive burst. This weapon does NOT overload."
+    //
+    AIRSTRIKE_NAME			= "AIR STRIKE"
+    AIRSTRIKE_DESC			= " Load up to 10 rockets before firing all at once in a fixed spread pattern. These rockets automatically seek enemies."
+    ///
+    SHOTGUN_SOLD_NAME 		= "SHOTGUN - SOLDIER" 
+    SHOTGUN_SOLD_DESC 		= " Very fast fire rate and crits while rocket jumping." 
+    //
+    SHOTGUN_NAME 			= "SHOTGUN" 
+    SHOTGUN_DESC 			= " Standard option for reliable damage." 
+    //
+    BUFFBANNER_NAME 		= "BUFF BANNER" 
+    BUFFBANNER_DESC 		= " Unlimited range and significantly increased duration." 
+    //
+    GUNBOATS_NAME 			= "GUNBOATS" 
+    GUNBOATS_DESC 			= " Enables bunnyhopping by holding 'jump' key. Grants immunity to fall damage." 
+    //
+    BATTALIONS_NAME 		= "BATTALION'S BACKUP" 
+    BATTALIONS_DESC 		= " Unlimited range and significantly increased duration." 
+    //
+    CONCHEROR_NAME 			= "CONCHEROR" 
+    CONCHEROR_DESC 			= " Unlimited range and significantly increased duration." 
+    //
+    RESERVESHOOTER_NAME 	= "RESERVE SHOOTER" 
+    RESERVESHOOTER_DESC 	= " Deals a flat 10,000 damage per shot no matter the range with 3s mini-crits on kill. However this weapon cannot be crit boosted, and cannot damage Tanks. Hold Alt-Fire to zoom in." 
+    //
+    BISON_NAME 				= "RIGHTEOUS BISON" 
+    BISON_DESC 				= " Fires a continuous beam of penetrating damage with full auto-aim." 
+    //
+    MANTREADS_NAME 			= "MANTREADS" 
+    MANTREADS_DESC 			= " Major reduction in knockback taken from damage. Air strafing now has massively increased acceleration. Stomp damage buffed and velocity-based." 
+    //
+    BASEJUMPER_NAME 		= "B.A.S.E. JUMPER" 
+    BASEJUMPER_DESC 		= " Able to toggle parachute. Increases resistance to knockback and bullet damage, reducing your vulnerability in the air." 
+    //
+    PANICATTACK_NAME 		= "PANIC ATTACK" 
+    PANICATTACK_DESC 		= " For when you need emergency healing. Immediately restores up to 10,000 health on hit. Taking damage with this weapon active has a chance to trigger a brief self-uber." 
+    ///
+    SHOVEL_NAME 			= "SHOVEL"
+    SHOVEL_DESC 			= " Standard option for defense and mobility."
+    //
+    EQUALIZER_NAME 			= "EQUALIZER"
+    EQUALIZER_DESC 			= " Taunt attack deals massive damage and knocks enemies into the air."
+    //
+    PAINTRAIN_NAME 			= "PAIN TRAIN"
+    PAINTRAIN_DESC 			= " Inflict bleed and slowdown on hit. Grants immunity to fall damage."
+    //
+    HALFZATOICHI_NAME 		= "HALF-ZATOICHI"
+    HALFZATOICHI_DESC 		= " Average damage with high health mobility, and increased range."
+    //
+    MARKETGARDENER_NAME 	= "MARKET GARDENER"
+    MARKETGARDENER_DESC 	= " Deals massively increased crit damage. After getting a kill, enter an enraged state and gain extra health, resistance and increased damage on all attacks. However any miss is instant death."
+    //
+    DISCIPLINARYACTION_NAME = "DISCIPLINARY ACTION"
+    DISCIPLINARYACTION_DESC	= " Standard option for defense and mobility."
+    //
+    ESCAPEPLAN_NAME			= "ESCAPE PLAN"
+    ESCAPEPLAN_DESC			= " Standard option for defense and mobility."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    FLAMETHROWER_NAME 		= "FLAMETHROWER"
+    FLAMETHROWER_DESC		= " Standard option for reliable damage. Gain a short mini-crit boost on kill."
+    //
+    BACKBURNER_NAME 		= "BACKBURNER"
+    BACKBURNER_DESC			= " Green Fire - Marks enemies for death and stuns airborne enemies for a short time. This weapon deals x2 damage against Pyro bots."
+    //
+    DEGREASER_NAME 			= "DEGREASER"
+    DEGREASER_DESC			= " Long-range flamethrower dealing high direct damage, but 0 afterburn damage. This flamethrower cannot airblast."
+    //
+    PHLOGISTINATOR_NAME 	= "PHLOGISTINATOR"
+    PHLOGISTINATOR_DESC		= " Green Fire - Marks enemies for death and stuns airborne enemies for a short time. Strong against Tanks, but your move speed is reduced."
+    //
+    RAINBLOWER_NAME 		= "RAINBLOWER"
+    RAINBLOWER_DESC			= " Long-range flamethrower dealing low direct damage, but high afterburn damage. Also able to instantly destroy Engineer buildings and burn enemy Pyros. Airblast is weak, but very fast."
+    //
+    DRAGONSFURY_NAME 		= "DRAGON'S FURY"
+    DRAGONSFURY_DESC		= " Significantly increased fire rate and airblast rate."
+    //
+    NOSTROMONAPALMER_NAME 	= "NOSTROMO NAPALMER"
+    NOSTROMONAPALMER_DESC	= " Slow enemies down on hit. Builds 'Mmmph' charge similar to the Phlogistinator, but grants yourself Concheror buff. This flamethrower cannot airblast."
+    ///
+    SHOTGUN_PYRO_NAME 		= "SHOTGUN - PYRO" 
+    SHOTGUN_PYRO_DESC 		= " Guaranteed crits against burning enemies." 
+    //
+    FLAREGUN_NAME 			= "FLARE GUN" 
+    FLAREGUN_DESC 			= " Fires a hitscan attack that penetrates enemies. Damage exponentially increases with each penetrated enemy along the path. Also has a chance to stun enemies on hit." 
+    //
+    DETONATOR_NAME 			= "DETONATOR" 
+    DETONATOR_DESC 			= " Flare has infinite explosion radius and will hit anything within line of sight. Forces all spy bots to uncloak and undisguise. Also great choice for mobility." 
+    //
+    MANMELTER_NAME 			= "MANMELTER" 
+    MANMELTER_DESC 			= " Rapid-fire flares specialized to automatically seek out enemies. Unlimited ammo and no reload. Alt-Fire: Launch a burst of flares at once." 
+    //
+    SCORCHSHOT_NAME 		= "SCORCH SHOT" 
+    SCORCHSHOT_DESC 		= " On hit: Deal large damage, extinguish the enemy and inflict knockback. Your target MUST be on fire, or this attack will do nothing. Alt-Fire: Use slow seeker flare." 
+    //
+    THERMALTHRUSTER_NAME 	= "THERMAL THRUSTER" 
+    THERMALTHRUSTER_DESC 	= " Reduced fuel consumption with no launch delay. Able to redeploy in-air and deal massive stomp damage. Gain a brief critboost on kill." 
+    //
+    GASPASSER_NAME 			= "GAS PASSER" 
+    GASPASSER_DESC 			= " Gas meter starts empty and resets on death. Deal 150,000 damage to fill the meter. Explode-on-Ignite deals 105,000 damage." 
+    ///
+    FIREAXE_NAME 			= "FIRE AXE"
+    FIREAXE_DESC 			= " Standard option for defense and mobility."
+    //	
+    AXTINGUISHER_NAME 		= "AXTINGUISHER"
+    AXTINGUISHER_DESC		= " Significantly increased damage against burning enemies."
+    //
+    HOMEWRECKER_NAME 		= "HOMEWRECKER"
+    HOMEWRECKER_DESC 		= " Able to instantly destroy Engineer buildings from anywhere with infinite melee range."
+    //
+    POWERJACK_NAME 			= "POWERJACK"
+    POWERJACK_DESC 			= " Fast attacks and move speed. Inflict bleed & ignite enemies on hit and gain mini-crits on kill."
+    //
+    BACKSCRATCHER_NAME 		= "BACK SCRATCHER"
+    BACKSCRATCHER_DESC 		= " Deals lethal damage from behind. After getting a kill, enter an enraged state and gain extra move speed, resistance and increased damage on all attacks."
+    //
+    VOLCANOFRAGMENT_NAME 	= "SHARPENED VOLCANO FRAGMENT"
+    VOLCANOFRAGMENT_DESC 	= " Chance to stun enemies on hit. Also able to burn enemy Pyros"
+    //
+    POSTALPUMMELER_NAME 	= "POSTAL PUMMELER"
+    POSTALPUMMELER_DESC 	= " On hit: Inflict Confusion, causing enemies to walk backward along the bomb path for a short time. Hold Alt-Fire when attacking to teleport back to spawn."
+    //
+    MAUL_NAME 				= "MAUL"
+    MAUL_DESC 				= " On hit: Launch enemies into the air with reduced gravity."
+    //
+    THIRDDEGREE_NAME 		= "THIRD DEGREE"
+    THIRDDEGREE_DESC 		= " Become nearly immune to fire damage while equipped, and gain and additional heavy resistance to all ranged attacks while active."
+    //
+    LOLLICHOP_NAME 			= "LOLLICHOP"
+    LOLLICHOP_DESC 			= " Every 10 kills, gain a Meteor Storm spell charge (Requires Spellbook)."
+    //
+    NEONANNIHILATOR_NAME 	= "NEON ANNIHILATOR"
+    NEONANNIHILATOR_DESC 	= " Your gravity is reduced."
+    //
+    HOTHAND_NAME 			= "HOT HAND"
+    HOTHAND_DESC 			= " Launch enemies into the air on hit."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    GRENADELAUNCHER_NAME 	= "GRENADE LAUNCHER"
+    GRENADELAUNCHER_DESC	= " Standard option for reliable damage."
+    //
+    LOCHNLOAD_NAME 			= "LOCH-N-LOAD"
+    LOCHNLOAD_DESC			= " Slow shots but with high burst damage in a large area. Effective for crowd control."
+    //
+    ALIBABA_NAME			= "ALI BABA'S WEE BOOTIES"
+    ALIBABA_DESC			= " Enhanced shield bash damage. Grants immunity to fall damage."
+    //
+    BOOTLEGGER_NAME			= "BOOTLEGGER"
+    BOOTLEGGER_DESC			= " Enhanced shield recharge rate. Grants immunity to fall damage."
+    //
+    LOOSECANNON_NAME		= "LOOSE CANNON"
+    LOOSECANNON_DESC		= " Load up to 4 cannonballs before firing all at once in a vertical spread pattern. Cannonballs explode on contact with the ground."
+    //
+    IRONBOMBER_NAME			= "IRON BOMBER"
+    IRONBOMBER_DESC			= " Ignores enemy resistances and gains a short critboost on kill. Does not require ammo and has an endless clip. Projectiles can bounce off of walls."
+    ///
+    STICKYBOMB_NAME 		= "STICKYBOMB LAUNCHER"
+    STICKYBOMB_DESC 		= " Standard option for reliable damage. Able to place 50 bombs."
+    //
+    SCOTTISHRES_NAME 		= "SCOTTISH RESISTANCE"
+    SCOTTISHRES_DESC 		= " Bomb takes 5 seconds to arm and fizzles after 10 seconds, but can deal overwhelming damage with good timing and a full charge."
+    //
+    STICKYJUMPER_NAME 		= "STICKY JUMPER"
+    STICKYJUMPER_DESC 		= " Creates a shutdown field, stunning all enemies hit by the pulse. (Minibosses are immune to stun)"
+    //
+    CHARGINTARGE_NAME 		= "CHARGIN' TARGE"
+    CHARGINTARGE_DESC 		= " Heavy Charge - Superior shield bash damage."
+    //
+    SPLENDIDSCREEN_NAME 	= "SPLENDID SCREEN"
+    SPLENDIDSCREEN_DESC 	= " Rapid Charge - Superior shield recharge rate."
+    //
+    TIDETURNER_NAME 		= "TIDE TURNER"
+    TIDETURNER_DESC 		= " Burst Charge - Superior shield charge move speed."
+    //
+    QUICKIEBOMB_NAME 		= "QUICKIEBOMB LAUNCHER"
+    QUICKIEBOMB_DESC 		= " Auto-fires stickybombs at an insane rate with very fast arm time. Gain mini-crits on kill."
+    ///
+    BOTTLE_NAME 			= "BOTTLE"
+    BOTTLE_DESC 			= " Standard option for defense and mobility."
+    //
+    EYELANDER_NAME 			= "EYELANDER"
+    EYELANDER_DESC 			= " High damage with quick attacks gaining crits and mini-crits on kill, but cannot be used as hybrid-knight."
+    //
+    SKULLCUTTER_NAME 		= "SCOTSMAN'S SKULLCUTTER"
+    SKULLCUTTER_DESC 		= " Able to cut through enemy Ubercharge and disrupt Medi-Gun functions. Also able to deal increased damage to enemies of the same class as you."
+    //
+    CABER_NAME 				= "ULLAPOOL CABER"
+    CABER_DESC 				= " Damage increases as you become injured. Guaranteed crits if your health is below 2%. The explosion from this attack will kill you."
+    //
+    CLAIDHEAMHMOR_NAME 		= "CLAIDHEAMH MOR"
+    CLAIDHEAMHMOR_DESC 		= " Every 10 kills, gain a Monoculus spell charge (Requires Spellbook)."
+    //
+    PERSIANPERSUADER_NAME 	= "PERSIAN PERSUADER"
+    PERSIANPERSUADER_DESC 	= " When paired with a shield, grants unlimited shield charging. Shield charge cannot be disrupted by sharp turns or bumping into walls, enemies or other obstacles. Grants immunity to stun."
+    //
+    NINEIRON_NAME 			= "NESSIE'S NINE IRON"
+    NINEIRON_DESC 			= " Has a massive swing arc, able to hit multiple enemies at once in all directions. Deals double crit damage."
+    //
+    SCOTTISHHANDSHAKE_NAME 	= "SCOTTISH HANDSHAKE"
+    SCOTTISHHANDSHAKE_DESC 	= " While active: Resist 90% ranged damage, become immune to knockback and greatly increase max health. However you cannot recover ammo and receive less health from packs."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    MINIGUN_NAME 			= "MINIGUN"
+    MINIGUN_DESC 			= " Standard option for reliable damage. Gain a short mini-crit boost on kill."
+    //
+    NATASCHA_NAME 			= "NATASCHA"
+    NATASCHA_DESC 			= " Slow enemies on hit and apply Death Mark."
+    //
+    BRASSBEAST_NAME 		= "BRASS BEAST"
+    BRASSBEAST_DESC 		= " Higher damage with very slow spin-up. Move speed is crippled while deployed. Able to deflect incoming projectiles."
+    //
+    TOMISLAV_NAME 			= "TOMISLAV"
+    TOMISLAV_DESC 			= " Builds 'Heat' by dealing damage. All stats on this weapon are increased based on heat level. However, the weapon begins to cool down if you go too long without dealing damage."
+    //
+    HUOHEATER_NAME 			= "HUO-LONG HEATER"
+    HUOHEATER_DESC 			= " Fires energy beams, igniting enemies on hit"
+    //
+    GENUINEHUOHEATER_NAME 	= "GENUINE HUO-LONG HEATER"
+    GENUINEHUOHEATER_DESC 	= " Fires rockets. Guaranteed crits against burning enemies."
+    ///
+    SHOTGUN_HVY_NAME 		= "SHOTGUN - HEAVY"
+    SHOTGUN_HVY_DESC 		= " Single shot with high damage, granting 8 seconds of crits on kill."
+    //
+    SANDVICH_NAME 			= "SANDVICH"
+    SANDVICH_DESC 			= " Restore up to 150,000 health. Any damage taken while holding this item active is fatal."
+    //
+    DALOKOHSBAR_NAME 		= "DALOKOHS BAR"
+    DALOKOHSBAR_DESC 		= " Restore up to 20,000 health. If used while below 350 health you'll gain a large overheal. Passively increases damage taken but gives a chance to self-uber on taking damage."
+    //
+    BUFFALOSTEAK_NAME 		= "BUFFALO STEAK SANDVICH"
+    BUFFALOSTEAK_DESC 		= " Passively grants immunity to critical hits."
+    //
+    FAMILYBUSINESS_NAME 	= "FAMILY BUSINESS"
+    FAMILYBUSINESS_DESC 	= " Unlimited ammo. Attack rate is doubled while receiving a healing effect. Grants a brief critboost and mini-crit boost on kill."
+    //
+    FISHCAKE_NAME 			= "FISHCAKE"
+    FISHCAKE_DESC 			= " Heavy resistance to BULLET damage, but more vulnerable to FIRE and BLAST damage."
+    //
+    SECONDBANANA_NAME 		= "SECOND BANANA"
+    SECONDBANANA_DESC 		= " Heavy resistance to BLAST damage, but more vulnerable to FIRE and BULLET damage."
+    ///
+    FISTS_NAME 				= "FISTS"
+    FISTS_DESC 				= " Standard option for defense and mobility. Effective in combat."
+    //
+    KILLINGGLOVES_NAME 		= "KILLING GLOVES OF BOXING"
+    KILLINGGLOVES_DESC 		= " Special Ability: 'Mega-Crush' -  When available, press your action slot key while standing on the bomb to instantly send it back to start. Otherwise, gain temporary move speed buff, defense and crits."
+    //
+    GLOVESRUNNING_NAME 		= "GLOVES OF RUNNING URGENTLY"
+    GLOVESRUNNING_DESC 		= " Passively grants ability to deploy a parachute. While active, gain massively increased jump height, damage resistance and health regen."
+    //
+    BREADBITE_NAME 			= "BREAD BITE"
+    BREADBITE_DESC 			= " Critical hits infect your victim with Corrosion, a permanent debuff that deals damage based on max health and causes the victim to explode into a small corrosive cloud on death, spreading the effect to other enemies."
+    //
+    WARRIRORSSPIRIT_NAME 	= "WARRIOR'S SPIRIT"
+    WARRIRORSSPIRIT_DESC 	= " Left-click to leap high into the air. Land on enemies to deal massive stomp damage. Removes all primary and secondary ammo."
+    //
+    FISTSOFSTEEL_NAME 		= "FISTS OF STEEL"
+    FISTSOFSTEEL_DESC 		= " Become a giant Heavy gauntlet with 250,000 health. You are immune to push forces and can deal heavy damage. Removes all primary and secondary ammo. You can only heal from lunchbox items."
+    //
+    EVICTIONNOTICE_NAME 	= "EVICTION NOTICE"
+    EVICTIONNOTICE_DESC 	= " Gain a rapid healing effect on kill."
+    //
+    APOCOFISTS_NAME 		= "APOCO-FISTS"
+    APOCOFISTS_DESC 		= " Punches push enemies away."
+    //
+    HOLIDAYPUNCH_NAME 		= "HOLIDAY PUNCH"
+    HOLIDAYPUNCH_DESC 		= " While active, all enemies ignore you. Also grants immunity to stun. This weapon cannot deal damage however."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    SHOTGUN_ENGI_NAME		= "SHOTGUN - ENGINEER"
+    SHOTGUN_ENGI_DESC 		= " Deal x4 damage to your Sentry's target."
+    //
+    FRONTIERJUSTICE_NAME 	= "FRONTIER JUSTICE"
+    FRONTIERJUSTICE_DESC 	= " Insanely fast fire rate. Clip size matches the max revenge crit count. Reloads faster while receiving any healing effect."
+    //
+    WIDOWMAKER_NAME 		= "WIDOWMAKER"
+    WIDOWMAKER_DESC 		= " Use 2000 metal to fire a wide shot that pushes enemies away."
+    //
+    POMSON_NAME 			= "POMSON 6000"
+    POMSON_DESC 			= " Inflict bleed, ignite and slow enemies down."
+    //
+    RESCUERANGER_NAME 		= "RESCUE RANGER"
+    RESCUERANGER_DESC		= " Uses 20 metal per shot, but never has to reload and increases max metal by 1000."
+    ///
+    WRANGLER_NAME 			= "WRANGLER"
+    WRANGLER_DESC 			= " While active: Increased Sentry damage and double Dispenser range."
+    //
+    SHORTCIRCUIT_NAME 		= "SHORT CIRCUIT"
+    SHORTCIRCUIT_DESC 		= " Every 10 kills, gain a Lightning Ball spell charge (Requires Spellbook)"
+    ///
+    WRENCH_NAME 			= "WRENCH"
+    WRENCH_DESC 			= " Standard option for reliable damage."
+    //
+    GUNSLINGER_NAME 		= "GUNSLINGER"
+    GUNSLINGER_DESC	 		= " Able to build a secondary Sentry. Triple-punch combo can execute small enemies and deal heavy damage to Giants."
+    //
+    SOUTHERNHOS_NAME 		= "SOUTHERN HOSPITALITY"
+    SOUTHERNHOS_DESC 		= " Replaces normal Sentry with a Flame Sentry. Short ranged, but high damage."
+    //
+    JAG_NAME 				= "JAG"
+    JAG_DESC 				= " Your Sentry has unlimited range."
+    //
+    EUREKAEFFECT_NAME 		= "EUREKA EFFECT"
+    EUREKAEFFECT_DESC 		= " While carrying your Sentry Gun, press 'Reload' key to remotely place it on any wall or ceiling within range."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    SYRINGEGUN_NAME			= "SYRINGE GUN"
+    SYRINGEGUN_DESC			= " Gain 0.5% Ubercharge per hit."
+    //
+    BLUTSAUGER_NAME			= "BLUTSAUGER"
+    BLUTSAUGER_DESC			= " Requires and consumes 100% Ubercharge to reprogram a robot to join your team temporarily before self-destructing. Alt-Fire: Manually terminate the reprogramming of all affected bots."
+    //
+    CRUSADERSCROSSBOW_NAME	= "CRUSADER'S CROSSBOW"
+    CRUSADERSCROSSBOW_DESC	= " Gain 0.25% Ubercharge per hit, inflict bleed and gain another 0.5% Ubercharge per tick of bleed damage."
+    //
+    OVERDOSE_NAME 			= "OVERDOSE"
+    OVERDOSE_DESC 			= " Requires and consumes 100% Ubercharge to send a payload that shuts down all nearby small enemies for up to 15s."
+    ///
+    MEDIGUN_NAME			= "MEDI GUN"
+    MEDIGUN_DESC			= " Overheal cap raised to x10 the patient's max health. Deploy a long-lasting level 1 Projectile Shield."
+    //
+    KRITZKRIEG_NAME			= "KRITZKRIEG"
+    KRITZKRIEG_DESC			= " Able to drain health from enemies, granting self-healing and building Uber."
+    //
+    QUICKFIX_NAME			= "QUICK-FIX"
+    QUICKFIX_DESC			= " Very fast healing with a level 2 Projectile Shield. Able to build Uber from shield contact damage."
+    //
+    VACCINATOR_NAME			= "VACCINATOR"
+    VACCINATOR_DESC			= " Active healing grants you and the patient 100% resistance to base damage of the selected damage type. Ubercharge grants full immunity to the selected damage type for 30 seconds."
+    ///
+    BONESAW_NAME 			= "BONESAW"
+    BONESAW_DESC			= " Standard option for defense and mobility. Gain 10% Uber on hit."
+    //
+    UBERSAW_NAME 			= "UBERSAW"
+    UBERSAW_DESC			= " Inflict bleed on hit. Gain 2% Uber on hit."
+    //
+    VITASAW_NAME 			= "VITA-SAW"
+    VITASAW_DESC			= " Gain an Overheal spell charge on hit (Requires Spellbook). Gain 5% Uber on hit."
+    //
+    AMPUTATOR_NAME 			= "AMPUTATOR"
+    AMPUTATOR_DESC			= " On hit: Your Medigun becomes supercharged and temporarily gains increased heal rate, uber rate and range. Killing an enemy grants a stronger version of this effect."
+    //
+    SOLEMNVOW_NAME 			= "SOLEMN VOW"
+    SOLEMNVOW_DESC			= " Infinite range, hits all enemies connected via Medigun beams and deals x200 damage to Medic bots. Gain 5% Uber for each enemy hit."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    SNIPERRIFLE_NAME 		= "SNIPER RIFLE"
+    SNIPERRIFLE_DESC 		= " Fully charged headshot deals 450,000 damage."
+    //
+    MACHINA_NAME 			= "MACHINA"
+    MACHINA_DESC 			= " Very slow to charge, but can shred Tanks at full charge. Killing enemies fills a rage meter that grants a 1-second critboost. Pair the critboost with a full charge to instantly destroy most Tanks you'll encounter."
+    //
+    HITMANSHEATMAKER_NAME 	= "HITMAN'S HEATMAKER"
+    HITMANSHEATMAKER_DESC 	= " Rapidfire without unscoping. No damage on bodyshot."
+    //
+    AWPERHAND_NAME 			= "AWPER HAND"
+    AWPERHAND_DESC 			= " Fire explosive rounds and generate rage on kills. At 100% rage, press 'reload' to gain increased max health and health regen. Rifle only charges when enemies are in your scope."
+    //
+    HUNTSMAN_NAME 			= "HUNTSMAN"
+    HUNTSMAN_DESC 			= " Fire 5 arrows at once. Deal massive burn damage if a Pyro ignites your arrow."
+    //
+    SYDNEYSLEEPER_NAME 		= "SYDNEY SLEEPER"
+    SYDNEYSLEEPER_DESC 		= " Fire a special dart that cripples the movement of non-giants and makes enemies unable to receive healing from Medic bots."
+    //
+    BAZAARBARGAIN_NAME 		= "BAZAAR BARGAIN"
+    BAZAARBARGAIN_DESC 		= " Killing enemies of the same class in a row increases fire rate, stacking up to 3. Killing another class resets the combo."
+    //
+    FORTIFIEDCOMPOUND_NAME 	= "FORTIFIED COMPOUND"
+    FORTIFIEDCOMPOUND_DESC 	= " Reduced damage over Huntsman, but fires faster, penetrates and crits wet enemies."
+    //
+    CLASSIC_NAME 			= "CLASSIC"
+    CLASSIC_DESC 			= " Fire as fast as you can pull the trigger, or charge a single shot with insane explosive headshot power that obliterates all non-giant bots in the area."
+    ///
+    SMG_NAME 				= "SMG"
+    SMG_DESC 				= " Able to headshot for greatly increased damage. Alt-Fire: Zoom in and gain 100% accuracy at the cost of halved fire rate."
+    //
+    RAZORBACK_NAME 			= "RAZORBACK"
+    RAZORBACK_DESC 			= " Very fast recharge and applies Jarate to your attacker."
+    //
+    JARATE_NAME 			= "JARATE"
+    JARATE_DESC 			= " Instant recharge, slows enemies down."
+    //
+    DARWIN_NAME 			= "DARWIN'S DANGER SHIELD"
+    DARWIN_DESC 			= " Nearly immune to FIRE damage, but take 50% more damage from BULLET and BLAST."
+    //
+    COZYCAMPER_NAME 		= "COZY CAMPER"
+    COZYCAMPER_DESC 		= " Minor increase in move speed, max health and health regen. Immune to afterburn."
+    //
+    CLEANERSCARBINE_NAME 	= "CLEANER'S CARBINE"
+    CLEANERSCARBINE_DESC 	= " Mini-crit boost lasts 30 seconds."
+    //
+    BEAUTYMARK_NAME 		= "SELF-AWARE BEAUTY MARK"
+    BEAUTYMARK_DESC 		= " Rain down holy hellfire with flaming arrows. Alt-Fire: Throw a cluster of flaming arrows at once."
+    ///
+    KUKRI_NAME 				= "KUKRI"
+    KUKRI_DESC 				= " Standard option for defense and mobility."
+    //
+    TRIBALMANSSHIV_NAME 	= "TRIBALMAN'S SHIV"
+    TRIBALMANSSHIV_DESC 	= " Utility Item - You have no gravity and can freely fly."
+    //
+    BUSHWACKA_NAME 			= "BUSHWACKA"
+    BUSHWACKA_DESC 			= " Infinite melee range and guaranteed crits against burning enemies."
+    //
+    SHAHANSHAH_NAME 		= "SHAHANSHAH"
+    SHAHANSHAH_DESC 		= " Left-click to send yourself flying upward, good for reaching high places. You are also immune to fall damage."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    REVOLVER_NAME 			= "REVOLVER"
+    REVOLVER_DESC 			= " On hit: Apply multiple debuffs, cause enemies to take increased damage for a short time, deplete enemy Medic Ubercharge and force Spy bots to undisguise. Can stun airborne enemies."
+    //
+    AMBASSADOR_NAME 		= "AMBASSADOR"
+    AMBASSADOR_DESC 		= " Deal massive headshot damage. Damage is doubled if you are not disguised."
+    //
+    LETRANGER_NAME 			= "L'ETRANGER"
+    LETRANGER_DESC 			= " Able to execute any non-giant in a single shot. Zero damage to Giants or Tanks however."
+    //
+    ENFORCER_NAME 			= "ENFORCER"
+    ENFORCER_DESC 			= " Ignores damage resistances and stores a crit for every backstab or building destroyed with a Sapper."
+    //
+    DIAMONDBACK_NAME 		= "DIAMONDBACK"
+    DIAMONDBACK_DESC 		= " Creates a black hole to pull enemies in."
+    ///
+    SAPPER_NAME 			= "SAPPER"
+    SAPPER_DESC 			= " Max stun radius and duration. Fast recharge."
+    //
+    REDTAPE_NAME 			= "RED-TAPE RECORDER"
+    REDTAPE_DESC 			= " Instantly destroys Engineer buildings, but can only sap one enemy at a time."
+    ///
+    KNIFE_NAME 				= "KNIFE"
+    KNIFE_DESC 				= " While active, the Knife drains your health but grants immunity to ALL damage. Kills restore health."
+    //
+    YOURETERNALREWARD_NAME 	= "YOUR ETERNAL REWARD"
+    YOURETERNALREWARD_DESC 	= " Damage increases as you become injured and crits while your health is below 10%, but only for front stabs. Resist 90% damage."
+    //
+    KUNAI_NAME 				= "CONNIVER'S KUNAI"
+    KUNAI_DESC 				= " Infinite melee range. Backstabs trigger an explosion, dealing extra damage to nearby targets."
+    //
+    BIGEARNER_NAME 			= "BIG EARNER"
+    BIGEARNER_DESC 			= " You have a massive amount of health and 'missed' swings cause you to heal rapidly, however you receive friendly fire from your teammates."
+    //
+    WANGAPRICK_NAME 		= "WANGA PRICK"
+    WANGAPRICK_DESC 		= " Killing an enemy causes you to immediately enter cloak for a few seconds. You can attack enemies while in this cloak state and chain kills to remain invisible. No disguise."
+    //
+    SHARPDRESSER_NAME 		= "SHARP DRESSER"
+    SHARPDRESSER_DESC 		= " Backstabs trigger an explosion, dealing extra damage to nearby targets."
+    //
+    SPYCICLE_NAME 			= "SPY-CICLE"
+    SPYCICLE_DESC 			= " 'Missed' swing causes you to leap into the air for free surf-stabs, but you cannot disguise. Deals massive damage to Giants on backstab."
+    ///
+    INVISWATCH_NAME 		= "INVIS WATCH"
+    INVISWATCH_DESC 		= " Infinite cloak, +10% faster move speed."
+    //
+    DEADRINGER_NAME 		= "DEAD RINGER"
+    DEADRINGER_DESC 		= " Triggers a short burst of move speed when activated, allowing you to dash in any direction. Incoming damage reduced by 80% while dashing."
+    //
+    CLOAKANDDAGGER_NAME		= "CLOAK AND DAGGER"
+    CLOAKANDDAGGER_DESC		= " Instant cloak and decloaking."
+    //----------------------------
+    //----------------------------
+    //----------------------------
+    FRYINGPAN_NAME 				= "FRYING PAN"
+    FRYINGPAN_DESC 				= " Deal x30 damage to enemies of the same class as you and gain crits on kill."
+    //
+    SAXXY_NAME 					= "SAXXY"
+    SAXXY_DESC 					= " Deal x30 damage to enemies of the same class as you and gain crits on kill."
+    //
+    MEMORYMAKER_NAME 			= "MEMORY MAKER"
+    MEMORYMAKER_DESC			= " Deal x30 damage to enemies of the same class as you and gain crits on kill."
+    //
+    CONOBJECTOR_NAME			= "CONSCIENTIOUS OBJECTOR"
+    CONOBJECTOR_DESC			= " Every 10 kills, roll a random spell (Requires Spellbook)."
+    //
+    FREEDOMSTAFF_NAME 			= "FREEDOM STAFF"
+    FREEDOMSTAFF_DESC 			= " Small chance on taking damage to dodge the attack and become ubered for 3s."
+    //
+    BATOUTTAHELL_NAME 			= "BAT OUTTA HELL"
+    BATOUTTAHELL_DESC 			= " While active, you are invulnerable to all incoming damage and generate a massive overheal pool, but you are completely vulnerable to knockback."
+    //
+    HAMSHANK_NAME 				= "HAM SHANK"
+    HAMSHANK_DESC 				= " Special Ability: 'Vital Resurgence' -  When available, press your action slot key to instantly gain 10x overheal and become immune to knockback for 20 seconds."
+    //
+    NECROSMASHER_NAME 			= "NECRO SMASHER"
+    NECROSMASHER_DESC 			= " Special Ability: 'Vehicular Mannslaughter' -  When available, press your action slot key to enter Bumper-Car mode. While in Bumper-Car mode you are invulnerable, regenerate health and can run enemies over."
+    //
+    CROSSINGGAURD_NAME 			= "CROSSING GUARD"
+    CROSSINGGAURD_DESC 			= " Gain massive resistance to all melee attacks, including backstabs."
+    //
+    PRINNYMACHETE_NAME 			= "PRINNY MACHETE"
+    PRINNYMACHETE_DESC 			= " Utility Item - Swing this melee to lunge yourself forward at high speed. Grants immunity to fall damage."
+    //------------------------------------
+}
