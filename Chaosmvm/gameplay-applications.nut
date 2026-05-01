@@ -1,7 +1,7 @@
 if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatCatLibForce == true))
 	IncludeScript("fatcat_library")
 
-SetScriptVersion("GameplayApplications", "4.4.5")
+SetScriptVersion("GameplayApplications", "4.5.1")
 
 local _Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", THINKER_PERSIST)
 
@@ -62,6 +62,13 @@ local _Thinker = CreateThinker("Thinker_GameplayApplications", "GameplayThink", 
 	additive_range = 50
 	base_damage = 3125
 }
+/*/
+
+SetLibrarySettings({"OnCondPostHooks" : true})
+
+OnAddCondListener(TF_COND_REPROGRAMMED, "BlutsuagerShit", function () {
+	printl(this)
+}) */
 
 PrecacheSound(BlutsaugerSettings.sound)
 
@@ -226,7 +233,7 @@ function GameplayThink()
 		if("EndReprogramTime" in GetScope(bot) && GetScope(bot).EndReprogramTime <= Time())
 			bot.UndoReprogram()
 
-		if(bot.IsReprogrammed())
+		if(bot.IsReprogrammed() && !bot.HasBotTag("RedSupport"))
 		{
 			/* if(bot.GetPlayerClass() == TF_CLASS_MEDIC)
 			{
@@ -234,7 +241,9 @@ function GameplayThink()
 				bot.SetMission(6, true)
 				bot.SetMissionTarget(nearest)
 			} */
-			if(!bot.IsValidReprogramTarget() || bot.GetPlayerClass() == TF_CLASS_MEDIC)
+			if(bot.InRespawnRoom(true))
+				bot.UndoReprogram()
+			else if(!bot.IsValidReprogramTarget() || bot.GetPlayerClass() == TF_CLASS_MEDIC)
 			{
 				bot.RemoveCondEx(TF_COND_REPROGRAMMED, true)
 				foreach(attribute in BlutsaugerRemoveAttributes)

@@ -199,7 +199,7 @@ function ROOT::ToggleForceFlag( bool )
 	::FatCatLibForce <- bool
 
 // month.day.year.hour(24format)
-if (!SetLibraryVersion("04.28.2026.20", 0))
+if (!SetLibraryVersion("04.29.2026.20", 0))
 	return
 
 SetLibrarySettings({})
@@ -2640,58 +2640,6 @@ function CTFPlayer::GetClosestPlayer(team = null, offset = Vector())
 		team = GetTeam()
 	return GetClosestPlayer(this, team, offset)
 }
-// TODO: Add to Snippets
-/**
- * @param {integer} cond
- * @param {string} name
- * @param {function} func
- */
-function CTFPlayer::OnAddCondListener(cond, name, func)
-{
-	if(!("OnCondPostHooks" in FatCatLibSettings))
-		SetLibrarySettings()
-
-	if(FatCatLibSettings["OnCondPostHooks"] == false)
-		return printl("Warning! OnCondPostHooks is Disabled")
-
-	local scope = GetScope(this)
-	if(!("OnAddCond" in scope))
-		scope.OnAddCond <- array(TF_COND_RANGE, {})
-
-	if(name in scope.OnAddCond[cond])
-		printl("Warning, Trying to Add an AddCondListener with an already registered name!")
-
-	scope.OnAddCond[cond][name] <- func
-}
-// TODO: Add to Snippets
-/**
- * @param {integer} cond
- * @param {string} name
- * @param {function} func
- */
-function CTFPlayer::OnRemoveCondListener(cond, name, func)
-{
-	if(!("OnCondPostHooks" in FatCatLibSettings))
-		SetLibrarySettings()
-
-	if(FatCatLibSettings["OnCondPostHooks"] == false)
-		return printl("Warning! OnCondPostHooks is Disabled")
-		
-	local scope = GetScope(this)
-	if(!("OnAddCond" in scope))
-		scope.OnRemoveCond <- array(TF_COND_RANGE, {})
-
-	if(name in scope.OnRemoveCond[cond])
-		printl("Warning, Trying to Add an RemoveCondListener with an already registered name!")
-
-	scope.OnRemoveCond[cond][name] <- func
-}
-// Cool thing i can do, "this" is actually the player >:), ROOT could also work, but this makes sense
-/* Host.OnAddCondListener(TF_COND_TAUNTING, "Test" function() {
-	StopTaunt(true)
-	RemoveCondEx(TF_COND_TAUNTING, true)
-	// ApplyAbsVelocityImpulse(Vector(0, 0, 300))
-}) */
 
 CTFPlayer.GenerateAndWearItem <- CTFBot.GenerateAndWearItem
 // TODO: Add to Snippets
@@ -4359,6 +4307,60 @@ function ROOT::PrintBenchmarkTime(text = "")
 	else 
 		StopBenchmark()
 }
+
+// TODO: Add to Snippets
+/**
+ * @param {integer} cond
+ * @param {string} name
+ * @param {function} func
+ */
+function ROOT::OnAddCondListener(cond, name, func)
+{
+	if(!("OnCondPostHooks" in FatCatLibSettings))
+		SetLibrarySettings()
+
+	if(FatCatLibSettings["OnCondPostHooks"] == false)
+		return printl("Warning! OnCondPostHooks is Disabled")
+
+	local scope = GetScope(FindByName(null, "OnCondition"))
+	if(!("OnAddCond" in scope))
+		scope.OnAddCond <- array(TF_COND_RANGE, {})
+
+	if(name in scope.OnAddCond[cond])
+		printl("Warning, Trying to Add an AddCondListener with an already registered name!")
+
+	scope.OnAddCond[cond][name] <- func
+}
+// TODO: Add to Snippets
+/**
+ * @param {integer} cond
+ * @param {string} name
+ * @param {function} func
+ */
+function ROOT::OnRemoveCondListener(cond, name, func)
+{
+	if(!("OnCondPostHooks" in FatCatLibSettings))
+		SetLibrarySettings()
+
+	if(FatCatLibSettings["OnCondPostHooks"] == false)
+		return printl("Warning! OnCondPostHooks is Disabled")
+		
+	local scope = GetScope(FindByName(null, "OnCondition"))
+	if(!("OnAddCond" in scope))
+		scope.OnRemoveCond <- array(TF_COND_RANGE, {})
+
+	if(name in scope.OnRemoveCond[cond])
+		printl("Warning, Trying to Add an RemoveCondListener with an already registered name!")
+
+	scope.OnRemoveCond[cond][name] <- func
+}
+// Cool thing i can do, "this" is actually the player >:), ROOT could also work, but this makes sense
+/* Host.OnAddCondListener(TF_COND_TAUNTING, "Test" function() {
+	StopTaunt(true)
+	RemoveCondEx(TF_COND_TAUNTING, true)
+	// ApplyAbsVelocityImpulse(Vector(0, 0, 300))
+}) */
+
 /**
  * @param {string} convar
  * @param {any} value
@@ -5383,11 +5385,13 @@ if(FatCatLibSettings["OnCondPostHooks"] == true)
 			if(!("CheckedAddconds" in scope))
 				scope.CheckedAddconds <- array(TF_COND_RANGE, false) //conds go from 0 (TF_COND_AIMING) to 130 (TF_COND_IMMUNE_TO_PUSHBACK)
 			
-			if(!("OnAddCond" in scope))
-				scope.OnAddCond <- array(TF_COND_RANGE, [])
+			local funcScope = GetScope(FindByName(null, "OnCondition"))
+
+			if(!("OnAddCond" in funcScope))
+				funcScope.OnAddCond <- array(TF_COND_RANGE, [])
 
 			if(!("OnRemoveCond" in scope))
-				scope.OnRemoveCond <- array(TF_COND_RANGE, [])
+				funcScope.OnRemoveCond <- array(TF_COND_RANGE, [])
 			
 			for (local cond = 0; cond < TF_COND_RANGE; cond++) 
 			{
@@ -5395,14 +5399,13 @@ if(FatCatLibSettings["OnCondPostHooks"] == true)
 				if(!WasInCond && player.InCond(cond))
 				{
 					// printl("Called OnAddCond for cond "+cond+" Frame: "+GetFrameCount())
-					foreach (func in scope.OnAddCond[cond])
+					foreach (func in funcScope.OnAddCond[cond])
 						func.call(player)
 				}
-
-				if(WasInCond && !player.InCond(cond))
+				else if(WasInCond && !player.InCond(cond))
 				{
 					// printl("Called OnRemoveCond for cond "+cond+" Frame: "+GetFrameCount())
-					foreach (func in scope.OnRemoveCond[cond])
+					foreach (func in funcScope.OnRemoveCond[cond])
 						func.call(player)
 				}
 
@@ -6376,4 +6379,4 @@ function ROOT::FixShittyPlayersBug()
 	}
 }
 
-RunWithDelay(@() FixShittyPlayersBug(), 5.0)
+RunWithDelay(@() FixShittyPlayersBug(), 0.25)
