@@ -2,7 +2,7 @@ if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatC
 	IncludeScript("fatcat_library")
 
 // CREDITS
-// Polish				--		Kimmy 		 	(steamcommunity.com/id/smhyouagain/)
+// Polish				--		Kimmy 		 	(steamcommunity.com/id/KimmyPL/)
 // Standard Chinese		--		Pepper[^▽^] 	(pepper_1656 on Discord)
 // Swedish				--		Decimate 		(decimatetf on Discord)
 // Russian				--		Liverfull 		(liverfullprod@gmail.com)
