@@ -3831,7 +3831,640 @@ if("SetScriptVersion" in getroottable())
 		PRINNYMACHETE_NAME 		= "プリニー・マチェーテ"
 		PRINNYMACHETE_DESC 		= " 便利アイテム - この近接武器をスイングして、高速で前方に突進する事ができる　落下ダメージを無効化する"
 		//------------------------------------
-	}
+	} 
+	danish = {
+		IH_TRANSLATE_ITEM		= IH_color + "[%s]" + IH_text_color + "%s"
+		IH_INCLUDES				= IH_color_header + "[►]\x0826beffBB Your loadout includes..."
+		IH_DIS_MSG_2			= IH_disable_color + "Skriv '/itemhelp 1' for at deaktivere disse beskeder under en bølge. \nSkriv '/itemhelp 0' for at deaktivere disse beskeder helt."
+		IH_DIS_MSG				= IH_disable_color + "Skriv '/itemhelp 0' for at deaktivere disse beskeder. \nSkriv '/itemhelp 2' for altid at vise denne besked."
+		IH_BAD_ARGS				= IH_color_header + "[Genstandshjælper]" + IH_error_color + " {Fejl}\x01 Forkerte argumenter!\n/itemhelp 2 - Aktiver\n/genstandshjælp 1 - Aktiver kun under bølge-setup\n/itemhelp 0 - Deaktiver"
+		IH_OOB_ARG				= IH_color_header + "[Genstandshjælper]" + IH_error_color + " {Error}\x01 Ugyldig værdi angivet! : %s"
+		IH_HELP_MSG				= IH_color_header + "[Genstandsjælper]\x01 Genstandshjælper giver enkle beskrivelser for hver \x03Chaos\x01 genstand!" 
+		IH_DISABLE				= IH_color_header + "[►]\x01 Genstandshjælper deaktiveret!."
+		IH_WAVE_SETUP			= IH_color_header + "[►]\x01 Genstandshjælper kun aktiveret under bølge-setup."
+		IH_ENABLE 				= IH_color_header + "[►]\x01 Genstandshjælper aktiveret!."
+		LOW_METAL 				= "Ikke nok metal"
+		TOMISLAV_HEAT			= "Tomislav varme: %s%%"
+		STUCK_RESPAWNED 		= "Du blev genoplivet for at undgå at sidde fast."
+		ABILITY_READY			= "%s\n► Klar ◄"
+		ABILITY_CHARGING		= "%s\n%s"
+		ABILITY_CHARGING_MSG	= "Oplader: %ss"
+		ABILITY_CHARGING_D_MSG	= "Oplader: %s%%"
+		MEGACRUSH 				= "MEGA-KNUS"
+		VITALRESURGENCE 		= "VITAL GENOPSTANDELSE"
+		VEHICULARMANNSLAUGHTER 	= "TRAFIKDRAB"
+		TEST 					= "Test Ability"
+		NO_MONEY				= "You can't afford this! (Cost: $%s, you have: $%s)" // Dont Translate this, my own project
+		REPROG_BOT_STRONG		= TF_TEAM_COLOR_REPROG_B+"%s\x01 er for modstandsdygtig og kan ikke omprogrammeres."
+		REPROG_BOT_NOT_SUIT		= TF_TEAM_COLOR_REPROG_B+"%s\x01 er ikke egnet til kamp og kan ikke omprogrammeres."
+		REPROG_BOT_LEAVE		= TF_TEAM_COLOR_SPEC+"%s døde."
+		REPROG_BOT_MESSAGE 		= TF_TEAM_COLOR_RED+"%s\x01 har omprogrammeret "+TF_TEAM_COLOR_REPROG_B+"%s\x01!"
+		//---------------------------------------------------------
+		CHECKPOINT_CREATED		= "\x077c8cc2Checkpoint created:\x078165cf [/%s]"
+		CHECKPOINT_WRONG_MAP	= CHECKPOINT_ERROR+"Dette checkpoint blev ikke sat for denne bane."
+		CHECKPOINT_WRONG_MISS	= CHECKPOINT_ERROR+"Dette checkpoint blev ikke sat for denne mission."
+		CHECKPOINT_EXPIRE		= CHECKPOINT_ERROR+"Dette checkpoint er udløbet."
+		CHECKPOINT_RESTORE		= "\x0744CC44Gendannet til sidst gemte checkpoint."
+		CHECKPOINT_RESTORE_HUD	= "Gendannet til sidst gemte checkpoint."
+		//---------------------------------------------------------
+		SCATTERGUN_NAME 		= "HAGLSPREDER"
+		SCATTERGUN_DESC 		= "Standardvalg til pålidelig skade. Meget effektiv på tæt hold."
+		//
+		FORCENATURE_NAME		= "NATURKRAFTEN"
+		FORCENATURE_DESC		= " Forbedret tilbageslag ved træf. Lidt lavere skadesudbytte pr. sekund end Haglsprederen."
+		//
+		SHORTSTOP_NAME 			= "HÅNDBREMSEN"
+		SHORTSTOP_DESC 			= " Vanvittig skudhastighed og garanterede kritiske træffere mod våde fjender, men langsom genladning."
+		//
+		SODAPOPPER_NAME 		= "SODA-POPPEREN"
+		SODAPOPPER_DESC 		= " Hold skudknappen inde for at affyre en hurtig serie på 4 skud."
+		//
+		BABYFACEBLASTER_NAME	= "DENGSEDRENGENS DRÆBER"
+		BABYFACEBLASTER_DESC	= " Hold skudknappen nede for at lade en massiv salve på op til 200 skud, der flår alt i stykker på klos hold. Har dog meget kraftig rekyl."
+		//
+		BACKSCATTER_NAME		= "RYGSPREDER"
+		BACKSCATTER_DESC		= " Fuld kritisk skade ved skud i ryggen. Kræver ingen ammunition og har et uendeligt magasin."
+		///
+		PISTOL_NAME 			= "PISTOL"
+		PISTOL_DESC 			= " Affyrer raketter i stedet for kugler. Meget effektivt, når man skal bevæge sig hurtigt."
+		//
+		BONK_NAME 				= "BONK!-ATOMPUNCH"
+		BONK_DESC 				= " En kraftfuld drik, der giver usårlighed uden at forhindre dig i at angribe."
+		//
+		CRITACOLA_NAME 			= "KRIT-A-COLA"
+		CRITACOLA_DESC 			= " En drik med ekstra kraft, der giver fulde kritiske slag."
+		//
+		MADMILK_NAME 			= "MANISK MÆLK"
+		MADMILK_DESC 			= " Fjender, der er dækket af mælk, kan ikke bevæge sig."
+		//
+		WINGER_NAME 			= "FLØJSPILLEREN"
+		WINGER_DESC 			= " Ubegrænset antal luftspring, mens aktiv. Affyrer et enkelt, målrettet skud, der altid giver kritisk skade, mens du er i luften. Dette skud skubber desuden fjender væk."
+		//
+		PRETTYBOYS_NAME 		= "LÆKKERBISKENS LOMMEPISTOL"
+		PRETTYBOYS_DESC 		= " Affyrer raketter, der forårsager skade baseret på offerets livspoint. Skaden stiger, efterhånden som målet bliver såret, og påvirkes ikke af afstanden. Alternativt skud: Brug søgende raketter til gengæld for -20% mindre skade."
+		//
+		CLEAVER_NAME 			= "FLYVENDE GUILLOTINE"
+		CLEAVER_DESC 			= " Yondus pil: Fremkald en levende pil, der hjælper i kampen. Alternativt skud: Disruptor-tilstand, -75% skade."
+		//
+		MATATEDMILK_NAME 		= "MUTERET MÆLK"
+		MATATEDMILK_DESC 		= " Hurtigskydende eksplosive mælkekander, der forårsager skade på fjender. Alternativt skud: Kast en hel flok mælkekander på én gang."
+		///
+		BAT_NAME 				= "BAT"
+		BAT_DESC 				= " Mulighed for at ignorere døden og teleportere sig til spawn med 1 hp."
+		//
+		SANDMAN_NAME			= "OLE LUKØJE"
+		SANDMAN_DESC 			= " Kan affyre baseballs i hurtig rækkefølge med stor kapacitet og hurtig genopladning, hvilket påfører enkelte mål betydelig skade i hurtige skudsalver."
+		//
+		HOLYMACKEREL_NAME		= "MILDE MAKREL"
+		HOLYMACKEREL_DESC		= " Kan markere flere fjender til døden."
+		//
+		CANDYCANE_NAME 			= "SLIKSTOKKEN"
+		CANDYCANE_DESC 			= " Utility Genstand - Du er ikke påvirket af tyngdekraften og kan flyve frit."
+		//
+		BOSTONBASHSER_NAME 		= "BOSTON-BASKEREN"
+		BOSTONBASHSER_DESC 		= " Høj risiko / Høj gevinst. Kan dræbe de fleste små fjender med ét slag og giver et krit boost på 10 sekunder. Fjender, der er forbundet via medi-gevær stråler, rammes også. Men et eneste fejlskud betyder øjeblikkelig død."
+		//
+		SUNONASTICK_NAME		= "SOLEN-PÅ-EN-PIND"
+		SUNONASTICK_DESC		= " Mulighed for at lamme fjender eller få et kortvarigt krit boost. Rammer alle fjender, der er forbundet via medi-gevær stråler. Hvis du rammer forbi, lammer du dog dig selv."
+		//
+		FANOWAR_NAME 			= "KRIGSVIFTEN"
+		FANOWAR_DESC 			= " Utility Genstand - Sving dette nærkampsvåben for at kaste dig fremad med høj hastighed. Giver immunitet over for faldskade."
+		//
+		ATOMIZER_NAME 			= "ATOMBATTET"
+		ATOMIZER_DESC 			= " Kan ikke forårsage skade med normale angreb, men et vellykket drab efter et hån giver et krit boost, der varer i 3 minutter."
+		//
+		THREERUNEBLADE_NAME 	= "TRE-RUNE-KLINGEN"
+		THREERUNEBLADE_DESC 	= " Mens den er aktiv, får du et KÆMPESTORT boost til bevægelseshastigheden og muligheden for at udføre et tredobbelt hop. Giver immunitet over for faldskade."
+		//
+		UNARMEDCOMBAT_NAME 		= "UHÅNDGRIBELIG ARMERING"
+		UNARMEDCOMBAT_DESC 		= " For hver 10 drab får du en trylleformularladning til en skelet håndlanger (kræver tryllebog)."
+		//
+		WRAPAASSASSIN_NAME 		= "GAVEPAPIRSMORDEREN"
+		WRAPAASSASSIN_DESC 		= " Kan afværge indkommende projektiler og let reflektere dem. Giver desuden immunitet over for lammelse."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		ROCKETLAUNCHER_NAME		= "RAKETKASTER"
+		ROCKETLAUNCHER_DESC		= " Standard valg for pålidelig skade."
+		//
+		DIRECTHIT_NAME			= "FULDTRÆFFEREN"
+		DIRECTHIT_DESC			= " Alt-Skyd: Kast en lille fjende i luften for en nem minikrit opfølgning. Raketter har en lille mængde sigtehjælp."
+		//
+		BLACKBOX_NAME			= "DEN SORTE BOKS"
+		BLACKBOX_DESC			= " Sæt farten ned på fjender og påfør blødning. Dette våben gør x2 skade mod Soldier robotter."
+		//
+		ROCKETJUMPER_NAME		= "RAKETHOPPEREN"
+		ROCKETJUMPER_DESC		= " Lav skudhastighed og genladningstid, men høj skade og stor eksplosionsradius. Fremragende valg til at kontrollere store grupper."
+		//
+		LIBERTYLAUNCHER_NAME	= "FRIHEDSFORDREREN"
+		LIBERTYLAUNCHER_DESC	= " Affyrer en langsomtgående raket, der ør massiv skade i et stort område. Meget langsom genladning og lav ammunitionsmængde. Dette våben affyrer automatisk, når det er ladt."
+		//
+		COWMANGLER_NAME			= "KOKVÆSTER 5000"
+		COWMANGLER_DESC			= " Lammer små fjender ved træf. Et opladet skud lammer fjender i længere tid. Hold Alt-Skyd nede for at oplade våbnet til et multiskud, hvilket resulterer i endnu længere lammelse."
+		//
+		ORIGINAL_NAME			= "ORIGINALEN"
+		ORIGINAL_DESC			= " Hold skudknappen nede for at lade en salve på op til 4 raketter. Våbnet affyres automatisk, når det er ladt."
+		//
+		BEGGARSBAZOOKA_NAME		= "TIGGERENS BAZOOKA"
+		BEGGARSBAZOOKA_DESC		= " Hold skudknappen inde for at oplade op til 100 raketter, før du affyrer dem i en massiv salve. Dette våben kan IKKE overfyldes."
+		//
+		AIRSTRIKE_NAME			= "LUFTANGREBET"
+		AIRSTRIKE_DESC			= " Læg op til 10 raketter i magasinet, før du affyrer dem alle på én gang i et fast spredningsmønster. Raketterne søger automatisk mod fjenderne."
+		///
+		SHOTGUN_SOLD_NAME 		= "HAGLGEVÆR - SOLDIER" 
+		SHOTGUN_SOLD_DESC 		= " Meget høj skudhastighed og kritiske træffere under rakethop." 
+		//
+		SHOTGUN_NAME 			= "HAGLGEVÆR" 
+		SHOTGUN_DESC 			= " Standard valg for pålidelig skade." 
+		//
+		BUFFBANNER_NAME 		= "BUFF-BANNERET" 
+		BUFFBANNER_DESC 		= " Ubegrænset rækkevidde og markant længere varighed." 
+		//
+		GUNBOATS_NAME 			= "BLYSÅLERNE" 
+		GUNBOATS_DESC 			= " Aktiverer bunnyhopping ved at holde 'hop' tasten nede. Giver immunitet over for faldskade." 
+		//
+		BATTALIONS_NAME 		= "FORSVARSFANEN" 
+		BATTALIONS_DESC 		= " Ubegrænset rækkevidde og markant længere varighed." 
+		//
+		CONCHEROR_NAME 			= "KONG-KYLIEN" 
+		CONCHEROR_DESC 			= " Ubegrænset rækkevidde og markant længere varighed." 
+		//
+		RESERVESHOOTER_NAME 	= "BAGHÅNDSGEVÆRET" 
+		RESERVESHOOTER_DESC 	= " Gør 10.000 skade pr. skud uanset afstand og udløser mini-kritiske slag på 3 sekunder ved drab. Våbnet kan dog ikke forstærkes med kritiske slag og kan ikke skade tanks. Hold Alt-Skyd nede for at zoome ind." 
+		//
+		BISON_NAME 				= "RETSKAFNE BISON" 
+		BISON_DESC 				= " Affyrer en kontinuerlig stråle af gennemtrængende skade med fuld automatisk sigtning." 
+		//
+		MANTREADS_NAME 			= "MANDETRÆDERNE" 
+		MANTREADS_DESC 			= " Skaden, der forårsager tilbageslag, er blevet væsentligt reduceret. Luftangreb har nu fået en markant øget acceleration. Stomp-skaden er blevet forbedret og er nu baseret på hastighed." 
+		//
+		BASEJUMPER_NAME 		= "B.A.S.E.-HOPPEREN" 
+		BASEJUMPER_DESC 		= " Mulighed for at aktivere faldskærm. Øger modstandsdygtigheden over for tilbageslag og skudskader, hvilket mindsker din sårbarhed i luften." 
+		//
+		PANICATTACK_NAME 		= "PANIKANFALDET" 
+		PANICATTACK_DESC 		= " Når du har brug for akut helbredelse. Gendanner straks op til 10.000 livspoint ved træf. Hvis du tager skade, mens dette våben er aktivt, er der en chance for, at det udløser en kortvarig selv-über." 
+		///
+		SHOVEL_NAME 			= "SKOVL"
+		SHOVEL_DESC 			= " Standard valg for pålidelig skade."
+		//
+		EQUALIZER_NAME 			= "UDLIGNEREN"
+		EQUALIZER_DESC 			= " Hån angrebet forårsager enorm skade og slår fjenderne op i luften."
+		//
+		PAINTRAIN_NAME 			= "TORTURTOGET"
+		PAINTRAIN_DESC 			= " Forårsager blødning og nedsat bevægelse ved træf. Giver immunitet over for faldskade."
+		//
+		HALFZATOICHI_NAME 		= "HALV-ZATOICHI"
+		HALFZATOICHI_DESC 		= " Gennemsnitlig skade med høj helbred og mobilitet samt øget rækkevidde."
+		//
+		MARKETGARDENER_NAME 	= "KRIGERENS KAMPSKOVL"
+		MARKETGARDENER_DESC 	= " Markant øget kritisk skade. Efter at have dræbt en fjende går du ind i en rasende tilstand og får ekstra liv, modstand og øget skade på alle angreb. Men hvis du rammer forbi, dør du med det samme."
+		//
+		DISCIPLINARYACTION_NAME = "DISCIPLINÆRSAGEN"
+		DISCIPLINARYACTION_DESC	= " Standardvalg til forsvar og mobilitet."
+		//
+		ESCAPEPLAN_NAME			= "REDNINGSPLANEN"
+		ESCAPEPLAN_DESC			= " Standardvalg til forsvar og mobilitet."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		FLAMETHROWER_NAME 		= "FLAMMEKASTER"
+		FLAMETHROWER_DESC		= " Standard valg for pålidelig skade. Giver et kortvarigt minikrit boost ved drab."
+		//
+		BACKBURNER_NAME 		= "BAGBRÆNDEREN"
+		BACKBURNER_DESC			= " Grøn ild – Markerer fjender til døden og lammer fjender i luften i kort tid. Dette våben gør dobbelt så meget skade mod Pyro robotter."
+		//
+		DEGREASER_NAME 			= "FEDTFJERNEREN"
+		DEGREASER_DESC			= " Langdistance flammekaster, der gør stor direkte skade, men ingen efterbrændingsskade. Denne flammekaster kan ikke lave luftstød."
+		//
+		PHLOGISTINATOR_NAME 	= "PHLOGISTINATOREN"
+		PHLOGISTINATOR_DESC		= " Grøn ild – Markerer fjender til døden og lammer fjender i luften i kort tid. Effektiv mod tanks, men din bevægelseshastighed nedsættes."
+		//
+		RAINBLOWER_NAME 		= "REGNBLÆSEREN"
+		RAINBLOWER_DESC			= " Langdistance flammekaster, der gør lav direkte skade, men stor efterbrændingsskade. Kan desuden øjeblikkeligt ødelægge Engineers bygninger og brænde fjendtlige Pyros. Luftstødet er svagt, men meget hurtigt."
+		//
+		DRAGONSFURY_NAME 		= "DRAGENS VREDE"
+		DRAGONSFURY_DESC		= " Markant stigning i skudhastigheden og tryklufthastigheden."
+		//
+		NOSTROMONAPALMER_NAME 	= "NOSTROMO NAPALMEREN"
+		NOSTROMONAPALMER_DESC	= " Bremser fjender ved træf. Opbygger 'Mmmph' ladning på samme måde som Phlogistinatoren, men giver dig selv Kong-kylien buffen. Denne flammekaster kan ikke bruge luftstød."
+		///
+		SHOTGUN_PYRO_NAME 		= "HAGLGEVÆR- PYRO" 
+		SHOTGUN_PYRO_DESC 		= " Garanterede kritiske træffere mod brændende fjender." 
+		//
+		FLAREGUN_NAME 			= "SIGNALPISTOLEN" 
+		FLAREGUN_DESC 			= " Affyrer et hitscan-angreb, der trænger igennem fjender. Skaden stiger eksponentielt for hver fjende, der gennemtrænges på vejen. Der er også en chance for at lamme fjender ved træf." 
+		//
+		DETONATOR_NAME 			= "DETONATOREN" 
+		DETONATOR_DESC 			= " Signalblus har en uendelig eksplosionsradius og rammer alt, hvad der befinder sig inden for synsfeltet. Den tvinger alle Spy robotter til at afsløre sig selv og fjerne deres forklædning. Et fremragende valg, hvis man har brug for mobilitet." 
+		//
+		MANMELTER_NAME 			= "MANDESMELTEREN" 
+		MANMELTER_DESC 			= " Hurtigskydende signalblus, der er specialudviklet til automatisk at opspore fjender. Ubegrænset ammunition og ingen genladning. Alt-Skyd: Affyr en hel salve af signalblus på én gang." 
+		//
+		SCORCHSHOT_NAME 		= "BRANDSKUDDET" 
+		SCORCHSHOT_DESC 		= " Ved træf: Gør stor skade, slukker fjendens ild og skubber ham væk. Der SKAL være ild i dit mål, ellers har dette angreb ingen effekt. Alt-Skyd: Brug en langsomt søgende signalblus." 
+		//
+		THERMALTHRUSTER_NAME 	= "TERMISKE TRYKMOTOR" 
+		THERMALTHRUSTER_DESC 	= " Reduceret brændstofforbrug uden forsinkelse ved start. Kan genindsættes i luften og gøre massiv stomp skade. Får en kortvarig kritboost ved drab." 
+		//
+		GASPASSER_NAME 			= "BENZINDUNKEN" 
+		GASPASSER_DESC 			= " Måleren starter tom og nulstilles, når du dør. Gør 150.000 skade for at fylde måleren. Eksploder ved antænding gør 105.000 skade." 
+		///
+		FIREAXE_NAME 			= "BRANDØKSE"
+		FIREAXE_DESC 			= " Standardvalg til forsvar og mobilitet."
+		//	
+		AXTINGUISHER_NAME 		= "UDBRÆNDEREN"
+		AXTINGUISHER_DESC		= " Gør markant mere skade mod brændende spillere."
+		//
+		HOMEWRECKER_NAME 		= "HUSVRAGEREN"
+		HOMEWRECKER_DESC 		= " Kan øjeblikkeligt ødelægge Engineer bygninger hvor som helst fra med ubegrænset nærkampsrækkevidde."
+		//
+		POWERJACK_NAME 			= "DONHAMMEREN"
+		POWERJACK_DESC 			= " Hurtige angreb og bevægelseshastighed. Påfører fjender blødning og antændelse ved træf og giver minikritiske slag ved drab."
+		//
+		BACKSCRATCHER_NAME 		= "RYGKRADSEREN"
+		BACKSCRATCHER_DESC 		= " Gør dødelig skade bagfra. Efter et drab går du i en rasende tilstand og opnår ekstra bevægelseshastighed, modstand og øget skade på alle angreb."
+		//
+		VOLCANOFRAGMENT_NAME 	= "SKÆRPET VULKANFRAGMENT"
+		VOLCANOFRAGMENT_DESC 	= " Chance for at lamme fjender ved træf. Er også i stand til at brænde fjendtlige Pyros."
+		//
+		POSTALPUMMELER_NAME 	= "POSTPRYGLEREN"
+		POSTALPUMMELER_DESC 	= " Ved træf: Påfør Forvirring, som får fjender til at gå baglæns langs bombestien i kort tid. Hold Alt-Skyd nede, når du angriber, for at teleportere tilbage til spawn."
+		//
+		MAUL_NAME 				= "MUGGERTEN"
+		MAUL_DESC 				= " Ved træf: Opsend fjender i luften med reduceret tyngdekraft."
+		//
+		THIRDDEGREE_NAME 		= "TREDJEGRADSFORBRÆNDINGEN"
+		THIRDDEGREE_DESC 		= " Bliv næsten immun over for ildskade, mens våbnet er udrustet, og opnå yderligere tung modstand mod alle langtrækkende angreb, mens det er aktivt."
+		//
+		LOLLICHOP_NAME 			= "SUKKERSLAGET"
+		LOLLICHOP_DESC 			= " Hver 10. drab giver en Meteor Storm-trylleformular (kræver Tryllebog)."
+		//
+		NEONANNIHILATOR_NAME 	= "NEON ANNIHILATOREN"
+		NEONANNIHILATOR_DESC 	= " Din tyngdekræft er reduceret"
+		//
+		HOTHAND_NAME 			= "VARME HÅND"
+		HOTHAND_DESC 			= " Ved træf: Opsend fjender i luften."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		GRENADELAUNCHER_NAME 	= "GRANATKASTER"
+		GRENADELAUNCHER_DESC	= " Standard valg for pålidelig skade"
+		//
+		LOCHNLOAD_NAME 			= "LOCH-N-LADEREN"
+		LOCHNLOAD_DESC			= " Langsomme skud, men med høj skade over et stort område. Effektiv til kontrol af grupper."
+		//
+		ALIBABA_NAME			= "ALI BABAS SMÅ FUTTER"
+		ALIBABA_DESC			= " Øget skade ved skjold-bash. Giver immunitet over for faldskade."
+		//
+		BOOTLEGGER_NAME			= "SMUGLEREN"
+		BOOTLEGGER_DESC			= " Øget skade ved skjold-bash. Giver immunitet over for faldskade."
+		//
+		LOOSECANNON_NAME		= "LØSE KANON"
+		LOOSECANNON_DESC		= " Læg op til 4 kanonkugler i magasinet, før de affyres på én gang i et lodret spredningsmønster. Kanonkuglerne eksploderer ved kontakt med jorden."
+		//
+		IRONBOMBER_NAME			= "JERNKÆMPEN"
+		IRONBOMBER_DESC			= " Ignorerer fjendtlige modstandskræfter og giver et kortvarigt kritisk boost ved drab. Kræver ikke ammunition og har et uendeligt magasin. Projektiler kan hoppe af på vægge."
+		///
+		STICKYBOMB_NAME 		= "KLÆBEBOMBEKASTER"
+		STICKYBOMB_DESC 		= " Standard valg for pålidelig skade. Kan placerer op til 50 bomber."
+		//
+		SCOTTISHRES_NAME 		= "SKOTSKE MODSTAND"
+		SCOTTISHRES_DESC 		= " Bomben tager 5 sekunder om at blive armeret og fiser ud efter 10 sekunder, men kan gøre overvældende skade med god timing og en fuld opladning."
+		//
+		STICKYJUMPER_NAME 		= "KLÆBEHOPPEREN"
+		STICKYJUMPER_DESC 		= " Skaber et deaktiveringsfelt, der lammer alle fjender, som rammes af impulsen. (Minibosser er immune over for lammelse)."
+		//
+		CHARGINTARGE_NAME 		= "ANGREBSSKJOLDET"
+		CHARGINTARGE_DESC 		= " Tungt Løb – Overlegen skade ved skjold-bash."
+		//
+		SPLENDIDSCREEN_NAME 	= "PRAGTIGE SKÆRM"
+		SPLENDIDSCREEN_DESC 	= " Hurtig Løb – Overlegen hastighed for genopladning af skjold.."
+		//
+		TIDETURNER_NAME 		= "TIDEVANDSVENDEREN"
+		TIDETURNER_DESC 		= " Eksplosiv Løb - Overlegen bevægelseshastighed ved skjoldangreb."
+		//
+		QUICKIEBOMB_NAME 		= "KORTE LUNTE"
+		QUICKIEBOMB_DESC 		= " Affyrer automatisk klæbebomber med en vanvittig hastighed og meget kort armeringstid. Giver mini-krits ved drab."
+		///
+		BOTTLE_NAME 			= "FLASKE"
+		BOTTLE_DESC 			= " Standard valg for forsvar og mobilitet."
+		//
+		EYELANDER_NAME 			= "HØJLANDSKLINGEN"
+		EYELANDER_DESC 			= " Høj skade med hurtige angreb, der giver krits og mini-krits ved drab, men kan ikke bruges som hybrid-knight."
+		//
+		SKULLCUTTER_NAME 		= "SKOTTENS KRANIEKLØVER"
+		SKULLCUTTER_DESC 		= " I stand til at skære igennem fjendens ÜberLadning og forstyrre Medi-Gevær-funktioner. Kan desuden give øget skade på fjender af samme klasse som dig selv."
+		//
+		CABER_NAME 				= "ULLAPOOL-PÆLEN"
+		CABER_DESC 				= " Skaden øges, i takt med at du bliver såret. Garanteret krits, hvis dit helbred er under 2%. Eksplosionen fra dette angreb vil dræbe dig."
+		//
+		CLAIDHEAMHMOR_NAME 		= "CLAIDHEAMH MOR"
+		CLAIDHEAMHMOR_DESC 		= " For hver 10. drab modtager du en Monoculus-besværgelse (kræver tryllebog)."
+		//
+		PERSIANPERSUADER_NAME 	= "PERSISKE OVERTALER"
+		PERSIANPERSUADER_DESC 	= " Når den parres med et skjold, giver den ubegrænset skjoldangreb. Skjoldangrebet kan ikke afbrydes af skarpe sving eller ved at støde ind i vægge, fjender eller andre forhindringer. Giver immunitet over for lammelse."
+		//
+		NINEIRON_NAME 			= "NESSIE'S NIER-JERN"
+		NINEIRON_DESC 			= " Har en massiv angrebsbue, der er i stand til at ramme flere fjender på én gang i alle retninger. Gør dobbelt kritisk skade."
+		//
+		SCOTTISHHANDSHAKE_NAME 	= "SKOTSKE HÅNDTRYK"
+		SCOTTISHHANDSHAKE_DESC 	= " Mens aktiv: Modstå 90% afstandsskade, bliv immun over for tilbageslag og øg dit maksimale helbred betydeligt. Du kan dog ikke genforsyne dig med ammunition og modtager mindre helbred fra pakker."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		MINIGUN_NAME 			= "RULLEKANON"
+		MINIGUN_DESC 			= " Standard valg for pålidelig skade. Giver et kortvarigt minikrit boost ved drab."
+		//
+		NATASCHA_NAME 			= "NATASCHA"
+		NATASCHA_DESC 			= " Sinker fjender ved hit og markerer dem til døden."
+		//
+		BRASSBEAST_NAME 		= "MESSINGBÆSTET"
+		BRASSBEAST_DESC 		= " Højere skade med meget langsom opspinningstid. Bevægelseshastigheden er voldsomt reduceret, når våbnet er i brug. I stand til at afbøje indkommende projektiler."
+		//
+		TOMISLAV_NAME 			= "TOMISLAV"
+		TOMISLAV_DESC 			= " Opbygger 'Varme' ved at gøre skade. Alle statistikker på dette våben øges baseret på varmeniveauet. Våbnet begynder dog at køle ned, hvis der går for lang tid, uden at du gør skade."
+		//
+		HUOHEATER_NAME 			= "HUO-LONG HEDER"
+		HUOHEATER_DESC 			= " Affyrer energistråler, der antænder fjender ved træf."
+		//
+		GENUINEHUOHEATER_NAME 	= "ÆGTE HUO-LONG HEDER"
+		GENUINEHUOHEATER_DESC 	= " Affyrer raketter. Garanteret krits mod brændende fjender."
+		///
+		SHOTGUN_HVY_NAME 		= "HAGLGEVÆR - HEAVY"
+		SHOTGUN_HVY_DESC 		= " Enkelt skud med høj skade, der giver 8 sekunders crits ved drab."
+		//
+		SANDVICH_NAME 			= "SANDVICHEN"
+		SANDVICH_DESC 			= " Gendanner op til 150.000 helbred. Enhver skade modtaget, mens denne genstand er aktiv, er dødelig."
+		//
+		DALOKOHSBAR_NAME 		= "DALOKOHS BAR"
+		DALOKOHSBAR_DESC 		= " Gendanner op til 20.000 helbred. Hvis den bruges, mens du har under 350 helbred, får du en stor overheal. Øger passivt mængden af skade, du modtager, men giver en chance for selv-ÜberLadning, når du tager skade."
+		//
+		BUFFALOSTEAK_NAME 		= "BØFFELBØF-SANDVICHEN"
+		BUFFALOSTEAK_DESC 		= " Giver passiv immunitet over for kritiske slag."
+		//
+		FAMILYBUSINESS_NAME 	= "FAMILIEFORRETNINGEN"
+		FAMILYBUSINESS_DESC 	= " Ubegrænset ammunition. Angrebshastigheden fordobles, mens du modtager en helbredende effekt. Giver et kortvarigt crit-boost og mini-crit-boost ved drab."
+		//
+		FISHCAKE_NAME 			= "FIKEFRIKADELLE"
+		FISHCAKE_DESC 			= " Kraftig modstand mod SKUD-skade, men mere sårbar over for ILD- og SPRÆNG-skade."
+		//
+		SECONDBANANA_NAME 		= "ANDEN BANAN"
+		SECONDBANANA_DESC 		= " Kraftig modstand mod SPRÆNG-skade, men mere sårbar over for ILD- og SKUD-skade."
+		///
+		FISTS_NAME 				= "NÆVER"
+		FISTS_DESC 				= " Standardvalg til forsvar og mobilitet. Effektiv i kamp."
+		//
+		KILLINGGLOVES_NAME 		= "KALININS GRUSOMME BOKSEHANDSKER"
+		KILLINGGLOVES_DESC 		= " Speciel evne: 'Mega-Knus' – Når den er tilgængelig, kan du trykke på din handlingsknap, mens du står på bomben, for øjeblikkeligt at sende den tilbage til start. Ellers modtager du en midlertidig buff til bevægelseshastighed, forsvar og krits."
+		//
+		GLOVESRUNNING_NAME 		= "GEVALDIGT RAPFODEDE UNIONSHANDSKER"
+		GLOVESRUNNING_DESC 		= " Giver passivt evnen til at folde en faldskærm ud. Mens den er aktiv, får du massivt øget hoppehøjde, skadesmodstand og helbredsregenerering."
+		//
+		BREADBITE_NAME 			= "BRØDBIDDET"
+		BREADBITE_DESC 			= " Kritiske hits inficerer dit offer med Corrosion,en permanent debuff, der gør skade baseret på maksimalt helbred og får offeret til at eksplodere i en lille ætsende sky ved død, hvilket spreder effekten til andre fjender."
+		//
+		WARRIRORSSPIRIT_NAME 	= "KRIGERENS ÅND"
+		WARRIRORSSPIRIT_DESC 	= " Venstreklik for at springe højt op i luften. Land på fjender for at give massiv stomp skade. Fjerner al primær og sekundær ammunition."
+		//
+		FISTSOFSTEEL_NAME 		= "STÅLNÆVERNE"
+		FISTSOFSTEEL_DESC 		= " Bliv til en gigantisk Heavy-handske med 250.000 helbred. Du er immun over for skubbekræfter og kan gøre massiv skade. Fjerner al primær og sekundær ammunition. Du kan kun modtage helbredelse fra madkasse genstande."
+		//
+		EVICTIONNOTICE_NAME 	= "UDSÆTTELSESVARSLET"
+		EVICTIONNOTICE_DESC 	= " Modtag en hurtig helbredende effekt ved drab."
+		//
+		APOCOFISTS_NAME 		= "APOKO-NÆVERNE"
+		APOCOFISTS_DESC 		= " Slag skubber fjender væk"
+		//
+		HOLIDAYPUNCH_NAME 		= "HELLIGDAGSSLAGET"
+		HOLIDAYPUNCH_DESC 		= " Mens den er aktiv, ignorerer alle fjender dig. Giver også immunitet over for lammelse. Dette våben kan dog ikke gøre skade."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		SHOTGUN_ENGI_NAME		= "HAGLGEVÆR- ENGINEER"
+		SHOTGUN_ENGI_DESC 		= " Gør x4 skade til din Sentrys mål."
+		//
+		FRONTIERJUSTICE_NAME 	= "PRÆRIENS HÆVN"
+		FRONTIERJUSTICE_DESC 	= " Sindssygt høj skudhastighed. Magasinstørrelsen svarer til det maksimale antal hævn-krits. Genlader hurtigere, mens du modtager en helbredende effekt."
+		//
+		WIDOWMAKER_NAME 		= "ENKEMAGEREN"
+		WIDOWMAKER_DESC 		= " Brug 2.000 metal på at affyre et bredt skud, der skubber fjender væk."
+		//
+		POMSON_NAME 			= "POMSON 6000"
+		POMSON_DESC 			= " Påfør blødning, sæt ild til fjender og gør dem langsommere."
+		//
+		RESCUERANGER_NAME 		= "AFSTANDSREDDER"
+		RESCUERANGER_DESC		= " Bruger 20 metal pr. skud, men skal aldrig genlades og øger maksimal metal med 1.000."
+		///
+		WRANGLER_NAME 			= "FJERNBETJENEREN"
+		WRANGLER_DESC 			= " Mens aktiv: Øget Sentry-skade og dobbelt rækkevidde for Dispensere."
+		//
+		SHORTCIRCUIT_NAME 		= "KORTSLUTNINGEN"
+		SHORTCIRCUIT_DESC 		= " For hver 10. drab modtager du en Lightning Ball spell-ladning (kræver Tryllebog)."
+		///
+		WRENCH_NAME 			= "SKRUENØGLE"
+		WRENCH_DESC 			= " Standardvalg for pålidelig skade."
+		//
+		GUNSLINGER_NAME 		= "ROPROTESEN"
+		GUNSLINGER_DESC	 		= " Kan bygge en sekundær Sentry. En tredobbelt slag-kombination kan henrette små fjender og gør massiv skade på giganter."
+		//
+		SOUTHERNHOS_NAME 		= "SYDENS GÆSTFRIHED"
+		SOUTHERNHOS_DESC 		= " Erstatter den normale Sentry med en Flamme Sentry. Kort rækkevidde, men høj skade."
+		//
+		JAG_NAME 				= "JAGUAREN"
+		JAG_DESC 				= " Din Sentry har uendelig rækkevidde."
+		//
+		EUREKAEFFECT_NAME 		= "EUREKA-EFFEKTEN"
+		EUREKAEFFECT_DESC 		= " Mens du bærer din Sentry Gun, kan du trykke på 'Genlad'-tasten for at placere den på en hvilken som helst væg eller loft inden for rækkevidde."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		SYRINGEGUN_NAME			= "INJEKTIONSSPRØJTEPISTOL"
+		SYRINGEGUN_DESC			= " Få 0.5% ÜberLadning ved træffer."
+		//
+		BLUTSAUGER_NAME			= "BLUTSAUGER"
+		BLUTSAUGER_DESC			= " Kræver og forbruger 100 % Ubercharge for at omprogrammere en robot til midlertidigt at kæmpe for dit hold, før den selvdestruerer. Alt-Skyd: Afbryd manuelt omprogrammeringen af alle berørte robotter."
+		//
+		CRUSADERSCROSSBOW_NAME	= "KORSRIDDERENS ARMBRØST"
+		CRUSADERSCROSSBOW_DESC	= " Få 0,25 % UberLadning ved træffer, påfør blødning og modtag yderligere 0,5 % UberLadning pr. tick af blødningsskade."
+		//
+		OVERDOSE_NAME 			= "OVERDOSEN"
+		OVERDOSE_DESC 			= " Kræver og forbruger 100 % UberLadning for at sende en impuls, der deaktiverer alle små fjender i nærheden i op til 15 sekunder."
+		///
+		MEDIGUN_NAME			= "MEDI-GEVÆR"
+		MEDIGUN_DESC			= " Maksimumgrænsen for Overheal er øget til x10 af patientens maksimale helbred. Brug et langvarigt niveau 1 Projektilskjold."
+		//
+		KRITZKRIEG_NAME			= "KRITZKRIEG"
+		KRITZKRIEG_DESC			= " I stand til at dræne helbred fra fjender, hvilket giver selv-heling og opbygger Uber."
+		//
+		QUICKFIX_NAME			= "HURTIGE FIKS"
+		QUICKFIX_DESC			= " Meget hurtig helbredelse med et niveau 2 Projektilskjold. I stand til at opbygge Uber fra skjoldets kontaktskade."
+		//
+		VACCINATOR_NAME			= "VACCINATOR"
+		VACCINATOR_DESC			= " Aktiv helbredelse giver dig og patienten 100 % modstand mod basisskade fra den valgte skadetype. UberLadning giver fuld immunitet over for den valgte skadetype i 30 sekunder."
+		///
+		BONESAW_NAME 			= "KNOGLESAV"
+		BONESAW_DESC			= " Standard valgmulighed for forsvar og mobilitet. Modtag 10 % Uber ved hit."
+		//
+		UBERSAW_NAME 			= "ÜBERSAVEN"
+		UBERSAW_DESC			= " Påfør blødning ved hit. Modtag 2 % Über ved hit."
+		//
+		VITASAW_NAME 			= "VITA-SAVEN"
+		VITASAW_DESC			= " Modtag en Overheal spell-ladning ved hit (kræver Tryllebog). Modtag 5 % Uber ved hit."
+		//
+		AMPUTATOR_NAME 			= "AMPUTØREN"
+		AMPUTATOR_DESC			= " Ved træf: Dit Medi-gevær bliver supercharged og får midlertidigt øget helbredelsesrate, Über-rate og rækkevidde. Drab på en fjende giver en stærkere version af denne effekt."
+		//
+		SOLEMNVOW_NAME 			= "HØJTIDELIGE LØFTE"
+		SOLEMNVOW_DESC			= " Uendelig rækkevidde, rammer alle fjender forbundet via Medi-gevær stråler og gør x200 skade på Medic robotter. Modtag 5 % Über for hver fjende, der rammes."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		SNIPERRIFLE_NAME 		= "SNIGSKYTTERIFFEL"
+		SNIPERRIFLE_DESC 		= " Fuldt opladet hovedskud gør 450.000 i skade."
+		//
+		MACHINA_NAME 			= "MACHINA"
+		MACHINA_DESC 			= " Meget langsom at lade op, men kan flænse Tanks ved fuld opladning. Drab på fjender fylder en raserimåler, der giver et 1-sekunds kritisk boost. Kombiner det kritiske boost med en fuld opladning for øjeblikkeligt at destruere de fleste Tanks, du møder."
+		//
+		HITMANSHEATMAKER_NAME 	= "SNIGMORDERENS SAGSLUTTER"
+		HITMANSHEATMAKER_DESC 	= " Hurtigskydende uden at gå ud af sigtet. Ingen skade ved kropsskud."
+		//
+		AWPERHAND_NAME 			= "AWPER HAND"
+		AWPERHAND_DESC 			= " Affyr eksplosive projektiler og generér raseri ved drab. Ved 100 % raseri kan du trykke på 'genlad' for at få øget maksimalt helbred og helbredsregenerering. Riflen lader kun op, når der er fjender i dit sigte."
+		//
+		HUNTSMAN_NAME 			= "JÆGEREN"
+		HUNTSMAN_DESC 			= " Affyr 5 pile på én gang. Gør massiv brandskade, hvis en Pyro antænder din pil."
+		//
+		SYDNEYSLEEPER_NAME 		= "SYDNEY-SOVEREN"
+		SYDNEYSLEEPER_DESC 		= " Affyr en speciel pil, der lammer bevægelsen hos ikke-giganter og gør fjender ude af stand til at modtage heling fra Medic robotter."
+		//
+		BAZAARBARGAIN_NAME 		= "RØVERKØBET"
+		BAZAARBARGAIN_DESC 		= " Drab på fjender af samme klasse i træk øger din skudrate og kan stackes op til 3 gange. Drab på en anden klasse nulstiller din combo."
+		//
+		FORTIFIEDCOMPOUND_NAME 	= "SAMMENSATTE BEFÆSTNING"
+		FORTIFIEDCOMPOUND_DESC 	= " Reduceret skade i forhold til Jægeren, men skyder hurtigere, penetrerer fjender og gør kritiske slag på våde fjender."
+		//
+		CLASSIC_NAME 			= "KLASSIKEREN"
+		CLASSIC_DESC 			= " Affyr så hurtigt som du kan trykke på aftrækkeren, eller oplad et enkelt skud med voldsom Eksplosivt hovedskud-kraft, der udraderer alle ikke-gigantiske robotter i området."
+		///
+		SMG_NAME 				= "MASKINPISTOL"
+		SMG_DESC 				= " I stand til at gøre hovedskud for betydeligt øget skade. Alt-Skyd: Zoom ind og få 100 % nøjagtighed på bekostning af halveret skudrate."
+		//
+		RAZORBACK_NAME 			= "STIKSKJOLDET"
+		RAZORBACK_DESC 			= " Meget hurtig genopladning og påfører Jarate på din angriber."
+		//
+		JARATE_NAME 			= "JARATE"
+		JARATE_DESC 			= " Øjeblikkelig genopladning, sænker fjendens hastighed."
+		//
+		DARWIN_NAME 			= "DARWIN'S FARESKJOLD"
+		DARWIN_DESC 			= " Næsten immun over for ILD-skade, men tager 50 % mere skade fra SKUD og SPRÆNG."
+		//
+		COZYCAMPER_NAME 		= "BEKVEMME CAMPIST"
+		COZYCAMPER_DESC 		= " Mindre stigning i bevægelseshastighed, maksimalt helbred og helbredsregenerering. Immun over for efterforbrænding."
+		//
+		CLEANERSCARBINE_NAME 	= "KRYBSKYTTENS KARABIN"
+		CLEANERSCARBINE_DESC 	= " Mini-kritisk boost varer i 30 sekunder."
+		//
+		BEAUTYMARK_NAME 		= "SELVBEVIDSTE SKØNHEDSPLET"
+		BEAUTYMARK_DESC 		= " Lad hellig helvedesild regne ned med flammende pile. Alt-Skyd: Kast en klynge af flammende pile på én gang."
+		///
+		KUKRI_NAME 				= "KUKRI"
+		KUKRI_DESC 				= " Standardvalg for forsvar og mobilitet."
+		//
+		TRIBALMANSSHIV_NAME 	= "STAMMEMANDENS MACHETE"
+		TRIBALMANSSHIV_DESC 	= " Utility Genstand - Du er ikke påvirket af tyngdekraften og kan flyve frit."
+		//
+		BUSHWACKA_NAME 			= "LØVBASKEREN"
+		BUSHWACKA_DESC 			= " Uendelig rækkevidde med nærkampsvåben og garanterede kritiske slag mod brændende fjender."
+		//
+		SHAHANSHAH_NAME 		= "SHAHANSHAH"
+		SHAHANSHAH_DESC 		= " Venstreklik for at sende dig selv flyvende opad, hvilket er godt til at nå høje steder. Du er desuden immun over for faldskade."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		REVOLVER_NAME 			= "REVOLVER"
+		REVOLVER_DESC 			= " Ved træf: Påfør flere debuffs, få fjender til at tage øget skade i en kort periode, tøm fjendtlige Medic robotters ÜberLadning og tving Spy robotter ud af deres forklædning. Kan lamme fjender i luften."
+		//
+		AMBASSADOR_NAME 		= "AMBASSADØREN"
+		AMBASSADOR_DESC 		= " Gør massiv hovedskuds-skade. Skaden fordobles, hvis du ikke er forklædt."
+		//
+		LETRANGER_NAME 			= "L'ETRANGER"
+		LETRANGER_DESC 			= " I stand til at henrette enhver ikke-gigant med et enkelt skud. Gør og ingen skade på giganter eller tanks."
+		//
+		ENFORCER_NAME 			= "HÅNDHÆVEREN"
+		ENFORCER_DESC 			= " Ignorerer skadesmodstand og gemmer et kritisk slag for hvert rygstik eller hver bygning, der ødelægges med en Sapper."
+		//
+		DIAMONDBACK_NAME 		= "TILBAGELÅNET"
+		DIAMONDBACK_DESC 		= " Skaber et sort hul, der trækker fjender til sig."
+		///
+		SAPPER_NAME 			= "SAPPER"
+		SAPPER_DESC 			= " Maksimal lammelsesradius og varighed. Hurtig genopladning."
+		//
+		REDTAPE_NAME 			= "BUREAUKRATIOPTAGEREN"
+		REDTAPE_DESC 			= " Ødelægger Engineer bygninger øjeblikkeligt, men kan kun placere en sapper på én fjende ad gangen."
+		///
+		KNIFE_NAME 				= "KNIV"
+		KNIFE_DESC 				= " Mens den er aktiv, dræner kniven dit helbred, men giver immunitet over for AL skade. Drab genopretter helbredet."
+		//
+		YOURETERNALREWARD_NAME 	= "DIN EVIGE BELØNNING"
+		YOURETERNALREWARD_DESC 	= " Skaden øges, i takt med at du bliver såret, og gør kritiske skade, når dit helbred er under 10%, men kun ved stik forfra. Modstå 90% skade."
+		//
+		KUNAI_NAME 				= "KYNIKERENS KUNAI"
+		KUNAI_DESC 				= " Uendelig rækkevidde med nærkampsvåben. Rygstik udløser en eksplosion, der giver ekstra skade til mål i nærheden."
+		//
+		BIGEARNER_NAME 			= "STORE INDTJENER"
+		BIGEARNER_DESC 			= " Du har en enorm mængde helbred, og sving, der 'misser', får dig til at hele hurtigt, men du modtager friendly fire fra dine holdkammerater."
+		//
+		WANGAPRICK_NAME 		= "VOODOO-PRIKKET"
+		WANGAPRICK_DESC 		= " Drab på en fjende får dig til øjeblikkeligt at blive usynlig i et par sekunder. Du kan angribe fjender, mens du er i denne usynlige tilstand, og lænke drab sammen for at forblive usynlig. Ingen forklædning."
+		//
+		SHARPDRESSER_NAME 		= "SKARPE PÅKLÆDER"
+		SHARPDRESSER_DESC 		= " Rygstik udløser en eksplosion, der giver ekstra skade til mål i nærheden."
+		//
+		SPYCICLE_NAME 			= "KOLDE SKULDER"
+		SPYCICLE_DESC 			= " 'Missede' sving får dig til at springe op i luften for gratis 'surf-stabs', men du kan ikke forklæde dig. Gør massiv skade på giganter ved rygstik."
+		///
+		INVISWATCH_NAME 		= "USYNLIGHEDSUR"
+		INVISWATCH_DESC 		= " Uendelig usynlighed, +10 % hurtigere bevægelseshastighed.."
+		//
+		DEADRINGER_NAME 		= "GENGANGEREN"
+		DEADRINGER_DESC 		= " Udløser et kort boost i bevægelseshastighed ved aktivering, som lader dig dashe i alle retninger. Indkommende skade reduceres med 80%, mens du dasher."
+		//
+		CLOAKANDDAGGER_NAME		= "STIKKERENS LOMMEUR"
+		CLOAKANDDAGGER_DESC		= " Øjeblikkelig syn- og usynlighed."
+		//----------------------------
+		//----------------------------
+		//----------------------------
+		FRYINGPAN_NAME 				= "STEGEPANDE"
+		FRYINGPAN_DESC 				= " Gør x30 skade til fjender af samme klasse som dig selv og få kritiske slag ved drab."
+		//
+		SAXXY_NAME 					= "SAXXY"
+		SAXXY_DESC 					= " Gør x30 skade til fjender af samme klasse som dig selv og få kritiske slag ved drab."
+		//
+		MEMORYMAKER_NAME 			= "MINDESKABEREN"
+		MEMORYMAKER_DESC			= " Gør x30 skade til fjender af samme klasse som dig selv og få kritiske slag ved drab."
+		//
+		CONOBJECTOR_NAME			= "MILITÆRNÆGTEREN"
+		CONOBJECTOR_DESC			= " For hver 10. drab modtager du en tilfældig trylleformular (Kræver Tryllebog)."
+		//
+		FREEDOMSTAFF_NAME 			= "FRIHEDSSTAVEN"
+		FREEDOMSTAFF_DESC 			= " Lille chance for at undvige et angreb, når du tager skade, og blive ubered i 3 sekunder."
+		//
+		BATOUTTAHELL_NAME 			= "BAT FRA HELVEDE"
+		BATOUTTAHELL_DESC 			= " Mens den er aktiv, er du usårlig over for al indkommende skade og genererer en enorm mængde overheal, men du er fuldstændig sårbar over for tilbageslag."
+		//
+		HAMSHANK_NAME 				= "SKINKESKAFTET"
+		HAMSHANK_DESC 				= " Speciel evne: 'Vital Genopstandelse', når den er tilgængelig, skal du trykke på din handlingsknap for øjeblikkeligt at få 10x overheal og blive immun over for tilbageslag i 20 sekunder."
+		//
+		NECROSMASHER_NAME 			= "NEKROMANISK NAKKER"
+		NECROSMASHER_DESC 			= " Speciel evne: 'Trafikdrab' - Når den er tilgængelig, skal du trykke på din handlingsknap for at gå i Bumper Car-tilstand. Mens du er i Bumper Car-tilstand, er du usårlig, regenererer helbred og kan køre fjender ned."
+		//
+		CROSSINGGAURD_NAME 			= "CROSSING GUARD"
+		CROSSINGGAURD_DESC 			= " Få massiv modstand mod alle nærkampsangreb, herunder rygstik."
+		//
+		PRINNYMACHETE_NAME 			= "PRINNY-MACHETE"
+		PRINNYMACHETE_DESC 			= " Utility Genstand - Sving dette nærkampsvåben for at kaste dig fremad med høj hastighed. Giver immunitet over for faldskade."
+		//------------------------------------
+		}
 }
 printl("Translations Loaded\n")
 
