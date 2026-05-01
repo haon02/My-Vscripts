@@ -13,5 +13,6 @@ It contains a bunch of helper functions and new functions that Make vscript just
 - PepperTAT  :  Zh-Hans <br>
 - Liverfull  :  Russian <br>
 - Decimate  :  Swedish <br>
-- Kimmy  :  Polish ( WIP ) <br>
+- Kimmy  :  Polish <br>
+- Calamari : Japanese <br>
 - Hanon  :  Danish ( WIP ) <br>
