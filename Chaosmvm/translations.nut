@@ -7,7 +7,7 @@ if(!("SetLibraryVersion" in getroottable()) || ("FatCatLibForce" in ROOT && FatC
 // Swedish				--		Decimate 		(decimatetf on Discord)
 // Russian				--		Liverfull 		(liverfullprod@gmail.com)
 // Japanese				--		Calamari         (steamcommunity.com/id/Bipedal_Calamari)
-
+// Danish  				--		Thyme			(thyme1 on Discord)
 ::IH_color <- "\x08FFFF00DD"
 ::IH_text_color <- "\x08FFFFFFBB"
 ::IH_color_header <- "\x0826c2ffDD"
